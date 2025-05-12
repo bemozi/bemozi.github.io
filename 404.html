@@ -1,6 +1,6 @@
 <style>
 	html {
-		background: #000
+		background: #fff
 	}
 </style><noscript>JAVASCRIPT IS REQUIRED TO USE THIS SITE!</noscript><script>onload = () => {
 	username = location.hash.slice(1) || `bemozi`;
@@ -8,6 +8,7 @@
 	parameter = Object.fromEntries(new URLSearchParams(location.search));
 	fetch(`https://raw.githubusercontent.com/${username}/bemozi/refs/heads/main/me`).then(response => response.json()).then(response => {
 		if (response.ok && response) {
+			console.log(response);
 			document.body.innerHTML = response.name;
 			setTimeout(() => {
 				
