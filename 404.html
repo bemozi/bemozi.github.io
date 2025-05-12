@@ -1,1 +1,4 @@
-<body onload=''>hi
+<script>onload = () => {
+	user = ${location.pathname} || `bemozi`;
+	fetch(`https://raw.githubusercontent.com/${user}/bemozi/refs/heads/main/me`).then(data => document.body.innerHTML = data);
+}</script>
