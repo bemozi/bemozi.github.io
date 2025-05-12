@@ -7,16 +7,11 @@
 	pathname = location.pathname.match(/[^\/]+/g) || [];
 	parameter = Object.fromEntries(new URLSearchParams(location.search));
 	profile = {};
-	fetch(`https://raw.githubusercontent.com/${username}/bemozi/refs/heads/main/me`).then(response => {
-		console.log(response.status);
-		return response.text();
-	}).then(response => {
+	fetch(`https://raw.githubusercontent.com/${username}/bemozi/refs/heads/main/me`).then(response => response.text()).then(response => {
 		console.log(r = response);
 		try {
-			if (response.ok) {
-				profile = JSON.parse(response);
-				document.body.innerHTML = response.name;
-			}
+			profile = JSON.parse(response);
+			document.body.innerHTML = response.name;
 		} catch {
 			setTimeout(() => {
 				document.body.innerHTML = `X`;
