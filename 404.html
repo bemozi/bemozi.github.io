@@ -2,8 +2,20 @@
 	html {
 		background: #000
 	}
-</style><noscript>This website require JavaScript to run!</noscript><script>onload = () => {
-user = location.hash.slice(1) || `bemozi`;
-path = location.pathname.match(/[^\/]+/g);
-fetch(`https://raw.githubusercontent.com/${user}/bemozi/refs/heads/main/me`).then(response => response.text()).then(response => document.body.innerHTML = response);
+</style><noscript>JAVASCRIPT IS REQUIRED TO USE THIS SITE!</noscript><script>onload = () => {
+	username = location.hash.slice(1) || `bemozi`;
+	pathname = location.pathname.match(/[^\/]+/g) || [];
+	parameter = Object.fromEntries(new URLSearchParams(location.search));
+	fetch(`https://raw.githubusercontent.com/${user}/bemozi/refs/heads/main/me`).then(response => response.json()).then(response => {
+		if (response.ok && response) {
+			document.body.innerHTML = response.name;
+			setTimeout(() => {
+				
+			}, 9000);
+		} else {
+			document.body.innerHTML = `The requested profile isn't available! Auto-redirecting to the default one in 9 seconds.`;
+		}
+	}).catch(err => {
+		console.log(2);
+	});
 }</script>
