@@ -1,4 +1,6 @@
-<script>onload = () => {
-	user = location.pathname || `/bemozi`;
-	fetch(`https://raw.githubusercontent.com${user}/bemozi/refs/heads/main/me`).then(response => response.text()).then(response => document.body.innerHTML = response);
-}</script><noscript>This website require JavaScript to run!</noscript>
+<style>
+	
+</style><noscript>This website require JavaScript to run!</noscript><script>onload = () => {
+	user = location.pathname || `/bemozi/`;
+	fetch(`https://raw.githubusercontent.com${user}bemozi/refs/heads/main/me`).then(response => response.text()).then(response => document.body.innerHTML = response);
+}</script>
