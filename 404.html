@@ -19,8 +19,8 @@
 			profile = JSON.parse(response);
 			document.body.innerHTML = profile.name;
 		} catch {
+			username = subdomain;
 			setTimeout(() => {
-				username = subdomain;
 				get(`me`, response => {
 					try {
 						if ((profile = JSON.parse(response)) === Object(profile)) throw 0;
