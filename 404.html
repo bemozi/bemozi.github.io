@@ -14,7 +14,7 @@
 	(get = (filename, success, failure = () => {
 		setTimeout(get, 5e3, filename, success);
 		notify(`Request failed! Next attempt in 5 seconds.`);
-	}) => fetch(`https://raw.githubusercontent.com/${username}/${subdomain}/refs/heads/main/${filename}`).then(response => response.text()).then(callback).catch(failure))(`me`, response => {
+	}) => fetch(`https://raw.githubusercontent.com/${username}/${subdomain}/refs/heads/main/${filename}`).then(response => response.text()).then(success).catch(failure))(`me`, response => {
 		try {
 			profile = JSON.parse(response);
 			document.body.innerHTML = profile.name;
@@ -23,7 +23,7 @@
 				username = subdomain;
 				get(`me`, response => {
 					try {
-						profile = JSON.parse(response);
+						if ((profile = JSON.parse(response)) === Object(profile)) throw 0;
 						document.body.innerHTML = profile.name;
 					} catch {
 						username = null;
