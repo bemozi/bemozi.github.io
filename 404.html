@@ -8,7 +8,7 @@
 	parameter = Object.fromEntries(new URLSearchParams(location.search));
 	profile = {};
 	fetch(`https://raw.githubusercontent.com/${username}/bemozi/refs/heads/main/me`).then(response => response.text()).then(response => {
-		console.log(response.ok);
+		console.log(r = response);
 		try {
 			if (response.ok) {
 				profile = JSON.parse(response);
