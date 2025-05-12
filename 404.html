@@ -3,18 +3,18 @@
 		background: #fff
 	}
 </style><noscript>JAVASCRIPT IS REQUIRED TO USE THIS SITE!</noscript><script>onload = () => {
-	subdomain = location.host.split(`.`)[0];
-	username = location.hash.slice(1) || subdomain;
 	pathname = location.pathname.match(/[^\/]+/g) || [];
 	parameter = Object.fromEntries(new URLSearchParams(location.search));
+	subdomain = location.host.split(`.`)[0];
+	username = location.hash.slice(1) || subdomain;
 	profile = {};
-	notify = (message) => {
+	notify = (message, title) => {
 		document.body.innerHTML = message;
 	};
 	(get = (filename, success, failure = () => {
-		setTimeout(get, 5e3, filename, success);
-		notify(`Request failed! Next attempt in 5 seconds.`);
-	}) => fetch(`https://raw.githubusercontent.com/${username}/${subdomain}/refs/heads/main/${filename}`).then(response => response.text()).then(success).catch(failure))(`me`, response => {
+		setTimeout(get, 9e3, filename, success);
+		notify(`Request failed! Next attempt in 9 seconds.`);
+	}) => navigator.onLine ? fetch(`https://raw.githubusercontent.com/${username}/${subdomain}/refs/heads/main/${filename}`).then(response => response.text()).then(success).catch(failure) : failure)(`me`, response => {
 		try {
 			profile = JSON.parse(response);
 			document.body.innerHTML = profile.name;
@@ -25,12 +25,12 @@
 						if (Object(profile = JSON.parse(response)) !== profile) throw 0;
 						document.body.innerHTML = profile.name;
 					} catch {
-						username = null;
+						username = 0;
 						notify(`The default profile isn't available!`);
 					}
 				});
 			}, 9e3);
-			notify(`The requested profile isn't available! Auto-redirecting to the default one in 9 seconds.`);
+			notify(`The requested profile isn't available! Rerouting to the default one in 9 seconds.`);
 			username = subdomain;
 		}
 	});
