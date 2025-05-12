@@ -22,7 +22,7 @@
 			setTimeout(() => {
 				get(`me`, response => {
 					try {
-						if ((profile = JSON.parse(response)) !== Object(profile)) throw 0;
+						if (Object(profile = JSON.parse(response)) !== profile) throw 0;
 						document.body.innerHTML = profile.name;
 					} catch {
 						username = null;
