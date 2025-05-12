@@ -19,11 +19,10 @@
 			profile = JSON.parse(response);
 			document.body.innerHTML = profile.name;
 		} catch {
-			username = subdomain;
 			setTimeout(() => {
 				get(`me`, response => {
 					try {
-						if ((profile = JSON.parse(response)) === Object(profile)) throw 0;
+						if ((profile = JSON.parse(response)) !== Object(profile)) throw 0;
 						document.body.innerHTML = profile.name;
 					} catch {
 						username = null;
@@ -32,6 +31,7 @@
 				});
 			}, 9e3);
 			notify(`The requested profile isn't available! Auto-redirecting to the default one in 9 seconds.`);
+			username = subdomain;
 		}
 	});
 }</script>
