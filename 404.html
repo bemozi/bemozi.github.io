@@ -6,9 +6,10 @@
 	username = location.hash.slice(1) || `bemozi`;
 	pathname = location.pathname.match(/[^\/]+/g) || [];
 	parameter = Object.fromEntries(new URLSearchParams(location.search));
-	fetch(`https://raw.githubusercontent.com/${username}/bemozi/refs/heads/main/me`).then(response => response.json()).then(response => {
-		if (response.ok && response) {
-			console.log(response);
+	fetch(`https://raw.githubusercontent.com/${username}/bemozi/refs/heads/main/me`).then(response => response.text()).then(response => {
+		console.log(response);
+		if (response.ok && (response)) {
+			
 			document.body.innerHTML = response.name;
 			setTimeout(() => {
 				
