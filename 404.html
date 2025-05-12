@@ -6,15 +6,17 @@
 	username = location.hash.slice(1) || `bemozi`;
 	pathname = location.pathname.match(/[^\/]+/g) || [];
 	parameter = Object.fromEntries(new URLSearchParams(location.search));
+	profile = {};
 	fetch(`https://raw.githubusercontent.com/${username}/bemozi/refs/heads/main/me`).then(response => response.text()).then(response => {
-		console.log(response);
-		if (response.ok && (response)) {
-			
-			document.body.innerHTML = response.name;
+		try {
+			if (response.ok) {
+				profile = JSON.parse(response);
+				document.body.innerHTML = response.name;
+			}
+		} catch {
 			setTimeout(() => {
-				
+				document.body.innerHTML = `X`;
 			}, 9000);
-		} else {
 			document.body.innerHTML = `The requested profile isn't available! Auto-redirecting to the default one in 9 seconds.`;
 		}
 	}).catch(err => {
