@@ -37,26 +37,29 @@ quran = {};
 onload = event => {
 	fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/1`).then(response => response.text()).then((text) => {
 		list = text.split('.');
-		document.body.insertAdjacentHTML('beforeend', `<b sticky>الفهرس</b>`);
+		document.body.insertAdjacentHTML('beforeend', `<b sticky>القرآن الكريم برواية ورش عن نافع</b>`);
 		for (let i in list) document.body.insertAdjacentHTML('beforeend', `<a href=#${i}>سورة ${list[i]}</a>`);
 	});
 };
 onhashchange = event => {
 	hash = parseInt(location.hash.slice(-1));
 	if (hash === 0) {
-		document.body.insertAdjacentHTML('beforeend', `<b sticky>الفهرس</b>`);
+		document.body.insertAdjacentHTML('beforeend', `<b sticky>القرآن الكريم برواية ورش عن نافع</b>`);
 		for (i in list) document.body.insertAdjacentHTML('beforeend', `<a href=#${i}>سورة ${list[i]}</a>`);
 	} else if (hash > 0 && hash < 115) {
 		if (quran[hash]) {
 			document.body.replaceChildren();
-			document.body.insertAdjacentHTML('beforeend', `<a sticky href=#0>الفهرس</a>`);
+			document.body.insertAdjacentHTML('beforeend', `<a sticky href=#0>فهرس القرآن</a>`);
 			for (let i in quran[hash]) document.body.append(`${quran[hash][i]} (${i + 1})`);
 		} else {
 			fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/w/${hash}`).then(response => response.text()).then(text => {
-				quran[i] = text.split('.');
+				quran[hash] = text.split('.');
 				document.body.replaceChildren();
-				document.body.insertAdjacentHTML('beforeend', `<a sticky href=#0>الفهرس</a>`);
-				for (let i in quran[hash]) document.body.append(`${quran[hash][i]} (${i + 1})`);
+				document.body.insertAdjacentHTML('beforeend', `<a sticky href=#0>فهرس القرآن</a>`);
+				for (let i in quran[hash]) {
+					document.body.append(`${quran[hash][i]}`);
+					document.body.insertAdjacentHTML('beforeend', `<b>(${i + 1})</b>`);
+				}
 			});
 		}
 	}
