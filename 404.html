@@ -25,7 +25,7 @@
 		color: #EEE;
 	}
 	b {
-		display: contents;
+		
 	}
 	a, a:visited {
 		text-decoration: none;
@@ -57,8 +57,7 @@ onhashchange = event => {
 			document.body.replaceChildren();
 			document.body.insertAdjacentHTML('beforeend', `<a sticky href=#0>فهرس القرآن</a>`);
 			for (let i in quran[hash]){
-				document.body.append(`${quran[hash][i]}`);
-				document.body.insertAdjacentHTML('beforeend', `<b>(${+i + 1})</b>`);
+				document.body.insertAdjacentHTML('beforeend', `<b>${quran[hash][i]}</b><b>(${+i + 1})</b>`);
 			}
 			scrollTo(0, 0);
 		} else {
@@ -67,8 +66,7 @@ onhashchange = event => {
 				document.body.replaceChildren();
 				document.body.insertAdjacentHTML('beforeend', `<a sticky href=#0>فهرس القرآن</a>`);
 				for (let i in quran[hash]) {
-					document.body.append(`${quran[hash][i]}`);
-					document.body.insertAdjacentHTML('beforeend', `<b>(${+i + 1})</b>`);
+					document.body.insertAdjacentHTML('beforeend', `<b>${quran[hash][i]}</b><b>(${+i + 1})</b>`);
 				}
 				scrollTo(0, 0);
 			});
