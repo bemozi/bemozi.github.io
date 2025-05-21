@@ -1,8 +1,4 @@
 <style>
-	@font-face {
-		font-family: hafs;
-		src: url(data:font/truetype;charset=utf-8;base64,<<copied base64 string>>) format('truetype');
-	}
 	* {
 		outline: none;
 		user-select: none;
@@ -44,10 +40,10 @@
 		color: #EEE
 	}
 </style><script>
-fetch(`//github.com/bemozi/_/raw/refs/heads/_/hafs.woff.b64`).then(response => response.text()).then(text => {
-	const fontFace = new FontFace(`hafs`, `url(${text})`);
-	fontFace.load().then(() => {
-		document.fonts.add(fontFace);
+fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/hafs.woff`).then(response => response.blob()).then(blob => {
+	const font = new FontFace(`hafs`, `url(${URL.createObjectURL(blob)})`);
+	font.load().then(() => {
+		document.fonts.add(font);
 		document.body.style.fontFamily = `hafs`;
 	});
 });
