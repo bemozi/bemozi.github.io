@@ -1,4 +1,5 @@
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 	* {
 		outline: none;
 		user-select: none;
@@ -10,7 +11,7 @@
 		display: flex;
 		flex-flow: column wrap;
 		text-align: center;
-		font-family: hafs;
+		font-family: 'Noto Kufi Arabic';
 		font-size: 3vmax;
 		line-height: 2;
 		color: #555;
@@ -23,7 +24,8 @@
 		color: #EEE
 	}
 	body > b {
-		padding: 3vmax
+		padding: 3vmax;
+		font-family: hafs;
 	}
 	body > b > :nth-child(even) {
 		margin: 0 10;
@@ -44,7 +46,6 @@ fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/hafs.woff`).then(respon
 	const font = new FontFace(`hafs`, `url(${URL.createObjectURL(blob)})`);
 	font.load().then(() => {
 		document.fonts.add(font);
-		document.body.style.fontFamily = `hafs`;
 	});
 });
 quran = {};
