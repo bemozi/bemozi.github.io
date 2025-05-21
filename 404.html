@@ -31,6 +31,7 @@
 	}
 	body > b > :nth-child(even) {
 		margin: 0 10;
+		padding: 10;
 		background: url(//upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Ayah2.svg/250px-Ayah2.svg.png) no-repeat center / cover;
 	}
 	a, a:visited {
@@ -63,7 +64,7 @@ onhashchange = event => {
 			document.body.replaceChildren();
 			document.body.insertAdjacentHTML('beforeend', `<a sticky href=#0>فهرس القرآن</a><b></b>`);
 			for (let i in quran[hash]){
-				document.body.lastChild.insertAdjacentHTML('beforeend', `<b>${quran[hash][i]}</b><b>(${+i + 1})</b>`);
+				document.body.lastChild.insertAdjacentHTML('beforeend', `<b>${quran[hash][i]}</b><b>${+i + 1}</b>`);
 			}
 			scrollTo(0, 0);
 		} else {
@@ -72,7 +73,7 @@ onhashchange = event => {
 				document.body.replaceChildren();
 				document.body.insertAdjacentHTML('beforeend', `<a sticky href=#0>فهرس القرآن</a><b></b>`);
 				for (let i in quran[hash]) {
-					document.body.lastChild.insertAdjacentHTML('beforeend', `<b>${quran[hash][i]}</b><b>(${+i + 1})</b>`);
+					document.body.lastChild.insertAdjacentHTML('beforeend', `<b>${quran[hash][i]}</b><b>${+i + 1}</b>`);
 				}
 				scrollTo(0, 0);
 			});
