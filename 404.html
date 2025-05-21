@@ -10,31 +10,37 @@
 		top: 0;
 	}
 	a {
+		padding: 10;
 		text-decoration: none;
 	}
 </style><script>
-fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/1`).then(response => response.text()).then((text, i) => {
-	list = text.split('.');
-});
-quran = [];
-for (let i = 1; i < 115; ++i) fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/w/${i}`).then(response => response.text()).then(text => quran[i] = text.split('.'));
-onload = async (event) => {
+quran = {};
+onload = event => {
 	const {
 		body
 	} = document;
-	await (() => {
-		while (!list);
-		for (i in list) body.insertAdjacentHTML('beforeend', `<a href=${i}>سورة ${list[i]}<a>`);
+	fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/1`).then(response => response.text()).then((text) => {
+		list = text.split('.');
+		for (let i in list) body.insertAdjacentHTML('beforeend', `<a href=#${i}>سورة ${list[i]}<a>`);
 	});
 };
 onhashchange = event => {
 	hash = parseInt(location.hash);
 	if (hash === 0) {
-		for (i in list) body.insertAdjacentHTML('beforeend', `<a href=${i}>سورة ${list[i]}<a>`);
+		for (i in list) body.insertAdjacentHTML('beforeend', `<a href=#${i}>سورة ${list[i]}<a>`);
 	} else if (hash > 0 && hash < 115) {
-		document.body.replaceChildren();
-		body.insertAdjacentHTML('beforeend', `<a sticky href=0>الفهرس<a>`);
-		for (let i in quran[hash]) body.append(`${quran[hash][i]} (${i + 1})`);
+		if (quran[hash]) {
+			document.body.replaceChildren();
+			body.insertAdjacentHTML('beforeend', `<a sticky href=#0>الفهرس<a>`);
+			for (let i in quran[hash]) body.append(`${quran[hash][i]} (${i + 1})`);
+		} else {
+			fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/w/${i}`).then(response => response.text()).then(text => {
+				quran[i] = text.split('.');
+				document.body.replaceChildren();
+				body.insertAdjacentHTML('beforeend', `<a sticky href=#0>الفهرس<a>`);
+				for (let i in quran[hash]) body.append(`${quran[hash][i]} (${i + 1})`);
+			});
+		}
 	}
 };
 </script>
