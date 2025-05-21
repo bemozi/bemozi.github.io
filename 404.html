@@ -1,5 +1,5 @@
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
+	@import url('//fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 	* {
 		outline: none;
 		user-select: none;
@@ -20,7 +20,7 @@
 	[sticky] {
 		position: sticky;
 		top: 0;
-		background: #607d8b;
+		background: #607D8B;
 		color: #EEE
 	}
 	body > b {
@@ -30,8 +30,11 @@
 	body > b > :nth-child(even) {
 		margin: 0 10;
 		padding: 20;
+		color: #607D8B;
+		/*
 		font-size: 2vmax;
 		background: url(//upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Ayah2.svg/250px-Ayah2.svg.png) no-repeat center / contain
+		*/
 	}
 	a, a:visited {
 		text-decoration: none;
@@ -69,7 +72,7 @@ onhashchange = event => {
 			document.body.replaceChildren();
 			document.body.insertAdjacentHTML('beforeend', '<a sticky href=#0>فهرس القرآن</a><b></b>');
 			for (let i in quran[hash]){
-				document.body.lastChild.insertAdjacentHTML('beforeend', `<b>${quran[hash][i]}</b><b>${+i + 1}</b>`);
+				document.body.lastChild.insertAdjacentHTML('beforeend', `<b>${quran[hash][i]}</b><b>(${+i + 1})</b>`);
 			}
 			scrollTo(0, 0);
 		} else {
@@ -78,7 +81,7 @@ onhashchange = event => {
 				document.body.replaceChildren();
 				document.body.insertAdjacentHTML('beforeend', '<a sticky href=#0>فهرس القرآن</a><b></b>');
 				for (let i in quran[hash]) {
-					document.body.lastChild.insertAdjacentHTML('beforeend', `<b>${quran[hash][i]}</b><b>${+i + 1}</b>`);
+					document.body.lastChild.insertAdjacentHTML('beforeend', `<b>${quran[hash][i]}</b><b>(${+i + 1})</b>`);
 				}
 				scrollTo(0, 0);
 			});
