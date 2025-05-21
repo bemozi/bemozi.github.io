@@ -16,11 +16,13 @@
 		font-size: 4vmax;
 		line-height: 2;
 		color: #555;
-		background: #eee
+		background: #EEE;
 	}
 	[sticky] {
 		position: sticky;
 		top: 0;
+		background: #EEE;
+		border-bottom: 2px thin #555;
 	}
 	a, a:visited {
 		text-decoration: none;
@@ -34,14 +36,14 @@ quran = {};
 onload = event => {
 	fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/1`).then(response => response.text()).then((text) => {
 		list = text.split('.');
-		document.body.insertAdjacentHTML('beforeend', `<b>الفهرس</b>`);
+		document.body.insertAdjacentHTML('beforeend', `<b sticky>الفهرس</b>`);
 		for (let i in list) document.body.insertAdjacentHTML('beforeend', `<a href=#${i}>سورة ${list[i]}</a>`);
 	});
 };
 onhashchange = event => {
 	hash = parseInt(location.hash.slice(-1));
 	if (hash === 0) {
-		document.body.insertAdjacentHTML('beforeend', `<b>الفهرس</b>`);
+		document.body.insertAdjacentHTML('beforeend', `<b sticky>الفهرس</b>`);
 		for (i in list) document.body.insertAdjacentHTML('beforeend', `<a href=#${i}>سورة ${list[i]}</a>`);
 	} else if (hash > 0 && hash < 115) {
 		if (quran[hash]) {
