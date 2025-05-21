@@ -1,1 +1,37 @@
-<body onload="fetch('//raw.githubusercontent.com/bemozi/_/refs/heads/_/1/1').then(_=>_.text()).then(_=>document.head.appendChild(document.createElement('script')).append(_))">
+<style>
+	body {
+		margin: 0;
+		display: flex;
+		flex-flow: column;
+		text-align: center;
+	}
+	[sticky] {
+		position: sticky;
+		top: 0;
+	}
+	a {
+		text-decoration: none;
+	}
+</style><script>
+onload = () => {
+	const {
+		body
+	} = document;
+};
+onhashchange = event => {
+	hash = parseInt(location.hash);
+	if (hash === 0) {
+		for (i in list) body.insertAdjacentHTML('beforeend', `<a href=${i}>سورة ${list[i]}<a>`);
+	} else if (hash > 0 && hash < 115) {
+		document.body.replaceChildren();
+		body.insertAdjacentHTML('beforeend', `<a sticky href=0>الفهرس<a>`);
+		for (let i in quran[hash]) body.append(`${quran[hash][i]} (${i + 1})`);
+	}
+};
+fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/1`).then(response => response.text()).then((text, i) => {
+	list = text.split('.');
+	for (i in list) body.insertAdjacentHTML('beforeend', `<a href=${i}>سورة ${list[i]}<a>`);
+});
+quran = [];
+for (let i = 1; i < 115; ++i) fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/w/${index}`).then(response => response.text()).then(text => quran[index] = text.split('.'));
+</script>
