@@ -18,7 +18,7 @@ fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/1`).then(response => 
 });
 quran = [];
 for (let i = 1; i < 115; ++i) fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/w/${i}`).then(response => response.text()).then(text => quran[i] = text.split('.'));
-onload = asyn () => {
+onload = async () => {
 	const {
 		body
 	} = document;
