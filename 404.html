@@ -1,9 +1,22 @@
 <style>
+	@font-face {
+		font-family: hafs;
+		src: url(https://github.com/bemozi/_/raw/refs/heads/_/hafs.woff);
+	}
+	* {
+		outline: none;
+		user-select: none
+	}
 	body {
 		margin: 0;
 		display: flex;
 		flex-flow: column;
 		text-align: center;
+		font-family: hafs;
+		font-size: 1vmax;
+		line-height: 2;
+		color: #555;
+		background: #eee
 	}
 	[sticky] {
 		position: sticky;
@@ -21,12 +34,14 @@ quran = {};
 onload = event => {
 	fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/1`).then(response => response.text()).then((text) => {
 		list = text.split('.');
+		document.body.insertAdjacentHTML('beforeend', `<b>الفهرس</b>`);
 		for (let i in list) document.body.insertAdjacentHTML('beforeend', `<a href=#${i}>سورة ${list[i]}</a>`);
 	});
 };
 onhashchange = event => {
 	hash = parseInt(location.hash.slice(-1));
 	if (hash === 0) {
+		document.body.insertAdjacentHTML('beforeend', `<b>الفهرس</b>`);
 		for (i in list) document.body.insertAdjacentHTML('beforeend', `<a href=#${i}>سورة ${list[i]}</a>`);
 	} else if (hash > 0 && hash < 115) {
 		if (quran[hash]) {
@@ -34,7 +49,7 @@ onhashchange = event => {
 			document.body.insertAdjacentHTML('beforeend', `<a sticky href=#0>الفهرس</a>`);
 			for (let i in quran[hash]) document.body.append(`${quran[hash][i]} (${i + 1})`);
 		} else {
-			fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/w/${i}`).then(response => response.text()).then(text => {
+			fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/w/${hash}`).then(response => response.text()).then(text => {
 				quran[i] = text.split('.');
 				document.body.replaceChildren();
 				document.body.insertAdjacentHTML('beforeend', `<a sticky href=#0>الفهرس</a>`);
@@ -44,3 +59,104 @@ onhashchange = event => {
 	}
 };
 </script>
+
+
+
+
+
+<script>
+/*
+onpointerup = event {
+	if (event.target.parentNode === nody) {
+		body.replaceChildren();
+	}
+};
+onload = () => {
+	const {
+		getElementById,
+		querySelector,
+		querySelectorAll,
+		createElement,
+		body
+	} = document;
+	pathname = location.pathname.match(/[^\/]+/g) || [];
+	parameter = Object.fromEntries(new URLSearchParams(location.search));
+	subdomain = location.host.split(`.`)[0];
+	repository = `https://api.github.com/repos/${username = location.hash.slice(1) || subdomain}/${subdomain}/contents`;
+	profile = {};
+	notify = (message, title) => {
+		document.body.innerHTML = message;
+	};
+	(get = (filename, success, failure = () => {
+		setTimeout(get, 9e3, filename, success);
+		notify(`Request failed! Next attempt in 9 seconds.`);
+	}) => navigator.onLine ? fetch(`https://raw.githubusercontent.com/${username}/${subdomain}/refs/heads/main/${filename}`).then(response => response.text()).then(success).catch(failure) : failure)(`me`, response => {
+		try {
+			profile = JSON.parse(response);
+			document.body.innerHTML = profile.name;
+		} catch {
+			setTimeout(() => {
+				get(`me`, response => {
+					try {
+						if (Object(profile = JSON.parse(response)) !== profile) throw 0;
+						document.body.innerHTML = profile.name;
+					} catch {
+						username = 0;
+						notify(`The default profile isn't available!`);
+					}
+				});
+			}, 9e3);
+			notify(`The requested profile isn't available! Rerouting to the default one in 9 seconds.`);
+			username = subdomain;
+		}
+	});
+}
+*/
+
+</script>
+<b>*</b>
+<b>2</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
+<b>3</b>
