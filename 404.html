@@ -18,11 +18,14 @@ fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/1`).then(response => 
 });
 quran = [];
 for (let i = 1; i < 115; ++i) fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/w/${i}`).then(response => response.text()).then(text => quran[i] = text.split('.'));
-onload = async () => {
+onload = async (event) => {
 	const {
 		body
 	} = document;
-	for (i in list) body.insertAdjacentHTML('beforeend', `<a href=${i}>سورة ${list[i]}<a>`);
+	await (() => {
+		while (!list);
+		for (i in list) body.insertAdjacentHTML('beforeend', `<a href=${i}>سورة ${list[i]}<a>`);
+	});
 };
 onhashchange = event => {
 	hash = parseInt(location.hash);
