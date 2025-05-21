@@ -24,8 +24,8 @@
 		background: #555;
 		color: #EEE;
 	}
-	b {
-		
+	body > :last-child > :nth-child(odd) {
+		margin: 0 5;
 	}
 	a, a:visited {
 		text-decoration: none;
@@ -55,18 +55,18 @@ onhashchange = event => {
 	} else if (hash > 0 && hash < 115) {
 		if (quran[hash]) {
 			document.body.replaceChildren();
-			document.body.insertAdjacentHTML('beforeend', `<a sticky href=#0>فهرس القرآن</a>`);
+			document.body.insertAdjacentHTML('beforeend', `<a sticky href=#0>فهرس القرآن</a><b></b>`);
 			for (let i in quran[hash]){
-				document.body.insertAdjacentHTML('beforeend', `<b>${quran[hash][i]}</b><b>(${+i + 1})</b>`);
+				document.body.lastChild.insertAdjacentHTML('beforeend', `<b>${quran[hash][i]}</b><b>(${+i + 1})</b>`);
 			}
 			scrollTo(0, 0);
 		} else {
 			fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/w/${hash}`).then(response => response.text()).then(text => {
 				quran[hash] = text.split('.');
 				document.body.replaceChildren();
-				document.body.insertAdjacentHTML('beforeend', `<a sticky href=#0>فهرس القرآن</a>`);
+				document.body.insertAdjacentHTML('beforeend', `<a sticky href=#0>فهرس القرآن</a><b></b>`);
 				for (let i in quran[hash]) {
-					document.body.insertAdjacentHTML('beforeend', `<b>${quran[hash][i]}</b><b>(${+i + 1})</b>`);
+					document.body.lastChild.insertAdjacentHTML('beforeend', `<b>${quran[hash][i]}</b><b>(${+i + 1})</b>`);
 				}
 				scrollTo(0, 0);
 			});
