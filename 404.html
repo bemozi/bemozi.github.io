@@ -33,5 +33,5 @@ fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/1`).then(response => 
 	for (i in list) body.insertAdjacentHTML('beforeend', `<a href=${i}>سورة ${list[i]}<a>`);
 });
 quran = [];
-for (let i = 1; i < 115; ++i) fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/w/${index}`).then(response => response.text()).then(text => quran[index] = text.split('.'));
+for (let i = 1; i < 115; ++i) fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/w/${i}`).then(response => response.text()).then(text => quran[i] = text.split('.'));
 </script>
