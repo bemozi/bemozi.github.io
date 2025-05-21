@@ -1,8 +1,4 @@
 <style>
-	@font-face {
-		font-family: hafs;
-		src: url(https://github.com/bemozi/_/raw/refs/heads/_/hafs.woff);
-	}
 	* {
 		outline: none;
 		user-select: none;
@@ -23,7 +19,7 @@
 	[sticky] {
 		position: sticky;
 		top: 0;
-		background: #555;
+		background: #607d8b;
 		color: #EEE
 	}
 	body > b {
@@ -33,7 +29,7 @@
 		margin: 0 10;
 		padding: 20;
 		font-size: 3vmax;
-		background: url(//upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Ayah2.svg/250px-Ayah2.svg.png) no-repeat center / contain;
+		background: url(//upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Ayah2.svg/250px-Ayah2.svg.png) no-repeat center / contain
 	}
 	a, a:visited {
 		text-decoration: none;
@@ -44,9 +40,16 @@
 		color: #EEE
 	}
 </style><script>
+fetch(`//github.com/bemozi/_/raw/refs/heads/_/hafs.woff`).then(response => response.blob()).then(blob => {
+	const fontFace = new FontFace(`hafs`, `url(${URL.createObjectURL(fontBlob)})`);
+	fontFace.load().then(() => {
+		document.fonts.add(fontFace);
+		document.body.style.fontFamily = `hafs`;
+	});
+});
 quran = {};
 onload = event => {
-	fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/1`).then(response => response.text()).then((text) => {
+	fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/1`).then(response => response.text()).then(text => {
 		list = text.split('.');
 		document.body.insertAdjacentHTML('beforeend', `<i sticky>القرآن الكريم برواية ورش عن نافع</i>`);
 		for (let i in list) document.body.insertAdjacentHTML('beforeend', `<a href=#${+i + 1}>سورة ${list[i]}</a>`);
