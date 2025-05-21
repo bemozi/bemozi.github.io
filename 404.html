@@ -5,7 +5,8 @@
 	}
 	* {
 		outline: none;
-		user-select: none
+		user-select: none;
+		font-weight: normal
 	}
 	body {
 		margin: 0;
@@ -16,24 +17,27 @@
 		font-size: 4vmax;
 		line-height: 2;
 		color: #555;
-		background: #EEE;
+		background: #EEE
 	}
 	[sticky] {
 		position: sticky;
 		top: 0;
 		background: #555;
-		color: #EEE;
+		color: #EEE
 	}
-	body > :last-child > :nth-child(odd) {
-		margin: 0 5;
+	body > b {
+		padding: 3vmax
+	}
+	body > b > :nth-child(even) {
+		margin: 0 10
 	}
 	a, a:visited {
 		text-decoration: none;
-		color: #555;
+		color: #555
 	}
 	a:hover, a:active {
 		background: #999;
-		color: #EEE;
+		color: #EEE
 	}
 </style><script>
 quran = {};
