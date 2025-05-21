@@ -42,7 +42,7 @@ onload = event => {
 	});
 };
 onhashchange = event => {
-	hash = parseInt(location.hash.slice(-1));
+	hash = parseInt(location.hash.slice(1));
 	if (hash === 0) {
 		document.body.replaceChildren();
 		document.body.insertAdjacentHTML('beforeend', `<b sticky>القرآن الكريم برواية ورش عن نافع</b>`);
