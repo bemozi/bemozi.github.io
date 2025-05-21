@@ -24,6 +24,9 @@
 		background: #555;
 		color: #EEE;
 	}
+	b {
+		display: contents;
+	}
 	a, a:visited {
 		text-decoration: none;
 		color: #555;
@@ -39,6 +42,7 @@ onload = event => {
 		list = text.split('.');
 		document.body.insertAdjacentHTML('beforeend', `<b sticky>القرآن الكريم برواية ورش عن نافع</b>`);
 		for (let i in list) document.body.insertAdjacentHTML('beforeend', `<a href=#${+i + 1}>سورة ${list[i]}</a>`);
+		scrollTo(0, 0);
 	});
 };
 onhashchange = event => {
@@ -47,6 +51,7 @@ onhashchange = event => {
 		document.body.replaceChildren();
 		document.body.insertAdjacentHTML('beforeend', `<b sticky>القرآن الكريم برواية ورش عن نافع</b>`);
 		for (i in list) document.body.insertAdjacentHTML('beforeend', `<a href=#${+i + 1}>سورة ${list[i]}</a>`);
+		scrollTo(0, 0);
 	} else if (hash > 0 && hash < 115) {
 		if (quran[hash]) {
 			document.body.replaceChildren();
@@ -55,6 +60,7 @@ onhashchange = event => {
 				document.body.append(`${quran[hash][i]}`);
 				document.body.insertAdjacentHTML('beforeend', `<b>(${+i + 1})</b>`);
 			}
+			scrollTo(0, 0);
 		} else {
 			fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/w/${hash}`).then(response => response.text()).then(text => {
 				quran[hash] = text.split('.');
@@ -64,6 +70,7 @@ onhashchange = event => {
 					document.body.append(`${quran[hash][i]}`);
 					document.body.insertAdjacentHTML('beforeend', `<b>(${+i + 1})</b>`);
 				}
+				scrollTo(0, 0);
 			});
 		}
 	}
