@@ -44,6 +44,7 @@ onload = event => {
 onhashchange = event => {
 	hash = parseInt(location.hash.slice(-1));
 	if (hash === 0) {
+		document.body.replaceChildren();
 		document.body.insertAdjacentHTML('beforeend', `<b sticky>القرآن الكريم برواية ورش عن نافع</b>`);
 		for (i in list) document.body.insertAdjacentHTML('beforeend', `<a href=#${i}>سورة ${list[i]}</a>`);
 	} else if (hash > 0 && hash < 115) {
