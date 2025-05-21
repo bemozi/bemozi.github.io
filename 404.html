@@ -46,12 +46,15 @@ onhashchange = event => {
 	if (hash === 0) {
 		document.body.replaceChildren();
 		document.body.insertAdjacentHTML('beforeend', `<b sticky>القرآن الكريم برواية ورش عن نافع</b>`);
-		for (i in list) document.body.insertAdjacentHTML('beforeend', `<a href=#${i}>سورة ${list[i]}</a>`);
+		for (i in list) document.body.insertAdjacentHTML('beforeend', `<a href=#${i + 1}>سورة ${list[i]}</a>`);
 	} else if (hash > 0 && hash < 115) {
 		if (quran[hash]) {
 			document.body.replaceChildren();
 			document.body.insertAdjacentHTML('beforeend', `<a sticky href=#0>فهرس القرآن</a>`);
-			for (let i in quran[hash]) document.body.append(`${quran[hash][i]} (${i + 1})`);
+			for (let i in quran[hash]){
+				document.body.append(`${quran[hash][i]}`);
+				document.body.insertAdjacentHTML('beforeend', `<b>(${i + 1})</b>`);
+			}
 		} else {
 			fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/w/${hash}`).then(response => response.text()).then(text => {
 				quran[hash] = text.split('.');
