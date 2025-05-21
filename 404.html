@@ -1,4 +1,8 @@
 <style>
+	@font-face {
+		font-family: hafs;
+		src: url(data:font/truetype;charset=utf-8;base64,<<copied base64 string>>) format('truetype');
+	}
 	* {
 		outline: none;
 		user-select: none;
@@ -11,7 +15,7 @@
 		flex-flow: column wrap;
 		text-align: center;
 		font-family: hafs;
-		font-size: 4vmax;
+		font-size: 3vmax;
 		line-height: 2;
 		color: #555;
 		background: #EEE
@@ -28,7 +32,7 @@
 	body > b > :nth-child(even) {
 		margin: 0 10;
 		padding: 20;
-		font-size: 3vmax;
+		font-size: 2vmax;
 		background: url(//upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Ayah2.svg/250px-Ayah2.svg.png) no-repeat center / contain
 	}
 	a, a:visited {
@@ -40,8 +44,8 @@
 		color: #EEE
 	}
 </style><script>
-fetch(`//github.com/bemozi/_/raw/refs/heads/_/hafs.woff`).then(response => response.blob()).then(blob => {
-	const fontFace = new FontFace(`hafs`, `url(${URL.createObjectURL(fontBlob)})`);
+fetch(`//github.com/bemozi/_/raw/refs/heads/_/hafs.woff.b64`).then(response => response.text()).then(text => {
+	const fontFace = new FontFace(`hafs`, `url(${text})`);
 	fontFace.load().then(() => {
 		document.fonts.add(fontFace);
 		document.body.style.fontFamily = `hafs`;
@@ -49,9 +53,9 @@ fetch(`//github.com/bemozi/_/raw/refs/heads/_/hafs.woff`).then(response => respo
 });
 quran = {};
 onload = event => {
-	fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/1`).then(response => response.text()).then(text => {
+	fetch('//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/1').then(response => response.text()).then(text => {
 		list = text.split('.');
-		document.body.insertAdjacentHTML('beforeend', `<i sticky>القرآن الكريم برواية ورش عن نافع</i>`);
+		document.body.insertAdjacentHTML('beforeend', '<i sticky>القرآن الكريم برواية ورش عن نافع</i>');
 		for (let i in list) document.body.insertAdjacentHTML('beforeend', `<a href=#${+i + 1}>سورة ${list[i]}</a>`);
 		scrollTo(0, 0);
 	});
@@ -60,13 +64,13 @@ onhashchange = event => {
 	hash = parseInt(location.hash.slice(1));
 	if (hash === 0) {
 		document.body.replaceChildren();
-		document.body.insertAdjacentHTML('beforeend', `<i sticky>القرآن الكريم برواية ورش عن نافع</i>`);
+		document.body.insertAdjacentHTML('beforeend', '<i sticky>القرآن الكريم برواية ورش عن نافع</i>');
 		for (i in list) document.body.insertAdjacentHTML('beforeend', `<a href=#${+i + 1}>سورة ${list[i]}</a>`);
 		scrollTo(0, 0);
 	} else if (hash > 0 && hash < 115) {
 		if (quran[hash]) {
 			document.body.replaceChildren();
-			document.body.insertAdjacentHTML('beforeend', `<a sticky href=#0>فهرس القرآن</a><b></b>`);
+			document.body.insertAdjacentHTML('beforeend', '<a sticky href=#0>فهرس القرآن</a><b></b>');
 			for (let i in quran[hash]){
 				document.body.lastChild.insertAdjacentHTML('beforeend', `<b>${quran[hash][i]}</b><b>${+i + 1}</b>`);
 			}
@@ -75,7 +79,7 @@ onhashchange = event => {
 			fetch(`//raw.githubusercontent.com/bemozi/_/refs/heads/_/q/w/${hash}`).then(response => response.text()).then(text => {
 				quran[hash] = text.split('.');
 				document.body.replaceChildren();
-				document.body.insertAdjacentHTML('beforeend', `<a sticky href=#0>فهرس القرآن</a><b></b>`);
+				document.body.insertAdjacentHTML('beforeend', '<a sticky href=#0>فهرس القرآن</a><b></b>');
 				for (let i in quran[hash]) {
 					document.body.lastChild.insertAdjacentHTML('beforeend', `<b>${quran[hash][i]}</b><b>${+i + 1}</b>`);
 				}
