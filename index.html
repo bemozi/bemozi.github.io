@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="favicon.jpg" rel="icon">
+		<link href="images/favicon.jpg" rel="icon">
 		<title>Dr. Mehdi</title>
 		<meta name="author" content="Mehdi">
 		<meta name="description" content="">
@@ -53,6 +53,7 @@
 			}
 			#about > :nth-child(2) {
 				font-size: 5vmax;
+				font-weight: bold;
 			}
 			#about > :first-child {
 				text-align: start;
@@ -89,6 +90,20 @@
 			#faq {
 				background-image: url(images/faq.jpg), radial-gradient(circle, #424242 0%, #000 100%);
 				min-height: 50vh;
+			}
+			#faq > * {
+				padding: .5rem 1rem;
+			}
+			#faq > :nth-child(odd) {
+				margin-top: 1rem;
+				background: linear-gradient(90deg, #2196F3CC 70%, #3F51B5CC 100%);
+				border-radius: .5rem .5rem 0 0;
+				font-weight: bold;
+			}
+			#faq > :nth-child(even) {
+				background: #FAFAFACC;
+				color: #424242;
+				border-radius: 0 0 .5rem .5rem;
 			}
 			[hide] {
 				display: none !important;
@@ -140,7 +155,7 @@
 		<section id="testimonial">
 			<div>
 				<a target="_blank" href="//facebook.com/mehdiLdch"><img loading="lazy" src="images/man.png"></a>
-				<div>Dr. Mehdi is one of the most motivated freelancers I’ve ever worked with. I recommend him highly!</div>
+				<div>Dr. Mehdi is one of the most motivated freelancers I've ever worked with. I recommend him highly!</div>
 			</div>
 			<div>
 				<a target="_blank" href="//facebook.com/mehdiLdch"><img loading="lazy" src="images/woman.png"></a>
@@ -156,16 +171,22 @@
 			</div>
 		</section>
 		<section id="faq">
-			<div column hide>
-				<div tabindex=0>
-					<div>Question</div>
-					<div>Answer</div>
-				</div>
-				<div tabindex=0>
-					<div>Question</div>
-					<div>Answer</div>
-				</div>
-			</div>
+			<div>What services do you offer?</div>
+			<div>I help university students with their studies.</div>
+			<div>What kind of clients do you work with?</div>
+			<div>Teachers and students in general.</div>
+			<div>Why should I work with you?</div>
+			<div>I'm reliable, passionate and I'm a great communicator.</div>
+			<div>How do I get started on a project with you?</div>
+			<div>Simply send me a message with your project details. I'll discuss your needs, goals, and timeline before starting.</div>
+			<div>What's your turnaround time?</div>
+			<div>Turnaround time depends on the project's complexity. Smaller projects typically take 3-7 days, while larger projects may require 1–2 weeks. I'll provide a timeline once we discuss your project.</div>
+			<div>How soon can we start?</div>
+			<div>I recommend reaching out at least a month before your final date for the highest chance of availability.</div>
+			<div>Do you offer payment plans?</div>
+			<div>Yes! Our typical payment plan is a 25% deposit to start. The remaining balance is divided evenly over the course of the project (typically in 2-3 installments). Let me know if you'd like to explore a different payment schedule.</div>
+			<div>Will you review my project for free?</div>
+			<div>I used to give free reviews but the amount of requests became overwhelming. It's just not practical for me to reply to each.</div>
 		</section>
 	</body>
 </html>
