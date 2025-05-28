@@ -4,336 +4,155 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="favicon.png" rel="icon">
-		<title>Mehdi</title>
-		<meta name="author" content="Jimmy">
-		<meta name="description" content="Online HTML Viewer, HTML Beautifier, HTML Formatter, HTML Editor to Test output - Convert HTML Strings to a Friendly Readable Format, Beautify.">
-		<meta name="keywords" content="html viewer, html beautifier, HTML formatter,online html viewer,beautify html,html viewer online,html online viewer,html beautify,htmlviewer,html reader,html code viewer,online html formatter,view html online,html preview">
+		<link href="favicon.jpg" rel="icon">
+		<title>Dr. Mehdi</title>
+		<meta name="author" content="Mehdi">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
 		<style>
 			* {
 				outline: none;
 				user-select: none;
 				box-sizing: border-box;
 				overflow-wrap: break-word;
-			}
-			html {
-				background-color: #EEE;
-				background: url(bg.jpg) no-repeat center / cover;
-				background-attachment: fixed;
-			}
-			body {
-				margin: 0;
-				display: flex;
-				flex-flow: column wrap;
-				/*line-height: 2;*/
-				color: #555;
-				font-size: 1.4vmax;
+				font-family: 'Noto Kufi Arabic', cursive;
+				line-height: 2;
+				color: #FAFAFA;
 			}
 			[lang=ar] {
 				direction: rtl;
-				font-family: 'Noto Kufi Arabic';
 			}
-			body > :not(:first-child) {
-				
-			}
-			[menu] {
-				padding: 0 30;
-				position: sticky;
-				inset: 0;
-				display: flex;
-				justify-content: space-evenly;
-				/*line-height: 4;*/
-				background: #3f51b580;
-				backdrop-filter: blur(3px);
-				color: #EEE;
-			}
-			[menu] > b {
-				padding: 0 10;
-			}
-			[menu] > b:hover {
-				cursor: pointer;
-				text-decoration: underline;
-				text-underline-position: under;
-			}
-			[last] {
-				flex-grow: 1;
-				text-align: start;
-			}
-			
-			/*
-			[find] {
-				display: flex;
-				margin: 0 3vmax;
-				padding: 5 30;
-				text-align: start;
-			}
-			[main] {
-				position: relative;
-				top: 0;
-			}
-			[row] {
-				display: table;
-				table-layout: fixed;
-				width: 92vw;
-			}
-			[row] > * {
-				display: table-row;
-				color: #fff;
-			}
-			[row] > b:active {
-				display: flex;
-				flex-flow: column;
-				width: inherit;
-			}
-			[row] > b:active > * {
-				white-space: initial;
-				text-align: start;
-			}
-			[row] > b:active > :after {
-				display: initial;
-			}
-			[row] > :nth-child(odd) {
-				background: #00000080;
-				color: #EEE;
-			}
-			[row] > :first-child {
-				background: #3f51b580;
-			}
-			[row] > * > * {
-				display: table-cell;
-				white-space: nowrap;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				padding: 10 20;
-			}*/
-			
-			
-			
-			
-			a:hover, a:active {
-				
-			}
-			a {
-				text-align: center;
-			}
-			
-			[about] {
-				
-				background: #ffeb3b;
-			}
-			[column] {
-				display: flex;
-				flex-flow: column wrap;
-				gap: 5vmax;
-				justify-content: space-evenly;
-			}
-			[row] {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 5vmax;
-				justify-content: space-evenly;
-			}
-			[huge] {
-				font-size: 5vmax;
-			}
-			[large] {
-				font-size: 3vmax;
-			}
-			[center] {
-				text-align: center;
-			}
-			[padding] > * {
-				padding: 10px 0;
-			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			html {
 				scroll-behavior: smooth;
 			}
-			header {
-				position: sticky;
-				inset: 0;
-				display: flex;
-				justify-content: space-evenly;
-				line-height: 4;
-				background: #FAFAFA;
-				border-bottom: 3px solid #F4D27B;
-				font-family: sans-serif;
-				font-weight: bolder;
-				font-size: 2vmax;
-				color: #212121;
-			}
-			section {
-				scroll-margin-top: 6em;
-			}
-			a, a:visited {
-				text-decoration: none;
-				color: inherit;
-			}
-			a:hover, a:active {
-				text-decoration: underline;
-				text-underline-position: under;
-			}
-			#about, #testimonial, #faq {
-				display: grid;
-				place-items: center;
-				padding: 5vmax;
-				min-height: 500px;
-				font-family: cursive;
-			}
-			#about > *, #testimonial > *, #faq > * {
-				display: flex;
-			}
-			#about {
-				background-color: #FFEB3B;
-				background: url(images/background.jpg) no-repeat center / cover;
-				background-attachment: fixed;
-				color: #FAFAFA;
-			}
-			#testimonial {
-				background-color: #FAFAFA;
-				background: url(images/freelance.webp) no-repeat center / cover;
-				background-attachment: fixed;
-			}
-			#testimonial > * {
-				gap: 3vmax;
-			}
-			#testimonial > * > * {
-				padding: 20px;
-				background: #FAFAFAE6;
-				border: 1px solid #F4D27B;
-				display: flex;
-				align-items: start;
-				gap: 20px;
-				flex: 1;
-				min-height: 400px;
-			}
-			#testimonial > * > * > * {
-				display: flex;
-				flex-flow: column wrap;
-				align-self: stretch;
-				gap: 10px
-			}
-			#testimonial > * > * > * > :first-child {
-				flex: 1;
-			}
-			#testimonial > * > * > * > :nth-child(2) {
-				font-weight: bolder;
-			}
-			#faq {
-				background-color: #212121;
-				background: url(images/faq.jpg) no-repeat center / cover;
-				background-attachment: fixed;
-			}
-			#faq > * {
-				width: 80vw;
-			}
-			#faq > * > * {
-				background: #FAFAFA80;
-				
-			}
-			#faq > * > * > :first-child {
-				background: #FAFAFA80;
-			}
-			#faq > * > * > * {
-				padding: 10px;
-				color: #212121;
-			}
-			#faq > * > * > :first-child:after {
-				content: '+';
-				
-			}
-			#faq > * > :not(:focus) > :last-child {
-				display: none;
-			}
-			[middle] {
-				align-self: center;
+			body {
+				margin: 0;
 			}
 			img {
-				width: 48px;
-				height: 48px;
+				min-width: fit-content;
+				max-height: 48px;
+				object-fit: contain;
+				transition: all .2s ease-in-out;
+			}
+			header {
+				background: #FAFAFAE6;
+				backdrop-filter: blur(3px);
+			}
+			#about, #testimonial, #faq {
+				padding: 5vmax;
+				background-attachment: fixed;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			#about {
+				background-image: url(images/background.jpg), radial-gradient(circle, #2196F3 0%, #3F51B5 100%);
+				text-align: center;
+				font-style: italic;
+				font-size: 3vmax;
+			}
+			#about > :nth-child(2) {
+				font-size: 5vmax;
+			}
+			#about > :first-child {
+				text-align: start;
+			}
+			#about > :last-child {
+				padding: 2rem;
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 2rem;
+			}
+			#about > :last-child > :hover {
+				transform: scale(1.3);
+			}
+			#testimonial {
+				background-image: url(images/freelance.webp), radial-gradient(circle, #FAFAFA 0%, #EEEEEE 100%);
+				display: grid;
+				gap: 2rem;
+				font-size: 1.5vmax;
+			}
+			#testimonial > * {
+				display: flex;
+				gap: 1rem;
+			}
+			#testimonial > :nth-child(odd) {
+				place-self: end;
+				flex-flow: row-reverse;
+			}
+			#testimonial > * > :last-child {
+				place-self: start;
+				padding: .5rem 1rem;
+				background: radial-gradient(circle, #2196F3CC 0%, #3F51B5CC 100%);
+				border-radius: 1rem;
+			}
+			#faq {
+				background-image: url(images/faq.jpg), radial-gradient(circle, #424242 0%, #000 100%);
+				min-height: 50vh;
 			}
 			[hide] {
 				display: none !important;
 			}
-			@media (orientation: portrait) {
-				[row] {
-					display: grid;
-					grid-template-columns: repeat(5, 1fr);
-				}
-				#testimonial > * {
-					flex-flow: column;
-				}
-				#testimonial > * > * {
-					min-height: auto;
-				}
-			}
 		</style>
 		<script>
 			onload = () => {
-				
+				document.head.appendChild(document.createElement('style')).append(`
+					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
+				`);
+				languages = {
+					zh: '中国',
+					en: 'English',
+					fr: 'Français',
+					ar: 'العربية',
+				};
+				/* *** */
+				header = document.querySelector('header');
+				for (let language in languages) {
+					header.insertAdjacentHTML('beforeend', `<div link=${language}>${languages[language]}</div>`);
+				}
 			};
 		</script>
 	</head>
 	<body>
-		<header>
+		<header hide>
 			<a href="#about">ABOUT</a>
 			<a href="#testimonial">TESTIMONIAL</a>
-			<a href="#faq">FAQ</a>
+			<a href="#faq" last>FAQ</a>
 		</header>
 		<section id="about">
-			<div column padding>
-				<div large>Hello I'm</div>
-				<div huge center>Mehdi</div>
-				<div large center>I Design & Build Creative Products</div>
-				<div large center>I Live in <a href="">Changshan, Hunan, China</a></div>
-				<div row>
-					<a target="_blank" href=""><img src="images/WeChat.png"></a>
-					<a target="_blank" href=""><img src="images/LINE.png"></a>
-					<a target="_blank" href=""><img src="images/WhatsApp.png"></a>
-					<a target="_blank" href=""><img src="images/Skype.png"></a>
-					<a target="_blank" href=""><img src="images/Gmail.png"></a>
-					<a target="_blank" href=""><img src="images/Phone.png"></a>
-					<a target="_blank" href=""><img src="images/LinkedIn.png"></a>
-					<a target="_blank" href=""><img src="images/X.png"></a>
-					<a target="_blank" href=""><img src="images/Instagram.png"></a>
-					<a target="_blank" href="//facebook.com/mehdiLdch"><img src="images/Facebook.png"></a>
-				</div>
+			<div>Ni hao, I'm</div>
+			<div>Dr. Mehdi</div>
+			<div>Research assistant</div>
+			<div>I Live in <a>Changshan, Hunan, China</a></div>
+			<div>
+				<a target="_blank" href=""><img loading="lazy" src="images/WeChat.png"></a>
+				<a target="_blank" href=""><img loading="lazy" src="images/LINE.png"></a>
+				<a target="_blank" href=""><img loading="lazy" src="images/Skype.png"></a>
+				<a target="_blank" href=""><img loading="lazy" src="images/WhatsApp.png"></a>
+				<a target="_blank" href=""><img loading="lazy" src="images/Gmail.png"></a>
+				<a target="_blank" href=""><img loading="lazy" src="images/LinkedIn.png"></a>
+				<a target="_blank" href=""><img loading="lazy" src="images/X.png"></a>
+				<a target="_blank" href=""><img loading="lazy" src="images/TikTok.png"></a>
+				<a target="_blank" href=""><img loading="lazy" src="images/Instagram.png"></a>
+				<a target="_blank" href="//facebook.com/mehdiLdch"><img loading="lazy" src="images/Facebook.png"></a>
 			</div>
 		</section>
 		<section id="testimonial">
 			<div>
-				<div>
-					<img src="images/man.png">
-					<div>
-						<div>As a freelance consultant, one of my biggest challenges was ensuring I got paid accurately and on time. Manual invoicing was prone to errors, and without proper time tracking, I often undercharged for my services.</div>
-						<div>Gus Baker</div>
-						<div>Business Consultant</div>
-					</div>
-				</div>
-				<div>
-					<img src="images/woman.png">
-					<div>
-						<div>Creating contracts from scratch was always a daunting task for me. It took up valuable time that I could have spent on writing, and I was never entirely sure if my agreements were legally sound.</div>
-						<div>Hermione August</div>
-						<div>Writer & Editor</div>
-					</div>
-				</div>
-				<div>
-					<img src="images/woman.png">
-					<div>
-						<div>Collaborating with clients on software development projects was often inefficient. Different tools and platforms made it hard to work together seamlessly.</div>
-						<div>Imogene Cager</div>
-						<div>Software Developer</div>
-					</div>
-				</div>
+				<a target="_blank" href="//facebook.com/mehdiLdch"><img loading="lazy" src="images/man.png"></a>
+				<div>Dr. Mehdi is one of the most motivated freelancers I’ve ever worked with. I recommend him highly!</div>
+			</div>
+			<div>
+				<a target="_blank" href="//facebook.com/mehdiLdch"><img loading="lazy" src="images/woman.png"></a>
+				<div>This freelancer delivered exceptional results under strict deadlines. Would hire again!</div>
+			</div>
+			<div>
+				<a target="_blank" href="//facebook.com/mehdiLdch"><img loading="lazy" src="images/man.png"></a>
+				<div>Mehdi provided excellent work. He will be the first person I contact for all future projects.</div>
+			</div>
+			<div>
+				<a target="_blank" href="//facebook.com/mehdiLdch"><img loading="lazy" src="images/woman.png"></a>
+				<div>Amazing job as always, enriched my project significantly and knew exactly what I needed. Thank you!</div>
 			</div>
 		</section>
 		<section id="faq">
