@@ -57,12 +57,19 @@
 			}
 			[for=menu] {
 				position: fixed;
-				padding: 2vmax 4vmax;
 				z-index: 9;
 				font-size: 2vmax;
 				background: #000000CC;
-				clip-path: circle(2vmax);
+				/*padding: 2vmax 4vmax;
+				clip-path: circle(2vmax);*/
 				cursor: pointer;
+				
+				
+				
+				padding: 1rem;
+				width: 4rem;
+				height: 5rem;
+				border-bottom-right-radius: 100%;
 			}
 			header {
 				position: fixed;
@@ -79,7 +86,6 @@
 			}
 			header > :hover {
 				cursor: pointer;
-				transform: scale(1.3);
 			}
 			#about, #testimonial, #faq {
 				padding: 3vmax;
