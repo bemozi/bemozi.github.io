@@ -15,7 +15,7 @@
 				user-select: none;
 				box-sizing: border-box;
 				overflow-wrap: break-word;
-				font-family: 'Noto Kufi Arabic', cursive;
+				font-family: "Noto Kufi Arabic", sans-serif;
 				line-height: 2;
 				color: #FAFAFA;
 			}
@@ -28,17 +28,61 @@
 			body {
 				margin: 0;
 			}
+			body:has(#menu:checked) {
+				overflow: hidden;
+			}
+			a, a:visited {
+				text-decoration: none;
+				color: inherit;
+			}
 			img {
 				min-width: fit-content;
-				max-height: 64px;
+				max-height:48px;
 				object-fit: contain;
 			}
+			#menu {
+				display: none;
+			}
+			[for=menu]:after {
+				content: "☰";
+			}
+			#menu:checked + :after {
+				content: "✕";
+			}
+			#menu:checked ~ header {
+				clip-path: circle(75%);
+			}
+			#menu:not(:checked) ~ header {
+				visibility: hidden;
+			}
+			[for=menu] {
+				position: fixed;
+				padding: 2vmax 4vmax;
+				z-index: 9;
+				font-size: 2vmax;
+				background: #000000CC;
+				clip-path: circle(2vmax);
+				cursor: pointer;
+			}
 			header {
-				background: #FAFAFAE6;
+				position: fixed;
+				inset: 0;
+				display: grid;
+				place-items: center;
+				font-size: 2vmax;
+				text-transform: uppercase;
+				font-weight: bolder;
+				background: radial-gradient(circle, #424242CC 0%, #000000CC 100%);
 				backdrop-filter: blur(3px);
+				clip-path: circle(0 at 3vmax 3vmax);
+				transition: all 0.3s ease-in-out;
+			}
+			header > :hover {
+				cursor: pointer;
+				transform: scale(1.3);
 			}
 			#about, #testimonial, #faq {
-				padding: 5vmax;
+				padding: 3vmax;
 				background-attachment: fixed;
 				background-position: center;
 				background-repeat: no-repeat;
@@ -54,52 +98,50 @@
 				font-size: 5vmax;
 				font-weight: bold;
 			}
-			#about > :first-child {
-				text-align: start;
-			}
 			#about > :last-child {
-				padding: 2rem;
-				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
-				gap: 2rem;
+				padding-top: 2vmax;
+			}
+			#about > :last-child > * {
+				margin: 1vmax 1vmax 1vmax 0;
 			}
 			#testimonial {
 				background-image: url(images/freelance.webp), radial-gradient(circle, #FAFAFA 0%, #EEEEEE 100%);
 				display: grid;
-				gap: 3rem;
+				gap: 2vmax;
 				font-size: 1.5vmax;
 			}
 			#testimonial > * {
 				display: flex;
-				gap: 1rem;
-				text-decoration: none;
+				gap: 1vmax;
 			}
 			#testimonial > :nth-child(odd) {
 				flex-flow: row-reverse;
 			}
 			#testimonial > * > :last-child {
 				place-self: start;
-				padding: .5rem 1rem;
+				padding: .5vmax 1vmax;
 				background: radial-gradient(circle, #2196F3CC 0%, #3F51B5CC 100%);
-				border-radius: 1rem;
+				border-radius: .5vmax;
 			}
 			#faq {
 				background-image: url(images/faq.jpg), radial-gradient(circle, #424242 0%, #000 100%);
 				font-size: 1.5vmax;
 			}
 			#faq > * {
-				padding: .5rem 1rem;
+				padding: .5vmax 1vmax;
 			}
 			#faq > :nth-child(odd) {
-				margin-top: 1rem;
 				background: linear-gradient(90deg, #2196F3CC 70%, #3F51B5CC 100%);
-				border-radius: .5rem .5rem 0 0;
+				border-radius: .5vmax .5vmax 0 0;
 				font-weight: bold;
+			}
+			#faq > :not(:first-child):nth-child(odd) {
+				margin-top: 2vmax;
 			}
 			#faq > :nth-child(even) {
 				background: #FAFAFACC;
 				color: #424242;
-				border-radius: 0 0 .5rem .5rem;
+				border-radius: 0 0 .5vmax .5vmax;
 			}
 			[hide] {
 				display: none !important;
@@ -125,11 +167,9 @@
 		</script>
 	</head>
 	<body>
-		<header hide>
-			<a href="#about">ABOUT</a>
-			<a href="#testimonial">TESTIMONIAL</a>
-			<a href="#faq" last>FAQ</a>
-		</header>
+		<input id="menu" type="checkbox">
+		<label for="menu"></label>
+		<header></header>
 		<section id="about">
 			<div>Ni hao, I'm</div>
 			<div>Dr. Mehdi</div>
