@@ -4,11 +4,11 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="images/favicon.jpg" rel="icon">
-		<title>Dr. Mehdi</title>
-		<meta name="author" content="Mehdi">
-		<meta name="description" content="doctor, mehdi, portfolio, website, landing, one, page">
-		<meta name="keywords" content="">
+		<link href="//avatars.githubusercontent.com/u/211243872" rel="icon">
+		<title>BEMOZI</title>
+		<meta name="author" content="bemozi">
+		<meta name="description" content="bemozi, portfolio, website, web, landing, one, page">
+		<meta name="keywords" content="bemozi, portfolio, website, web, landing, one, page">
 		<style>
 			* {
 				outline: none;
@@ -22,13 +22,17 @@
 			[lang=ar] {
 				direction: rtl;
 			}
-			html {
-				scroll-behavior: smooth;
+			:empty:after {
+				content: attr(text);
 			}
 			body {
 				margin: 0;
+				cursor: grab;
 			}
-			body:has(#menu:checked) {
+			body:active {
+				cursor: grabbing;
+			}
+			html:has(#menu:checked) {
 				overflow: hidden;
 			}
 			a, a:visited {
@@ -40,6 +44,28 @@
 				max-height:48px;
 				object-fit: contain;
 			}
+			a, input, textarea, button {
+				all: unset;
+				cursor: auto;
+			}
+			input, textarea {
+				padding: .5vmax 1vmax;
+				background: #FAFAFACC;
+				color: #424242;
+				border-radius: .5vmax;
+			}
+			textarea {
+				box-sizing: border-box;
+				resize: none;
+			}
+			button {
+				padding: .5vmax 1vmax;
+				background: linear-gradient(90deg, #2196F3CC 70%, #3F51B5CC 100%);
+				text-align: center;
+				color: #FAFAFA;
+				border-radius: .5vmax;
+				cursor: pointer;
+			}
 			#menu {
 				display: none;
 			}
@@ -48,9 +74,6 @@
 			}
 			#menu:checked + :after {
 				content: "✕";
-			}
-			#menu:checked ~ header {
-				clip-path: circle(75%);
 			}
 			#menu:not(:checked) ~ header {
 				visibility: hidden;
@@ -75,13 +98,11 @@
 				font-weight: bolder;
 				background: radial-gradient(circle, #424242CC 0%, #000000CC 100%);
 				backdrop-filter: blur(3px);
-				clip-path: circle(0 at 3vmax 3vmax);
-				transition: all 0.3s ease-in-out;
 			}
 			header > :hover {
 				cursor: pointer;
 			}
-			#about, #testimonial, #faq {
+			#about, #testimonial, #faq, #contact {
 				padding: 3vmax;
 				background-attachment: fixed;
 				background-position: center;
@@ -103,6 +124,9 @@
 			}
 			#about > :last-child > * {
 				margin: 1vmax 1vmax 1vmax 0;
+			}
+			#about > :last-child > [href=""] {
+				display: none;
 			}
 			#testimonial {
 				background-image: url(images/freelance.webp), radial-gradient(circle, #FAFAFA 0%, #EEEEEE 100%);
@@ -143,6 +167,12 @@
 				color: #424242;
 				border-radius: 0 0 .5vmax .5vmax;
 			}
+			#contact {
+				background-image: url(images/faq.jpg), radial-gradient(circle, #424242 0%, #000 100%);
+				font-size: 1.5vmax;
+				display: grid;
+				gap: 1vmax;
+			}
 			[hide] {
 				display: none !important;
 			}
@@ -152,6 +182,62 @@
 				document.head.appendChild(document.createElement('style')).append(`
 					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 				`);
+				onpointerdown = (event, c) => {
+					/*s = event.target;
+					//while (s !== document.all[0] && (c = getComputedStyle(s)).overflow !== 'hidden' && s.scrollWidth <= s.clientWidth && s.scrollHeight <= s.clientHeight) s = s.parentNode;
+					//console.log(s, /(auto|scroll)/.test(getComputedStyle(s).overflow));
+					x = [];
+					y = [];
+					while (s !== document) {
+						c = getComputedStyle(s);
+						if (c.overflow !== 'hidden') {
+							if (c.overflowX !== 'hidden' && s.scrollWidth > s.clientWidth) {
+								x.push(s);
+							}
+							if (c.overflowY !== 'hidden' && s.scrollHeight > s.clientHeight) {
+								y.push(s);
+							}
+						}
+						s = s.parentNode;
+					}
+					sx = x.length;
+					sy = y.length;
+					l = event.x;
+					t = event.y;
+					console.log(x, y);
+					
+					if ((c = getComputedStyle(s)).overflow === 'hidden') l = t = -1; else {
+						l = c.overflowX === 'hidden' ? -1 : event.x + s.scrollLeft;
+						t = c.overflowY === 'hidden' ? -1 : event.y + s.scrollTop;
+					}
+					console.log(s, l, t);*/
+				};
+				onpointermove = (event, iy, ty) => {
+					/*if (event.pressure) {
+						dt = event.y - t;
+						iy = sy;
+						if (dt < 0) {
+							for (; iy--; ) {
+								ty = Math.max([iy].scrollTop - dt, 0);
+								[iy].scrollTop += dt;
+							}
+						} else {
+							
+						}
+					}
+					if (event.pressure) {
+						if (l !== -1) s.scrollLeft = l - event.x;
+						if (t !== -1) s.scrollTop = t - event.y;
+					}*/
+				}
+				
+				
+				//event.pressure && s.scroll?.(l === -1 ? s.scrollLeft : l - event.x, t === -1 ? s.scrollTop : t - event.y);
+				
+				/*
+				https://stackoverflow.com/questions/35939886/find-first-scrollable-parent
+				https://github.com/olahol/scrollparent.js/blob/master/scrollparent.js#L13
+				*/
 				languages = {
 					zh: '中国',
 					en: 'English',
@@ -163,6 +249,31 @@
 				for (let language in languages) {
 					header.insertAdjacentHTML('beforeend', `<div link=${language}>${languages[language]}</div>`);
 				}
+				document.querySelector('form').onsubmit = event => {
+					event.preventDefault();
+					fetch(event.target.action, {
+						method: "POST",
+						mode: "no-cors",
+						headers: {"Content-Type": "multipart/form-data"},
+						body: new URLSearchParams(new FormData(event.target)).toString(),
+						redirect: 'follow'
+					}).then(response => {
+						const url = response.url;
+						console.log(url);
+						return response.text();
+						if (finalUrl.includes('formResponse') && !finalUrl.includes('viewform')) {
+							console.log('Form submitted successfully!');
+							return true;
+						} else {
+							console.log('Form submission failed');
+							return false;
+						}
+					}).then(text => {
+						console.log(text);
+					}).catch(error => {
+						alert(error);
+					});
+				};
 			};
 		</script>
 	</head>
@@ -172,59 +283,46 @@
 		<header></header>
 		<section id="about">
 			<div>Ni hao, I'm</div>
-			<div>Dr. Mehdi</div>
-			<div>Research assistant</div>
-			<div>I Live in <a>Changshan, Hunan, China</a></div>
+			<div>BEMOZI</div>
+			<div>Freelance Web Developer - Teach JavaScript & PHP</div>
 			<div>
 				<a target="_blank" href=""><img loading="lazy" src="images/WeChat.png"></a>
-				<a target="_blank" href=""><img loading="lazy" src="images/LINE.png"></a>
-				<a target="_blank" href=""><img loading="lazy" src="images/Skype.png"></a>
+				<a target="_blank" href="//line.me/ti/p/U3kHwV2zmB"><img loading="lazy" src="images/LINE.png"></a>
 				<a target="_blank" href=""><img loading="lazy" src="images/Zoom.png"></a>
 				<a target="_blank" href=""><img loading="lazy" src="images/WhatsApp.png"></a>
 				<a target="_blank" href=""><img loading="lazy" src="images/Telegram.png"></a>
 				<a target="_blank" href=""><img loading="lazy" src="images/Gmail.png"></a>
 				<a target="_blank" href=""><img loading="lazy" src="images/LinkedIn.png"></a>
-				<a target="_blank" href=""><img loading="lazy" src="images/X.png"></a>
-				<a target="_blank" href=""><img loading="lazy" src="images/TikTok.png"></a>
+				<a target="_blank" href="//x.com/bemozidz"><img loading="lazy" src="images/X.png"></a>
+				<a target="_blank" href="//tiktok.com/@bemozidz"><img loading="lazy" src="images/TikTok.png"></a>
 				<a target="_blank" href=""><img loading="lazy" src="images/Instagram.png"></a>
-				<a target="_blank" href="//facebook.com/mehdiLdch"><img loading="lazy" src="images/Facebook.png"></a>
+				<a target="_blank" href="//facebook.com/la.adry.813928"><img loading="lazy" src="images/Facebook.png"></a>
+				<a target="_blank" href="//snapchat.com/add/bemozidz"><img loading="lazy" src="images/Snapchat.png"></a>
 			</div>
 		</section>
 		<section id="testimonial">
-			<a target="_blank" href="//facebook.com/mehdiLdch">
+			<a target="_blank" href="//facebook.com/la.adry.813928">
 				<img loading="lazy" src="images/man.png">
-				<div>Dr. Mehdi is one of the most motivated freelancers I've ever worked with. I recommend him highly!</div>
+				<div>Be the first male client to leave a review!</div>
 			</a>
-			<a target="_blank" href="//facebook.com/mehdiLdch">
+			<a target="_blank" href="//facebook.com/la.adry.813928">
 				<img loading="lazy" src="images/woman.png">
-				<div>This freelancer delivered exceptional results under strict deadlines. Would hire again!</div>
-			</a>
-			<a target="_blank" href="//facebook.com/mehdiLdch">
-				<img loading="lazy" src="images/man.png">
-				<div>Mehdi provided excellent work. He will be the first person I contact for all future projects.</div>
-			</a>
-			<a target="_blank" href="//facebook.com/mehdiLdch">
-				<img loading="lazy" src="images/woman.png">
-				<div>Amazing job as always, enriched my project significantly and knew exactly what I needed. Thank you!</div>
+				<div>Be the first female client to leave a review!</div>
 			</a>
 		</section>
 		<section id="faq">
 			<div>What services do you offer?</div>
-			<div>I provide academic support to university students. Looking for guidance or feedback to improve your project? You're in the right place!</div>
-			<div>What kind of clients do you work with?</div>
-			<div>I usually work with teachers and scholars in a university or other higher education institution.</div>
+			<div>Looking for guidance or feedback to improve your audience? You're in the right place! I provide custom web development, and I teach coding.</div>
 			<div>Why should I work with you?</div>
 			<div>I'm reliable, passionate and I'm a great communicator.</div>
 			<div>How do I get started on a project with you?</div>
 			<div>Send me a message with your project details, and I'll get back to you shortly. I'll discuss your requirements, goals, and timeline before starting.</div>
-			<div>What's your turnaround time?</div>
-			<div>Turnaround time depends on the project's complexity. Smaller projects typically take 3-7 days, while larger projects may require 1–3 weeks. I'll provide a timeline once we discuss your project.</div>
-			<div>How soon can we start?</div>
-			<div>I advice reaching out at least a month before your final date for the highest chance of availability.</div>
-			<div>Do you offer payment plans?</div>
-			<div>Yes! My typical payment plan is a 25% deposit to start. The remaining balance is divided evenly over the course of the project (typically in 2-3 installments). Let me know if you'd like to explore a different payment schedule.</div>
-			<div>Will you review my project for free?</div>
-			<div>I used to offer free reviews without charging upfront, but the amount of requests became overwhelming. It's just not practical for me to reply to each.</div>
 		</section>
+		<form id="contact" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSe-wJBGxZEruXC8boWHsbHvM6IRu-d3Za_i06ASlKhyguQjtQ/formResponse">
+			<input name="entry.2005620554" required placeholder="Name" type="text" value="test">
+			<input name="entry.1045781291" required placeholder="Email" type="email" value="test@gmail.com">
+			<textarea name="entry.839337160" required placeholder="What can I help you with?" type="text" oninput="this.style.height = 0; this.style.height = this.scrollHeight +'px'">just a test</textarea>
+			<button>Send</button>
+		</form>
 	</body>
 </html>
