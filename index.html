@@ -49,21 +49,28 @@
 				cursor: auto;
 			}
 			input, textarea {
-				padding: .5vmax 1vmax;
+				padding: 1vmax;
 				background: #FAFAFACC;
-				color: #424242;
+				color: #212121;
 				border-radius: .5vmax;
+			}
+			input, textarea, button {
+				box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 			}
 			textarea {
 				box-sizing: border-box;
 				resize: none;
 			}
 			button {
-				padding: .5vmax 1vmax;
+				padding: 1vmax;
 				background: linear-gradient(90deg, #2196F3CC 70%, #3F51B5CC 100%);
 				text-align: center;
+				font-weight: bold;
 				color: #FAFAFA;
 				border-radius: .5vmax;
+				cursor: pointer;
+			}
+			a, button {
 				cursor: pointer;
 			}
 			#menu {
@@ -114,10 +121,18 @@
 				text-align: center;
 				font-style: italic;
 				font-size: 3vmax;
+				text-shadow: 0px 20px 8px rgba(0, 0, 0, 0.4);
 			}
 			#about > :nth-child(2) {
 				font-size: 5vmax;
 				font-weight: bold;
+				text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgb(0 0 0 / 10%), 0 0 5px rgb(0 0 0 / 10%), 0 1px 3px rgb(0 0 0 / 30%), 0 3px 5px rgb(0 0 0 / 20%), 0 5px 10px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 20%), 0 20px 20px rgb(0 0 0 / 15%);
+				animation: glow 1.5s infinite alternate;
+			}
+			@keyframes glow {
+				to {
+					text-shadow: 0 0 2px #2196F3, 0 0 5px #2196F3, 0 0 10px #2196F3, 0 0 20px #2196F3, 0 0 40px #2196F3;
+				}
 			}
 			#about > :last-child {
 				padding-top: 2vmax;
@@ -146,6 +161,7 @@
 				padding: .5vmax 1vmax;
 				background: radial-gradient(circle, #2196F3CC 0%, #3F51B5CC 100%);
 				border-radius: .5vmax;
+				box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 			}
 			#faq {
 				background-image: url(images/faq.jpg), radial-gradient(circle, #424242 0%, #000 100%);
@@ -164,14 +180,22 @@
 			}
 			#faq > :nth-child(even) {
 				background: #FAFAFACC;
-				color: #424242;
+				color: #212121;
 				border-radius: 0 0 .5vmax .5vmax;
 			}
 			#contact {
-				background-image: url(images/faq.jpg), radial-gradient(circle, #424242 0%, #000 100%);
+				background-image: url(images/contact.jpg), radial-gradient(circle, #424242 0%, #000 100%);
 				font-size: 1.5vmax;
-				display: grid;
+				display: flex;
+				flex-flow: column;
 				gap: 1vmax;
+			}
+			#contact > :first-child {
+				font-size: 3vmax;
+				font-weight: bold;
+				text-align: center;
+				background: radial-gradient(circle, #2196F3CC 0%, transparent 100%);
+				color: #FAFAFA;
 			}
 			[hide] {
 				display: none !important;
@@ -183,8 +207,9 @@
 					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 				`);
 				onpointerdown = (event, c) => {
-					/*s = event.target;
-					//while (s !== document.all[0] && (c = getComputedStyle(s)).overflow !== 'hidden' && s.scrollWidth <= s.clientWidth && s.scrollHeight <= s.clientHeight) s = s.parentNode;
+					s = event.target;
+					while (s !== document.all[0] && (c = getComputedStyle(s)).overflow !== 'hidden' && s.scrollWidth <= s.clientWidth && s.scrollHeight <= s.clientHeight) s = s.parentNode;
+					/*
 					//console.log(s, /(auto|scroll)/.test(getComputedStyle(s).overflow));
 					x = [];
 					y = [];
@@ -206,11 +231,11 @@
 					t = event.y;
 					console.log(x, y);
 					
+					console.log(s, l, t);*/
 					if ((c = getComputedStyle(s)).overflow === 'hidden') l = t = -1; else {
 						l = c.overflowX === 'hidden' ? -1 : event.x + s.scrollLeft;
 						t = c.overflowY === 'hidden' ? -1 : event.y + s.scrollTop;
 					}
-					console.log(s, l, t);*/
 				};
 				onpointermove = (event, iy, ty) => {
 					/*if (event.pressure) {
@@ -224,11 +249,11 @@
 						} else {
 							
 						}
-					}
+					}*/
 					if (event.pressure) {
 						if (l !== -1) s.scrollLeft = l - event.x;
 						if (t !== -1) s.scrollTop = t - event.y;
-					}*/
+					}
 				}
 				
 				
@@ -244,36 +269,10 @@
 					fr: 'Français',
 					ar: 'العربية',
 				};
-				/* *** */
 				header = document.querySelector('header');
 				for (let language in languages) {
 					header.insertAdjacentHTML('beforeend', `<div link=${language}>${languages[language]}</div>`);
 				}
-				document.querySelector('form').onsubmit = event => {
-					event.preventDefault();
-					fetch(event.target.action, {
-						method: "POST",
-						mode: "no-cors",
-						headers: {"Content-Type": "multipart/form-data"},
-						body: new URLSearchParams(new FormData(event.target)).toString(),
-						redirect: 'follow'
-					}).then(response => {
-						const url = response.url;
-						console.log(url);
-						return response.text();
-						if (finalUrl.includes('formResponse') && !finalUrl.includes('viewform')) {
-							console.log('Form submitted successfully!');
-							return true;
-						} else {
-							console.log('Form submission failed');
-							return false;
-						}
-					}).then(text => {
-						console.log(text);
-					}).catch(error => {
-						alert(error);
-					});
-				};
 			};
 		</script>
 	</head>
@@ -284,7 +283,8 @@
 		<section id="about">
 			<div>Ni hao, I'm</div>
 			<div>BEMOZI</div>
-			<div>Freelance Web Developer - Teach JavaScript & PHP</div>
+			<div>Freelance web developer & coding instructor</div>
+			<div>Hire me to build or coach — or both</div>
 			<div>
 				<a target="_blank" href=""><img loading="lazy" src="images/WeChat.png"></a>
 				<a target="_blank" href="//line.me/ti/p/U3kHwV2zmB"><img loading="lazy" src="images/LINE.png"></a>
@@ -301,28 +301,29 @@
 			</div>
 		</section>
 		<section id="testimonial">
-			<a target="_blank" href="//facebook.com/la.adry.813928">
+			<a target="_blank" href="">
 				<img loading="lazy" src="images/man.png">
-				<div>Be the first male client to leave a review!</div>
+				<div>Be the first male client to share your review!</div>
 			</a>
-			<a target="_blank" href="//facebook.com/la.adry.813928">
+			<a target="_blank" href="">
 				<img loading="lazy" src="images/woman.png">
-				<div>Be the first female client to leave a review!</div>
+				<div>Be the first female client to share your review!</div>
 			</a>
 		</section>
 		<section id="faq">
 			<div>What services do you offer?</div>
-			<div>Looking for guidance or feedback to improve your audience? You're in the right place! I provide custom web development, and I teach coding.</div>
+			<div>Looking for guidance or feedback to improve your digital identity? You're in the right place! I build custom websites, and I teach coding.</div>
 			<div>Why should I work with you?</div>
-			<div>I'm reliable, passionate and I'm a great communicator.</div>
+			<div>I turn ideas into actionable plans.</div>
 			<div>How do I get started on a project with you?</div>
-			<div>Send me a message with your project details, and I'll get back to you shortly. I'll discuss your requirements, goals, and timeline before starting.</div>
+			<div>Send me a message with your project details, and I'll get back to you shortly. We'll discuss your requirements, goals, and timeline before starting.</div>
 		</section>
 		<form id="contact" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSe-wJBGxZEruXC8boWHsbHvM6IRu-d3Za_i06ASlKhyguQjtQ/formResponse">
-			<input name="entry.2005620554" required placeholder="Name" type="text" value="test">
-			<input name="entry.1045781291" required placeholder="Email" type="email" value="test@gmail.com">
-			<textarea name="entry.839337160" required placeholder="What can I help you with?" type="text" oninput="this.style.height = 0; this.style.height = this.scrollHeight +'px'">just a test</textarea>
-			<button>Send</button>
+			<div>Kindly share your requirements</div>
+			<input name="entry.2005620554" required placeholder="Name" type="text" pattern="[A-Za-z\s]{3,30}" title="Name must contain only letters and spaces, ranging from 3 to 30 characters.">
+			<input name="entry.1045781291" required placeholder="Email" type="email">
+			<textarea name="entry.839337160" required placeholder="What can I help you with?" type="text" oninput="this.style.height = 0; this.style.height = this.scrollHeight +'px'"></textarea>
+			<button>SEND</button>
 		</form>
 	</body>
 </html>
