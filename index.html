@@ -9,6 +9,7 @@
 		<meta name="author" content="bemozi">
 		<meta name="description" content="bemozi, portfolio, website, web, landing, one, page">
 		<meta name="keywords" content="bemozi, portfolio, website, web, landing, one, page">
+		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 		<style>
 			* {
 				outline: none;
@@ -109,7 +110,7 @@
 			header > :hover {
 				cursor: pointer;
 			}
-			#about, #testimonial, #faq, #contact {
+			#about, #testimonial, #faq, #contact, footer {
 				padding: 3vmax;
 				background-attachment: fixed;
 				background-position: center;
@@ -118,29 +119,25 @@
 			}
 			#about {
 				background-image: url(images/background.png), radial-gradient(circle, #2196F3 0%, #3F51B5 100%);
+				display: flex;
+				flex-wrap: wrap;
+				place-content: space-around;
+				justify-content: center;
+				gap: 3vmax;
 				text-align: center;
 				font-style: italic;
 				font-size: 3vmax;
-				text-shadow: 0px 20px 8px rgba(0, 0, 0, 0.4);
+				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
+				min-height: 100vh;
 			}
 			#about > :nth-child(2) {
 				font-size: 5vmax;
-				font-weight: bold;
-				/*text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgb(0 0 0 / 10%), 0 0 5px rgb(0 0 0 / 10%), 0 1px 3px rgb(0 0 0 / 30%), 0 3px 5px rgb(0 0 0 / 20%), 0 5px 10px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 20%), 0 20px 20px rgb(0 0 0 / 15%);*/
-				animation: glow 1.5s infinite alternate;
+				font-weight: 900;
 			}
-			@keyframes glow {
-				to {
-					text-shadow: 0 0 1px #FBBC05, 0 0 3px #FBBC05, 0 0 5px #FBBC05, 0 0 10px #FBBC05, 0 0 20px #FBBC05;
-				}
+			#about > :nth-child(-n+3) {
+				flex: 1 1 100%;
 			}
-			#about > :last-child {
-				padding-top: 2vmax;
-			}
-			#about > :last-child > * {
-				margin: 1vmax 1vmax 1vmax 0;
-			}
-			#about > :last-child > [href=""] {
+			#about > [href=""] {
 				display: none;
 			}
 			#testimonial {
@@ -196,6 +193,36 @@
 				text-align: center;
 				background: radial-gradient(circle, #2196F3CC 0%, transparent 100%);
 				color: #FAFAFA;
+				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
+			}
+			footer {
+				background: url(images/footer.jpg), radial-gradient(circle, #424242 0%, #000 100%);
+				background-position: right;
+				min-height: 50vh;
+				display: flex;
+				flex-wrap: wrap;
+				place-content: space-around;
+				justify-content: center;
+				gap: 3vmax;
+				text-align: center;
+			}
+			footer > :first-child, footer > :nth-child(2) {
+				flex: 1 1 100%;
+				font-size: 3vmax;
+				font-weight: bold;
+				text-align: center;
+				color: #FAFAFA;
+			}
+			footer > :first-child, footer > :nth-child(2) {
+				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
+			}
+			footer > :first-child {
+				background: radial-gradient(circle, #2196F3CC 0%, transparent 100%);
+				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
+			}
+			footer > :nth-child(2) {
+				font-weight: 900;
+				color: #424242;
 			}
 			[hide] {
 				display: none !important;
@@ -278,51 +305,75 @@
 	</head>
 	<body>
 		<input id="menu" type="checkbox">
-		<label for="menu"></label>
+		<label hide for="menu"></label>
 		<header></header>
 		<section id="about">
 			<div>Ni hao, I'm</div>
 			<div>BEMOZI</div>
 			<div>Freelance web developer & coding instructor</div>
-			<div>
-				<a target="_blank" href=""><img loading="lazy" src="images/WeChat.png"></a>
-				<a target="_blank" href="//line.me/ti/p/U3kHwV2zmB"><img loading="lazy" src="images/LINE.png"></a>
-				<a target="_blank" href=""><img loading="lazy" src="images/Zoom.png"></a>
-				<a target="_blank" href=""><img loading="lazy" src="images/WhatsApp.png"></a>
-				<a target="_blank" href=""><img loading="lazy" src="images/Telegram.png"></a>
-				<a target="_blank" href=""><img loading="lazy" src="images/Gmail.png"></a>
-				<a target="_blank" href=""><img loading="lazy" src="images/LinkedIn.png"></a>
-				<a target="_blank" href="//x.com/bemozidz"><img loading="lazy" src="images/X.png"></a>
-				<a target="_blank" href="//tiktok.com/@bemozidz"><img loading="lazy" src="images/TikTok.png"></a>
-				<a target="_blank" href=""><img loading="lazy" src="images/Instagram.png"></a>
-				<a target="_blank" href="//facebook.com/la.adry.813928"><img loading="lazy" src="images/Facebook.png"></a>
-				<a target="_blank" href="//snapchat.com/add/bemozidz"><img loading="lazy" src="images/Snapchat.png"></a>
-			</div>
+			<a target="_blank" title="LinkedIn" href=""><img loading="lazy" src="images/WeChat.png"></a>
+			<a target="_blank" title="LINE" href="//line.me/ti/p/U3kHwV2zmB"><img loading="lazy" src="images/LINE.png"></a>
+			<a target="_blank" title="Zoom" href=""><img loading="lazy" src="images/Zoom.png"></a>
+			<a target="_blank" title="WhatsApp" href=""><img loading="lazy" src="images/WhatsApp.png"></a>
+			<a target="_blank" title="Telegram" href=""><img loading="lazy" src="images/Telegram.png"></a>
+			<a target="_blank" title="Gmail" href=""><img loading="lazy" src="images/Gmail.png"></a>
+			<a target="_blank" title="LinkedIn" href=""><img loading="lazy" src="images/LinkedIn.png"></a>
+			<a target="_blank" title="X" href="//x.com/bemozidz"><img loading="lazy" src="images/X.png"></a>
+			<a target="_blank" title="TikTok" href="//tiktok.com/@bemozidz"><img loading="lazy" src="images/TikTok.png"></a>
+			<a target="_blank" title="Instagram" href=""><img loading="lazy" src="images/Instagram.png"></a>
+			<a target="_blank" title="Facebook" href="//facebook.com/la.adry.813928"><img loading="lazy" src="images/Facebook.png"></a>
+			<a target="_blank" title="Snapchat" href="//snapchat.com/add/bemozidz"><img loading="lazy" src="images/Snapchat.png"></a>
+			<a target="_blank" title="YouTube" href=""><img loading="lazy" src="images/YouTube.png"></a>
 		</section>
-		<section id="testimonial">
-			<a target="_blank" href="">
+		<section hide id="testimonial">
+			<a target="_blank">
 				<img loading="lazy" src="images/man.png">
 				<div>Become the first male client to post a review!</div>
 			</a>
-			<a target="_blank" href="">
+			<a target="_blank">
 				<img loading="lazy" src="images/woman.png">
 				<div>Be the first female client to share your review!</div>
 			</a>
 		</section>
 		<section id="faq">
 			<div>What services do you offer?</div>
-			<div>Looking for guidance or feedback to grow your digital identity? Hire me to build or coach — or both.</div>
+			<div>Looking for guidance or feedback to grow your digital presence? Hire me to build or coach — or both.</div>
 			<div>Why should I work with you?</div>
-			<div>I turn ideas into actionable plans.</div>
+			<div>I aim to understand and streamline the process so you can focus on validating your ideas.</div>
 			<div>How do I get started on a project with you?</div>
-			<div>Send me your project details, and I'll get back to you shortly. We'll discuss your needs, goals, and timeline before starting.</div>
+			<div>DM your project details, and I'll get back to you shortly. We'll discuss your needs, goals, and timeline before starting.</div>
 		</section>
 		<form id="contact" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSe-wJBGxZEruXC8boWHsbHvM6IRu-d3Za_i06ASlKhyguQjtQ/formResponse">
 			<div>Kindly share your requirements</div>
 			<input name="entry.2005620554" required placeholder="Name" type="text" pattern="[A-Za-z\s]{3,30}" title="Name must contain only letters and spaces, ranging from 3 to 30 characters.">
-			<input name="entry.1045781291" required placeholder="Email" type="email">
-			<textarea name="entry.839337160" required placeholder="What can I help you with?" type="text" oninput="this.style.height = 0; this.style.height = this.scrollHeight +'px'"></textarea>
+			<input name="entry.1045781291" required placeholder="Email address" type="email" title="Enter a valid email address.">
+			<textarea name="entry.839337160" required placeholder="What can I help you with? Describe your intended objectives, needed services, and estimated timelines along with your website and social media accounts." title="Describe your project details." type="text" oninput="this.style.height = 0; this.style.height = this.scrollHeight +'px'"></textarea>
 			<button>SEND</button>
 		</form>
+		<footer>
+			<div>The future of business starts with developers!</div>
+			<div>Lend a hand — share this portfolio!</div>
+			<a target="_blank" title="WhatsApp" href="//wa.me/?text=Check%20out%20this%20portfolio!%20-%20https://bemozi.github.io"><img loading="lazy" src="images/WhatsApp.png"></a>
+			<a target="_blank" title="LinkedIn" href="//www.linkedin.com/sharing/share-offsite/?url=https://bemozi.github.io"><img loading="lazy" src="images/LinkedIn.png"></a>
+			<a target="_blank" title="X" href="//x.com/intent/tweet?text=Check%20out%20this%20portfolio!%20-%20https://bemozi.github.io"><img loading="lazy" src="images/X.png"></a>
+			<a target="_blank" title="Facebook" href="//www.facebook.com/sharer.php?u=https://bemozi.github.io"><img loading="lazy" src="images/Facebook.png"></a>
+			<a target="_blank" title="Messenger" href="//www.messenger.com/new"><img loading="lazy" src="images/Messenger.png"></a>
+			<a target="_blank" title="Snapchat" href="snapchat://creativeKitWeb/camera/1?attachmentUrl=https://bemozi.github.io"><img loading="lazy" src="images/Snapchat.png"></a>
+			<a target="_blank" title="Email" href="mailto:?subject=%20Check%20out%20this%20portfolio!%20&body=%20Check%20out%20this%20portfolio!%20-%20https://bemozi.github.io"><img loading="lazy" src="images/Email.png"></a>
+		</footer>
 	</body>
 </html>
+<!--
+
+I appreciate anyone who spots a bug or security issues to report it through the contact form.
+
+However, when performing security testing, you must not compromise the security or privacy of other users data.
+
+When reporting, please provide full details including:
+	Steps to reproduce the bug or security issue.
+	Your browser information including type and version.
+	A short description of the impact.
+
+Thanks in advance for your report and for using this website!
+
+-->
