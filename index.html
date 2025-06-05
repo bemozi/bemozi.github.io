@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="//avatars.githubusercontent.com/u/211243872" rel="icon">
 		<title>BEMOZI</title>
+		<meta property="og:url" content="https://bemozi.github.io/"/>
+		<meta property="og:title" content="BEMOZI"/>
+		<meta name="twitter:title" content="BEMOZI"/>
+		<meta name="description" content="bemozi"/>
+		<meta property="og:description" content="bemozi"/>
+		<meta name="twitter:description" content="bemozi"/>
+		<meta property="og:image" content="https://avatars.githubusercontent.com/u/211243872"/>
+		<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/211243872"/>
 		<meta name="author" content="bemozi">
-		<meta name="description" content="bemozi, portfolio, website, web, landing, one, page">
-		<meta name="keywords" content="bemozi, portfolio, website, web, landing, one, page">
+		<meta name="keywords" content="bemozi">
 		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 		<style>
 			* {
@@ -110,7 +117,7 @@
 			header > :hover {
 				cursor: pointer;
 			}
-			#about, #testimonial, #faq, #contact, footer, footer ~ section {
+			#about, #testimonial, #faq, #contact, footer, #language, #countries, #country {
 				padding: 3vmax;
 				background-attachment: fixed;
 				background-position: center;
@@ -195,8 +202,10 @@
 				color: #FAFAFA;
 				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
 			}
-			footer {
+			footer, #language, #countries, #country {
 				background-image: url(images/footer.jpg), radial-gradient(circle, #424242 0%, #000 100%);
+			}
+			footer {
 				/*background-position: 80%;*/
 				min-height: 50vh;
 				display: flex;
@@ -223,8 +232,7 @@
 				font-weight: 900;
 				color: #424242;
 			}
-			footer ~ section {
-				background-image: url(images/footer.jpg), radial-gradient(circle, #424242 0%, #000 100%);
+			#language {
 				min-height: 50vh;
 				display: flex;
 				flex-wrap: wrap;
@@ -236,15 +244,64 @@
 				text-align: center;
 				color: #FAFAFA;
 			}
-			footer ~ section > :first-child {
+			#language > :first-child {
 				background: radial-gradient(circle, #2196F3CC 0%, transparent 100%);
 				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
 			}
-			footer ~ section > :first-child ~ * {
+			#language > :first-child ~ * {
 				color: #424242;
 			}
-			footer ~ section > :nth-child(-n+3) {
+			#language > :nth-child(-n+3) {
 				flex: 1 1 100%;
+			}
+			#countries {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 3vmax
+			}
+			#countries > * {
+				/*aspect-ratio: 1;*/
+				display: grid;
+				text-align: center;
+				background: radial-gradient(circle, #424242CC 0%, #000000CC 100%);
+			}
+			#countries > :first-child {
+				background: radial-gradient(circle, #2196F3CC 0%, transparent 100%);
+				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
+				flex: 1 1 100%;
+				font-size: 3vmax;
+				font-weight: bold;
+				text-align: center;
+				color: #FAFAFA;
+			}
+			#country {
+				display: grid;
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 3vmax;
+				font-size: 2vmax;
+				font-weight: bold;
+				text-align: center;
+				color: #FAFAFA;
+			}
+			#country > * {
+				white-space: pre-line;
+			}
+			#country > :first-child {
+				background: radial-gradient(circle, #2196F3CC 0%, transparent 100%);
+				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
+				grid-column: 1 / -1;
+			}
+			#country > :nth-child(6n + 2):nth-child(-n + 20),
+			#country > :nth-child(6n + 3):nth-child(-n + 20),
+			#country > :nth-child(6n + 4):nth-child(-n + 20),
+			#country > :nth-child(20),
+			#country > :nth-last-child(2) {
+				background: radial-gradient(circle, #424242CC 0%, transparent 100%);
+				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
+			}
+			#country > :nth-child(20),
+			#country > :nth-last-child(-n + 2) {
+				grid-column: 1 / -1;
 			}
 			[hide] {
 				display: none !important;
@@ -376,14 +433,14 @@
 			<div>The future of business starts with developers!</div>
 			<div>Lend a hand — share this portfolio!</div>
 			<a target="_blank" title="WhatsApp" href="//wa.me/?text=Check%20out%20this%20portfolio!%20-%20https://bemozi.github.io"><img loading="lazy" src="images/WhatsApp.png"></a>
-			<a target="_blank" title="LinkedIn" href="//www.linkedin.com/sharing/share-offsite/?url=https://bemozi.github.io"><img loading="lazy" src="images/LinkedIn.png"></a>
+			<a target="_blank" title="LinkedIn" href="//linkedin.com/sharing/share-offsite/?url=https://bemozi.github.io"><img loading="lazy" src="images/LinkedIn.png"></a>
 			<a target="_blank" title="X" href="//x.com/intent/tweet?text=Check%20out%20this%20portfolio!%20-%20https://bemozi.github.io"><img loading="lazy" src="images/X.png"></a>
-			<a target="_blank" title="Facebook" href="//www.facebook.com/sharer.php?u=https://bemozi.github.io"><img loading="lazy" src="images/Facebook.png"></a>
-			<a target="_blank" title="Messenger" href="//www.messenger.com/new"><img loading="lazy" src="images/Messenger.png"></a>
+			<a target="_blank" title="Facebook" href="//facebook.com/sharer.php?u=https://bemozi.github.io"><img loading="lazy" src="images/Facebook.png"></a>
+			<a target="_blank" title="Messenger" href="//messenger.com/new"><img loading="lazy" src="images/Messenger.png"></a>
 			<a target="_blank" title="Snapchat" href="snapchat://creativeKitWeb/camera/1?attachmentUrl=https://bemozi.github.io"><img loading="lazy" src="images/Snapchat.png"></a>
 			<a target="_blank" title="Email" href="mailto:?subject=%20Check%20out%20this%20portfolio!%20&body=%20Check%20out%20this%20portfolio!%20-%20https://bemozi.github.io"><img loading="lazy" src="images/Email.png"></a>
 		</footer>
-		<section>
+		<section id="language">
 			<div>Human connection is key to solving the world's greatest challenges.</div>
 			<div>And it starts with learning a new language!</div>
 			<div>Explore more about various cultures by clicking below.</div>
@@ -392,19 +449,21 @@
 			<a target="_blank" title="Korean" href=""><img loading="lazy" src="flags/South-Korea.png"></a>
 			<a target="_blank" title="Japanese" href=""><img loading="lazy" src="flags/Japan.png"></a>
 			<a target="_blank" title="Spanish" href=""><img loading="lazy" src="flags/Spain.png"></a>
-			<a target="_blank" title="Turkish" href=""><img loading="lazy" src="flags/Turkey.png"></a>
-			<!--<a target="_blank" title="Kurdish" href=""><img loading="lazy" src="flags/Iraq.png"></a>
 			<a target="_blank" title="French" href=""><img loading="lazy" src="flags/France.png"></a>
 			<a target="_blank" title="German" href=""><img loading="lazy" src="flags/Germany.png"></a>
 			<a target="_blank" title="Italian" href=""><img loading="lazy" src="flags/Italy.png"></a>
+			<a target="_blank" title="Turkish" href=""><img loading="lazy" src="flags/Turkey.png"></a>
+			<a target="_blank" title="Thai" href=""><img loading="lazy" src="flags/Thailand.png"></a>
+			<a target="_blank" title="English" href=""><img loading="lazy" src="flags/Canada.png"></a>
+			<!--
+			<a target="_blank" title="Hindi" href=""><img loading="lazy" src="flags/India.png"></a>
+			<a target="_blank" title="Bengali" href=""><img loading="lazy" src="flags/Bangladesh.png"></a>
+			<a target="_blank" title="Portuguese" href=""><img loading="lazy" src="flags/Portugal.png"></a>
+			<a target="_blank" title="Indonesian" href=""><img loading="lazy" src="flags/Indonesia.png"></a>
 			<a target="_blank" title="Russian" href=""><img loading="lazy" src="flags/Russia.png"></a>
 			<a target="_blank" title="Arabic" href=""><img loading="lazy" src="flags/Algeria.png"></a>
-			<a target="_blank" title="Portuguese" href=""><img loading="lazy" src="flags/Portugal.png"></a>
-			<a target="_blank" title="Bengali" href=""><img loading="lazy" src="flags/Bangladesh.png"></a>
-			<a target="_blank" title="Hindi" href=""><img loading="lazy" src="flags/India.png"></a>
-			<a target="_blank" title="Indonesian" href=""><img loading="lazy" src="flags/Indonesia.png"></a>
+			<a target="_blank" title="Kurdish" href=""><img loading="lazy" src="flags/Iraq.png"></a>
 			<a target="_blank" title="Vietnamese" href=""><img loading="lazy" src="flags/Vietnam.png"></a>
-			<a target="_blank" title="Thai" href=""><img loading="lazy" src="flags/Thailand.png"></a>
 			<a target="_blank" title="Polish" href=""><img loading="lazy" src="flags/Lithuania.png"></a>
 			<a target="_blank" title="Dutch" href=""><img loading="lazy" src="flags/Belarus.png"></a>
 			<a target="_blank" title="Czech" href=""><img loading="lazy" src="flags/Czech-Republic.png"></a>
@@ -412,12 +471,48 @@
 			<a target="_blank" title="Norwegian" href=""><img loading="lazy" src="flags/Norway.png"></a>
 			<a target="_blank" title="Danish" href=""><img loading="lazy" src="flags/Denmark.png"></a>
 			<a target="_blank" title="Finnish" href=""><img loading="lazy" src="flags/Finland.png"></a>
-			<a target="_blank" title="English" href=""><img loading="lazy" src="flags/Canada.png"></a>-->
+			
+			most visited visited countries
+			most spoken languages
+			
+			-->
+		</section>
+		<section id="countries">
+			<div>Tamil speaking countries</div>
+			<div><img loading="lazy" src="countries/Sri-Lanka.svg">Sri Lanka</div>
+			<div><img loading="lazy" src="countries/India.svg">India</div>
+		</section>
+		<section id="country">
+			<div>Democratic Socialist Republic of Sri Lanka</div>
+			<div>Region</div>
+			<div>Country Code</div>
+			<div>Nationality</div>
+			<div>Southern Asia</div>
+			<div>LK, LKA</div>
+			<div>Sri Lankan(s)</div>
+			<div>Area</div>
+			<div>Capital City</div>
+			<div>Largest City</div>
+			<div>65 610 Sq Km</div>
+			<div>Colombo</div>
+			<div>Legislative</div>
+			<div>Currency Name and Code</div>
+			<div>Calling Code</div>
+			<div>Timezones</div>
+			<div>Sri Lanka Rupee (LKR)</div>
+			<div>94</div>
+			<div>UTC+05:30</div>
+			<div>Holidays</div>
+			<div>4 February
+			Independence Day</div>
+			<div>Climate</div>
+			<div>Tropical; rainy seasons--light in northeast, fall and winter, with average rainfall of 50 in.; heavy in southwest, summer and fall, with average rainfall of 200 in.</div>
 		</section>
 	</body>
 </html>
 <!--
 
+<div>Sri Lanka Rupee (LKR)</div>
 I appreciate anyone who spots a bug or security issues to report it through the contact form.
 
 However, when performing security testing, you must not compromise the security or privacy of other users data.
