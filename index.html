@@ -257,13 +257,25 @@
 			#countries {
 				display: flex;
 				flex-wrap: wrap;
-				gap: 3vmax
+				place-content: center;
+				justify-content: center;
+				gap: 3vmax;
 			}
 			#countries > * {
-				/*aspect-ratio: 1;*/
+				padding: 0 1vmax;
 				display: grid;
-				text-align: center;
-				background: radial-gradient(circle, #424242CC 0%, #000000CC 100%);
+				place-items: center;
+				background: #FAFAFACC;
+				color: #212121;
+				overflow: hidden;
+				border-radius: .5vmax;
+				/*width: min-content;
+				white-space: nowrap;
+				text-align: center;*/
+			}
+			#countries > * > img {
+				margin: 0 -1vmax;
+				/*width: max-content;*/
 			}
 			#countries > :first-child {
 				background: radial-gradient(circle, #2196F3CC 0%, transparent 100%);
@@ -281,23 +293,28 @@
 				font-size: 2vmax;
 				font-weight: bold;
 				text-align: center;
-				color: #FAFAFA;
 			}
 			#country > * {
 				white-space: pre-line;
+				background: #FAFAFACC;
+				color: #212121;
+				border-radius: .5vmax;
 			}
 			#country > :first-child {
-				background: radial-gradient(circle, #2196F3CC 0%, transparent 100%);
-				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
 				grid-column: 1 / -1;
+				background: radial-gradient(circle, #2196F3CC 0%, transparent 100%);
+				color: #FAFAFA;
+				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
 			}
 			#country > :nth-child(6n + 2):nth-child(-n + 20),
 			#country > :nth-child(6n + 3):nth-child(-n + 20),
 			#country > :nth-child(6n + 4):nth-child(-n + 20),
 			#country > :nth-child(20),
 			#country > :nth-last-child(2) {
-				background: radial-gradient(circle, #424242CC 0%, transparent 100%);
+				background: linear-gradient(90deg, #2196F3CC 70%, #3F51B5CC 100%);
+				color: #FAFAFA;
 				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
+				font-weight: bold;
 			}
 			#country > :nth-child(20),
 			#country > :nth-last-child(-n + 2) {
@@ -479,8 +496,13 @@
 		</section>
 		<section id="countries">
 			<div>Tamil speaking countries</div>
-			<div><img loading="lazy" src="countries/Sri-Lanka.svg">Sri Lanka</div>
 			<div><img loading="lazy" src="countries/India.svg">India</div>
+			<div><img loading="lazy" src="countries/Sri-Lanka.svg">Sri Lanka</div>
+			<div><img loading="lazy" src="countries/Singapore.svg">Singapore</div>
+			<div><img loading="lazy" src="countries/Malaysia.svg">Malaysia</div>
+			<div><img loading="lazy" src="countries/Mauritius.svg">Mauritius</div>
+			<div><img loading="lazy" src="countries/Fiji.svg">Fiji</div>
+			<div><img loading="lazy" src="countries/South Africa.svg">South Africa</div>
 		</section>
 		<section id="country">
 			<div>Democratic Socialist Republic of Sri Lanka</div>
