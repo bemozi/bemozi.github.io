@@ -125,20 +125,12 @@
 			#ar:not(:checked) ~ [ar] {
 				display: none;
 			}
-			/*#n:not(:checked) + *,
-			#zh:not(:checked) + *,
-			#en:not(:checked) + *,
-			#ar:not(:checked) + * {
-				text-decoration: line-through;
-			}
-			#word > :not(:checked) ~ :checked + * {
+			#word:has(#en:checked, #ar:checked) > #zh:checked ~ [zh],
+			#word:has(#zh:checked, #ar:checked) > #zh:not(:checked) ~ #en:checked ~ [en],
+			#word:has(#zh:checked, #en:checked) > #zh:not(:checked) ~ #en:not(:checked) ~ #ar:checked ~ [ar] {
 				font-weight: 900;
 				color: #CD071E;
 			}
-			#word > :not(:checked) ~ :checked ~ label {
-				font-weight: inherit;
-				color: inherit;
-			}*/
 		</style>
 		<script>
 			onload = () => {
@@ -170,7 +162,7 @@
 		<section id="word">
 			
 			<input id="n" type="checkbox">
-			<label for="n">0 1 2 ...</label>
+			<label hide for="n">0 1 2 ...</label>
 			
 			<input id="zh" type="checkbox">
 			<label for="zh">中国</label>
@@ -180,6 +172,8 @@
 			
 			<input id="ar" type="checkbox">
 			<label for="ar">العربية</label>
+			
+			<div>.</div>
 			
 			<div zh>你好</div>
 			<div en>Hello</div>
