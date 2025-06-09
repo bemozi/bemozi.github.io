@@ -137,6 +137,12 @@
 				document.head.appendChild(document.createElement('style')).append(`
 					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 				`);
+				onpointerup = event => {
+					if (event.target.hasAttribute("audio")) {
+						let audio = new Audio(`audio/${event.target.getAttribute("audio")}.mp3`);
+						audio.play();
+					}
+				};
 			};
 		</script>
 	</head>
@@ -177,7 +183,7 @@
 			
 			<div zh>你好</div>
 			<div en>Hello</div>
-			<div ar>أهلا</div>
+			<div ar audio="أهلا">أهلا</div>
 			
 			<div zh>今天天气很好</div>
 			<div en>It is a beautiful day</div>
