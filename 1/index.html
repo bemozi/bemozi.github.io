@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" prefix="og: http://ogp.me/ns#">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="icon.webp" rel="icon">
+		<title>bemozi</title>
+		<meta name="twitter:domain" content="https://bemozi.github.io/1/">
+		<meta property="og:url" content="https://bemozi.github.io/1/"/>
+		<meta property="twitter:url" content="https://bemozi.github.io/1/"/>
+		<meta property="og:title" content="bemozi"/>
+		<meta name="twitter:title" content="bemozi"/>
+		<meta name="description" content="bemozi"/>
+		<meta name="twitter:description" content="bemozi"/>
+		<meta property="og:description" content="bemozi"/>
+		<meta property="og:type" content="article"/>
+		<meta property="article:tag" content="">
+		<meta property="article:tag" content="">
+		<meta property="og:image" content="https://bemozi.github.io/1/link.jpg"/>
+		<meta name="twitter:image" content="https://bemozi.github.io/1/link.jpg"/>
+		<meta name="twitter:card" content="summary"/>
+		<meta name="twitter:site" description="@bemozidz"/>
+		<meta name="twitter:creator" description="@bemozidz"/>
+		<meta name="author" content="bemozi">
+		<meta name="keywords" content="bemozi">
+		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
+		<style>
+			* {
+				outline: none;
+				box-sizing: border-box;
+				overflow-wrap: break-word;
+				font-family: "Noto Kufi Arabic", sans-serif;
+				text-align: center;
+				font-size: 2vmax;
+				color: #212121;
+				line-height: 2;
+				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
+			}
+			html:has(#menu:checked) {
+				overflow: hidden;
+			}
+			body {
+				margin: 0;
+				display: grid;
+				cursor: grab;
+				gap: 3vmax;
+				background: #FAFAFA;
+				padding-bottom: 5vmax;
+			}
+			body:active {
+				cursor: grabbing;
+			}
+			a {
+				all: unset;
+			}
+			#menu:checked ~ [for=menu] {
+				position: fixed;
+				inset: 0;
+				margin: 0;
+				display: grid;
+				overflow-y: auto;
+				padding: 5vmax 0;
+			}
+			[for=menu] > :nth-child(-n + 2) {
+				line-height: 3;
+			}
+			input, iframe, [for=menu] ~ *, [for=menu] > *, #menu:checked ~ [for=menu] > :nth-child(-n + 2) {
+				display: none;
+			}
+			#menu:checked ~ [for=menu] > label, [for=menu] > :nth-child(-n + 2),
+			[for=menu]:has(#en:checked) ~ [en],
+			[for=menu]:has(#zh:checked) ~ [zh],
+			[for=menu]:has(#ar:checked) ~ [ar] {
+				display: grid;
+				place-self: center;
+			}
+			[for=menu]:has(#en:checked) ~ [en],
+			[for=menu]:not(:has(#en:checked)):has(#zh:checked) ~ [zh],
+			[for=menu]:not(:has(#en:checked, #zh:checked)):has(#ar:checked) ~ [ar] {
+				font-weight: 900;
+				color: #CD071E;
+			}
+			body > [for=menu] {
+				position: sticky;
+				inset: 0;
+				bottom: unset;
+				margin-bottom: 5vmax;
+				display: flex;
+				justify-content: center;
+				place-items: center;
+				gap: 3vmax;
+				background: #000000CC;
+				backdrop-filter: blur(3px);
+			}
+			[for=menu] > * {
+				font-weight: 900;
+				color: #FAFAFA;
+				text-transform: uppercase;
+				cursor: pointer;
+			}
+			[for=menu] > * > * {
+				display: grid;
+				font-weight: normal;
+				color: #9E9E9E;
+			}
+			[for=menu] > :checked + * {
+				color: #FFEB3B;
+			}
+			#menu + [for=menu] ~ * {
+				font-weight: 700;
+			}
+			#menu + [for=menu] ~ * > * {
+				font-weight: normal;
+				color: #616161;
+			}
+			[hide] {
+				display: none !important;
+			}
+		</style>
+		<script>
+			onload = () => {
+				document.head.appendChild(document.createElement('style')).append(`
+					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
+				`);
+			};
+		</script>
+	</head>
+	<body>
+		<iframe name="audio"></iframe>
+		<input id="menu" type="checkbox">
+		<label for="menu">
+			<label for="menu">Languages</label>
+			<label hide>Listen</label>
+			<input checked id="en" type="checkbox">
+			<label for="en">English<a target="audio" href="audio/en/English.mp3">English</a></label>
+			<input checked id="zh" type="checkbox">
+			<label for="zh">中文<a target="audio" href="audio/zh/中文.mp3">Zhōngwén</a></label>
+			<input checked id="ar" type="checkbox">
+			<label for="ar">العربية<a target="audio" href="audio/ar/العربية.mp3">Al-'arabiyyah</a></label>
+			
+			<input id="tr" type="checkbox">
+			<label for="tr" audio="Türkçe">Türkçe<a target="audio" href="audio/tr/Türkçe.mp3">Turkish</a></label>
+			<input id="ko" type="checkbox">
+			<label for="ko" audio="한국어">한국어<a target="audio" href="audio/ko/한국어.mp3">Korean</a></label>
+			<input id="ja" type="checkbox">
+			<label for="ja" audio="日本語">日本語<a target="audio" href="audio/ja/日本語.mp3">Japanese</a></label>
+			
+			<input id="es" type="checkbox">
+			<label for="es" audio="Español">Español<a target="audio" href="audio/es/Español.mp3">Spanish</a></label>
+			
+			<input id="tl" type="checkbox">
+			<label for="tl">Tagalog<a target="audio" href="audio/tl/Tagalog.mp3">Tagalog</a></label>
+			<input id="pt" type="checkbox">
+			<label for="pt" audio="Português">Português<a target="audio" href="audio/pt/Português.mp3">Portuguese</a></label>
+			
+			<input id="ru" type="checkbox">
+			<label for="ru" audio="Рубль">Рубль<a target="audio" href="audio/ru/Русский.mp3">Russian</a></label>
+			
+			<input id="it" type="checkbox">
+			<label for="it" audio="Italiano">Italiano<a target="audio" href="audio/it/Italiano.mp3">Italian</a></label>
+			<input id="de" type="checkbox">
+			<label for="de" audio="Deutsch">Deutsch<a target="audio" href="audio/de/Deutsch.mp3">German</a></label>
+			<input id="nl" type="checkbox">
+			<label for="nl" audio="Nederlands">Nederlands<a target="audio" href="audio/nl/Nederlands.mp3">Dutch</a></label>
+			<input id="pl" type="checkbox">
+			<label for="pl" audio="Polski">Polski<a target="audio" href="audio/pl/Polski.mp3">Polish</a></label>
+			<input id="fr" type="checkbox">
+			<label for="fr" audio="Français">Français<a target="audio" href="audio/fr/Français.mp3">French</a></label>
+			<input id="ms" type="checkbox">
+			<label for="ms" audio="Bahasa Melayu">Bahasa Melayu<a target="audio" href="audio/ms/Bahasa Melayu.mp3">Malay</a></label>
+			<input id="id" type="checkbox">
+			<label for="id" audio="Bahasa Indonesia">Bahasa Indonesia<a target="audio" href="audio/id/Bahasa Indonesia.mp3">Indonesian</a></label>
+			<input id="vi" type="checkbox">
+			<label for="vi" audio="Tiếng Việt">Tiếng Việt<a target="audio" href="audio/vi/Tiếng Việt.mp3">Vietnamese</a></label>
+			<input id="el" type="checkbox">
+			<label for="el" audio="Ελληνικά">Ελληνικά<a target="audio" href="audio/el/Ελληνικά.mp3">Greek</a></label>
+			<input id="th" type="checkbox">
+			<label for="th" audio="ภาษา ไทย">ภาษา ไทย<a target="audio" href="audio/th/ภาษา ไทย.mp3">Paasáa tai</a></label>
+			<input id="hi" type="checkbox">
+			<label for="hi" audio="हिंदी">हिंदी<a target="audio" href="audio/hi/हिंदी.mp3">Hindī</a></label>
+			<input id="ta" type="checkbox">
+			<label for="ta" audio="தமிழ்">தமிழ்<a target="audio" href="audio/ta/தமிழ்.mp3">Tamil</a></label>
+			<!---->
+		</label>
+		
+		<a target="audio" en href="audio/en/Hello.mp3">Hello</a>
+		<a target="audio" zh href="audio/zh/你好.mp3">你好<div>Nǐ hǎo</div></a>
+		<a target="audio" ar href="audio/ar/أهلا.mp3">أهلا<div>Ahlan</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">What's your name</a>
+		<a target="audio" zh href="audio/zh/你叫什么名字.mp3">你叫什么名字<div>Nǐ jiào shénme míngzì</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">ما اسمك<div>Ma asmuk</div></a>
+		
+		<a target="audio" en href="audio/en/Where are you from.mp3">Where are you from</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">你从哪来<div>Nǐ cóng nǎ lái</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">من أي بلد أنت<div>Min ayi balad ant</div></a>
+		
+		<a target="audio" en href="audio/en/Nice to meet you.mp3">Nice to meet you</a>
+		<a target="audio" zh href="audio/zh/很高兴认识你.mp3">很高兴认识你<div>Hěn gāoxìng rènshí nǐ</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">تشرفت بمقابلتك<div>Tasharaft bimuqabalatik</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">Same</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">相同的<div>Xiāngtóng de</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">نفس الشيء<div>Nafs alshay</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">Thanks</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">谢谢<div>Xièxiè</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">شكرا<div>Shukran</div></a>
+		
+		<a target="audio" en href="audio/en/You're welcome.mp3">You're welcome</a>
+		<a target="audio" zh href="audio/zh/不客气.mp3">不客气<div>Bù kèqì</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">أهلا بك<div>Ahlan bik</div></a>
+		
+		<a target="audio" en href="audio/en/See you later.mp3">See you later</a>
+		<a target="audio" zh href="audio/zh/回头见.mp3">回头见<div>Huítóu jiàn</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">أراك لاحقا<div>Arak lahiqan</div></a>
+		
+		<a target="audio" en href="audio/en/Bye.mp3">Bye</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">再见<div>Zàijiàn</div></a>
+		<a target="audio" ar href="audio/ar/وداعا.mp3">وداعا<div>Wadaean</div></a>
+		
+		<a target="audio" en href="audio/en/Repeat it, please.mp3">Repeat it, please</a>
+		<a target="audio" zh href="audio/zh/请再讲一遍.mp3">请重复一遍<div>Qǐng chóngfù yībiàn</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">هل بإمكانك تكرار ذلك من فضلك<div>Hal bimkanik takrar dhalik min fadlik</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">Can you write it down</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">你能写下来吗<div>Nǐ néng xiě xiàlái ma</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">اكتب من فضلك<div>Aktub min fadlik</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">Show me</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">给我看看<div>Gěi wǒ kàn kàn</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">أرني<div>Arni</div></a>
+		
+		<a target="audio" en href="audio/en/I understand.mp3">I understand</a>
+		<a target="audio" zh href="audio/zh/我懂.mp3">我懂<div>Wǒ dǒng</div></a>
+		<a target="audio" ar href="audio/ar/أفهم.mp3">أفهم<div>Afham</div></a>
+		
+		<a target="audio" en href="audio/en/I don't understand.mp3">I don't understand</a>
+		<a target="audio" zh href="audio/zh/我不懂.mp3">我不懂<div>Wǒ bù dǒng</div></a>
+		<a target="audio" ar href="audio/ar/لا افهم.mp3">لا أفهم<div>La afham</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">I have no idea</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">我不知道<div>Wǒ bù zhīdào</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">ليس لدي أي فكرة<div>Lays ladaya ayu fikra</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">Really</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">真的<div>Zhēn de</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">حقا<div>Haqana</div></a>
+		
+		<a target="audio" en href="audio/en/Maybe.mp3">Maybe</a>
+		<a target="audio" zh href="audio/zh/也许.mp3">也许<div>Yěxǔ</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">ربما<div>Rubama</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">Okay</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">好<div>Hǎo</div></a>
+		<a target="audio" ar href="audio/ar/حسنا.mp3">حسنا<div>Hasanan</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">Perfect</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">非常好<div>Fēicháng hǎo</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">ممتاز<div>Mumtaz</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">I like it</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">我喜欢它<div>Wǒ xǐhuān tā</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">يعجبني<div>Yuejibuni</div></a>
+		
+		<a target="audio" en href="audio/en/Of course.mp3">Of course</a>
+		<a target="audio" zh href="audio/zh/当然.mp3">当然<div>Dāngrán</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">طبعا<div>Tabean</div></a>
+		
+		<a target="audio" en href="audio/en/Yes.mp3">Yes</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">是<div>Shì</div></a>
+		<a target="audio" ar href="audio/ar/نعم.mp3">نعم<div>Naeam</div></a>
+		
+		<a target="audio" en href="audio/en/Please.mp3">Please</a>
+		<a target="audio" zh href="audio/zh/请.mp3">请<div>Qǐng</div></a>
+		<a target="audio" ar href="audio/ar/من فضلك.mp3">من فضلك<div>Min fadlik</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">That's amazing</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">这太神奇了<div>Zhè tài shénqíle</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">هذا رائع<div>Hadha rayie</div></a>
+		
+		<a target="audio" en href="audio/en/No.mp3">No</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">不是<div>Bùshì</div></a>
+		<a target="audio" ar href="audio/ar/لا.mp3">لا<div>La</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">Never</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">从不<div>Cóng bù</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">أبدا<div>Abadan</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">Don't worry</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">别担心<div>Bié dānxīn</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">لا تقلق<div>La taqlaq</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">Sorry</a>
+		<a target="audio" zh href="audio/zh/对不起.mp3">对不起<div>Duìbùqǐ</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">آسف<div>Asf</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">Excuse me</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">打扰一下<div>Dǎrǎo yīxià</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">عذرا<div>Eudhran</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">Just a moment</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">就一会儿<div>Jiù yīhuǐ'er</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">انتظر لحظة<div>Aintazar lahzatan</div></a>
+		
+		<a target="audio" en href="audio/en/A little.mp3">A little</a>
+		<a target="audio" zh href="audio/zh/一点.mp3">一点<div>Yīdiǎn</div></a>
+		<a target="audio" ar href="audio/ar/قليلا.mp3">قليلا<div>Qalilan</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">A little more</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">多一点<div>Duō yīdiǎn</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">أكثر قليلا<div>Akthar qalilan</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">Wrong</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">错误的<div>Cuòwù de</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">خطأ<div>Khata</div></a>
+		
+		<a target="audio" en href="audio/en/Correct.mp3">Correct</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">正确的<div>Zhèngquè de</div></a>
+		<a target="audio" ar href="audio/ar/صحيح.mp3">صحيح<div>Sahih</div></a>
+		
+		<a target="audio" en href="audio/en/English.mp3">Well done</a>
+		<a target="audio" zh href="audio/zh/中文.mp3">做得好<div>Zuò dé hǎo</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">أحسنت<div>Ahsant</div></a>
+		
+		<a target="audio" en href="audio/en/Congratulations.mp3">Congratulations</a>
+		<a target="audio" zh href="audio/zh/恭喜.mp3">恭喜<div>Gōngxǐ</div></a>
+		<a target="audio" ar href="audio/ar/العربية.mp3">مبروك<div>Mabruk</div></a>
+		
+	</body>
+</html>
