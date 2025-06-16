@@ -68,11 +68,6 @@
 			iframe {
 				display: none;
 			}
-			html {
-				position: fixed;
-				inset: 0;
-				top: unset;
-			}
 			html, body {
 				overflow: hidden;
 				overflow-y: hidden;
@@ -80,7 +75,7 @@
 		</style>
 		<script>
 			onload = () => {
-				(onresize = () => document.all[0].style.height = document.body.style.height = `${self.visualViewport?.height || innerHeight}px`)();
+				(onresize = () => document.documentElement.style.maxHeight = document.body.style.height = `${self.visualViewport?.height || innerHeight}px`)();
 				document.head.appendChild(document.createElement('style')).append(`
 					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 				`);
