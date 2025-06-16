@@ -33,13 +33,16 @@
 		<meta name="keywords" content="learn, lesson, method, foreign, language, translation, English, Chinese, Pinyin">
 		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 		<style>
+			/*html, body {
+				height: 100dvh;
+			}*/
 			html, body {
-				min-height: 100dvh;
+				position: fixed;
+				inset: 0;
 			}
 			body {
 				margin: 0;
-				display: flex;
-				flex-direction: column;
+				display: grid;
 				background: #FAFAFA;
 				color: #212121;
 				font-family: "Noto Kufi Arabic", sans-serif;
@@ -57,7 +60,6 @@
 				outline: none;
 				display: grid;
 				align-items: center;
-				flex: 1;
 			}
 			body > :nth-child(3) {
 				background: #212121;
