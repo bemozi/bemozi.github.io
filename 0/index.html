@@ -42,7 +42,6 @@
 			}
 			html, body {
 				height: var(--vh);
-				height: calc(var(--vh, 1vh) * 100);
 				overflow: hidden;
 			}
 			body {
@@ -111,7 +110,7 @@
 					}
 				};
 				(onresize = () => {
-					document.documentElement.style.setProperty('--vh', `${innerHeight * .01}px`);
+					document.documentElement.style.setProperty('--vh', `${innerHeight}px`);
 					type.innerText = 'test';
 				})();
 			};
