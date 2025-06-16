@@ -71,6 +71,7 @@
 		</style>
 		<script>
 			onload = () => {
+				(onresize = () => document.body.style.height = `${self.visualViewport?.height || innerHeight}px`)();
 				document.head.appendChild(document.createElement('style')).append(`
 					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 				`);
@@ -98,7 +99,6 @@
 						}
 					}
 				};
-				//(onresize = () => document.body.style.height = `${self.visualViewport?.height || innerHeight}px`)();
 			};
 		</script>
 	</head>
