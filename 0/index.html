@@ -35,13 +35,12 @@
 		<style>
 			body {
 				margin: 0;
-				position: fixed;
-				inset: 0;
 				background: #FAFAFA;
 				color: #212121;
 				font-family: "Noto Kufi Arabic", sans-serif;
 				text-align: center;
 				font-size: 10vmin;
+				height: inherit;
 			}
 			a, input {
 				all: unset;
@@ -69,6 +68,10 @@
 			iframe {
 				display: none;
 			}
+			html {
+				position: fixed;
+				inset: 0;
+			}
 			html, body {
 				overflow: hidden;
 				overflow-y: hidden;
@@ -76,7 +79,7 @@
 		</style>
 		<script>
 			onload = () => {
-				(onresize = () => document.all[0].style.height = `${self.visualViewport?.height || innerHeight}px`)();
+				(onresize = () => document.all[0].style.height = document.body.style.height = `${self.visualViewport?.height || innerHeight}px`)();
 				document.head.appendChild(document.createElement('style')).append(`
 					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 				`);
