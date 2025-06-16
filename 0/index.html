@@ -37,7 +37,6 @@
 				margin: 0;
 				height: 100vh;
 				display: grid;
-				grid-auto-rows: 1fr;
 				background: #FAFAFA;
 				color: #212121;
 				font-family: "Noto Kufi Arabic", sans-serif;
@@ -52,13 +51,16 @@
 				cursor: pointer;
 			}
 			body > * {
+				outline: none;
 				display: grid;
 				align-items: center;
-				align-self: stretch;
 			}
 			body > :nth-child(3) {
 				background: #212121;
 				color: #FAFAFA;
+			}
+			:empty:after {
+				content: attr(text);
 			}
 			[red] {
 				color: #CD071E;
@@ -81,18 +83,18 @@
 				translation = document.body.children[1];
 				mandarin = document.body.children[2];
 				(type = document.body.children[3]).oninput = event => {
-					if (type.value && type.value !== mandarin.innerText) type.setAttribute('red', ''); else {
+					if (type.innerText && type.innerText !== mandarin.innerText) type.setAttribute('red', ''); else {
 						type.removeAttribute('red');
-						if (type.value === mandarin.innerText) {
+						if (type.innerText === mandarin.innerText) {
 							while (last === current) {
 								last = ~~(size * Math.random());
 							}
 							translation.innerText = word[current = last *= 5];
 							mandarin.innerText = word[last + 1];
-							type.setAttribute('placeholder', word[last + 2]);
+							type.setAttribute('text', word[last + 2]);
 							translation.href = `audio/en/${word[last + 3]}.mp3`;
 							mandarin.href = `audio/zh/${word[last + 4]}.mp3`;
-							type.value = '';
+							type.innerText = '';
 						}
 					}
 				};
@@ -103,6 +105,6 @@
 		<iframe name="audio"></iframe>
 		<a target="audio" href="audio/en/Hello.mp3">Hello</a>
 		<a target="audio" href="audio/zh/你好.mp3">你好</a>
-		<input spellcheck="false" placeholder="Nǐ hǎo">
+		<div spellcheck="false" contenteditable text="Nǐ hǎo"></div>
 	</body>
 </html>
