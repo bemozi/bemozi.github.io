@@ -33,6 +33,10 @@
 		<meta name="keywords" content="learn, lesson, method, foreign, language, translation, English, Chinese, Pinyin">
 		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 		<style>
+			* {
+				overflow: hidden;
+				overflow-y: hidden;
+			}
 			body {
 				margin: 0;
 				background: #FAFAFA;
@@ -68,14 +72,10 @@
 			iframe {
 				display: none;
 			}
-			html, body {
-				overflow: hidden;
-				overflow-y: hidden;
-			}
 		</style>
 		<script>
 			onload = () => {
-				(onresize = () => document.documentElement.style.maxHeight = document.body.style.height = `${self.visualViewport?.height || innerHeight}px`)();
+				(onresize = () => document.documentElement.style.maxHeight = document.documentElement.style.height = document.body.style.maxHeight = document.body.style.height = `${self.visualViewport?.height || innerHeight}px`)();
 				document.head.appendChild(document.createElement('style')).append(`
 					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 				`);
