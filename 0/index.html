@@ -110,9 +110,10 @@
 					}
 				};
 				(onresize = () => {
-					document.documentElement.style.setProperty('--vh', `${innerHeight}px`);
-					type.innerText = '' + innerHeight;
+					document.documentElement.style.setProperty('--vh', `${self.visualViewport?.height || innerHeight}px`);
+					type.innerText = 'a' + document.documentElement.clientHeight;
 				})();
+				visualViewport?.addEventListener('resize', onresize);
 			};
 		</script>
 	</head>
