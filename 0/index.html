@@ -41,18 +41,20 @@
 				font-size: 5vmax;
 				overflow: hidden;
 			}
-			body:has(div:empty):after {
+			body:has(input:required:invalid):after {
 				position: absolute;
 				inset: 0;
+				height: inherit;
 				display: grid;
 				align-items: center;
 				content: attr(text);
 				white-space: pre-line;
 				color: #9E9E9E;
 			}
-			div {
-				position: fixed
-				inset: 0;
+			input {
+				all: unset;
+				height: inherit;
+				text-align: center;
 				color: #212121;
 				outline: none;
 				z-index: 2;
@@ -60,7 +62,7 @@
 		</style>
 		<script>
 			onload = () => {
-				(onresize = () => document.documentElement.style.maxHeight = document.documentElement.style.height = document.body.style.maxHeight = document.body.style.height = `${self.visualViewport?.height || innerHeight}px`)();
+				(onresize = () => document.body.style.height = `${self.visualViewport?.height || innerHeight}px`)();
 				document.head.appendChild(document.createElement('style')).append(`
 					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 				`);
@@ -93,5 +95,5 @@
 	</head>
 	<body text="Hello
 	你好
-	Nǐ hǎo"><div spellcheck="false" autofocus contenteditable></div></body>
+	Nǐ hǎo"><input spellcheck="false" required autofocus>
 </html>
