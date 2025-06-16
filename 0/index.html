@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" prefix="og: http://ogp.me/ns#">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="icon.webp" rel="icon">
+		<title>BEMOZI Languages</title>
+		<meta name="twitter:domain" content="https://bemozi.github.io/0/">
+		<meta property="og:url" content="https://bemozi.github.io/0/"/>
+		<meta property="twitter:url" content="https://bemozi.github.io/0/"/>
+		<meta property="og:title" content="BEMOZI Languages"/>
+		<meta name="twitter:title" content="BEMOZI Languages"/>
+		<meta name="description" content="Human connection is key to solving the world's biggest challenges, and it starts with learning a new language!"/>
+		<meta name="twitter:description" content="Human connection is key to solving the world's biggest challenges, and it starts with learning a new language!"/>
+		<meta property="og:description" content="Human connection is key to solving the world's biggest challenges, and it starts with learning a new language!"/>
+		<meta property="og:type" content="article"/>
+		<meta property="article:tag" content="learn">
+		<meta property="article:tag" content="lesson">
+		<meta property="article:tag" content="method">
+		<meta property="article:tag" content="foreign">
+		<meta property="article:tag" content="language">
+		<meta property="article:tag" content="translation">
+		<meta property="article:tag" content="English">
+		<meta property="article:tag" content="Chinese">
+		<meta property="article:tag" content="Pinyin">
+		<meta property="og:image" content="https://bemozi.github.io/0/link.jpg"/>
+		<meta name="twitter:image" content="https://bemozi.github.io/0/link.jpg"/>
+		<meta name="twitter:card" content="summary"/>
+		<meta name="twitter:site" description="@bemozidz"/>
+		<meta name="twitter:creator" description="@bemozidz"/>
+		<meta name="author" content="bemozi">
+		<meta name="keywords" content="learn, lesson, method, foreign, language, translation, English, Chinese, Pinyin">
+		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
+		<style>
+			* {
+				outline: none;
+				box-sizing: border-box;
+				word-break: break-word;
+				overflow-wrap: break-word;
+				font-family: "Noto Kufi Arabic", sans-serif;
+			}
+			html:has(#menu:checked) {
+				overflow: hidden;
+			}
+			body {
+				margin: 0;
+				height: 100vh;
+				display: grid;
+				grid-auto-rows: 1fr;
+				cursor: grab;
+				background: #FAFAFA;
+				color: #212121;
+				text-align: center;
+				font-size: 3vmax;
+				line-height: 2;
+			}
+			body:active {
+				cursor: grabbing;
+			}
+			iframe {
+				display: none !important;
+			}
+			a {
+				all: unset;
+			}
+			body > * {
+				display: grid;
+				align-items: center;
+				align-self: stretch;
+			}
+			body > :nth-child(3) {
+				background: #000000CC;
+				color: #FAFAFA;
+			}
+			:empty:after {
+				content: attr(text);
+			}
+			.red {
+				color: #CD071E;
+			}
+		</style>
+		<script>
+			onload = () => {
+				document.head.appendChild(document.createElement('style')).append(`
+					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
+				`);
+				word = [
+					"Hello", "你好", "Nǐ hǎo", "你好",
+					"Bye", "再见", "Zàijiàn", "再见",
+				];
+				size = word.length / 4;
+				last = current = 0;
+				translation = document.body.children[1];
+				mandarin = document.body.children[2];
+				(type = document.body.children[3]).oninput = event => {
+					if (type.innerText && type.innerText !== mandarin.innerText) {
+						type.classList.add('red');
+					} else {
+						type.classList.remove('red');
+						if (type.innerText === mandarin.innerText) {
+							while (last === current) {
+								last = ~~(size * Math.random());
+							}
+							translation.innerText = word[current = last *= 4];
+							mandarin.innerText = word[last + 1];
+							mandarin.href = `audio/zh/${word[last + 3]}.mp3`;
+							type.innerText = '';
+							type.setAttribute('text', word[last + 2]);
+						}
+					}
+				};
+			};
+		</script>
+	</head>
+	<body>
+		<iframe name="audio"></iframe>
+		<a target="audio" href="audio/en/Hello.mp3">Hello</a>
+		<a target="audio" href="audio/zh/你好.mp3">你好</a>
+		<div spellcheck="false" contenteditable text="Nǐ hǎo"></div>
+	</body>
+</html>
