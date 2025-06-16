@@ -33,51 +33,36 @@
 		<meta name="keywords" content="learn, lesson, method, foreign, language, translation, English, Chinese, Pinyin">
 		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 		<style>
-			* {
-				outline: none;
-				box-sizing: border-box;
-				word-break: break-word;
-				overflow-wrap: break-word;
-				font-family: "Noto Kufi Arabic", sans-serif;
-			}
-			html:has(#menu:checked) {
-				overflow: hidden;
-			}
 			body {
 				margin: 0;
 				height: 100vh;
 				display: grid;
-				grid-auto-rows: 1fr;
-				cursor: grab;
 				background: #FAFAFA;
 				color: #212121;
+				font-family: "Noto Kufi Arabic", sans-serif;
 				text-align: center;
-				font-size: 3vmax;
-				line-height: 2;
+				font-size: 5vmax;
 			}
-			body:active {
-				cursor: grabbing;
-			}
-			iframe {
-				display: none !important;
+			a, input {
+				all: unset;
+				overflow: hidden;
 			}
 			a {
-				all: unset;
+				cursor: pointer;
 			}
 			body > * {
 				display: grid;
 				align-items: center;
-				align-self: stretch;
 			}
 			body > :nth-child(3) {
-				background: #000000CC;
+				background: #212121;
 				color: #FAFAFA;
 			}
-			:empty:after {
-				content: attr(text);
-			}
-			.red {
+			[red] {
 				color: #CD071E;
+			}
+			iframe {
+				display: none;
 			}
 		</style>
 		<script>
@@ -86,27 +71,26 @@
 					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 				`);
 				word = [
-					"Hello", "你好", "Nǐ hǎo", "你好",
-					"Bye", "再见", "Zàijiàn", "再见",
+					"Hello", "你好", "Nǐ hǎo", "Hello", "你好",
+					"Bye", "再见", "Zàijiàn", "Bye", "再见",
 				];
-				size = word.length / 4;
+				size = word.length / 5;
 				last = current = 0;
 				translation = document.body.children[1];
 				mandarin = document.body.children[2];
 				(type = document.body.children[3]).oninput = event => {
-					if (type.innerText && type.innerText !== mandarin.innerText) {
-						type.classList.add('red');
-					} else {
-						type.classList.remove('red');
-						if (type.innerText === mandarin.innerText) {
+					if (type.value && type.value !== mandarin.innerText) type.setAttribute('red', ''); else {
+						type.removeAttribute('red');
+						if (type.value === mandarin.innerText) {
 							while (last === current) {
 								last = ~~(size * Math.random());
 							}
-							translation.innerText = word[current = last *= 4];
+							translation.innerText = word[current = last *= 5];
 							mandarin.innerText = word[last + 1];
-							mandarin.href = `audio/zh/${word[last + 3]}.mp3`;
-							type.innerText = '';
-							type.setAttribute('text', word[last + 2]);
+							type.setAttribute('placeholder', word[last + 2]);
+							translation.href = `audio/en/${word[last + 3]}.mp3`;
+							mandarin.href = `audio/zh/${word[last + 4]}.mp3`;
+							type.value = '';
 						}
 					}
 				};
@@ -117,6 +101,6 @@
 		<iframe name="audio"></iframe>
 		<a target="audio" href="audio/en/Hello.mp3">Hello</a>
 		<a target="audio" href="audio/zh/你好.mp3">你好</a>
-		<div spellcheck="false" contenteditable text="Nǐ hǎo"></div>
+		<input spellcheck="false" placeholder="Nǐ hǎo">
 	</body>
 </html>
