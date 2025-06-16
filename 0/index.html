@@ -33,28 +33,28 @@
 		<style>
 			body {
 				margin: 0;
+				display: grid;
+				align-items: center;
 				background: #FAFAFA;
-				color: #212121;
 				font-family: "Noto Kufi Arabic", sans-serif;
 				text-align: center;
 				font-size: 5vmax;
-				height: inherit;
+				overflow: hidden;
 			}
-			iframe {
-				display: none;
-			}
-			div {
-				outline: none;
-				position: fixed;
+			body:has(div:empty):after {
+				position: absolute;
 				inset: 0;
 				display: grid;
 				align-items: center;
-				overflow: hidden;
-			}
-			:empty:after {
 				content: attr(text);
 				white-space: pre-line;
 				color: #9E9E9E;
+			}
+			div {
+				position: fixed
+				inset: 0;
+				color: #212121;
+				outline: none;
 			}
 		</style>
 		<script>
@@ -90,10 +90,7 @@
 			};
 		</script>
 	</head>
-	<body>
-		<iframe name="audio"></iframe>
-		<div spellcheck="false" contenteditable text="Hello
-		你好
-		Nǐ hǎo"></div>
-	</body>
+	<body text="Hello
+	你好
+	Nǐ hǎo"><div spellcheck="false" autofocus contenteditable></div></body>
 </html>
