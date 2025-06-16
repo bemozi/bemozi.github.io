@@ -37,11 +37,17 @@
 				overflow: hidden;
 				overflow-y: hidden;
 			}
+			html {
+				display: flex;
+				flex-flow: column;
+				height: 100%;
+			}
 			body {
+				flex: 1 1 auto;
 				margin: 0;
 				height: inherit;
-				position: fixed;
-				inset: 0;
+				/*position: fixed;
+				inset: 0;*/
 				background: #FAFAFA;
 				color: #212121;
 				font-family: "Noto Kufi Arabic", sans-serif;
