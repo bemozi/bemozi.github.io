@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, interactive-widget=resizes-content">
 		<link href="icon.webp" rel="icon">
 		<title>BEMOZI Languages</title>
 		<meta name="twitter:domain" content="https://bemozi.github.io/0/">
@@ -38,7 +38,8 @@
 			}
 			body {
 				margin: 0;
-				display: grid;
+				display: flex;
+				flex-direction: column;
 				background: #FAFAFA;
 				color: #212121;
 				font-family: "Noto Kufi Arabic", sans-serif;
@@ -56,6 +57,7 @@
 				outline: none;
 				display: grid;
 				align-items: center;
+				flex-grow: 1;
 			}
 			body > :nth-child(3) {
 				background: #212121;
