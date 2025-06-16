@@ -35,8 +35,9 @@
 		<style>
 			body {
 				margin: 0;
-				height: 100vh;
-				display: grid;
+				display: flex;
+				flex-flow: column;
+				height: 100%;
 				background: #FAFAFA;
 				color: #212121;
 				font-family: "Noto Kufi Arabic", sans-serif;
@@ -52,8 +53,7 @@
 			}
 			body > * {
 				outline: none;
-				display: grid;
-				align-items: center;
+				flex-grow: 1;
 			}
 			body > :nth-child(3) {
 				background: #212121;
