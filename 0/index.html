@@ -33,11 +33,15 @@
 		<meta name="keywords" content="learn, lesson, method, foreign, language, translation, English, Chinese, Pinyin">
 		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 		<style>
+			body {
+				min-height: 100vh;
+				min-height: -webkit-fill-available;
+			}
+			html {
+				height: -webkit-fill-available;
+			}
 			html, body {
-				/*position: fixed;
-				inset: 0;
-				height: 100dvh;*/
-				height: 100%;
+				height: var(--app-height);
 				overflow: hidden;
 			}
 			body {
@@ -81,6 +85,7 @@
 				document.head.appendChild(document.createElement('style')).append(`
 					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 				`);
+				(onresize = () => document.documentElement.style.setProperty('--app-height', `${innerHeight}px`))();
 				word = [
 					"Hello", "你好", "Nǐ hǎo", "Hello", "你好",
 					"Bye", "再见", "Zàijiàn", "Bye", "再见",
