@@ -41,7 +41,8 @@
 				height: -webkit-fill-available;
 			}
 			html, body {
-				height: var(--app-height);
+				height: var(--vh);
+				height: calc(var(--vh, 1vh) * 100);
 				overflow: hidden;
 			}
 			body {
@@ -85,7 +86,7 @@
 				document.head.appendChild(document.createElement('style')).append(`
 					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 				`);
-				(onresize = () => document.documentElement.style.setProperty('--app-height', `${innerHeight * .01}px`))();
+				(onresize = () => document.documentElement.style.setProperty('--vh', `${innerHeight * .01}px`))();
 				word = [
 					"Hello", "你好", "Nǐ hǎo", "Hello", "你好",
 					"Bye", "再见", "Zàijiàn", "Bye", "再见",
