@@ -33,16 +33,10 @@
 		<meta name="keywords" content="learn, lesson, method, foreign, language, translation, English, Chinese, Pinyin">
 		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 		<style>
-			body {
-				min-height: 100vh;
-				min-height: -webkit-fill-available;
-			}
-			html {
-				height: -webkit-fill-available;
-			}
 			html, body {
-				height: var(--vh);
+				height: 100dvh;
 				overflow: hidden;
+				overflow-y: hidden;
 			}
 			body {
 				margin: 0;
@@ -109,11 +103,7 @@
 						}
 					}
 				};
-				(onresize = () => {
-					document.documentElement.style.setProperty('--vh', `${self.visualViewport?.height || innerHeight}px`);
-					type.innerText = 'a' + document.documentElement.clientHeight;
-				})();
-				visualViewport?.addEventListener('resize', onresize);
+				(onresize = () => document.body.style.height = `${self.visualViewport?.height || innerHeight}px`)();
 			};
 		</script>
 	</head>
