@@ -31,46 +31,30 @@
 		<meta name="keywords" content="learn, lesson, method, foreign, language, translation, English, Chinese, Pinyin">
 		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 		<style>
-			* {
-				overflow: hidden !important;
-				overflow-y: hidden !important;
-				margin: 0;
-				padding: 0;
-			}
 			body {
 				margin: 0;
 				background: #FAFAFA;
 				color: #212121;
 				font-family: "Noto Kufi Arabic", sans-serif;
 				text-align: center;
-				font-size: 10vmin;
+				font-size: 5vmax;
 				height: inherit;
-			}
-			a, input {
-				all: unset;
-				overflow: hidden;
-			}
-			a {
-				cursor: pointer;
-			}
-			body > * {
-				outline: none;
-				display: grid;
-				align-items: center;
-				height: 33%;
-			}
-			body > :nth-child(3) {
-				background: #212121;
-				color: #FAFAFA;
-			}
-			:empty:after {
-				content: attr(text);
-			}
-			[red] {
-				color: #CD071E;
 			}
 			iframe {
 				display: none;
+			}
+			div {
+				outline: none;
+				position: fixed;
+				inset: 0;
+				display: grid;
+				align-items: center;
+				overflow: hidden;
+			}
+			:empty:after {
+				content: attr(text);
+				white-space: pre-line;
+				color: #9E9E9E;
 			}
 		</style>
 		<script>
@@ -108,8 +92,8 @@
 	</head>
 	<body>
 		<iframe name="audio"></iframe>
-		<a target="audio" href="audio/en/Hello.mp3">Hello</a>
-		<a target="audio" href="audio/zh/你好.mp3">你好</a>
-		<div spellcheck="false" contenteditable text="Nǐ hǎo"></div>
+		<div spellcheck="false" contenteditable text="Hello
+		你好
+		Nǐ hǎo"></div>
 	</body>
 </html>
