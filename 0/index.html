@@ -33,19 +33,23 @@
 		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 		<style>
 			* {
-				overflow: hidden;
-				overflow-x: hidden;
-				overflow-y: hidden;
-				height: 10px;
-				max-height: 10px;
-				width: 10px;
-				max-width: 10px;
-				position: absolute;
+				overflow: hidden !important;
+				overflow-x: hidden !important;
+				overflow-y: hidden !important;
+				height: 30px !important;
+				max-height: 30px !important;
+				width: 30px !important;
+				max-width: 30px !important;
+				position: absolute !important;
+			}
+			html, body {
+				display: grid;
+				align-items: center;
 			}
 			body {
-				/*outline: none;
+				outline: none;
 				margin: 0;
-				display: grid;
+				/*display: grid;
 				align-items: center;
 				background: #FAFAFA;
 				color: #212121;
