@@ -33,6 +33,8 @@
 		<style>
 			* {
 				overflow: hidden;
+				height: 10px;
+				max-height: 10px;
 			}
 			body {
 				outline: none;
@@ -45,11 +47,6 @@
 				text-align: center;
 				font-size: 5vmax;
 				white-space: pre-line;
-				
-				position: sticky;
-				inset: 0;
-				top: unset;
-				z-index: 9;
 			}
 		</style>
 		<script>
@@ -58,6 +55,15 @@
 				document.head.appendChild(document.createElement('style')).append(`
 					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 				`);
+				document.body.oninput = event => {
+					if (document.body.innerText) {
+						
+					} else {
+						document.body.innerText = `Hello
+	你好
+	Nǐ hǎo`;
+					}
+				};
 				/*word = [
 					"Hello", "你好", "Nǐ hǎo", "Hello", "你好",
 					"Bye", "再见", "Zàijiàn", "Bye", "再见",
