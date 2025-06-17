@@ -32,16 +32,6 @@
 		<meta name="keywords" content="learn, lesson, method, foreign, language, translation, English, Chinese, Pinyin">
 		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 		<style>
-			* {
-				overflow: hidden !important;
-				overflow-x: hidden !important;
-				overflow-y: hidden !important;
-				height: 30px !important;
-				max-height: 30px !important;
-				width: 30px !important;
-				max-width: 30px !important;
-				position: absolute !important;
-			}
 			html, body {
 				display: grid;
 				align-items: center;
@@ -57,6 +47,9 @@
 				text-align: center;
 				font-size: 5vmax;
 				white-space: pre-line;*/
+			}
+			input {
+				display: none;
 			}
 		</style>
 		<script>
@@ -79,6 +72,7 @@
 	Nǐ hǎo`;
 					}
 				};
+				onpointerdown = () => document.body.firstChild.click();
 				/*word = [
 					"Hello", "你好", "Nǐ hǎo", "Hello", "你好",
 					"Bye", "再见", "Zàijiàn", "Bye", "再见",
@@ -106,5 +100,5 @@
 			};
 		</script>
 	</head>
-	<body spellcheck="false" contenteditable autofocus></body>
+	<body><input spellcheck="false" contenteditable autofocus></body>
 </html>
