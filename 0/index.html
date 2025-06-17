@@ -34,13 +34,13 @@
 		<style>
 			* {
 				overflow: hidden;
+				overflow-x: hidden;
+				overflow-y: hidden;
 				height: 10px;
 				max-height: 10px;
 				width: 10px;
 				max-width: 10px;
 				position: absolute;
-				top: 0;
-				left: 0;
 			}
 			body {
 				/*outline: none;
@@ -57,12 +57,12 @@
 		</style>
 		<script>
 			onload = () => {
-				(onresize = () => {
+				/*(onresize = () => {
 					document.all[0].style.height = `${self.visualViewport?.height || innerHeight}px`
 					document.all[0].style.width = `${self.visualViewport?.width || innerWidth}px`
 					document.body.style.height = `${self.visualViewport?.height || innerHeight}px`
 					document.body.style.width = `${self.visualViewport?.width || innerWidth}px`
-				})();
+				})();*/
 				document.head.appendChild(document.createElement('style')).append(`
 					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 				`);
