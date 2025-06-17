@@ -58,6 +58,8 @@
 		<script>
 			onload = () => {
 				(onresize = () => {
+					document.all[0].style.height = `${self.visualViewport?.height || innerHeight}px`
+					document.all[0].style.width = `${self.visualViewport?.width || innerWidth}px`
 					document.body.style.height = `${self.visualViewport?.height || innerHeight}px`
 					document.body.style.width = `${self.visualViewport?.width || innerWidth}px`
 				})();
