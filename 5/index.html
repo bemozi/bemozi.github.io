@@ -98,7 +98,6 @@
 				font-size: 3vmax;
 				font-weight: 900;
 				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
-				min-height: 100vh;
 			}
 			#about > :nth-child(2) {
 				font-size: 5vmax;
@@ -116,6 +115,12 @@
 				flex-flow: column;
 				gap: 1vmax;
 			}
+			form > :first-child {
+				text-align: center;
+				font-size: 3vmax;
+				font-weight: 900;
+				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
+			}
 			[hide] {
 				display: none !important;
 			}
@@ -125,7 +130,7 @@
 		<section id="about">
 			<div>Dr. Mehdi OLDACHE</div>
 			<div>Research Assistant</div>
-			<a target="_blank" href="//u.wechat.com/MCmmAIVXFNURnzEqr0PSFic"><img loading="lazy" src="../images/WeChat.png"></a>
+			<a target="_blank" href="weixin://dl/chat?19386697024"><img loading="lazy" src="../images/WeChat.png"></a>
 			<a target="_blank" href=""><img loading="lazy" src="../images/LINE.png"></a>
 			<a target="_blank" href=""><img loading="lazy" src="../images/Skype.png"></a>
 			<a target="_blank" href=""><img loading="lazy" src="../images/Zoom.png"></a>
@@ -142,7 +147,8 @@
 			<a target="_blank" href=""><img loading="lazy" src="../images/Instagram.png"></a>
 			<a target="_blank" href="//facebook.com/mehdiLdch"><img loading="lazy" src="../images/Facebook.png"></a>
 		</section>
-		<form id="contact" method="POST" action="//docs.google.com/forms/d/e/1sZ_Lelqh4azIcSbE1TzKObHe1uO0ElHc9InzxjoqTeI/formResponse">
+		<form id="contact" method="POST" action="//docs.google.com/forms/d/e/1FAIpQLSduyGHR0ydksU6yVJ6ERQ3VWCYT_JjOYf0imm1xF66birx6OQ/formResponse">
+			<div>Kindly share your requirements</div>
 			<input name="entry.1004210470" required placeholder="Name" type="text" pattern="[A-Za-z\s]{3,30}" title="Name must contain only letters and spaces, ranging from 3 to 30 characters.">
 			<input name="entry.1543219306" required placeholder="Email address" type="email" title="Enter a valid email address.">
 			<textarea name="entry.799227090" required placeholder="What can I help you with?" title="Describe your project details." type="text" oninput="this.style.height = 0; this.style.height = this.scrollHeight +'px'"></textarea>
