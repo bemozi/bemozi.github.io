@@ -32,24 +32,27 @@
 		<meta name="keywords" content="learn, lesson, method, foreign, language, translation, English, Chinese, Pinyin">
 		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 		<style>
-			html, body {
-				display: grid;
-				align-items: center;
-			}
 			body {
-				outline: none;
 				margin: 0;
-				/*display: grid;
+				position: fixed;
+				inset: 0;
+				display: grid;
 				align-items: center;
 				background: #FAFAFA;
 				color: #212121;
 				font-family: "Noto Kufi Arabic", sans-serif;
 				text-align: center;
 				font-size: 5vmax;
-				white-space: pre-line;*/
+				white-space: pre-line;
 			}
 			input {
-				display: none;
+				all: unset;
+				outline: none;
+				position: fixed;
+				inset: 0;
+			}
+			input:not(:invalid) {
+				background: #FAFAFA;
 			}
 		</style>
 		<script>
@@ -63,16 +66,24 @@
 				document.head.appendChild(document.createElement('style')).append(`
 					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 				`);
-				document.body.oninput = event => {
-					if (document.body.innerText) {
-						
-					} else {
-						document.body.innerText = `Hello
-	你好
-	Nǐ hǎo`;
+				word = [
+					`Hello\n你好\nNǐ hǎo`,
+					`Bye\n再见\nZàijiàn`,
+				];
+				size = word.length;
+				input = document.body.firstChild;
+				document.body.append(word[last = current = 0]);
+				input.oninput = event => {
+					if (input.value === word[last].split("\n", 2)[1]) {
+						input.value = '';
+						while (last === current) {
+							last = ~~(size * Math.random());
+						}
+						document.body.lastChild.nodeValue = word[last];
 					}
 				};
-				onpointerdown = () => document.body.firstChild.click();
+				/*
+				onpointerdown = () => document.body.firstChild.click();*/
 				/*word = [
 					"Hello", "你好", "Nǐ hǎo", "Hello", "你好",
 					"Bye", "再见", "Zàijiàn", "Bye", "再见",
@@ -100,5 +111,5 @@
 			};
 		</script>
 	</head>
-	<body><input spellcheck="false" contenteditable autofocus></body>
+	<body><input spellcheck="false" contenteditable autofocus required></body>
 </html>
