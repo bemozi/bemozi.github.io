@@ -230,7 +230,7 @@
 						input.value = '';
 						if (word.length === 0) {
 							document.body.lastChild.nodeValue = '。';
-						} else done.push(document.body.lastChild.nodeValue = word.splice(~~(word.length * Math.random()), 1));
+						} else done.push(document.body.lastChild.nodeValue = word.splice(~~(word.length * Math.random()), 1)[0]);
 					}
 				};
 				document.body.append(done[0]);
