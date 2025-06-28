@@ -36,6 +36,8 @@
 				margin: 0;
 				position: fixed;
 				inset: 0;
+				bottom: 0;
+				height: -webkit-fill-available;
 				display: grid;
 				align-items: center;
 				background: #FAFAFA;
@@ -50,6 +52,8 @@
 				outline: none;
 				position: fixed;
 				inset: 0;
+				bottom: 0;
+				height: inherit;
 			}
 			input:not(:invalid) {
 				background: #FAFAFA;
@@ -57,18 +61,163 @@
 		</style>
 		<script>
 			onload = () => {
-				/*(onresize = () => {
-					document.all[0].style.height = `${self.visualViewport?.height || innerHeight}px`
-					document.all[0].style.width = `${self.visualViewport?.width || innerWidth}px`
-					document.body.style.height = `${self.visualViewport?.height || innerHeight}px`
-					document.body.style.width = `${self.visualViewport?.width || innerWidth}px`
-				})();*/
+				(onresize = () => {
+					document.body.style.height = `${self.visualViewport?.height || innerHeight}px`;
+				})();
 				document.head.appendChild(document.createElement('style')).append(`
 					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 				`);
 				word = [
 					`Hello\n你好\nNǐ hǎo`,
-					`Bye\n再见\nZàijiàn`,
+					
+					`One\n一\nYī`,  
+					`Two\n二\nÈr`,  
+					`Three\n三\nSān`,  
+					`Four\n四\nSì`,  
+					`Five\n五\nWǔ`,  
+					`Six\n六\nLiù`,  
+					`Seven\n七\nQī`,  
+					`Eight\n八\nBā`,  
+					`Nine\n九\nJiǔ`,  
+					`Ten\n十\nShí`,  
+
+					`Big\n大\nDà`,  
+					`Small\n小\nXiǎo`,  
+					`Many\n多\nDuō`,  
+					`Few\n少\nShǎo`,  
+					`Measure word\n个\nGè`,  
+
+					`Dad\n爸\nBà`,  
+					`Good\n好\nHǎo`,  
+					`Date\n号\nHào`,  
+
+					`Eat\n吃\nChī`,  
+					`Drink\n喝\nHē`,  
+					`Very\n很\nHěn`,  
+					`Go\n回\nHuí`,  
+					`Home\n家\nJiā`,  
+					`How many\n几\nJǐ`,  
+					`Be able to\n会\nHuì`,  
+					`Call\n叫\nJiào`,  
+					`No / Not\n不\nBù`,  
+					`Open\n开\nKāi`,  
+					`Look\n看\nKàn`,  
+					`Piece block\n块\nKuài`,  
+
+					`Come\n来\nLái`,  
+					`Some\n些\nXiē`,  
+					`Cold\n冷\nLěng`,  
+					`Inside\n里\nLǐ`,  
+					`Zero\n零\nLíng`,  
+					`And\n和\nHé`,  
+					`Buy\n买\nMǎi`,  
+					`That\n那\nNà`,  
+
+					`Sentence-final particles\n呢\nNe`,  
+					`Sentence-final particles\n吗\nMa`,  
+
+					`Where\n哪\nNǎ`,  
+					`Can\n能\nNéng`,  
+					`You\n你\nNǐ`,  
+					`Year\n年\nNián`,  
+					`Love\n爱\nÀi`,  
+					`Money\n钱\nQián`,  
+					`Please\n请\nQǐng`,  
+					`Go\n去\nQù`,  
+					`Hot\n热\nRè`,  
+					`Person\n人\nRén`,  
+					`Measure word\n本\nBěn`,  
+					`Dot\n点\nDiǎn`,  
+					`Who\n谁\nShuí`,  
+					`To be\n是\nShì`,  
+					`Book\n书\nShū`,  
+					`Water\n水\nShuǐ`,  
+					`Say\n说\nShuō`,  
+					`Vegetable\n菜\nCài`,  
+					`Year of age\n岁\nSuì`,  
+					`He\n他\nTā`,  
+					`She\n她\nTā`,  
+					`Very\n太\nTài`,  
+					`Listen\n听\nTīng`,  
+					`Hey / Hi\n喂\nWèi`,  
+					`Me\n我\nWǒ`,  
+					`Up\n上\nShàng`,  
+					`Down\n下\nXià`,  
+					`All\n都\nDōu`,  
+					`Read\n读\nDú`,  
+					`Be at / Be on\n在\nZài`,  
+					`Moon\n月\nYuè`,  
+					`Have\n有\nYǒu`,  
+					`Of\n的\nDe`,  
+					`Live\n住\nZhù`,  
+					`Character\n字\nZì`,  
+					`Sit\n坐\nZuò`,  
+					`Make\n做\nZuò`,  
+					`Cup\n杯\nBēi`,  
+					`Son\n子\nZǐ`,  
+					`Not at all\n不客气\nBú kè qì`,  
+					`Taxi\n出租车\nChū zū chē`,  
+					`Computer\n电脑\nDiàn nǎo`,  
+					`Movie\n电影\nDian Yǐng`,  
+					`Sorry\n对不起\nDuì bù qǐ`,  
+					`Television\n电视\nDiàn shì`,  
+					`How many\n多少\nDuō shǎo`,  
+					`It doesn't matter\n没关系\nMéi guān xì`,  
+					`Son\n儿子\nÉr zi`,  
+					`Restaurant\n饭店\nFàn diàn`,  
+					`Plane\n飞机\nFēi jī`,  
+					`Minute\n分钟\nFēn zhōng`,  
+					`Happy\n高兴\nGāo xìng`,  
+					`Job\n工作\nGōng zuò`,  
+					`Chinese character\n汉字\nHàn zì`,  
+					`Behind\n后面\nHòu miàn`,  
+					`Today\n今天\nJīn tiān`,  
+					`Teacher\n老师\nLǎo shī`,  
+					`Mom\n妈妈\nMā ma`,  
+					`Ting / Object\n东西\nDōng xī`,  
+					`Have nothing\n没有\nMéi yǒu`,  
+					`Rice\n米饭\nMǐ fàn`,  
+					`Tomorrow\n明天\nMíng tiān`,  
+					`Beijing\n北京\nBěi jīng`,  
+					`Name\n名字\nMíng zì`,  
+					`Daughter\n女儿\nNǚ ér`,  
+					`Friend\n朋友\nPéng yǒu`,  
+					`Beautiful\n漂亮\nPiào liàng`,  
+					`Apple\n苹果\nPíng guǒ`,  
+					`In front\n前面\nQián miàn`,  
+					`Morning\n上午\nShàng wǔ`,  
+					`Get to know\n认识\nRèn shi`,  
+					`Shop\n商店\nShāng diàn`,  
+					`What\n什么\nShén me`,  
+					`Moment / Time\n时候\nShí hou`,  
+					`Fruit\n水果\nShuǐ guǒ`,  
+					`Sleep\n睡觉\nShuì jiào`,  
+					`Talk / Speak/ Say\n说话\nShuō huà`,  
+					`Weather\n天气\nTiān qì`,  
+					`Classmate\n同学\nTóng xué`,  
+					`We\n我们\nWǒ men`,  
+					`Like\n喜欢\nXǐ huān`,  
+					`Afternoon\n下午\nXià wǔ`,  
+					`To rain\n下雨\nXià yǔ`,  
+					`Sir\n先生\nXiān shēng`,  
+					`Now\n现在\nXiàn zài`,  
+					`Miss\n小姐\nXiǎo jiě`,  
+					`Thanks\n谢谢\nXiè xiè`,  
+					`Week\n星期\nXīng qī`,  
+					`Student\n同学\nTóng xué`,  
+					`Study\n学习\nXué xí`,  
+					`School\n学校\nXué xiào`,  
+					`Clothes\n衣服\nYī fu`,  
+					`Doctor\n医生\nYī shēng`,  
+					`Hospital\n医院\nYī yuàn`,  
+					`Chair\n椅子\nYǐ zi`,  
+					`Bye\n再见\nZài jiàn`,  
+					`Inquiry for property, condition, and cause\n怎么\nZěn me`,  
+					`Here\n这/这儿\nZhè/Zher`,  
+					`China\n中国\nZhōng guó`,  
+					`Noon\n中午\nZhōng wǔ`,  
+					`Desk\n桌子\nZhuō zi`,  
+					`Yesterday\n昨天\nZuó tiān`,
 				];
 				size = word.length;
 				input = document.body.firstChild;
@@ -82,32 +231,6 @@
 						document.body.lastChild.nodeValue = word[current = last];
 					}
 				};
-				/*
-				onpointerdown = () => document.body.firstChild.click();*/
-				/*word = [
-					"Hello", "你好", "Nǐ hǎo", "Hello", "你好",
-					"Bye", "再见", "Zàijiàn", "Bye", "再见",
-				];
-				size = word.length / 5;
-				last = current = 0;
-				translation = document.body.children[1];
-				mandarin = document.body.children[2];
-				(type = document.body.children[3]).oninput = event => {
-					if (type.innerText && type.innerText !== mandarin.innerText) type.setAttribute('red', ''); else {
-						type.removeAttribute('red');
-						if (type.innerText === mandarin.innerText) {
-							while (last === current) {
-								last = ~~(size * Math.random());
-							}
-							translation.innerText = word[current = last *= 5];
-							mandarin.innerText = word[last + 1];
-							type.setAttribute('text', word[last + 2]);
-							translation.href = `audio/en/${word[last + 3]}.mp3`;
-							mandarin.href = `audio/zh/${word[last + 4]}.mp3`;
-							type.innerText = '';
-						}
-					}
-				};*/
 			};
 		</script>
 	</head>
