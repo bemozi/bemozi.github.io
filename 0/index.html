@@ -79,7 +79,7 @@
 						while (last === current) {
 							last = ~~(size * Math.random());
 						}
-						document.body.lastChild.nodeValue = word[last];
+						document.body.lastChild.nodeValue = word[current = last];
 					}
 				};
 				/*
