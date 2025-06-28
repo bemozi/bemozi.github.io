@@ -222,11 +222,14 @@
 				];
 				input = document.body.firstChild;
 				input.oninput = event => {
-					if (word.length === 0) word = done.splice(1);
-					if (input.value === '.' || input.value === done[done.length - 1].split("\n", 2)[1]) {
+					if (word.length === 0) {
+						word = done.splice(1);
+						document.body.lastChild.nodeValue = done[0];
+					}
+					if (input.value === '｡' || input.value === done[done.length - 1].split("\n", 2)[1]) {
 						input.value = '';
 						if (word.length === 0) {
-							document.body.lastChild.nodeValue = '.';
+							document.body.lastChild.nodeValue = '｡';
 						} else done.push(document.body.lastChild.nodeValue = word.splice(~~(word.length * Math.random()), 1));
 					}
 				};
