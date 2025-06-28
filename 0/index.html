@@ -68,8 +68,6 @@
 					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
 				`);
 				word = [
-					`Hello\n你好\nNǐ hǎo`,
-					
 					`One\n一\nYī`,  
 					`Two\n二\nÈr`,  
 					`Three\n三\nSān`,  
@@ -219,20 +217,27 @@
 					`Desk\n桌子\nZhuō zi`,  
 					`Yesterday\n昨天\nZuó tiān`,
 				];
-				size = word.length;
+				done = [
+					`Hello\n你好\nNǐ hǎo`,
+				];
 				input = document.body.firstChild;
-				document.body.append(word[last = current = 0]);
 				input.oninput = event => {
-					if (input.value === word[last].split("\n", 2)[1]) {
+					if (input.value === done[done.length - 1].split("\n", 2)[1]) {
 						input.value = '';
-						while (last === current) {
-							last = ~~(size * Math.random());
-						}
-						document.body.lastChild.nodeValue = word[current = last];
+						if (word.length === 0) {
+							document.body.lastChild.nodeValue = '.';
+						} else done.push(document.body.lastChild.nodeValue = word.splice(~~(word.length * Math.random()), 1));
 					}
 				};
+				onpointerup = event => {
+					if (document.body.lastChild.nodeValue === '.') word = done.splice(1); else {
+						input.value = '';
+						done.push(document.body.lastChild.nodeValue = word.splice(~~(word.length * Math.random()), 1));
+					}
+				};
+				document.body.append(done[0]);
 			};
 		</script>
 	</head>
-	<body><input spellcheck="false" contenteditable autofocus required></body>
+	<body><input spellcheck="false" autofocus required></body>
 </html>
