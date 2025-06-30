@@ -227,12 +227,18 @@
 				done = [];
 				total = current = 0;
 				input = document.body.firstChild;
+				
 				speak = text => {
+					if (speechSynthesis === undefined) document.body.lastChild.nodeValue = '#';
+					if (speechSynthesis.speaking) speechSynthesis.cancel();
 					const utterance = new SpeechSynthesisUtterance(text);
 					let voices = speechSynthesis.getVoices();
 					let chineseVoice = voices.find(voice => voice.lang === 'zh-CN' || voice.lang === 'zh-TW');
 					if (!chineseVoice) chineseVoice = voices[0];
 					utterance.voice = chineseVoice;
+					/*utterance.pitch = 1.5;
+					utterance.rate = 1.25;*/
+					utterance.volume = 1;
 					speechSynthesis.speak(utterance);
 				};
 				input.oninput = () => {
