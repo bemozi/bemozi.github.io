@@ -32,6 +32,9 @@
 		<meta name="keywords" content="learn, lesson, method, foreign, language, translation, English, Chinese, Pinyin">
 		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 		<style>
+			html {
+				background: #FAFAFA;
+			}
 			body {
 				margin: 0;
 				position: fixed;
@@ -40,7 +43,6 @@
 				height: -webkit-fill-available;
 				display: grid;
 				align-items: center;
-				background: #FAFAFA;
 				color: #212121;
 				font-family: "Noto Kufi Arabic", sans-serif;
 				text-align: center;
@@ -221,14 +223,16 @@
 					`Happy\n高兴\nGāoxìng`,
 					`Beautiful\n漂亮\nPiàoliang`,
 				];
+				size = 100 / word.length;
 				done = [];
-				current = 0;
+				total = current = 0;
 				input = document.body.firstChild;
 				input.oninput = () => {
 					if (input.value === word[current].split("\n", 2)[1] || input.value === '。') {
 						input.value = '';
 						done.push(word.splice(current, 1)[0]);
 						document.body.lastChild.nodeValue = word[0] ? word[current = ~~(word.length * Math.random())] : (word = [...done])[current = 0];
+						document.body.style.background = `linear-gradient(to right, #FFF59D ${total = Math.round(done.length * size)}%, #FAFAFA ${total}%)`;
 					}
 				};
 				document.body.append(word[0]);
