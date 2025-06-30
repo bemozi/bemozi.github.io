@@ -227,6 +227,14 @@
 				done = [];
 				total = current = 0;
 				input = document.body.firstChild;
+				speak = text => {
+					const utterance = new SpeechSynthesisUtterance(text);
+					let voices = speechSynthesis.getVoices();
+					let chineseVoice = voices.find(voice => voice.lang === 'zh-CN' || voice.lang === 'zh-TW');
+					if (!chineseVoice) chineseVoice = voices[0];
+					utterance.voice = chineseVoice;
+					speechSynthesis.speak(utterance);
+				};
 				input.oninput = () => {
 					if (input.value === word[current].split("\n", 2)[1] || input.value === ' ') {
 						input.value = '';
@@ -236,9 +244,11 @@
 							done = [];
 							document.body.lastChild.nodeValue = word[current = 0];
 						}
+						speak(document.body.lastChild.nodeValue.split("\n", 2)[1]);
 						document.body.style.background = `linear-gradient(to right, #FFF59D ${total = Math.round(done.length * size)}%, #FAFAFA ${total}%)`;
 					}
 				};
+				onpointerup = () => speak(document.body.lastChild.nodeValue.split("\n", 2)[1]);
 				document.body.append(word[0]);
 			};
 		</script>
