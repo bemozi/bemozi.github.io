@@ -246,9 +246,9 @@
 						text: text,
 						voice: ESvoice
 					});
-					/*if (speechSynthesis.speaking) speechSynthesis.cancel();
+					if (speechSynthesis.speaking) speechSynthesis.cancel();
 					utterance.text = text;
-					speechSynthesis.speak(utterance);*/
+					speechSynthesis.speak(utterance);
 				};
 				input.oninput = () => {
 					if (input.value === word[current].split("\n", 2)[1] || input.value === ' ') {
