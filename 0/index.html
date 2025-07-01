@@ -239,7 +239,7 @@
 				}).then(() => {
 					ESvoices = EasySpeech.voices();
 					ESvoice = ESvoices.find(voice => voice.lang === 'zh-CN' || voice.lang === 'zh-TW') || ESvoices[0];
-				}).catch(e => console.error(e));
+				}).catch(e => document.body.lastChild.nodeValue = 'error');
 				speak = text => {
 					EasySpeech.cancel();
 					EasySpeech.speak({
