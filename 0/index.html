@@ -61,6 +61,7 @@
 				background: #FAFAFA;
 			}
 		</style>
+		<script src="https://cdn.jsdelivr.net/npm/easy-speech/dist/EasySpeech.iife.js"></script>
 		<script>
 			onload = () => {
 				(onresize = () => {
@@ -227,19 +228,27 @@
 				done = [];
 				total = current = 0;
 				input = document.body.firstChild;
-				
+				if (self?.speechSynthesis) {
+					utterance = new SpeechSynthesisUtterance();
+					voices = speechSynthesis.getVoices();
+					utterance.voice = voices.find(voice => voice.lang === 'zh-CN' || voice.lang === 'zh-TW') || voices[0];
+				}
+				EasySpeech.init({
+					maxTimeout: 5000,
+					interval: 250
+				}).then(() => {
+					ESvoices = EasySpeech.voices();
+					ESvoice = ESvoices.find(voice => voice.lang === 'zh-CN' || voice.lang === 'zh-TW') || ESvoices[0];
+				}).catch(e => console.error(e));
 				speak = text => {
-					if (speechSynthesis === undefined) document.body.lastChild.nodeValue = '#';
-					if (speechSynthesis.speaking) speechSynthesis.cancel();
-					const utterance = new SpeechSynthesisUtterance(text);
-					let voices = speechSynthesis.getVoices();
-					let chineseVoice = voices.find(voice => voice.lang === 'zh-CN' || voice.lang === 'zh-TW');
-					if (!chineseVoice) chineseVoice = voices[0];
-					utterance.voice = chineseVoice;
-					/*utterance.pitch = 1.5;
-					utterance.rate = 1.25;*/
-					utterance.volume = 1;
-					speechSynthesis.speak(utterance);
+					EasySpeech.cancel();
+					EasySpeech.speak({
+						text: text,
+						voice: ESvoice
+					});
+					/*if (speechSynthesis.speaking) speechSynthesis.cancel();
+					utterance.text = text;
+					speechSynthesis.speak(utterance);*/
 				};
 				input.oninput = () => {
 					if (input.value === word[current].split("\n", 2)[1] || input.value === ' ') {
