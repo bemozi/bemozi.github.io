@@ -266,6 +266,8 @@
 				};
 				onpointerdown = () => speak(document.body.lastChild.nodeValue.split("\n", 2)[1]);
 				onpointerup = () => speak(document.body.lastChild.nodeValue.split("\n", 2)[1]);
+				input.onpointerup = () => speak(document.body.lastChild.nodeValue.split("\n", 2)[1]);
+				input.onpointerdown = () => speak(document.body.lastChild.nodeValue.split("\n", 2)[1]);
 				document.body.append(word[0]);
 			};
 		</script>
