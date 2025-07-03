@@ -264,6 +264,7 @@
 						document.body.style.background = `linear-gradient(to right, #FFF59D ${total = Math.round(done.length * size)}%, #FAFAFA ${total}%)`;
 					}
 				};
+				onpointerdown = () => speak(document.body.lastChild.nodeValue.split("\n", 2)[1]);
 				onpointerup = () => speak(document.body.lastChild.nodeValue.split("\n", 2)[1]);
 				document.body.append(word[0]);
 			};
