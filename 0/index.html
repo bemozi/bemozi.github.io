@@ -261,7 +261,7 @@
 					if (input.value === word[current].split("\n", 2)[1] || input.value === ' ') {
 						input.value = '';
 						done.push(word.splice(current, 1)[0]);
-						if (word[0]) document.body.lastChild.nodeValue = word[++current]; else { // ~~(word.length * Math.random())
+						if (word[0]) document.body.lastChild.nodeValue = word[current]; else { // = ~~(word.length * Math.random())
 							word = [...done];
 							done = [];
 							document.body.lastChild.nodeValue = word[current = 0];
