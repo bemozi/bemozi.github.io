@@ -49,6 +49,9 @@
 				font-size: 9vmax;
 				white-space: pre-line;
 			}
+			iframe {
+				display: none;
+			}
 			input {
 				all: unset;
 				outline: none;
@@ -227,26 +230,29 @@
 				size = 100 / word.length;
 				done = [];
 				total = current = 0;
-				input = document.body.firstChild;
+				audio = document.body.firstChild;
+				input = document.body.children[1];
 				/*if (self?.speechSynthesis) {
 					utterance = new SpeechSynthesisUtterance();
 					voices = speechSynthesis.getVoices();
 					utterance.voice = voices.find(voice => voice.lang === 'zh-CN' || voice.lang === 'zh-TW') || voices[0];
-				}*/
-				speak = text => {
+					
 					EasySpeech.init({
 						maxTimeout: 5000,
 						interval: 250
 					}).then(() => {
 						ESvoices = EasySpeech.voices();
 						ESvoice = ESvoices.find(voice => voice.lang === 'zh-CN' || voice.lang === 'zh-TW') || ESvoices[0];
-						EasySpeech.cancel();
-						EasySpeech.speak({
-							text: text,
-							voice: ESvoice
-						});
-					}).catch(e => document.body.lastChild.nodeValue = 'error');
+					}).catch(e => e);
+				}*/
+				speak = text => {
+					audio.src = `audio/1/${text}.mp3`;
 					/*
+					EasySpeech.cancel();
+					EasySpeech.speak({
+						text: text,
+						voice: ESvoice
+					});
 					if (speechSynthesis.speaking) speechSynthesis.cancel();
 					utterance.text = text;
 					speechSynthesis.speak(utterance);*/
@@ -255,7 +261,7 @@
 					if (input.value === word[current].split("\n", 2)[1] || input.value === ' ') {
 						input.value = '';
 						done.push(word.splice(current, 1)[0]);
-						if (word[0]) document.body.lastChild.nodeValue = word[current = ~~(word.length * Math.random())]; else {
+						if (word[0]) document.body.lastChild.nodeValue = word[++current]; else { // ~~(word.length * Math.random())
 							word = [...done];
 							done = [];
 							document.body.lastChild.nodeValue = word[current = 0];
@@ -264,13 +270,10 @@
 						document.body.style.background = `linear-gradient(to right, #FFF59D ${total = Math.round(done.length * size)}%, #FAFAFA ${total}%)`;
 					}
 				};
-				onpointerdown = () => speak(document.body.lastChild.nodeValue.split("\n", 2)[1]);
-				onpointerup = () => speak(document.body.lastChild.nodeValue.split("\n", 2)[1]);
-				input.onpointerup = () => speak(document.body.lastChild.nodeValue.split("\n", 2)[1]);
-				input.onpointerdown = () => speak(document.body.lastChild.nodeValue.split("\n", 2)[1]);
+				input.onpointerup = onpointerup = () => speak(document.body.lastChild.nodeValue.split("\n", 2)[1]);
 				document.body.append(word[0]);
 			};
 		</script>
 	</head>
-	<body><input spellcheck="false" autofocus required></body>
+	<body><iframe name="audio"></iframe><input spellcheck="false" autofocus required></body>
 </html>
