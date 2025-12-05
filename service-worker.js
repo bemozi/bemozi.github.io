@@ -77,7 +77,7 @@ addEventListener('message', event => {
 	console.log('sw receive: '+ event.data);
 	self.clients.matchAll().then(clients => { // ServiceWorker broadcast to all connected Pages
 		clients.forEach(client => {
-			clients.postMessage(event.data + 1);
+			client.postMessage(event.data + 1);
 		});
 	});
 });
