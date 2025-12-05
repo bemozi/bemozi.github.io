@@ -56,10 +56,11 @@ onload = (event, workerURL) => {
 		}
 	}).catch(error => log(`Service Worker registration failed: ${error}`, 1)) ?? init();
 	self.addEventListener('install', event => {
-		console.log('Service Worker installing.');
+		log('Service Worker installing.');
 	});
 	self.addEventListener('activate', event => {
 		console.log('Service Worker activating.');
+		log('Service Worker activating.');
 	});
 	self.addEventListener('fetch', event => {
 		console.log('fetch');
