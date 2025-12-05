@@ -12,9 +12,9 @@ onload = (event, workerURL) => {
 	URL.revokeObjectURL(workerURL);
 	*/
 	/^(https?:)/.test(location) && navigator.serviceWorker?.register('/service-worker.js').then(registration => {
-		log('Service Worker registered with scope:', registration.scope);
+		console.log('Service Worker registered with scope:', registration.scope);
 		registration.onupdatefound = () => {
-			log('New worker being installed => ', registration.installing);
+			console.log('New worker being installed => ', registration.installing);
 			registration.installing.onstatechange = () => {
 				if (registration.installing.state === 'installed') {
 					if (navigator.serviceWorker.controller) {
@@ -23,6 +23,7 @@ onload = (event, workerURL) => {
 						// It's the perfect time to display a "New content is
 						// available; please refresh." message in your web app.
 						log('New content is available; please refresh.');
+						location += '';
 					} else {
 						// At this point, everything has been precached.
 						// It's the perfect time to display a
