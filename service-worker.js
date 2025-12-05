@@ -38,6 +38,7 @@ navigator.serviceWorker?.register('service-worker.js').then(registration => {
 		log('Our web app is being served cache-first by a service worker.', 0);
 		navigator.serviceWorker.onmessage = event => {
 			log(event.data);
+			console.log(event.data);
 		};
 		navigator.serviceWorker.controller.postMessage(5);
 		unregister = () => {
@@ -61,13 +62,16 @@ addEventListener('install', event => {
 	});*/
 	clients.matchAll({
 		includeUncontrolled: true,
-		type: 'window',
+		type: 'window'
 	}).then(clients => {
+		clients.forEach(client => {
+			clients[0].postMessage('Service Worker installing.');
+		});/*
 		if (clients && clients.length) {
 			// Send a response - the clients
 			// array is ordered by last focused
 			clients[0].postMessage('Service Worker installing.');
-		}
+		}*/
 	});
 	console.log('Service Worker installing.');
 });
