@@ -29,18 +29,20 @@
 		<style>
 			body {
 				display: grid;
-				white-space: pre-line;
 				font-family: monospace;
 			}
+			body > * {
+				padding: 5px 0;
+			}
 			b {
-				color: #DB4437;
+				color: #3F51B5;
 			}
 		</style>
 		<script>
 			console.warn('!');
 			
 			log = (message, error) => {
-				document.body.insertAdjacentHTML('beforeend', error ? `<b>${message}</b>` : message);
+				document.body.insertAdjacentHTML('beforeend', `<${error = error ? 'b' : 'span'}>${message}</${error}>`);
 			};
 			
 			unregister = () => {
