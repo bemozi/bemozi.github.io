@@ -40,11 +40,10 @@ navigator.serviceWorker?.register('service-worker.js').then(registration => {
 			registration.unregister();
 		};
 		init(1);
+		navigator.serviceWorker.onmessage = event => {
+			console.log('w receive: ' + event.data);
+		};
 	});
-	navigator.serviceWorker.onmessage = event => {
-		log(event.data);
-		console.log(event.data);
-	};
 	if (registration.installing) {
 		log('Service worker installed.');
 	} else if (registration.active) {
@@ -75,7 +74,12 @@ addEventListener('fetch', event => {
 	console.log('fetch');
 });
 addEventListener('message', event => {
-	console.log(event.data);
+	console.log('sw receive: '+ event.data);
+	self.clients.matchAll().then(clients => { // ServiceWorker broadcast to all connected Pages
+		clients.forEach(client => {
+			clients.postMessage(event.data + 1);
+		});
+	});
 });
 onload = (event, workerURL) => {
 	log('Page and all resources loaded.');
