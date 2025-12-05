@@ -66,7 +66,7 @@ addEventListener('install', event => {
 		if (clients && clients.length) {
 			// Send a response - the clients
 			// array is ordered by last focused
-			clients[0].postMessage(Service Worker installing.);
+			clients[0].postMessage('Service Worker installing.');
 		}
 	});
 	console.log('Service Worker installing.');
