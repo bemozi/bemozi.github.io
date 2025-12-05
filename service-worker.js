@@ -36,9 +36,10 @@ navigator.serviceWorker?.register('service-worker.js').then(registration => {
 	};
 	navigator.serviceWorker.ready.then(registration => {
 		log('Our web app is being served cache-first by a service worker.', 0);
-		navigator.serviceWorker.controller.onmessage = event => {
+		navigator.serviceWorker.onmessage = event => {
 			log(event.data);
 		};
+		navigator.serviceWorker.controller.postMessage(5);
 		unregister = () => {
 			registration.unregister();
 		};
@@ -47,23 +48,39 @@ navigator.serviceWorker?.register('service-worker.js').then(registration => {
 	if (registration.installing) {
 		log('Service worker installed.');
 	} else if (registration.active) {
-		log('Service worker active.');
+		log('Service worker active.'); // Service Worker is controlling the current page
 	}
 }).catch(error => log(`Service Worker registration failed: ${error}`, 1)) ?? init(0);
 addEventListener('install', event => {
 	log('Service Worker installing.');
-	self.postMessage('Service Worker installing.');
+	//self.postMessage('Service Worker installing.');
+	/*clients.matchAll().then(clients => {
+		clients.forEach(client => {
+			client.postMessage(message);
+		});
+	});*/
+	clients.matchAll({
+		includeUncontrolled: true,
+		type: 'window',
+	}).then(clients => {
+		if (clients && clients.length) {
+			// Send a response - the clients
+			// array is ordered by last focused
+			clients[0].postMessage(Service Worker installing.);
+		}
+	});
 	console.log('Service Worker installing.');
 });
 addEventListener('activate', event => {
 	log('Service Worker activating.');
-	self.postMessage('Service Worker activating.');
 	console.log('Service Worker activating.');
 });
 addEventListener('fetch', event => {
 	log('fetch');
-	self.postMessage('fetch');
 	console.log('fetch');
+});
+addEventListener('message', event => {
+	
 });
 onload = (event, workerURL) => {
 	log('Page and all resources loaded.');
