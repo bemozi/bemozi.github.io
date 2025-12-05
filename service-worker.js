@@ -7,7 +7,9 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
 	
 });
+/*
 onmessage = event => {
 	postMessage(event.data * 2);
 };
 self.postMessage('service worker setup success');
+*/
