@@ -103,20 +103,16 @@ onload = (event, workerURL) => {
 	*/
 	onpointerup = async (event) => {
 		navigator.serviceWorker.controller.postMessage(1);
-		/*if (installPrompt) {
-			// Show the install prompt
+		if (installPrompt) {
 			installPrompt.prompt();
-			// Wait for the user to respond to the prompt
 			const {outcome} = await installPrompt.userChoice;
 			console.log(`User response to the install prompt: ${outcome}`);
 			if (outcome === 'accepted') {
 				// Optionally, hide the install button if the user accepted
 			}
-			// We've used the prompt and can't use it again, so clear it
-			installPrompt = null;
+			installPrompt = null; // We've used the prompt and can't use it again, so clear it
 		}
-		*/
-		installPrompt?.userChoice.then(userChoice => {
+		/*installPrompt?.userChoice.then(userChoice => {
 			console.log(`User response to the install prompt: ${userChoice.outcome}`);
 			if (userChoice.outcome === 'accepted') {
 				// Optionally, hide the install button if the user accepted
@@ -124,6 +120,6 @@ onload = (event, workerURL) => {
 			installPrompt = null;
 		}).catch(error => {
 			console.error('Error during user choice:', error);
-		});
+		});*/
 	};
 };
