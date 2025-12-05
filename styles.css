@@ -1,0 +1,16 @@
+a {
+	all: unset;
+}
+body {
+	display: grid;
+	font-family: monospace;
+}
+body > * {
+	padding: 5px 0;
+}
+[href] {
+	cursor: pointer;
+}
+[error] {
+	color: #3F51B5;
+}
