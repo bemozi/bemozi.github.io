@@ -25,7 +25,7 @@ onload = (event, workerURL) => {
 		registration.onupdatefound = () => {
 			console.log('New worker being installed => ', registration.installing);
 			registration.installing.onstatechange = () => {
-				if (registration.installing.state === 'installed') {
+				if (registration.installing?.state === 'installed') {
 					if (navigator.serviceWorker.controller) {
 						// At this point, the old content will have been purged and
 						// the fresh content will have been added to the cache.
