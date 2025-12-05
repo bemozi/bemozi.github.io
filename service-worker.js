@@ -1,8 +1,6 @@
 console.warn('!');
 
-log = (message, error, url) => {
-	document.body.insertAdjacentHTML('beforeend', `<a${url ? ` href="${url}" target="_blank"` : ''}${error ? ' error' : ''}>${message}</a>`);
-};
+
 
 onload = (event, workerURL) => {
 	/*
@@ -11,8 +9,11 @@ onload = (event, workerURL) => {
 	`], {type: 'application/javascript'})));
 	URL.revokeObjectURL(workerURL);
 	*/
+	log = (message, error, url) => {
+		document.body.insertAdjacentHTML('beforeend', `<a${url ? ` href="${url}" target="_blank"` : ''}${error ? ' error' : ''}>${message}</a>`);
+	};
 	/^(https?:)/.test(location) && navigator.serviceWorker?.register('/service-worker.js').then(registration => {
-		console.log('Service Worker registered with scope:', registration.scope);
+		// console.log('Service Worker registered with scope:', registration.scope);
 		registration.onupdatefound = () => {
 			console.log('New worker being installed => ', registration.installing);
 			registration.installing.onstatechange = () => {
@@ -34,12 +35,11 @@ onload = (event, workerURL) => {
 			};
 		};
 		navigator.serviceWorker.ready.then(registration => {
-			log('This web app is being served cache-first by a service worker.');
+			log('Our web app is being served cache-first by a service worker.');
 			unregister = () => {
 				registration.unregister();
 			};
 		});
-		
 		if (registration.installing) {
 			log('Service worker installed');
 		} else if (registration.active) {
