@@ -51,31 +51,17 @@
 				document.body.insertAdjacentHTML('beforeend', `<a${url ? ` href="${url}" target="_blank"` : ''}${error ? ' error' : ''}>${message}</a>`);
 			};
 			
-			unregister = () => {
-				navigator.serviceWorker?.ready.then(registration => {
-					registration.unregister()
-				});
-			};
 			onload = (event, workerURL) => {
 				navigator.serviceWorker.ready.then(() => {
 					log('This web app is being served cache-first by a service worker.');
 				});
+				/*
 				worker = new Worker(workerURL = URL.createObjectURL(new Blob([`
-					self.addEventListener('install', event => {
-						log('Service Worker installing.');
-					});
-					self.addEventListener('activate', event => {
-						log('Service Worker activating.');
-					});
-					self.addEventListener('fetch', event => {
-						
-					});
-					onmessage = event => {
-						postMessage(event.data * 2);
-					};
-					postMessage('service worker setup success');
+					
 				`], {type: 'application/javascript'})));
-				/^(https?:)/.test(location) && navigator.serviceWorker?.register(workerURL).then(registration => {
+				URL.revokeObjectURL(workerURL);
+				*/
+				/^(https?:)/.test(location) && navigator.serviceWorker?.register('/service-worker.js').then(registration => {
 					log('Service Worker registered with scope:', registration.scope);
 					registration.onupdatefound = () => {
 						log('New worker being installed => ', registration.installing);
@@ -96,21 +82,25 @@
 							}
 						};
 					};
+					unregister = () => {
+						navigator.serviceWorker.ready.then(registration => {
+							registration.unregister()
+						});
+					};
 					if (registration.installing) {
 						log('Service worker installed');
 					} else if (registration.active) {
 						log('Service worker active!');
 					}
-					URL.revokeObjectURL(workerURL);
-				}).catch(error => log(`Service Worker registration failed: ${error}`, 1, workerURL));
-				worker.onmessage = event => {
+				}).catch(error => log(`Service Worker registration failed: ${error}`, 1));
+				/*worker.onmessage = event => {
 					log(event.data);
 					/*worker.terminate();
 					delete worker;*/
-				};
+				};*/
 			};
 			onpointerup = event => {
-				worker.postMessage(10);
+				//worker.postMessage(10);
 			};
 		</script>
 	</head>
