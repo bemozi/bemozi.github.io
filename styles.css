@@ -4,6 +4,7 @@ a {
 body {
 	display: grid;
 	font-family: monospace;
+	color: #9E9E9E;
 }
 body > * {
 	padding: 5px 0;
@@ -12,7 +13,7 @@ body > * {
 	cursor: pointer;
 }
 [info] {
-	color: #3F51B5;
+	color: #000;
 }
 [error] {
 	color: #FF0033;
