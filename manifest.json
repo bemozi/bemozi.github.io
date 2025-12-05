@@ -1,0 +1,56 @@
+{
+	"name": "BEMOZI",
+	"short_name": "BEMOZI",
+	"description": "BEMOZI",
+	"lang": "en-US",
+	"display": "standalone",
+	"scope": "https://bemozi.github.io",
+	"start_url": "/",
+	"background_color": "#FFFFFF",
+	"theme_color": "#000000",
+	"icons": [
+		{
+			"src": "/android-launchericon-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/android-launchericon-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any"
+		},
+		{
+			"src": "android-chrome-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any maskable"
+		}
+	],
+	"splash_screens": [
+		{
+			"src":"/splash-screen.png",
+			"sizes":"512x512",
+			"type":"image/png"
+		}
+	],
+	"shortcuts": [
+		{
+			"name": "NEWS",
+			"short_name": "NEWS",
+			"description": "NEWS",
+			"url":"./news.htm",
+			"icons": [
+				{
+					"src": "/android-launchericon-news-192x192.png",
+					"sizes": "192x192"
+				}
+			]
+		}
+	],
+	"author": "https://bemozi.github.io",
+	"developer": {
+		"name":"BEMOZI",
+		"url": "https://bemozi.github.io"
+	}
+}
