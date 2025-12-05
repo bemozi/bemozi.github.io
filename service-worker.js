@@ -44,7 +44,7 @@ navigator.serviceWorker?.register('service-worker.js').then(registration => {
 	} else if (registration.active) {
 		log('Service worker active.');
 	}
-}).catch(error => log(`Service Worker registration failed: ${error}`, 1)) ?? init(0);
+}).catch(error => log(`Service Worker registration failed: ${error}`, 1)) || init(0);
 addEventListener('install', event => {
 	log('Service Worker installing.');
 	console.log('Service Worker installing.');
