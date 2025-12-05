@@ -45,14 +45,17 @@ navigator.serviceWorker?.register('service-worker.js').then(registration => {
 		log('Service worker active.');
 	}
 }).catch(error => log(`Service Worker registration failed: ${error}`, 1)) ?? init(0);
-self.addEventListener('install', event => {
+addEventListener('install', event => {
 	log('Service Worker installing.');
+	console.log('Service Worker installing.');
 });
-self.addEventListener('activate', event => {
+addEventListener('activate', event => {
 	log('Service Worker activating.');
+	console.log('Service Worker activating.');
 });
-self.addEventListener('fetch', event => {
+addEventListener('fetch', event => {
 	log('fetch');
+	console.log('fetch');
 });
 onload = (event, workerURL) => {
 	log('Page and all resources loaded.');
