@@ -1,7 +1,7 @@
 log_history = [];
 log = (message, error, url) => {
 	log_history.push([message, error, url]);
-	if (self?.document) while (log_history[0]) {
+	if (self.document?.body) while (log_history[0]) {
 		document.body.insertAdjacentHTML('beforeend', `<a${log_history[0][2] ? ` href="${log_history[0][2]}" target="_blank"` : ''}${log_history[0][1] ? ' error' : ''}>${log_history[0][0]}</a>`);
 		log_history.shift();
 	}
