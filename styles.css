@@ -11,6 +11,9 @@ body > * {
 [href] {
 	cursor: pointer;
 }
-[error] {
+[info] {
 	color: #3F51B5;
+}
+[error] {
+	color: #FF0033;
 }
