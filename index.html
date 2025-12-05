@@ -95,8 +95,8 @@
 				}).catch(error => log(`Service Worker registration failed: ${error}`, 1));
 				/*worker.onmessage = event => {
 					log(event.data);
-					/*worker.terminate();
-					delete worker;*/
+					worker.terminate();
+					delete worker;
 				};*/
 			};
 			onpointerup = event => {
