@@ -58,12 +58,12 @@ onload = (event, workerURL) => {
 };
 if (self?.log || 1) {
 	self.addEventListener('install', event => {
-		log('Service Worker installing.');
+		console.log('Service Worker installing.');
 	});
 	self.addEventListener('activate', event => {
-		log('Service Worker activating.');
+		console.log('Service Worker activating.');
 	});
 	self.addEventListener('fetch', event => {
-		log('fetch');
+		console.log('fetch');
 	});
 }
