@@ -1,11 +1,11 @@
 generateRandomString = (length = 6) => Math.random().toString(36).substring(2, length + 2);
 console.log(generateRandomString());
-log_history = [];
+log_history ??= [];
 log = (message, error, url) => {
-	log_history.unshift([message, error, url]);
+	log_history.push([message, error, url]);
 	if (self.document?.body) while (log_history[0]) {
 		document.body.insertAdjacentHTML('beforeend', `<a${log_history[0][2] ? ` href="${log_history[0][2]}" target="_blank"` : ''} ${['info', 'error'][log_history[0][1]] ?? ''}>${log_history[0][0]}</a>`);
-		break;//log_history.shift();
+		log_history.shift();
 	}
 };
 init = (message = 0) => {
