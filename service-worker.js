@@ -1,3 +1,5 @@
+generateRandomString = (length = 6) => Math.random().toString(36).substring(2, length + 2);
+console.log(generateRandomString());
 log_history = [];
 log = (message, error, url) => {
 	log_history.unshift([message, error, url]);
@@ -44,7 +46,7 @@ navigator.serviceWorker?.register('service-worker.js').then(registration => {
 	} else if (registration.active) {
 		log('Service worker active.');
 	}
-}).catch(error => log(`Service Worker registration failed: ${error}`, 1)) || init(0);
+}).catch(error => log(`Service Worker registration failed: ${error}`, 1)) ?? init(0);
 addEventListener('install', event => {
 	log('Service Worker installing.');
 	console.log('Service Worker installing.');
