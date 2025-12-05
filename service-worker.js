@@ -83,6 +83,16 @@ addEventListener('message', event => {
 });
 onload = (event, workerURL) => {
 	log('Page and all resources loaded.');
+	let deferredPrompt;
+	window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent Chrome 76 and earlier from automatically showing the prompt
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      deferredPrompt = e;
+      // Optionally, update your UI to show an install button or message
+      // For example: installButton.style.display = 'block';
+    });
+	
 	/*
 	worker = new Worker(workerURL = URL.createObjectURL(new Blob([`
 		
@@ -93,8 +103,20 @@ onload = (event, workerURL) => {
 		worker.terminate();
 		delete worker;
 	};
-	onpointerup = event => {
-		//worker.postMessage(10);
-	};
 	*/
+	onpointerup = async (event) => {
+		navigator.serviceWorker.controller.postMessage(1);
+		if (deferredPrompt) {
+			// Show the install prompt
+			deferredPrompt.prompt();
+			// Wait for the user to respond to the prompt
+			const {outcome} = await deferredPrompt.userChoice;
+			console.log(`User response to the install prompt: ${outcome}`);
+			if (outcome === 'accepted') {
+				// Optionally, hide the install button if the user accepted
+			}
+			// We've used the prompt and can't use it again, so clear it
+			deferredPrompt = null;
+		}
+	};
 };
