@@ -8,7 +8,7 @@
 	"id": "/",
 	"start_url": "/",
 	"background_color": "#FFFFFF",
-	"theme_color": "#000000",
+	"theme_color": "#FFFFFF",
 	"orientation": "portrait",
 	"categories": ["productivity", "business", "utilities"],
 	"icons": [
@@ -21,9 +21,9 @@
 	],
 	"splash_screens": [
 		{
-			"src":"/splash-screen.png",
-			"sizes":"512x512",
-			"type":"image/png"
+			"src": "https://avatars.githubusercontent.com/u/211243872",
+			"sizes": "512x512",
+			"type": "image/png"
 		}
 	],
 	"shortcuts": [
