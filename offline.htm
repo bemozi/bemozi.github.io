@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Service Worker & Cache API Demo</title>
+		<style>
+			* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			}
+			body {
+			background-color: #f5f7fa;
+			color: #333;
+			line-height: 1.6;
+			padding: 20px;
+			max-width: 1200px;
+			margin: 0 auto;
+			}
+			header {
+			text-align: center;
+			padding: 30px 0;
+			background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+			color: white;
+			border-radius: 10px;
+			margin-bottom: 30px;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+			}
+			h1 {
+			font-size: 2.5rem;
+			margin-bottom: 10px;
+			}
+			h2 {
+			color: #2575fc;
+			margin: 20px 0 15px;
+			padding-bottom: 8px;
+			border-bottom: 2px solid #eee;
+			}
+			.subtitle {
+			font-size: 1.2rem;
+			opacity: 0.9;
+			max-width: 800px;
+			margin: 0 auto;
+			}
+			.container {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 30px;
+			margin-bottom: 30px;
+			}
+			@media (max-width: 768px) {
+			.container {
+			grid-template-columns: 1fr;
+			}
+			}
+			.card {
+			background: white;
+			border-radius: 10px;
+			padding: 25px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+			transition: transform 0.3s ease;
+			}
+			.card:hover {
+			transform: translateY(-5px);
+			}
+			.status-card {
+			background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+			color: white;
+			}
+			.demo-card {
+			background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+			color: white;
+			}
+			.card h2 {
+			color: inherit;
+			border-bottom-color: rgba(255, 255, 255, 0.3);
+			}
+			.status-indicator {
+			display: inline-block;
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			margin-right: 8px;
+			}
+			.status-active {
+			background-color: #2ecc71;
+			box-shadow: 0 0 8px #2ecc71;
+			}
+			.status-inactive {
+			background-color: #e74c3c;
+			}
+			.status-installing {
+			background-color: #f39c12;
+			box-shadow: 0 0 8px #f39c12;
+			}
+			.btn {
+			display: inline-block;
+			background: #2575fc;
+			color: white;
+			border: none;
+			padding: 12px 24px;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 1rem;
+			font-weight: 600;
+			margin: 10px 5px 0 0;
+			transition: all 0.3s ease;
+			}
+			.btn:hover {
+			background: #1a68e8;
+			transform: translateY(-2px);
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			}
+			.btn:active {
+			transform: translateY(0);
+			}
+			.btn-success {
+			background: #2ecc71;
+			}
+			.btn-success:hover {
+			background: #27ae60;
+			}
+			.btn-danger {
+			background: #e74c3c;
+			}
+			.btn-danger:hover {
+			background: #c0392b;
+			}
+			.btn-warning {
+			background: #f39c12;
+			}
+			.btn-warning:hover {
+			background: #d68910;
+			}
+			.btn:disabled {
+			background: #bdc3c7;
+			cursor: not-allowed;
+			transform: none;
+			box-shadow: none;
+			}
+			.cache-controls {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			margin-top: 15px;
+			}
+			.cache-item {
+			background: rgba(255, 255, 255, 0.2);
+			padding: 10px 15px;
+			border-radius: 5px;
+			margin-bottom: 10px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			}
+			.cache-key {
+			font-weight: bold;
+			font-family: monospace;
+			font-size: 0.9rem;
+			}
+			.cache-status {
+			font-size: 0.85rem;
+			padding: 3px 8px;
+			border-radius: 3px;
+			}
+			.cached {
+			background-color: rgba(46, 204, 113, 0.2);
+			color: #27ae60;
+			}
+			.not-cached {
+			background-color: rgba(231, 76, 60, 0.2);
+			color: #c0392b;
+			}
+			.demo-resources {
+			margin-top: 20px;
+			}
+			.resource-item {
+			padding: 15px;
+			background: rgba(255, 255, 255, 0.1);
+			border-radius: 5px;
+			margin-bottom: 10px;
+			}
+			.resource-item h3 {
+			margin-bottom: 8px;
+			display: flex;
+			justify-content: space-between;
+			}
+			.resource-content {
+			max-height: 0;
+			overflow: hidden;
+			transition: max-height 0.3s ease;
+			background: rgba(0, 0, 0, 0.1);
+			border-radius: 5px;
+			padding: 0 15px;
+			}
+			.resource-content.expanded {
+			max-height: 200px;
+			padding: 15px;
+			margin-top: 10px;
+			}
+			.toggle-content {
+			background: none;
+			border: none;
+			color: white;
+			cursor: pointer;
+			font-size: 1.2rem;
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			}
+			.toggle-content:hover {
+			background: rgba(255, 255, 255, 0.2);
+			}
+			.log-container {
+			background: #2c3e50;
+			color: #ecf0f1;
+			padding: 20px;
+			border-radius: 10px;
+			margin-top: 30px;
+			font-family: monospace;
+			font-size: 0.9rem;
+			max-height: 300px;
+			overflow-y: auto;
+			}
+			.log-header {
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 15px;
+			}
+			.log-entry {
+			padding: 8px 0;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+			}
+			.log-time {
+			color: #3498db;
+			margin-right: 10px;
+			}
+			.log-message {
+			color: #ecf0f1;
+			}
+			.log-type-install {
+			color: #2ecc71;
+			}
+			.log-type-fetch {
+			color: #3498db;
+			}
+			.log-type-activate {
+			color: #9b59b6;
+			}
+			.log-type-error {
+			color: #e74c3c;
+			}
+			.offline-test {
+			display: flex;
+			align-items: center;
+			margin-top: 15px;
+			padding: 15px;
+			background: rgba(255, 255, 255, 0.2);
+			border-radius: 5px;
+			}
+			.offline-icon {
+			font-size: 2rem;
+			margin-right: 15px;
+			}
+			.instructions {
+			background: white;
+			padding: 20px;
+			border-radius: 10px;
+			margin-top: 30px;
+			border-left: 5px solid #2575fc;
+			}
+			.instructions ol {
+			margin-left: 20px;
+			margin-top: 10px;
+			}
+			.instructions li {
+			margin-bottom: 10px;
+			}
+			code {
+			background: #f1f1f1;
+			padding: 2px 6px;
+			border-radius: 3px;
+			font-family: monospace;
+			font-size: 0.9rem;
+			}
+			.highlight {
+			background-color: #fffacd;
+			padding: 2px 5px;
+			border-radius: 3px;
+			}
+			.warning {
+			background-color: #fff3cd;
+			border: 1px solid #ffeaa7;
+			color: #856404;
+			padding: 15px;
+			border-radius: 5px;
+			margin-bottom: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Service Worker & Cache API Demo</h1>
+			<p class="subtitle">A complete implementation demonstrating offline capabilities, caching strategies, and programmatic cache management.</p>
+		</header>
+		<div class="warning">
+			<strong>Important:</strong> This demo must be served over HTTP/HTTPS (not file:// protocol). 
+			Run a local server or use an online code editor. If testing locally, use:
+			<code>python -m http.server 8000</code> or <code>npx serve</code>
+		</div>
+		<div class="container">
+			<div class="card status-card">
+				<h2>Service Worker Status</h2>
+				<p><span id="statusIndicator" class="status-indicator status-inactive"></span> <span id="statusText">Checking service worker status...</span></p>
+				<div id="registrationInfo" style="margin-top: 15px; display: none;">
+					<p><strong>Scope:</strong> <code id="scope"></code></p>
+					<p><strong>Cache Strategy:</strong> <span id="cacheStrategy">Cache First, then Network</span></p>
+				</div>
+				<div class="cache-controls">
+					<button id="registerBtn" class="btn btn-success">Register Service Worker</button>
+					<button id="unregisterBtn" class="btn btn-danger" disabled>Unregister Service Worker</button>
+					<button id="updateBtn" class="btn btn-warning" disabled>Update Service Worker</button>
+					<button id="clearCacheBtn" class="btn" disabled>Clear All Caches</button>
+				</div>
+				<div style="margin-top: 20px;">
+					<h3>Cached Resources</h3>
+					<div id="cacheList">
+						<!-- Cache items will be added here dynamically -->
+					</div>
+				</div>
+			</div>
+			<div class="card demo-card">
+				<h2>Demo Resources</h2>
+				<p>These resources can be cached for offline access. Try loading them while offline after caching.</p>
+				<div class="demo-resources">
+					<div class="resource-item">
+						<h3>Demo API Data <button class="toggle-content">+</button></h3>
+						<p>A simulated API response that will be cached for offline access.</p>
+						<div class="resource-content">
+							<pre id="apiData">Loading...</pre>
+						</div>
+						<button class="btn fetch-api-btn">Fetch API Data</button>
+						<button class="btn cache-api-btn">Cache API Data</button>
+					</div>
+					<div class="resource-item">
+						<h3>Demo Image <button class="toggle-content">+</button></h3>
+						<p>An image that will be cached for offline viewing.</p>
+						<div class="resource-content">
+							<img id="demoImage" src="" alt="Demo image" style="max-width: 100%; border-radius: 5px;">
+						</div>
+						<button class="btn fetch-image-btn">Load Image</button>
+						<button class="btn cache-image-btn">Cache Image</button>
+					</div>
+					<div class="resource-item">
+						<h3>Static Page Content <button class="toggle-content">+</button></h3>
+						<p>HTML content that will be cached for offline viewing.</p>
+						<div class="resource-content">
+							<div id="staticContent">Loading static content...</div>
+						</div>
+						<button class="btn fetch-static-btn">Load Static Content</button>
+						<button class="btn cache-static-btn">Cache Static Content</button>
+					</div>
+				</div>
+				<div class="offline-test">
+					<div class="offline-icon">📶</div>
+					<div>
+						<h3>Test Offline Mode</h3>
+						<p>Simulate offline mode and try to access cached resources.</p>
+						<button id="toggleOfflineBtn" class="btn btn-warning">Simulate Offline Mode</button>
+						<span id="offlineStatus" class="highlight" style="margin-left: 10px;">Online</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="instructions">
+			<h2>How to Test This Demo</h2>
+			<ol>
+				<li>Click <strong>"Register Service Worker"</strong> to activate the service worker</li>
+				<li>Click the <strong>"Cache"</strong> buttons to store resources in the cache</li>
+				<li>Click <strong>"Simulate Offline Mode"</strong> to test offline functionality</li>
+				<li>Try loading resources while offline to see the cache in action</li>
+				<li>Check the browser DevTools → Application → Service Workers to see the registered worker</li>
+				<li>Check DevTools → Application → Cache Storage to see cached resources</li>
+			</ol>
+		</div>
+		<div class="log-container">
+			<div class="log-header">
+				<h3>Service Worker Events Log</h3>
+				<button id="clearLogBtn" class="btn btn-danger" style="padding: 5px 10px; font-size: 0.8rem;">Clear Log</button>
+			</div>
+			<div id="eventLog">
+				<!-- Log entries will be added here -->
+			</div>
+		</div>
+		<!-- Main Application Script -->
+		<script>
+			// DOM Elements
+			const registerBtn = document.getElementById('registerBtn');
+			const unregisterBtn = document.getElementById('unregisterBtn');
+			const updateBtn = document.getElementById('updateBtn');
+			const clearCacheBtn = document.getElementById('clearCacheBtn');
+			const statusIndicator = document.getElementById('statusIndicator');
+			const statusText = document.getElementById('statusText');
+			const scopeElement = document.getElementById('scope');
+			const cacheList = document.getElementById('cacheList');
+			const eventLog = document.getElementById('eventLog');
+			const clearLogBtn = document.getElementById('clearLogBtn');
+			const toggleOfflineBtn = document.getElementById('toggleOfflineBtn');
+			const offlineStatus = document.getElementById('offlineStatus');
+			
+			// Demo resources
+			const apiDataElement = document.getElementById('apiData');
+			const demoImage = document.getElementById('demoImage');
+			const staticContent = document.getElementById('staticContent');
+			
+			// Service worker registration
+			let registration = null;
+			let isOfflineSimulated = false;
+			
+			// Resources to cache
+			const demoResources = {
+			    api: {
+			        url: 'https://jsonplaceholder.typicode.com/posts/1',
+			        name: 'Demo API Data',
+			        key: 'demo-api-data'
+			    },
+			    image: {
+			        url: 'https://picsum.photos/seed/demo/400/300',
+			        name: 'Demo Image',
+			        key: 'demo-image'
+			    },
+			    static: {
+			        url: '/demo-static-content',
+			        name: 'Static Content',
+			        key: 'demo-static-content',
+			        content: '<h4>Static Content Demo</h4><p>This is static content that has been cached for offline viewing.</p><p>It includes <strong>HTML markup</strong> and can be viewed even when you have no internet connection.</p><ul><li>Cached content item 1</li><li>Cached content item 2</li><li>Cached content item 3</li></ul>'
+			    }
+			};
+			
+			// Initialize the demo
+			document.addEventListener('DOMContentLoaded', () => {
+			    initServiceWorker();
+			    setupEventListeners();
+			    loadDemoData();
+			    updateCacheList();
+			    
+			    // Set up content toggles
+			    document.querySelectorAll('.toggle-content').forEach(button => {
+			        button.addEventListener('click', (e) => {
+			            const content = e.target.closest('.resource-item').querySelector('.resource-content');
+			            content.classList.toggle('expanded');
+			            e.target.textContent = content.classList.contains('expanded') ? '−' : '+';
+			        });
+			    });
+			});
+			
+			// Initialize service worker
+			async function initServiceWorker() {
+			    if ('serviceWorker' in navigator) {
+			        try {
+			            registration = await navigator.serviceWorker.getRegistration();
+			            updateUI();
+			            
+			            // Listen for messages from service worker
+			            navigator.serviceWorker.addEventListener('message', event => {
+			                if (event.data && event.data.type === 'log') {
+			                    addLogEntry(event.data.data);
+			                }
+			            });
+			            
+			            // Listen for controller changes
+			            navigator.serviceWorker.addEventListener('controllerchange', () => {
+			                log('Service worker controller changed', 'activate');
+			                updateUI();
+			            });
+			        } catch (error) {
+			            log(`Error checking service worker: ${error.message}`, 'error');
+			        }
+			    } else {
+			        statusText.textContent = 'Service Workers are not supported in this browser';
+			        registerBtn.disabled = true;
+			    }
+			}
+			
+			// Set up event listeners
+			function setupEventListeners() {
+			    // Service worker controls
+			    registerBtn.addEventListener('click', registerServiceWorker);
+			    unregisterBtn.addEventListener('click', unregisterServiceWorker);
+			    updateBtn.addEventListener('click', updateServiceWorker);
+			    clearCacheBtn.addEventListener('click', clearAllCaches);
+			    
+			    // Cache controls for demo resources
+			    document.querySelectorAll('.cache-api-btn').forEach(btn => {
+			        btn.addEventListener('click', () => cacheResource(demoResources.api));
+			    });
+			    
+			    document.querySelectorAll('.cache-image-btn').forEach(btn => {
+			        btn.addEventListener('click', () => cacheResource(demoResources.image));
+			    });
+			    
+			    document.querySelectorAll('.cache-static-btn').forEach(btn => {
+			        btn.addEventListener('click', () => cacheStaticContent());
+			    });
+			    
+			    // Fetch controls for demo resources
+			    document.querySelectorAll('.fetch-api-btn').forEach(btn => {
+			        btn.addEventListener('click', () => fetchApiData());
+			    });
+			    
+			    document.querySelectorAll('.fetch-image-btn').forEach(btn => {
+			        btn.addEventListener('click', () => fetchImage());
+			    });
+			    
+			    document.querySelectorAll('.fetch-static-btn').forEach(btn => {
+			        btn.addEventListener('click', () => fetchStaticContent());
+			    });
+			    
+			    // Other controls
+			    clearLogBtn.addEventListener('click', clearLog);
+			    toggleOfflineBtn.addEventListener('click', toggleOfflineSimulation);
+			    
+			    // Listen for actual online/offline events
+			    window.addEventListener('online', () => {
+			        if (!isOfflineSimulated) {
+			            offlineStatus.textContent = 'Online';
+			            offlineStatus.style.backgroundColor = '#d4edda';
+			            offlineStatus.style.color = '#155724';
+			        }
+			    });
+			    
+			    window.addEventListener('offline', () => {
+			        if (!isOfflineSimulated) {
+			            offlineStatus.textContent = 'Offline (real)';
+			            offlineStatus.style.backgroundColor = '#f8d7da';
+			            offlineStatus.style.color = '#721c24';
+			        }
+			    });
+			}
+			
+			// Register service worker - FIXED VERSION
+			async function registerServiceWorker() {
+			    try {
+			        // Create a service worker script as a data URL
+			        const serviceWorkerScript = `
+			// Service Worker for Cache API Demo
+			const CACHE_NAME = 'demo-cache-v1';
+			const CACHE_URLS = [
+			'/',
+			'/index.html'
+			];
+			
+			// Install event - cache static resources
+			self.addEventListener('install', event => {
+			self.skipWaiting(); // Activate worker immediately
+			event.waitUntil(
+			caches.open(CACHE_NAME)
+			    .then(cache => {
+			        console.log('Installing service worker, caching static resources');
+			        sendLogToClient('Installing service worker, caching static resources', 'install');
+			        // Only cache URLs that are same-origin
+			        return cache.addAll(CACHE_URLS.map(url => new URL(url, self.location.origin).href));
+			    })
+			    .then(() => {
+			        console.log('Service worker installed successfully');
+			        sendLogToClient('Service worker installed successfully', 'install');
+			        return self.skipWaiting();
+			    })
+			    .catch(error => {
+			        console.error('Cache addAll failed:', error);
+			        sendLogToClient('Cache installation failed: ' + error.message, 'error');
+			    })
+			);
+			});
+			
+			// Activate event - clean up old caches
+			self.addEventListener('activate', event => {
+			event.waitUntil(
+			caches.keys().then(cacheNames => {
+			    return Promise.all(
+			        cacheNames.map(cacheName => {
+			            if (cacheName !== CACHE_NAME) {
+			                console.log('Deleting old cache: ' + cacheName);
+			                sendLogToClient('Deleting old cache: ' + cacheName, 'activate');
+			                return caches.delete(cacheName);
+			            }
+			        })
+			    );
+			}).then(() => {
+			    console.log('Service worker activated, old caches cleaned up');
+			    sendLogToClient('Service worker activated, old caches cleaned up', 'activate');
+			    return self.clients.claim();
+			})
+			);
+			});
+			
+			// Fetch event - intercept network requests
+			self.addEventListener('fetch', event => {
+			const requestUrl = new URL(event.request.url);
+			
+			// Only handle GET requests and not browser extensions
+			if (event.request.method !== 'GET' || requestUrl.protocol === 'chrome-extension:') {
+			return;
+			}
+			
+			console.log('Fetch intercepted:', requestUrl.pathname);
+			sendLogToClient('Fetch intercepted: ' + requestUrl.pathname, 'fetch');
+			
+			// For demo static content, return cached response
+			if (requestUrl.pathname === '/demo-static-content') {
+			event.respondWith(
+			    caches.match('/demo-static-content').then(response => {
+			        if (response) {
+			            return response;
+			        }
+			        // Return a simple response for demo purposes
+			        return new Response(
+			            '<h4>Static Content Demo</h4><p>This is static content that has been cached for offline viewing.</p>',
+			            { headers: { 'Content-Type': 'text/html' } }
+			        );
+			    })
+			);
+			return;
+			}
+			
+			// Cache-first strategy for same-origin requests
+			if (requestUrl.origin === self.location.origin || 
+			requestUrl.href.includes('jsonplaceholder.typicode.com') ||
+			requestUrl.href.includes('picsum.photos')) {
+			
+			event.respondWith(
+			    caches.match(event.request)
+			        .then(cachedResponse => {
+			            if (cachedResponse) {
+			                console.log('Serving from cache:', requestUrl.pathname);
+			                sendLogToClient('Serving from cache: ' + requestUrl.pathname, 'fetch');
+			                return cachedResponse;
+			            }
+			            
+			            // If not in cache, fetch from network
+			            return fetch(event.request)
+			                .then(networkResponse => {
+			                    // Don't cache if not a successful response
+			                    if (!networkResponse || networkResponse.status !== 200) {
+			                        return networkResponse;
+			                    }
+			                    
+			                    // Clone the response to cache it
+			                    const responseToCache = networkResponse.clone();
+			                    caches.open(CACHE_NAME)
+			                        .then(cache => {
+			                            cache.put(event.request, responseToCache);
+			                            console.log('Cached new resource:', requestUrl.pathname);
+			                            sendLogToClient('Cached new resource: ' + requestUrl.pathname, 'fetch');
+			                        });
+			                    
+			                    return networkResponse;
+			                })
+			                .catch(error => {
+			                    console.log('Network request failed:', requestUrl.pathname, error);
+			                    sendLogToClient('Network request failed: ' + requestUrl.pathname, 'error');
+			                    // Return a custom offline response
+			                    return new Response('<h3>Offline - Resource not available</h3><p>You are offline and this resource is not cached.</p>', {
+			                        status: 408,
+			                        headers: {'Content-Type': 'text/html'}
+			                    });
+			                });
+			        })
+			);
+			}
+			});
+			
+			// Function to send logs to the client
+			function sendLogToClient(message, type) {
+			self.clients.matchAll().then(clients => {
+			clients.forEach(client => {
+			    client.postMessage({
+			        type: 'log',
+			        data: {
+			            message: message,
+			            logType: type,
+			            timestamp: new Date().toISOString()
+			        }
+			    });
+			});
+			});
+			}
+			
+			// Listen for messages from the client
+			self.addEventListener('message', event => {
+			if (event.data && event.data.type === 'skipWaiting') {
+			self.skipWaiting();
+			}
+			
+			if (event.data && event.data.type === 'clearCache') {
+			caches.delete(CACHE_NAME).then(() => {
+			    console.log('Cache cleared by user');
+			    sendLogToClient('Cache cleared by user', 'install');
+			    // Recreate cache
+			    return caches.open(CACHE_NAME);
+			});
+			}
+			
+			if (event.data && event.data.type === 'cacheResource') {
+			const url = event.data.url;
+			caches.open(CACHE_NAME).then(cache => {
+			    fetch(url).then(response => {
+			        if (response.ok) {
+			            cache.put(url, response);
+			            console.log('Manually cached:', url);
+			            sendLogToClient('Manually cached: ' + url, 'install');
+			        }
+			    });
+			});
+			}
+			});
+			
+			// Listen for push events (for future expansion)
+			self.addEventListener('push', event => {
+			console.log('Push event received:', event);
+			});
+			        `;
+			        
+			        // Create a blob URL for the service worker
+			        const blob = new Blob([serviceWorkerScript], { type: 'application/javascript' });
+			        const workerURL = URL.createObjectURL(blob);
+			        
+			        // Register the service worker with a proper scope
+			        registration = await navigator.serviceWorker.register(workerURL, {
+			            scope: './'
+			        });
+			        
+			        log('Service worker registered successfully', 'install');
+			        
+			        // Update UI
+			        updateUI();
+			        
+			        // Wait for the service worker to be active
+			        if (registration.installing) {
+			            registration.installing.addEventListener('statechange', () => {
+			                updateUI();
+			            });
+			        }
+			        
+			        // Listen for updates
+			        registration.addEventListener('updatefound', () => {
+			            log('Service worker update found', 'install');
+			        });
+			        
+			    } catch (error) {
+			        log(`Registration failed: ${error.message}`, 'error');
+			        console.error('Registration error details:', error);
+			    }
+			}
+			
+			// Unregister service worker
+			async function unregisterServiceWorker() {
+			    if (registration) {
+			        try {
+			            const unregistered = await registration.unregister();
+			            if (unregistered) {
+			                log('Service worker unregistered successfully', 'activate');
+			                registration = null;
+			                updateUI();
+			            }
+			        } catch (error) {
+			            log(`Unregistration failed: ${error.message}`, 'error');
+			        }
+			    }
+			}
+			
+			// Update service worker
+			async function updateServiceWorker() {
+			    if (registration) {
+			        try {
+			            await registration.update();
+			            log('Service worker update triggered', 'activate');
+			            
+			            // Send a skipWaiting message to activate the new worker immediately
+			            if (registration.waiting) {
+			                registration.waiting.postMessage({ type: 'skipWaiting' });
+			            }
+			        } catch (error) {
+			            log(`Update failed: ${error.message}`, 'error');
+			        }
+			    }
+			}
+			
+			// Clear all caches
+			async function clearAllCaches() {
+			    try {
+			        const cacheNames = await caches.keys();
+			        await Promise.all(cacheNames.map(name => caches.delete(name)));
+			        log('All caches cleared', 'activate');
+			        updateCacheList();
+			        
+			        // Notify service worker if active
+			        if (registration && registration.active) {
+			            registration.active.postMessage({ type: 'clearCache' });
+			        }
+			    } catch (error) {
+			        log(`Failed to clear caches: ${error.message}`, 'error');
+			    }
+			}
+			
+			// Update UI based on service worker state
+			function updateUI() {
+			    if (!navigator.serviceWorker) {
+			        statusText.textContent = 'Service Workers not supported';
+			        registerBtn.disabled = true;
+			        return;
+			    }
+			    
+			    if (registration) {
+			        const worker = registration.installing || registration.waiting || registration.active;
+			        
+			        if (worker) {
+			            switch (worker.state) {
+			                case 'installing':
+			                    statusIndicator.className = 'status-indicator status-installing';
+			                    statusText.textContent = 'Installing...';
+			                    break;
+			                case 'installed':
+			                    statusIndicator.className = 'status-indicator status-active';
+			                    statusText.textContent = 'Installed and waiting';
+			                    break;
+			                case 'activating':
+			                    statusIndicator.className = 'status-indicator status-installing';
+			                    statusText.textContent = 'Activating...';
+			                    break;
+			                case 'activated':
+			                    statusIndicator.className = 'status-indicator status-active';
+			                    statusText.textContent = 'Active and controlling page';
+			                    break;
+			                case 'redundant':
+			                    statusIndicator.className = 'status-indicator status-inactive';
+			                    statusText.textContent = 'Redundant';
+			                    break;
+			            }
+			            
+			            scopeElement.textContent = registration.scope;
+			            document.getElementById('registrationInfo').style.display = 'block';
+			        }
+			        
+			        registerBtn.disabled = true;
+			        unregisterBtn.disabled = false;
+			        updateBtn.disabled = false;
+			        clearCacheBtn.disabled = false;
+			    } else {
+			        statusIndicator.className = 'status-indicator status-inactive';
+			        statusText.textContent = 'Not registered';
+			        document.getElementById('registrationInfo').style.display = 'none';
+			        registerBtn.disabled = false;
+			        unregisterBtn.disabled = true;
+			        updateBtn.disabled = true;
+			        clearCacheBtn.disabled = true;
+			    }
+			    
+			    // Update cache list
+			    updateCacheList();
+			}
+			
+			// Update cache list display
+			async function updateCacheList() {
+			    cacheList.innerHTML = '';
+			    
+			    if (!caches) {
+			        cacheList.innerHTML = '<div class="cache-item"><span>Cache API not supported</span></div>';
+			        return;
+			    }
+			    
+			    try {
+			        const cacheNames = await caches.keys();
+			        for (const cacheName of cacheNames) {
+			            const cache = await caches.open(cacheName);
+			            const requests = await cache.keys();
+			            
+			            if (requests.length === 0) {
+			                cacheList.innerHTML += `<div class="cache-item">
+			                    <span class="cache-key">${cacheName}</span>
+			                    <span class="cache-status not-cached">Empty</span>
+			                </div>`;
+			            } else {
+			                cacheList.innerHTML += `<div class="cache-item">
+			                    <span class="cache-key">${cacheName}</span>
+			                    <span class="cache-status cached">${requests.length} items</span>
+			                </div>`;
+			                
+			                // Show cached URLs for the demo cache
+			                if (cacheName === 'demo-cache-v1') {
+			                    for (const request of requests.slice(0, 5)) {
+			                        const url = new URL(request.url);
+			                        const displayUrl = url.pathname.split('/').pop() || url.hostname;
+			                        cacheList.innerHTML += `<div class="cache-item" style="margin-left: 20px; padding: 5px 15px;">
+			                            <span class="cache-key" style="font-size: 0.8rem;">${displayUrl}</span>
+			                            <span class="cache-status cached">Cached</span>
+			                        </div>`;
+			                    }
+			                }
+			            }
+			        }
+			        
+			        if (cacheNames.length === 0) {
+			            cacheList.innerHTML = '<div class="cache-item"><span>No caches found</span></div>';
+			        }
+			    } catch (error) {
+			        log(`Error listing caches: ${error.message}`, 'error');
+			        cacheList.innerHTML = '<div class="cache-item"><span>Error loading cache list</span></div>';
+			    }
+			}
+			
+			// Cache a resource
+			async function cacheResource(resource) {
+			    try {
+			        // Send message to service worker to cache this resource
+			        if (registration && registration.active) {
+			            registration.active.postMessage({
+			                type: 'cacheResource',
+			                url: resource.url
+			            });
+			        }
+			        
+			        // Also cache locally for immediate feedback
+			        const cache = await caches.open('demo-cache-v1');
+			        const response = await fetch(resource.url);
+			        await cache.put(resource.url, response.clone());
+			        
+			        log(`Cached: ${resource.name}`, 'install');
+			        updateCacheList();
+			        
+			        // Show the cached content
+			        if (resource.key === 'demo-api-data') {
+			            const data = await response.json();
+			            apiDataElement.textContent = JSON.stringify(data, null, 2);
+			        } else if (resource.key === 'demo-image') {
+			            const blob = await response.blob();
+			            demoImage.src = URL.createObjectURL(blob);
+			        }
+			    } catch (error) {
+			        log(`Failed to cache ${resource.name}: ${error.message}`, 'error');
+			    }
+			}
+			
+			// Cache static content (simulated)
+			async function cacheStaticContent() {
+			    try {
+			        const cache = await caches.open('demo-cache-v1');
+			        const response = new Response(demoResources.static.content, {
+			            headers: { 'Content-Type': 'text/html' }
+			        });
+			        
+			        // Create a mock request for the static content
+			        const request = new Request(demoResources.static.url);
+			        await cache.put(request, response);
+			        
+			        log(`Cached: ${demoResources.static.name}`, 'install');
+			        updateCacheList();
+			        
+			        // Show the cached content
+			        staticContent.innerHTML = demoResources.static.content;
+			    } catch (error) {
+			        log(`Failed to cache static content: ${error.message}`, 'error');
+			    }
+			}
+			
+			// Fetch API data
+			async function fetchApiData() {
+			    try {
+			        const response = await fetch(demoResources.api.url);
+			        if (response.ok) {
+			            const data = await response.json();
+			            apiDataElement.textContent = JSON.stringify(data, null, 2);
+			            log(`Fetched API data: ${data.title.substring(0, 30)}...`, 'fetch');
+			        } else {
+			            throw new Error(`HTTP ${response.status}`);
+			        }
+			    } catch (error) {
+			        log(`Failed to fetch API data: ${error.message}`, 'error');
+			        apiDataElement.textContent = `Error: ${error.message}. You might be offline.`;
+			    }
+			}
+			
+			// Fetch image
+			async function fetchImage() {
+			    try {
+			        // Use a different image URL each time to avoid browser cache
+			        const timestamp = new Date().getTime();
+			        const url = `https://picsum.photos/seed/demo-${timestamp}/400/300`;
+			        
+			        const response = await fetch(url);
+			        if (response.ok) {
+			            const blob = await response.blob();
+			            demoImage.src = URL.createObjectURL(blob);
+			            log('Fetched demo image', 'fetch');
+			        } else {
+			            throw new Error(`HTTP ${response.status}`);
+			        }
+			    } catch (error) {
+			        log(`Failed to fetch image: ${error.message}`, 'error');
+			        demoImage.alt = `Error loading image: ${error.message}`;
+			    }
+			}
+			
+			// Fetch static content
+			async function fetchStaticContent() {
+			    try {
+			        // Try to get from cache first
+			        const cache = await caches.open('demo-cache-v1');
+			        const cachedResponse = await cache.match(demoResources.static.url);
+			        
+			        if (cachedResponse) {
+			            const content = await cachedResponse.text();
+			            staticContent.innerHTML = content;
+			            log('Loaded static content from cache', 'fetch');
+			        } else {
+			            // Simulate fetching from network
+			            staticContent.innerHTML = '<p>Static content not in cache. Loading from network...</p>';
+			            setTimeout(() => {
+			                staticContent.innerHTML = demoResources.static.content;
+			                log('Loaded static content from network', 'fetch');
+			            }, 800);
+			        }
+			    } catch (error) {
+			        log(`Failed to fetch static content: ${error.message}`, 'error');
+			        staticContent.innerHTML = `<p>Error: ${error.message}. You might be offline.</p>`;
+			    }
+			}
+			
+			// Toggle offline simulation
+			function toggleOfflineSimulation() {
+			    isOfflineSimulated = !isOfflineSimulated;
+			    
+			    if (isOfflineSimulated) {
+			        // Monkey-patch fetch to simulate offline mode
+			        window.realFetch = window.fetch;
+			        window.fetch = function() {
+			            return Promise.reject(new Error('Simulated offline mode'));
+			        };
+			        
+			        offlineStatus.textContent = 'Offline (simulated)';
+			        offlineStatus.style.backgroundColor = '#fff3cd';
+			        offlineStatus.style.color = '#856404';
+			        toggleOfflineBtn.textContent = 'Restore Online Mode';
+			        toggleOfflineBtn.classList.add('btn-success');
+			        toggleOfflineBtn.classList.remove('btn-warning');
+			        
+			        log('Simulated offline mode activated', 'fetch');
+			    } else {
+			        // Restore original fetch
+			        if (window.realFetch) {
+			            window.fetch = window.realFetch;
+			        }
+			        
+			        offlineStatus.textContent = 'Online';
+			        offlineStatus.style.backgroundColor = '#d4edda';
+			        offlineStatus.style.color = '#155724';
+			        toggleOfflineBtn.textContent = 'Simulate Offline Mode';
+			        toggleOfflineBtn.classList.remove('btn-success');
+			        toggleOfflineBtn.classList.add('btn-warning');
+			        
+			        log('Restored online mode', 'fetch');
+			    }
+			}
+			
+			// Load demo data
+			function loadDemoData() {
+			    // Set up demo image
+			    demoImage.src = 'https://picsum.photos/seed/demo/400/300';
+			    
+			    // Set up static content
+			    staticContent.innerHTML = '<p>This is placeholder static content. Click "Load Static Content" to fetch actual content.</p>';
+			}
+			
+			// Log functions
+			function log(message, type = 'info') {
+			    addLogEntry({
+			        message,
+			        logType: type,
+			        timestamp: new Date().toISOString()
+			    });
+			}
+			
+			function addLogEntry(logData) {
+			    const logEntry = document.createElement('div');
+			    logEntry.className = 'log-entry';
+			    
+			    const time = new Date(logData.timestamp).toLocaleTimeString();
+			    const typeClass = `log-type-${logData.logType}`;
+			    
+			    logEntry.innerHTML = `
+			        <span class="log-time">${time}</span>
+			        <span class="log-message ${typeClass}">${logData.message}</span>
+			    `;
+			    
+			    eventLog.prepend(logEntry);
+			    
+			    // Keep log to 50 entries max
+			    const entries = eventLog.querySelectorAll('.log-entry');
+			    if (entries.length > 50) {
+			        entries[entries.length - 1].remove();
+			    }
+			}
+			
+			function clearLog() {
+			    eventLog.innerHTML = '';
+			    log('Log cleared', 'activate');
+			}
+			
+			// Initial log entry
+			log('Service Worker Demo initialized', 'install');
+		</script>
+	</body>
+</html>
