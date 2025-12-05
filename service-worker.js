@@ -20,7 +20,8 @@ onload = (event, workerURL) => {
 		console.warn('!');
 		log('Welcome!' + message);
 	};
-	navigator.serviceWorker?.register('/service-worker.js').then(registration => {
+	log('load');
+	navigator.serviceWorker?.register('service-worker.js').then(registration => {
 		// console.log('Service Worker registered with scope:', registration.scope);
 		registration.onupdatefound = () => {
 			console.log('New worker being installed => ', registration.installing);
