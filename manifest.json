@@ -5,10 +5,12 @@
 	"lang": "en-US",
 	"display": "standalone",
 	"scope": "/",
+	"id": "/",
 	"start_url": "/",
 	"background_color": "#FFFFFF",
 	"theme_color": "#000000",
 	"orientation": "portrait",
+	"categories": ["productivity", "business", "utilities"],
 	"icons": [
 		{
 			"src": "https://avatars.githubusercontent.com/u/211243872",
