@@ -40,7 +40,6 @@ navigator.serviceWorker?.register('service-worker.js').then(registration => {
 			log(event.data);
 			console.log(event.data);
 		};
-		navigator.serviceWorker.controller.postMessage(5);
 		unregister = () => {
 			registration.unregister();
 		};
