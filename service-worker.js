@@ -65,7 +65,7 @@ addEventListener('activate', event => {
 	console.log('Service Worker activating.');
 	self.clients.matchAll().then(clients => { // ServiceWorker broadcast to all connected Pages
 		clients.forEach(client => {
-			clients.postMessage('Service Worker activating.');
+			client.postMessage('Service Worker activating.');
 		});
 	});
 });
