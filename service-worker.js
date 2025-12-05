@@ -51,20 +51,19 @@ onload = (event, workerURL) => {
 		worker.terminate();
 		delete worker;
 	};*/
+	self.addEventListener('install', event => {
+		log('Service Worker installing.');
+	});
+	self.addEventListener('activate', event => {
+		log('Service Worker activating.');
+	});
+	self.addEventListener('fetch', event => {
+		
+	});
+	onpointerup = event => {
+		//worker.postMessage(10);
+	};
 };
-onpointerup = event => {
-	//worker.postMessage(10);
-};
-
-self.addEventListener('install', event => {
-	log('Service Worker installing.');
-});
-self.addEventListener('activate', event => {
-	log('Service Worker activating.');
-});
-self.addEventListener('fetch', event => {
-	
-});
 /*
 onmessage = event => {
 	postMessage(event.data * 2);
