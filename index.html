@@ -26,8 +26,23 @@
 		<meta name="keywords" content="BEMOZI">
 		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 		<link rel="manifest" href="manifest.json">
+		<style>
+			body {
+				display: grid;
+				white-space: pre-line;
+				font-family: monospace;
+			}
+			b {
+				color: #DB4437;
+			}
+		</style>
 		<script>
 			console.warn('!');
+			
+			log = (message, error) => {
+				document.body.insertAdjacentHTML('beforeend', error ? `<b>${message}</b>` : message);
+			};
+			
 			unregister = () => {
 				navigator.serviceWorker?.ready.then(registration => {
 					registration.unregister()
@@ -35,14 +50,14 @@
 			};
 			onload = (event, workerURL) => {
 				navigator.serviceWorker.ready.then(() => {
-					console.log('This web app is being served cache-first by a service worker.');
+					log('This web app is being served cache-first by a service worker.');
 				});
 				worker = new Worker(workerURL = URL.createObjectURL(new Blob([`
 					self.addEventListener('install', event => {
-						console.log('Service Worker installing.');
+						log('Service Worker installing.');
 					});
 					self.addEventListener('activate', event => {
-						console.log('Service Worker activating.');
+						log('Service Worker activating.');
 					});
 					self.addEventListener('fetch', event => {
 						
@@ -50,12 +65,12 @@
 					onmessage = event => {
 						postMessage(event.data * 2);
 					};
-					postMessage('init');
+					postMessage('service worker setup success');
 				`], {type: 'application/javascript'})));
 				/^(https?:)/.test(location) && navigator.serviceWorker?.register(workerURL).then(registration => {
-					console.log('Service Worker registered with scope:', registration.scope);
+					log('Service Worker registered with scope:', registration.scope);
 					registration.onupdatefound = () => {
-						console.log('New worker being installed => ', registration.installing);
+						log('New worker being installed => ', registration.installing);
 						registration.installing.onstatechange = () => {
 							if (registration.installing.state === 'installed') {
 								if (navigator.serviceWorker.controller) {
@@ -63,25 +78,25 @@
 									// the fresh content will have been added to the cache.
 									// It's the perfect time to display a "New content is
 									// available; please refresh." message in your web app.
-									console.log('New content is available; please refresh.');
+									log('New content is available; please refresh.');
 								} else {
 									// At this point, everything has been precached.
 									// It's the perfect time to display a
 									// "Content is cached for offline use." message.
-									console.log('Content is cached for offline use.');
+									log('Content is cached for offline use.');
 								}
 							}
 						};
 					};
 					if (registration.installing) {
-						console.log('Service worker installed');
+						log('Service worker installed');
 					} else if (registration.active) {
-						console.log('Service worker active!');
+						log('Service worker active!');
 					}
-				}).catch(error => console.error('Service Worker registration failed:', error));
+				}).catch(error => log(`Service Worker registration failed: ${error}`, 1));
 				URL.revokeObjectURL(workerURL);
 				worker.onmessage = event => {
-					console.log(event.data);
+					log(event.data);
 					/*worker.terminate();
 					delete worker;*/
 				};
@@ -92,6 +107,6 @@
 		</script>
 	</head>
 	<body>
-		test
+		
 	</body>
 </html>
