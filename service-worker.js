@@ -1,13 +1,18 @@
 console.warn('!');
-
-
-
 onload = (event, workerURL) => {
 	/*
 	worker = new Worker(workerURL = URL.createObjectURL(new Blob([`
 		
 	`], {type: 'application/javascript'})));
 	URL.revokeObjectURL(workerURL);
+	worker.onmessage = event => {
+		log(event.data);
+		worker.terminate();
+		delete worker;
+	};
+	onpointerup = event => {
+		//worker.postMessage(10);
+	};
 	*/
 	log = (message, error, url) => {
 		document.body.insertAdjacentHTML('beforeend', `<a${url ? ` href="${url}" target="_blank"` : ''}${error ? ' error' : ''}>${message}</a>`);
@@ -46,27 +51,14 @@ onload = (event, workerURL) => {
 			log('Service worker active!');
 		}
 	}).catch(error => log(`Service Worker registration failed: ${error}`, 1));
-	/*worker.onmessage = event => {
-		log(event.data);
-		worker.terminate();
-		delete worker;
-	};*/
-	self.addEventListener('install', event => {
-		log('Service Worker installing.');
-	});
-	self.addEventListener('activate', event => {
-		log('Service Worker activating.');
-	});
-	self.addEventListener('fetch', event => {
-		
-	});
-	onpointerup = event => {
-		//worker.postMessage(10);
-	};
+	
 };
-/*
-onmessage = event => {
-	postMessage(event.data * 2);
-};
-self.postMessage('service worker setup success');
-*/
+self.addEventListener('install', event => {
+	console.log('Service Worker installing.');
+});
+self.addEventListener('activate', event => {
+	console.log('Service Worker activating.');
+});
+self.addEventListener('fetch', event => {
+	console.log('fetch');
+});
