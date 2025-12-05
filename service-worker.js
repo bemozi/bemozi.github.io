@@ -10,4 +10,4 @@ self.addEventListener('fetch', event => {
 onmessage = event => {
 	postMessage(event.data * 2);
 };
-postMessage('service worker setup success');
+self.postMessage('service worker setup success');
