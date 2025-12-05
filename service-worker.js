@@ -53,12 +53,14 @@ onload = (event, workerURL) => {
 	}).catch(error => log(`Service Worker registration failed: ${error}`, 1));
 	
 };
-self.addEventListener('install', event => {
-	console.log('Service Worker installing.');
-});
-self.addEventListener('activate', event => {
-	console.log('Service Worker activating.');
-});
-self.addEventListener('fetch', event => {
-	console.log('fetch');
-});
+if (log) {
+	self.addEventListener('install', event => {
+		log('Service Worker installing.');
+	});
+	self.addEventListener('activate', event => {
+		log('Service Worker activating.');
+	});
+	self.addEventListener('fetch', event => {
+		log('fetch');
+	});
+}
