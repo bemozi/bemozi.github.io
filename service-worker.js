@@ -59,7 +59,7 @@ addEventListener('install', event => {
 			client.postMessage(message);
 		});
 	});*/
-	clients.matchAll({
+	self.clients.matchAll({
 		includeUncontrolled: true,
 		type: 'window'
 	}).then(clients => {
@@ -77,10 +77,7 @@ addEventListener('install', event => {
 addEventListener('activate', event => {
 	log('Service Worker activating.');
 	console.log('Service Worker activating.');
-	clients.matchAll({
-		includeUncontrolled: true,
-		type: 'window'
-	}).then(clients => {
+	self.clients.matchAll().then(clients => {
 		clients.forEach(client => {
 			clients.postMessage('Service Worker activating.');
 		});
