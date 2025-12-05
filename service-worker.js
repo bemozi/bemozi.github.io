@@ -116,13 +116,13 @@ onload = (event, workerURL) => {
 			installPrompt = null;
 		}
 		*/
-		installPrompt?.userChoice.then(({ outcome }) => {
-			console.log(`User response to the install prompt: ${outcome}`);
-			if (outcome === 'accepted') {
+		installPrompt?.userChoice.then(userChoice => {
+			console.log(`User response to the install prompt: ${userChoice.outcome}`);
+			if (userChoice.outcome === 'accepted') {
 				// Optionally, hide the install button if the user accepted
 			}
 			installPrompt = null;
-		}).catch((error) => {
+		}).catch(error => {
 			console.error('Error during user choice:', error);
 		});
 	};
