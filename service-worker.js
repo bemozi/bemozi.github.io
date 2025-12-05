@@ -1,6 +1,6 @@
 generateRandomString = (length = 6) => Math.random().toString(36).substring(2, length + 2);
 console.log(generateRandomString());
-log_history ??= [];
+self?.log_history ??= [];
 log = (message, error, url) => {
 	log_history.push([message, error, url]);
 	if (self.document?.body) while (log_history[0]) {
