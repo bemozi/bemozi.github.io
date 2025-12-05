@@ -27,6 +27,9 @@
 		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
 		<link rel="manifest" href="manifest.json">
 		<style>
+			a {
+				all: unset;
+			}
 			body {
 				display: grid;
 				font-family: monospace;
@@ -34,15 +37,18 @@
 			body > * {
 				padding: 5px 0;
 			}
-			b {
+			[href] {
+				cursor: pointer;
+			}
+			[error] {
 				color: #3F51B5;
 			}
 		</style>
 		<script>
 			console.warn('!');
 			
-			log = (message, error) => {
-				document.body.insertAdjacentHTML('beforeend', `<${error = error ? 'b' : 'span'}>${message}</${error}>`);
+			log = (message, error, url) => {
+				document.body.insertAdjacentHTML('beforeend', `<a${url ? ` href="${url}" target="_blank"` : ''}${error ? ' error' : ''}>${message}</a>`);
 			};
 			
 			unregister = () => {
@@ -95,8 +101,8 @@
 					} else if (registration.active) {
 						log('Service worker active!');
 					}
-				}).catch(error => log(`Service Worker registration failed: ${error}`, 1));
-				URL.revokeObjectURL(workerURL);
+					URL.revokeObjectURL(workerURL);
+				}).catch(error => log(`Service Worker registration failed: ${error}`, 1, workerURL));
 				worker.onmessage = event => {
 					log(event.data);
 					/*worker.terminate();
