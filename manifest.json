@@ -4,10 +4,11 @@
 	"description": "BEMOZI",
 	"lang": "en-US",
 	"display": "standalone",
-	"scope": "https://bemozi.github.io",
+	"scope": "/",
 	"start_url": "/",
 	"background_color": "#FFFFFF",
 	"theme_color": "#000000",
+	"orientation": "portrait",
 	"icons": [
 		{
 			"src": "https://avatars.githubusercontent.com/u/211243872",
@@ -28,7 +29,7 @@
 			"name": "QURAN",
 			"short_name": "QURAN",
 			"description": "QURAN",
-			"url":"./quran.htmt",
+			"url":"./quran.html",
 			"icons": [
 				{
 					"src": "https://avatars.githubusercontent.com/u/211243872",
