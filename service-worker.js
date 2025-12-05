@@ -50,13 +50,13 @@ onload = (event, workerURL) => {
 			init(1);
 		});
 		if (registration.installing) {
-			log('Service worker installed');init(2);
+			log('Service worker is installed.');
 		} else if (registration.active) {
-			log('Service worker active!');init(3);
+			log('Service worker is active.');
 		}
 	}).catch(error => log(`Service Worker registration failed: ${error}`, 1)) ?? init();
 };
-if (self?.log) {
+if (self?.log || 1) {
 	self.addEventListener('install', event => {
 		log('Service Worker installing.');
 	});
