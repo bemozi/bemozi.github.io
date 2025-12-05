@@ -1,4 +1,3 @@
-console.warn('!');
 onload = (event, workerURL) => {
 	/*
 	worker = new Worker(workerURL = URL.createObjectURL(new Blob([`
@@ -17,7 +16,10 @@ onload = (event, workerURL) => {
 	log = (message, error, url) => {
 		document.body.insertAdjacentHTML('beforeend', `<a${url ? ` href="${url}" target="_blank"` : ''}${error ? ' error' : ''}>${message}</a>`);
 	};
-	/^(https?:)/.test(location) && navigator.serviceWorker?.register('/service-worker.js').then(registration => {
+	init = () => {
+		console.warn('!');
+	};
+	navigator.serviceWorker?.register('/service-worker.js').then(registration => {
 		// console.log('Service Worker registered with scope:', registration.scope);
 		registration.onupdatefound = () => {
 			console.log('New worker being installed => ', registration.installing);
@@ -50,8 +52,7 @@ onload = (event, workerURL) => {
 		} else if (registration.active) {
 			log('Service worker active!');
 		}
-	}).catch(error => log(`Service Worker registration failed: ${error}`, 1));
-	
+	}).catch(error => log(`Service Worker registration failed: ${error}`, 1)) || init();
 };
 if (self?.log) {
 	self.addEventListener('install', event => {
