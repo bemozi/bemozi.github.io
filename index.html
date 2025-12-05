@@ -6,544 +6,92 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="//avatars.githubusercontent.com/u/211243872" rel="icon">
 		<title>BEMOZI</title>
+		<meta name="twitter:domain" content="https://bemozi.github.io/">
 		<meta property="og:url" content="https://bemozi.github.io/"/>
+		<meta property="twitter:url" content="https://bemozi.github.io/"/>
 		<meta property="og:title" content="BEMOZI"/>
 		<meta name="twitter:title" content="BEMOZI"/>
-		<meta name="description" content="bemozi"/>
-		<meta property="og:description" content="bemozi"/>
-		<meta name="twitter:description" content="bemozi"/>
-		<meta property="og:image" content="https://avatars.githubusercontent.com/u/211243872"/>
-		<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/211243872"/>
-		<meta name="author" content="bemozi">
-		<meta name="keywords" content="bemozi">
+		<meta name="description" content="BEMOZI"/>
+		<meta name="twitter:description" content="BEMOZI"/>
+		<meta property="og:description" content="BEMOZI"/>
+		<meta property="og:type" content="article"/>
+		<meta property="article:tag" content="">
+		<meta property="article:tag" content="">
+		<meta property="og:image" content="https://bemozi.github.io/link.jpg"/>
+		<meta name="twitter:image" content="https://bemozi.github.io/link.jpg"/>
+		<meta name="twitter:card" content="summary"/>
+		<meta name="twitter:site" description="@bemozidz"/>
+		<meta name="twitter:creator" description="@bemozidz"/>
+		<meta name="author" content="BEMOZI">
+		<meta name="keywords" content="BEMOZI">
 		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
-		<style>
-			* {
-				outline: none;
-				user-select: none;
-				box-sizing: border-box;
-				overflow-wrap: break-word;
-				font-family: "Noto Kufi Arabic", sans-serif;
-				line-height: 2;
-				color: #FAFAFA;
-			}
-			[lang=ar] {
-				direction: rtl;
-			}
-			:empty:after {
-				content: attr(text);
-			}
-			body {
-				margin: 0;
-				cursor: grab;
-			}
-			body:active {
-				cursor: grabbing;
-			}
-			html:has(#menu:checked) {
-				overflow: hidden;
-			}
-			a, a:visited {
-				text-decoration: none;
-				color: inherit;
-			}
-			img {
-				min-width: fit-content;
-				max-height:48px;
-				object-fit: contain;
-			}
-			a, input, textarea, button {
-				all: unset;
-				cursor: auto;
-			}
-			input, textarea {
-				padding: 1vmax;
-				background: #FAFAFACC;
-				color: #212121;
-				border-radius: .5vmax;
-			}
-			input, textarea, button {
-				box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-			}
-			textarea {
-				box-sizing: border-box;
-				resize: none;
-			}
-			button {
-				padding: 1vmax;
-				background: linear-gradient(90deg, #2196F3CC 70%, #3F51B5CC 100%);
-				text-align: center;
-				font-weight: bold;
-				color: #FAFAFA;
-				border-radius: .5vmax;
-				cursor: pointer;
-			}
-			a, button {
-				cursor: pointer;
-			}
-			#menu {
-				display: none;
-			}
-			[for=menu]:after {
-				content: "☰";
-			}
-			#menu:checked + :after {
-				content: "✕";
-			}
-			#menu:not(:checked) ~ header {
-				visibility: hidden;
-			}
-			[for=menu] {
-				position: fixed;
-				padding: 5vmax;
-				z-index: 9;
-				font-size: 3vmax;
-				line-height: 1;
-				background: #000000CC;
-				clip-path: circle(3vmax);
-				cursor: pointer;
-			}
-			header {
-				position: fixed;
-				inset: 0;
-				display: grid;
-				place-items: center;
-				font-size: 2vmax;
-				text-transform: uppercase;
-				font-weight: bolder;
-				background: radial-gradient(circle, #424242CC 0%, #000000CC 100%);
-				backdrop-filter: blur(3px);
-			}
-			header > :hover {
-				cursor: pointer;
-			}
-			#about, #testimonial, #faq, #contact, footer, #language, #countries, #country {
-				padding: 3vmax;
-				background-attachment: fixed;
-				background-position: center;
-				background-repeat: no-repeat;
-				background-size: cover;
-			}
-			#about {
-				background-image: url(images/background.png), radial-gradient(circle, #2196F3 0%, #3F51B5 100%);
-				display: flex;
-				flex-wrap: wrap;
-				place-content: space-around;
-				justify-content: center;
-				gap: 3vmax;
-				text-align: center;
-				font-style: italic;
-				font-size: 3vmax;
-				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
-				min-height: 100vh;
-			}
-			#about > :nth-child(2) {
-				font-size: 5vmax;
-				font-weight: 900;
-			}
-			#about > :nth-child(-n+3) {
-				flex: 1 1 100%;
-			}
-			#about > [href=""] {
-				display: none;
-			}
-			#testimonial {
-				background-image: url(images/freelance.webp), radial-gradient(circle, #FAFAFA 0%, #EEEEEE 100%);
-				display: grid;
-				gap: 2vmax;
-				font-size: 1.5vmax;
-			}
-			#testimonial > * {
-				display: flex;
-				gap: 1vmax;
-			}
-			#testimonial > :nth-child(odd) {
-				flex-flow: row-reverse;
-			}
-			#testimonial > * > :last-child {
-				place-self: start;
-				padding: .5vmax 1vmax;
-				background: radial-gradient(circle, #2196F3CC 0%, #3F51B5CC 100%);
-				border-radius: .5vmax;
-				box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-			}
-			#faq {
-				background-image: url(images/faq.jpg), radial-gradient(circle, #424242 0%, #000 100%);
-				font-size: 1.5vmax;
-			}
-			#faq > * {
-				padding: .5vmax 1vmax;
-			}
-			#faq > :nth-child(odd) {
-				background: linear-gradient(90deg, #2196F3CC 70%, #3F51B5CC 100%);
-				border-radius: .5vmax .5vmax 0 0;
-				font-weight: bold;
-			}
-			#faq > :not(:first-child):nth-child(odd) {
-				margin-top: 2vmax;
-			}
-			#faq > :nth-child(even) {
-				background: #FAFAFACC;
-				color: #212121;
-				border-radius: 0 0 .5vmax .5vmax;
-			}
-			#contact {
-				background-image: url(images/contact.jpg), radial-gradient(circle, #424242 0%, #000 100%);
-				font-size: 1.5vmax;
-				display: flex;
-				flex-flow: column;
-				gap: 1vmax;
-			}
-			#contact > :first-child {
-				font-size: 3vmax;
-				font-weight: bold;
-				text-align: center;
-				background: radial-gradient(circle, #2196F3CC 0%, transparent 100%);
-				color: #FAFAFA;
-				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
-			}
-			footer, #language, #countries, #country {
-				background-image: url(images/footer.jpg), radial-gradient(circle, #424242 0%, #000 100%);
-			}
-			footer {
-				/*background-position: 80%;*/
-				min-height: 50vh;
-				display: flex;
-				flex-wrap: wrap;
-				place-content: space-around;
-				justify-content: center;
-				gap: 3vmax;
-			}
-			footer > :first-child, footer > :nth-child(2) {
-				flex: 1 1 100%;
-				font-size: 3vmax;
-				font-weight: bold;
-				text-align: center;
-				color: #FAFAFA;
-			}
-			footer > :first-child, footer > :nth-child(2) {
-				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
-			}
-			footer > :first-child {
-				background: radial-gradient(circle, #2196F3CC 0%, transparent 100%);
-				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
-			}
-			footer > :nth-child(2) {
-				font-weight: 900;
-				color: #424242;
-			}
-			#language {
-				min-height: 50vh;
-				display: flex;
-				flex-wrap: wrap;
-				place-content: center;
-				justify-content: center;
-				gap: 3vmax;
-				font-size: 2vmax;
-				font-weight: bold;
-				text-align: center;
-				color: #FAFAFA;
-			}
-			#language > :first-child {
-				background: radial-gradient(circle, #2196F3CC 0%, transparent 100%);
-				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
-			}
-			#language > :first-child ~ * {
-				color: #424242;
-			}
-			#language > :nth-child(-n+3) {
-				flex: 1 1 100%;
-			}
-			#countries {
-				display: flex;
-				flex-wrap: wrap;
-				place-content: center;
-				justify-content: center;
-				gap: 3vmax;
-			}
-			#countries > * {
-				padding: 0 1vmax;
-				display: grid;
-				place-items: center;
-				background: #FAFAFACC;
-				color: #212121;
-				overflow: hidden;
-				border-radius: .5vmax;
-				/*width: min-content;
-				white-space: nowrap;
-				text-align: center;*/
-			}
-			#countries > * > img {
-				margin: 0 -1vmax;
-				/*width: max-content;*/
-			}
-			#countries > :first-child {
-				background: radial-gradient(circle, #2196F3CC 0%, transparent 100%);
-				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
-				flex: 1 1 100%;
-				font-size: 3vmax;
-				font-weight: bold;
-				text-align: center;
-				color: #FAFAFA;
-			}
-			#country {
-				display: grid;
-				grid-template-columns: repeat(3, minmax(0, 1fr));
-				gap: 3vmax;
-				font-size: 2vmax;
-				font-weight: bold;
-				text-align: center;
-			}
-			#country > * {
-				white-space: pre-line;
-				background: #FAFAFACC;
-				color: #212121;
-				border-radius: .5vmax;
-			}
-			#country > :first-child {
-				grid-column: 1 / -1;
-				background: radial-gradient(circle, #2196F3CC 0%, transparent 100%);
-				color: #FAFAFA;
-				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
-			}
-			#country > :nth-child(6n + 2):nth-child(-n + 20),
-			#country > :nth-child(6n + 3):nth-child(-n + 20),
-			#country > :nth-child(6n + 4):nth-child(-n + 20),
-			#country > :nth-child(20),
-			#country > :nth-last-child(2) {
-				background: linear-gradient(90deg, #2196F3CC 70%, #3F51B5CC 100%);
-				color: #FAFAFA;
-				text-shadow: 0px 20px 8px rgb(0 0 0 / 40%);
-				font-weight: bold;
-			}
-			#country > :nth-child(20),
-			#country > :nth-last-child(-n + 2) {
-				grid-column: 1 / -1;
-			}
-			[hide] {
-				display: none !important;
-			}
-		</style>
+		<link rel="manifest" href="manifest.json">
 		<script>
-			onload = () => {
-				document.head.appendChild(document.createElement('style')).append(`
-					@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap');
-				`);
-				onpointerdown = (event, c) => {
-					s = event.target;
-					while (s !== document.all[0] && (c = getComputedStyle(s)).overflow !== 'hidden' && s.scrollWidth <= s.clientWidth && s.scrollHeight <= s.clientHeight) s = s.parentNode;
-					/*
-					//console.log(s, /(auto|scroll)/.test(getComputedStyle(s).overflow));
-					x = [];
-					y = [];
-					while (s !== document) {
-						c = getComputedStyle(s);
-						if (c.overflow !== 'hidden') {
-							if (c.overflowX !== 'hidden' && s.scrollWidth > s.clientWidth) {
-								x.push(s);
+			console.warn('!');
+			unregister = () => {
+				navigator.serviceWorker?.ready.then(registration => {
+					registration.unregister()
+				});
+			};
+			onload = (event, workerURL) => {
+				navigator.serviceWorker.ready.then(() => {
+					console.log('This web app is being served cache-first by a service worker.');
+				});
+				worker = new Worker(workerURL = URL.createObjectURL(new Blob([`
+					self.addEventListener('install', event => {
+						console.log('Service Worker installing.');
+					});
+					self.addEventListener('activate', event => {
+						console.log('Service Worker activating.');
+					});
+					self.addEventListener('fetch', event => {
+						
+					});
+					onmessage = event => {
+						postMessage(event.data * 2);
+					};
+					postMessage('init');
+				`], {type: 'application/javascript'})));
+				/^(https?:)/.test(location) && navigator.serviceWorker?.register(workerURL).then(registration => {
+					console.log('Service Worker registered with scope:', registration.scope);
+					registration.onupdatefound = () => {
+						console.log('New worker being installed => ', registration.installing);
+						registration.installing.onstatechange = () => {
+							if (registration.installing.state === 'installed') {
+								if (navigator.serviceWorker.controller) {
+									// At this point, the old content will have been purged and
+									// the fresh content will have been added to the cache.
+									// It's the perfect time to display a "New content is
+									// available; please refresh." message in your web app.
+									console.log('New content is available; please refresh.');
+								} else {
+									// At this point, everything has been precached.
+									// It's the perfect time to display a
+									// "Content is cached for offline use." message.
+									console.log('Content is cached for offline use.');
+								}
 							}
-							if (c.overflowY !== 'hidden' && s.scrollHeight > s.clientHeight) {
-								y.push(s);
-							}
-						}
-						s = s.parentNode;
+						};
+					};
+					if (registration.installing) {
+						console.log('Service worker installed');
+					} else if (registration.active) {
+						console.log('Service worker active!');
 					}
-					sx = x.length;
-					sy = y.length;
-					l = event.x;
-					t = event.y;
-					console.log(x, y);
-					
-					console.log(s, l, t);*/
-					if ((c = getComputedStyle(s)).overflow === 'hidden') l = t = -1; else {
-						l = c.overflowX === 'hidden' ? -1 : event.x + s.scrollLeft;
-						t = c.overflowY === 'hidden' ? -1 : event.y + s.scrollTop;
-					}
+				}).catch(error => console.error('Service Worker registration failed:', error));
+				URL.revokeObjectURL(workerURL);
+				worker.onmessage = event => {
+					console.log(event.data);
+					/*worker.terminate();
+					delete worker;*/
 				};
-				onpointermove = (event, iy, ty) => {
-					/*if (event.pressure) {
-						dt = event.y - t;
-						iy = sy;
-						if (dt < 0) {
-							for (; iy--; ) {
-								ty = Math.max([iy].scrollTop - dt, 0);
-								[iy].scrollTop += dt;
-							}
-						} else {
-							
-						}
-					}*/
-					if (event.pressure) {
-						if (l !== -1) s.scrollLeft = l - event.x;
-						if (t !== -1) s.scrollTop = t - event.y;
-					}
-				}
-				
-				
-				//event.pressure && s.scroll?.(l === -1 ? s.scrollLeft : l - event.x, t === -1 ? s.scrollTop : t - event.y);
-				
-				/*
-				https://stackoverflow.com/questions/35939886/find-first-scrollable-parent
-				https://github.com/olahol/scrollparent.js/blob/master/scrollparent.js#L13
-				*/
-				languages = {
-					zh: '中国',
-					en: 'English',
-					fr: 'Français',
-					ar: 'العربية',
-				};
-				header = document.querySelector('header');
-				for (let language in languages) {
-					header.insertAdjacentHTML('beforeend', `<div link=${language}>${languages[language]}</div>`);
-				}
+			};
+			onpointerup = event => {
+				worker.postMessage(10);
 			};
 		</script>
 	</head>
 	<body>
-		<input id="menu" type="checkbox">
-		<label hide for="menu"></label>
-		<header></header>
-		<section id="about">
-			<div>Ni hao, I'm</div>
-			<div>❮ BEMOZI ❯</div>
-			<div>Freelance web developer & coding instructor</div>
-			<a target="_blank" title="LinkedIn" href=""><img loading="lazy" src="images/WeChat.png"></a>
-			<a target="_blank" title="LINE" href="//line.me/ti/p/U3kHwV2zmB"><img loading="lazy" src="images/LINE.png"></a>
-			<a target="_blank" title="Zoom" href=""><img loading="lazy" src="images/Zoom.png"></a>
-			<a target="_blank" title="WhatsApp" href=""><img loading="lazy" src="images/WhatsApp.png"></a>
-			<a target="_blank" title="Telegram" href=""><img loading="lazy" src="images/Telegram.png"></a>
-			<a target="_blank" title="Gmail" href=""><img loading="lazy" src="images/Gmail.png"></a>
-			<a target="_blank" title="LinkedIn" href=""><img loading="lazy" src="images/LinkedIn.png"></a>
-			<a target="_blank" title="X" href="//x.com/bemozidz"><img loading="lazy" src="images/X.png"></a>
-			<a target="_blank" title="TikTok" href="//tiktok.com/@bemozidz"><img loading="lazy" src="images/TikTok.png"></a>
-			<a target="_blank" title="Instagram" href="//instagram.com/dzbemozi"><img loading="lazy" src="images/Instagram.png"></a>
-			<a target="_blank" title="Facebook" href="//facebook.com/la.adry.813928"><img loading="lazy" src="images/Facebook.png"></a>
-			<a target="_blank" title="Snapchat" href="//snapchat.com/add/bemozidz"><img loading="lazy" src="images/Snapchat.png"></a>
-			<a target="_blank" title="YouTube" href=""><img loading="lazy" src="images/YouTube.png"></a>
-		</section>
-		<section hide id="testimonial">
-			<a target="_blank">
-				<img loading="lazy" src="images/man.png">
-				<div>Become the first male client to post a review!</div>
-			</a>
-			<a target="_blank">
-				<img loading="lazy" src="images/woman.png">
-				<div>Be the first female client to share your review!</div>
-			</a>
-		</section>
-		<section id="faq">
-			<div>What services do you offer?</div>
-			<div>Looking for guidance or feedback to grow your digital presence? Hire me to build or coach — or both.</div>
-			<div>Why should I work with you?</div>
-			<div>I aim to understand and streamline the process so you can focus on validating your ideas.</div>
-			<div>How do I get started on a project with you?</div>
-			<div>DM your project details, and I'll get back to you shortly. We'll discuss via Zoom your needs, goals, and timeline before starting.</div>
-		</section>
-		<form id="contact" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSe-wJBGxZEruXC8boWHsbHvM6IRu-d3Za_i06ASlKhyguQjtQ/formResponse">
-			<div>Kindly share your requirements</div>
-			<input name="entry.2005620554" required placeholder="Name" type="text" pattern="[A-Za-z\s]{3,30}" title="Name must contain only letters and spaces, ranging from 3 to 30 characters.">
-			<input name="entry.1045781291" required placeholder="Email address" type="email" title="Enter a valid email address.">
-			<textarea name="entry.839337160" required placeholder="What can I help you with? Describe your intended objectives, needed services, and estimated timelines along with your website and social media accounts." title="Describe your project details." type="text" oninput="this.style.height = 0; this.style.height = this.scrollHeight +'px'"></textarea>
-			<button>SEND</button>
-		</form>
-		<footer>
-			<div>The future of business starts with developers!</div>
-			<div>Lend a hand — share this portfolio!</div>
-			<a target="_blank" title="WhatsApp" href="//wa.me/?text=Check%20out%20this%20portfolio!%20-%20https://bemozi.github.io"><img loading="lazy" src="images/WhatsApp.png"></a>
-			<a target="_blank" title="LinkedIn" href="//linkedin.com/sharing/share-offsite/?url=https://bemozi.github.io"><img loading="lazy" src="images/LinkedIn.png"></a>
-			<a target="_blank" title="X" href="//x.com/intent/tweet?text=Check%20out%20this%20portfolio!%20-%20https://bemozi.github.io"><img loading="lazy" src="images/X.png"></a>
-			<a target="_blank" title="Facebook" href="//facebook.com/sharer.php?u=https://bemozi.github.io"><img loading="lazy" src="images/Facebook.png"></a>
-			<a target="_blank" title="Messenger" href="//messenger.com/new"><img loading="lazy" src="images/Messenger.png"></a>
-			<a target="_blank" title="Snapchat" href="snapchat://creativeKitWeb/camera/1?attachmentUrl=https://bemozi.github.io"><img loading="lazy" src="images/Snapchat.png"></a>
-			<a target="_blank" title="Email" href="mailto:?subject=%20Check%20out%20this%20portfolio!%20&body=%20Check%20out%20this%20portfolio!%20-%20https://bemozi.github.io"><img loading="lazy" src="images/Email.png"></a>
-		</footer>
-		<section id="language">
-			<div>Human connection is key to solving the world's greatest challenges.</div>
-			<div>And it starts with learning a new language!</div>
-			<div>Explore more about various cultures by clicking below.</div>
-			<a target="_blank" title="Tamil" href=""><img loading="lazy" src="flags/Sri-Lanka.png"></a>
-			<a target="_blank" title="Chinese" href=""><img loading="lazy" src="flags/China.png"></a>
-			<a target="_blank" title="Korean" href=""><img loading="lazy" src="flags/South-Korea.png"></a>
-			<a target="_blank" title="Japanese" href=""><img loading="lazy" src="flags/Japan.png"></a>
-			<a target="_blank" title="Spanish" href=""><img loading="lazy" src="flags/Spain.png"></a>
-			<a target="_blank" title="French" href=""><img loading="lazy" src="flags/France.png"></a>
-			<a target="_blank" title="German" href=""><img loading="lazy" src="flags/Germany.png"></a>
-			<a target="_blank" title="Italian" href=""><img loading="lazy" src="flags/Italy.png"></a>
-			<a target="_blank" title="Turkish" href=""><img loading="lazy" src="flags/Turkey.png"></a>
-			<a target="_blank" title="Thai" href=""><img loading="lazy" src="flags/Thailand.png"></a>
-			<a target="_blank" title="English" href=""><img loading="lazy" src="flags/Canada.png"></a>
-			<!--
-			<a target="_blank" title="Hindi" href=""><img loading="lazy" src="flags/India.png"></a>
-			<a target="_blank" title="Bengali" href=""><img loading="lazy" src="flags/Bangladesh.png"></a>
-			<a target="_blank" title="Portuguese" href=""><img loading="lazy" src="flags/Portugal.png"></a>
-			<a target="_blank" title="Indonesian" href=""><img loading="lazy" src="flags/Indonesia.png"></a>
-			<a target="_blank" title="Russian" href=""><img loading="lazy" src="flags/Russia.png"></a>
-			<a target="_blank" title="Arabic" href=""><img loading="lazy" src="flags/Algeria.png"></a>
-			<a target="_blank" title="Kurdish" href=""><img loading="lazy" src="flags/Iraq.png"></a>
-			<a target="_blank" title="Vietnamese" href=""><img loading="lazy" src="flags/Vietnam.png"></a>
-			<a target="_blank" title="Polish" href=""><img loading="lazy" src="flags/Lithuania.png"></a>
-			<a target="_blank" title="Dutch" href=""><img loading="lazy" src="flags/Belarus.png"></a>
-			<a target="_blank" title="Czech" href=""><img loading="lazy" src="flags/Czech-Republic.png"></a>
-			<a target="_blank" title="Swedish" href=""><img loading="lazy" src="flags/Sweden.png"></a>
-			<a target="_blank" title="Norwegian" href=""><img loading="lazy" src="flags/Norway.png"></a>
-			<a target="_blank" title="Danish" href=""><img loading="lazy" src="flags/Denmark.png"></a>
-			<a target="_blank" title="Finnish" href=""><img loading="lazy" src="flags/Finland.png"></a>
-			
-			most visited visited countries
-			most spoken languages
-			
-			-->
-		</section>
-		<section id="countries">
-			<div>Tamil speaking countries</div>
-			<div><img loading="lazy" src="countries/India.svg">India</div>
-			<div><img loading="lazy" src="countries/Sri-Lanka.svg">Sri Lanka</div>
-			<div><img loading="lazy" src="countries/Singapore.svg">Singapore</div>
-			<div><img loading="lazy" src="countries/Malaysia.svg">Malaysia</div>
-			<div><img loading="lazy" src="countries/Mauritius.svg">Mauritius</div>
-			<div><img loading="lazy" src="countries/Fiji.svg">Fiji</div>
-			<div><img loading="lazy" src="countries/South Africa.svg">South Africa</div>
-		</section>
-		<section id="country">
-			<div>Democratic Socialist Republic of Sri Lanka</div>
-			<div>Region</div>
-			<div>Country Code</div>
-			<div>Nationality</div>
-			<div>Southern Asia</div>
-			<div>LK, LKA</div>
-			<div>Sri Lankan(s)</div>
-			<div>Area</div>
-			<div>Capital City</div>
-			<div>Largest City</div>
-			<div>65 610 Sq Km</div>
-			<div>Colombo</div>
-			<div>Legislative</div>
-			<div>Currency Name and Code</div>
-			<div>Calling Code</div>
-			<div>Timezones</div>
-			<div>Sri Lanka Rupee (LKR)</div>
-			<div>94</div>
-			<div>UTC+05:30</div>
-			<div>Holidays</div>
-			<div>4 February
-			Independence Day</div>
-			<div>Climate</div>
-			<div>Tropical; rainy seasons--light in northeast, fall and winter, with average rainfall of 50 in.; heavy in southwest, summer and fall, with average rainfall of 200 in.</div>
-		</section>
+		test
 	</body>
 </html>
-<!--
-
-<div>Sri Lanka Rupee (LKR)</div>
-I appreciate anyone who spots a bug or security issues to report it through the contact form.
-
-However, when performing security testing, you must not compromise the security or privacy of other users data.
-
-When reporting, please provide full details including:
-	Steps to reproduce the bug or security issue.
-	Your browser information including type and version.
-	A short description of the impact.
-
-Thanks in advance for your report and for using this website!
-
--->
