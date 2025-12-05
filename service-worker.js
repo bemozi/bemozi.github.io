@@ -36,6 +36,9 @@ navigator.serviceWorker?.register('service-worker.js').then(registration => {
 	};
 	navigator.serviceWorker.ready.then(registration => {
 		log('Our web app is being served cache-first by a service worker.', 0);
+		navigator.serviceWorker.controller.onmessage = event => {
+			log(event.data);
+		};
 		unregister = () => {
 			registration.unregister();
 		};
@@ -49,14 +52,17 @@ navigator.serviceWorker?.register('service-worker.js').then(registration => {
 }).catch(error => log(`Service Worker registration failed: ${error}`, 1)) ?? init(0);
 addEventListener('install', event => {
 	log('Service Worker installing.');
+	self.postMessage('Service Worker installing.');
 	console.log('Service Worker installing.');
 });
 addEventListener('activate', event => {
 	log('Service Worker activating.');
+	self.postMessage('Service Worker activating.');
 	console.log('Service Worker activating.');
 });
 addEventListener('fetch', event => {
 	log('fetch');
+	self.postMessage('fetch');
 	console.log('fetch');
 });
 onload = (event, workerURL) => {
