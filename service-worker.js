@@ -59,6 +59,7 @@ addEventListener('fetch', event => {
 });
 onload = (event, workerURL) => {
 	log('Page and all resources loaded.');
+	console.log('Page and all resources loaded.');
 	/*
 	worker = new Worker(workerURL = URL.createObjectURL(new Blob([`
 		
