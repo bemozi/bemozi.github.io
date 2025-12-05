@@ -83,16 +83,13 @@ addEventListener('message', event => {
 });
 onload = (event, workerURL) => {
 	log('Page and all resources loaded.');
-	let deferredPrompt;
-	window.addEventListener('beforeinstallprompt', (e) => {
-      // Prevent Chrome 76 and earlier from automatically showing the prompt
-      e.preventDefault();
-      // Stash the event so it can be triggered later.
-      deferredPrompt = e;
-      // Optionally, update your UI to show an install button or message
-      // For example: installButton.style.display = 'block';
-    });
-	
+	let installPrompt;
+	addEventListener('beforeinstallprompt', event => {
+		event.preventDefault(); // Prevent Chrome 76 and earlier from automatically showing the prompt
+		installPrompt = event; // Stash the event so it can be triggered later.
+		// Optionally, update your UI to show an install button or message
+		// For example: installButton.style.display = 'block';
+	});
 	/*
 	worker = new Worker(workerURL = URL.createObjectURL(new Blob([`
 		
@@ -106,17 +103,27 @@ onload = (event, workerURL) => {
 	*/
 	onpointerup = async (event) => {
 		navigator.serviceWorker.controller.postMessage(1);
-		if (deferredPrompt) {
+		/*if (installPrompt) {
 			// Show the install prompt
-			deferredPrompt.prompt();
+			installPrompt.prompt();
 			// Wait for the user to respond to the prompt
-			const {outcome} = await deferredPrompt.userChoice;
+			const {outcome} = await installPrompt.userChoice;
 			console.log(`User response to the install prompt: ${outcome}`);
 			if (outcome === 'accepted') {
 				// Optionally, hide the install button if the user accepted
 			}
 			// We've used the prompt and can't use it again, so clear it
-			deferredPrompt = null;
+			installPrompt = null;
 		}
+		*/
+		installPrompt?.userChoice.then(({ outcome }) => {
+			console.log(`User response to the install prompt: ${outcome}`);
+			if (outcome === 'accepted') {
+				// Optionally, hide the install button if the user accepted
+			}
+			installPrompt = null;
+		}).catch((error) => {
+			console.error('Error during user choice:', error);
+		});
 	};
 };
