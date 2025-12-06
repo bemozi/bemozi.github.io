@@ -101,7 +101,11 @@ onload = (event, workerURL) => {
 		delete worker;
 	};
 	*/
-	onpointerup = event => {
+	
+	document.body.firstElementChild.onpointerup = event => {
+		document.documentElement.requestFullscreen();
+	};
+	document.body.lastElementChild.onpointerup = event => {
 		navigator.serviceWorker.controller.postMessage(1);
 		if (installPrompt) {
 			installPrompt.prompt();
@@ -109,7 +113,6 @@ onload = (event, workerURL) => {
 				console.log(`User response to the install prompt: ${outcome}`);
 				if (outcome === 'accepted') {
 					// Optionally, hide the install button if the user accepted
-					document.documentElement.requestFullscreen();
 				}
 				installPrompt = null;
 			}).catch(error => {
