@@ -102,7 +102,7 @@ onload = (event, workerURL) => {
 	};
 	*/
 	
-	document.body.firstElementChild.onpointerup = event => {
+	document.body.children[1].onpointerup = event => {
 		document.documentElement.requestFullscreen();
 	};
 	document.body.lastElementChild.onpointerup = event => {
