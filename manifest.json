@@ -22,7 +22,7 @@
 	"splash_screens": [
 		{
 			"src": "https://avatars.githubusercontent.com/u/211243872",
-			"sizes": "512x512",
+			"sizes": "any",
 			"type": "image/png"
 		}
 	],
