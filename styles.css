@@ -8,6 +8,12 @@ html {
 	background: white;
 	background-color: white;
 }
+@media (prefers-color-scheme: dark) {
+	html {
+		background: white;
+		background-color: white;
+	}
+}
 * {
 	outline: none;
 	border: none;
