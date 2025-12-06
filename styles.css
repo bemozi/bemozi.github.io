@@ -1,21 +1,21 @@
 :root {
-	color-scheme: light;
+	color-scheme: only light;
 }
 :fullscreen, ::backdrop {
 	background-color: white;
 }
-@media (display-mode: standalone) or (display-mode: fullscreen) {
-	body::after {
-		content: '';
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		height: 4px;
-		background: transparent;
-		pointer-events: none;
-		z-index: 10000;
-	}
+:fullscreen:after, :fullscreen:before {
+	background-color: white;
+}
+::backdrop:after, ::backdrop:before {
+	background-color: white;
+}
+html:after, html:before, body:after, body:before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	background: white;
+	z-index: 10000;
 }
 html {
 	color-scheme: light;
