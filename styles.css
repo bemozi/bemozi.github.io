@@ -1,6 +1,9 @@
 :root {
 	color-scheme: light;
 }
+html {
+	color-scheme: light;
+}
 * {
 	outline: none;
 	border: none;
