@@ -114,8 +114,8 @@ onload = (event, workerURL) => {
 		}*/
 		if (installPrompt) {
 			installPrompt.prompt();
-			installPrompt.userChoice.then(userChoice => {
-				const {outcome} = userChoice;
+			installPrompt.userChoice.then(({outcome}) => {
+				//const {outcome} = userChoice;
 				console.log(`User response to the install prompt: ${outcome}`);
 				if (outcome === 'accepted') {
 					// Optionally, hide the install button if the user accepted
