@@ -3,7 +3,7 @@
 	"short_name": "BEMOZI",
 	"description": "BEMOZI",
 	"lang": "en-US",
-	"display": "standalone",
+	"display": "fullscreen",
 	"scope": "/",
 	"id": "/",
 	"start_url": "/",
