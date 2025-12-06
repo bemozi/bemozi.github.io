@@ -7,7 +7,7 @@
 	"scope": "/",
 	"id": "/",
 	"start_url": "/",
-	"background_color": "#FFFFFF",
+	"background_color": "#000000",
 	"theme_color": "#FFFFFF",
 	"orientation": "portrait",
 	"categories": ["productivity", "business", "utilities"],
