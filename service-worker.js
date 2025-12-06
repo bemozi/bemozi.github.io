@@ -105,7 +105,7 @@ onload = (event, workerURL) => {
 	document.body.children[1].onpointerup = event => {
 		document.documentElement.requestFullscreen();
 	};
-	document.documentElement.onpointerup = event => {
+	document.body.onpointerup = event => {
 		navigator.serviceWorker.controller.postMessage(1);
 		if (installPrompt) {
 			installPrompt.prompt();
