@@ -101,28 +101,18 @@ onload = (event, workerURL) => {
 		delete worker;
 	};
 	*/
-	onpointerup = async (event) => {
+	onpointerup = event => {
 		navigator.serviceWorker.controller.postMessage(1);
-		/*if (installPrompt) {
-			installPrompt.prompt();
-			const {outcome} = await installPrompt.userChoice;
-			console.log(`User response to the install prompt: ${outcome}`);
-			if (outcome === 'accepted') {
-				// Optionally, hide the install button if the user accepted
-			}
-			installPrompt = null; // We've used the prompt and can't use it again, so clear it
-		}*/
 		if (installPrompt) {
 			installPrompt.prompt();
 			installPrompt.userChoice.then(({outcome}) => {
-				//const {outcome} = userChoice;
 				console.log(`User response to the install prompt: ${outcome}`);
 				if (outcome === 'accepted') {
 					// Optionally, hide the install button if the user accepted
 				}
 				installPrompt = null;
 			}).catch(error => {
-				console.error('Error during user choice:', error);
+				console.error('Error handling user choice:', error);
 			});
 		}
 	};
