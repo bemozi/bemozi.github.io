@@ -112,15 +112,18 @@ onload = (event, workerURL) => {
 			}
 			installPrompt = null; // We've used the prompt and can't use it again, so clear it
 		}*/
-		installPrompt?.userChoice.then(userChoice => {
-			const {outcome} = userChoice;
-			console.log(`User response to the install prompt: ${outcome}`);
-			if (outcome === 'accepted') {
-				// Optionally, hide the install button if the user accepted
-			}
-			installPrompt = null;
-		}).catch(error => {
-			console.error('Error during user choice:', error);
-		});
+		if (installPrompt) {
+			installPrompt.prompt();
+			installPrompt.userChoice.then(userChoice => {
+				const {outcome} = userChoice;
+				console.log(`User response to the install prompt: ${outcome}`);
+				if (outcome === 'accepted') {
+					// Optionally, hide the install button if the user accepted
+				}
+				installPrompt = null;
+			}).catch(error => {
+				console.error('Error during user choice:', error);
+			});
+		}
 	};
 };
