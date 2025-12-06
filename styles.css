@@ -1,15 +1,14 @@
 :root {
-	color-scheme: light dark;
+	color-scheme: only light;
 }
 *, html, body {
-	color-scheme: light dark;
-}
-* {
+	color-scheme: only light;
 	background: white;
 	background-color: white;
 }
-@media (prefers-color-scheme: dark) {
-	* {
+@media (prefers-color-scheme: light) {
+	*, html, body {
+		color-scheme: only light;
 		background: white;
 		background-color: white;
 	}
