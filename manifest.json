@@ -9,7 +9,7 @@
 	"start_url": "/",
 	"background_color": "white",
 	"theme_color": "white",
-	"orientation": "portrait",
+	"orientation": "any",
 	"categories": ["productivity", "business", "utilities"],
 	"icons": [
 		{
