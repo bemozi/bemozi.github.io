@@ -1,6 +1,9 @@
 :root {
 	color-scheme: light;
 }
+:fullscreen {
+	background-color: white;
+}
 html {
 	color-scheme: light;
 	position: absolute;
