@@ -1,15 +1,15 @@
 :root {
-	color-scheme: light dark;
+	color-scheme: light;
 }
 html {
-	color-scheme: light dark;
+	color-scheme: light;
 }
 * {
 	background: white;
 	background-color: white;
 }
 @media (prefers-color-scheme: dark) {
-	html {
+	* {
 		background: white;
 		background-color: white;
 	}
