@@ -4,23 +4,21 @@
 :fullscreen, ::backdrop {
 	background-color: white;
 }
-:fullscreen:after, :fullscreen:before {
+:fullscreen:before {
 	background-color: white;
 }
-::backdrop:after, ::backdrop:before {
+::backdrop:before {
 	background-color: white;
 }
-html:after, html:before, body:after, body:before {
+html:before, body:before {
 	content: '';
 	position: fixed;
 	inset: 0;
 	background: white;
 	z-index: 10000;
 }
-html {
+html, body {
 	color-scheme: light;
-	position: absolute;
-	inset: 0;
 	min-height: 100vh;
 	min-height: -webkit-fill-available;
 }
