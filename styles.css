@@ -3,6 +3,8 @@
 }
 html {
 	color-scheme: light;
+	position: absolute;
+	inset: 0;
 }
 * {
 	outline: none;
