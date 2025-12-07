@@ -37,8 +37,14 @@ navigator.serviceWorker?.register('service-worker.js').then(registration => {
 		log('Our web app is being served cache-first by a service worker.', 0);
 		/* SyncManager allows web apps to defer tasks to a Service Worker
 		to be executed even when the user is offline or has closed the tab. */
-		self.SyncManager && registration.sync.register('sync-updates').then(() => log('Background sync "my-sync-tag" registered successfully')).catch(error => log(`Background Sync could not be registered ${error}`, 1));
-		
+		self.SyncManager && registration.sync.register('sync-updates').then(() => log('Background sync registered successfully')).catch(error => log(`Background Sync could not be registered ${error}`, 1));
+		self.SyncManager && registration.sync.getTags().then(tags => {
+			if (tags.includes('sync-updates')) {
+				console.log('Background sync is already registered.');
+			} else {
+				console.log('Background sync is not currently registered.');
+			}
+		});
 		navigator.serviceWorker.onmessage = event => {
 			console.log('window receive: ' + event.data);
 		};
@@ -46,15 +52,6 @@ navigator.serviceWorker?.register('service-worker.js').then(registration => {
 			registration.unregister();
 		};
 		init(1);
-	});
-	navigator.serviceWorker.ready.then(registration => {
-		self.SyncManager && registration.sync.getTags().then(tags => {
-			if (tags.includes('my-sync-tag')) {
-				console.log('Sync "my-sync-tag" is already registered.');
-			} else {
-				console.log('Sync "my-sync-tag" is not currently registered.');
-			}
-		});
 	});
 	if (registration.installing) {
 		log('Service worker installed.');
