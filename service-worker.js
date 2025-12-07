@@ -159,18 +159,24 @@ addEventListener('activate', event => {
 		});
 	});
 });
-addEventListener('fetch', event => event.waitUntil(caches.match(event.request).then(cachedResponse => {
+addEventListener('fetch', event => event.respondWith(caches.match(event.request).then(cachedResponse => {
 	if (cachedResponse) {
-		console.log('cachedResponse: ', event.request.url);
-		event.respondWith(cachedResponse);
+		console.log('Cached response: ', event.request.url);
+		return cachedResponse;
 	}
-	event.preloadResponse.then(preloadResponse => preloadResponse && caches.open(cacheName).then(cache => cache.put(event.request, preloadResponse.clone()).then(preloadResponse => event.respondWith(preloadResponse))));
-	fetch(event.request).then(fetchResponse => fetchResponse && caches.open(cacheName).then(cache => cache.put(event.request, fetchResponse.clone()).then(fetchResponse => event.respondWith(fetchResponse)))).catch(error => {
+	return event.preloadResponse.then(preloadResponse => preloadResponse && caches.open(cacheName).then(cache => {
+		cache.put(event.request, preloadResponse.clone());
+		return preloadResponse;
+	}));
+	return fetch(event.request).then(fetchResponse => fetchResponse && caches.open(cacheName).then(cache => {
+		cache.put(event.request, fetchResponse.clone());
+		return fetchResponse;
+	})).catch(error => {
 		console.log('Response not found: ', error);
-		event.request.url.includes('/todos') && event.respondWith(new Response(JSON.stringify([]), {
+		if (event.request.url.includes('/todos')) return new Response(JSON.stringify([]), {
 			headers: {'Content-Type': 'application/json'},
-		}));
-		cache.match('/index.html').then(cachedResponse => event.respondWith(cachedResponse));
+		});
+		return cache.match('/index.html').then(cachedResponse => cachedResponse);
 	});
 })));
 addEventListener('sync', event => {
