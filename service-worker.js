@@ -159,7 +159,7 @@ addEventListener('activate', event => {
 		});
 	});
 });
-addEventListener('fetch', event => caches.match(event.request).then(cachedResponse => {
+addEventListener('fetch', event => event.waitUntil(caches.match(event.request).then(cachedResponse => {
 	if (cachedResponse) {
 		console.log('cachedResponse: ', event.request.url);
 		event.respondWith(cachedResponse);
@@ -172,7 +172,7 @@ addEventListener('fetch', event => caches.match(event.request).then(cachedRespon
 		}));
 		cache.match('/index.html').then(cachedResponse => event.respondWith(cachedResponse));
 	});
-}));
+})));
 addEventListener('sync', event => {
 	if (event.tag === 'sync-updates') { // You can have other conditions for different sync tags
 		event.waitUntil(synchronize());
