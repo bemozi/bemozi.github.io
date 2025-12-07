@@ -159,20 +159,20 @@ addEventListener('activate', event => {
 		});
 	});
 });
-addEventListener('fetch', event => event.respondWith(caches.match(event.request).then(cachedResponse => {
+addEventListener('fetch', event => caches.match(event.request).then(cachedResponse => {
 	if (cachedResponse) {
 		console.log('cachedResponse: ', event.request.url);
-		return cachedResponse;
+		event.respondWith(cachedResponse);
 	}
-	return event.preloadResponse.then(preloadResponse => preloadResponse && caches.open(cacheName).then(cache => cache.put(event.request, preloadResponse.clone()).then(preloadResponse => preloadResponse)));
-	return fetch(event.request).then(fetchResponse => fetchResponse && caches.open(cacheName).then(cache => cache.put(event.request, fetchResponse.clone()).then(fetchResponse => fetchResponse))).catch(error => {
+	event.preloadResponse.then(preloadResponse => preloadResponse && caches.open(cacheName).then(cache => cache.put(event.request, preloadResponse.clone()).then(preloadResponse => event.respondWith(preloadResponse))));
+	fetch(event.request).then(fetchResponse => fetchResponse && caches.open(cacheName).then(cache => cache.put(event.request, fetchResponse.clone()).then(fetchResponse => event.respondWith(fetchResponse)))).catch(error => {
 		console.log('Response not found: ', error);
-		if (event.request.url.includes('/todos')) return new Response(JSON.stringify([]), {
+		event.request.url.includes('/todos') && event.respondWith(new Response(JSON.stringify([]), {
 			headers: {'Content-Type': 'application/json'},
-		});
-		return cache.match('/index.html').then(cachedResponse => cachedResponse);
+		}));
+		cache.match('/index.html').then(cachedResponse => event.respondWith(cachedResponse));
 	});
-})));
+}));
 addEventListener('sync', event => {
 	if (event.tag === 'sync-updates') { // You can have other conditions for different sync tags
 		event.waitUntil(synchronize());
