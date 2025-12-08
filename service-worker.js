@@ -40,6 +40,7 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 			'styles.css',
 			'manifest.json',
 			'link.jpg', // 💡 SUGGESTION: Ensure this is the correct path/name.
+			'service-worker.js',
 		])).catch(error => console.error('Service Worker installation failed: ', error)));
 	});
 	addEventListener('activate', event => {
@@ -74,10 +75,10 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 		console.log('test: ' + cacheName);
 		// 1. EXTEND LIFETIME: If preload is active, ensure the worker stays alive.
 		// We create a variable for the preload promise for reuse.
-		const preloadPromise = event.preloadResponse;
+		/*const preloadPromise = event.preloadResponse;
 		if (preloadPromise) {
 			event.waitUntil(preloadPromise);
-		}
+		}*/
 		// 2. Respond with the cache-first, network-or-preload-fallback logic.
 		event.respondWith(caches.match(event.request).then(cachedResponse => {
 				if (cachedResponse) {
@@ -85,7 +86,7 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 					return cachedResponse;
 				}
 				// Fallback to preload or network fetch
-				return (preloadPromise || fetch(event.request));
+				return (event.preloadResponse || fetch(event.request));
 		}).then(response => {
 			// Check for valid response and only cache GET requests
 			if (!response || response.status !== 200 || response.type === 'error' || event.request.method !== 'GET') {
