@@ -204,7 +204,7 @@ addEventListener('fetch', event => event.waitUntil(new Promise((resolve, reject)
 			// throw error; // Must throw the error if no fallback is possible
 		});
 	}));
-}));/*
+})));/*
 addEventListener('fetch', event => {
 	event.preloadResponse && event.waitUntil(event.preloadResponse);
 	event.respondWith(caches.match(event.request).then(cachedResponse => {
