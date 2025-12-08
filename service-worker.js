@@ -27,11 +27,10 @@ const init = (message = 0) => {
 if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 	// 💡 FIX: The log function uses 'self.log_history' which only exists in the window. 
 	//         The shared function handles this by checking 'self.document'.
-	// const [,cacheName] = registration.installing.scriptURL.match(/.*\/(.+?)(?=\?|#|$)/); location.href
+	// const [,cacheName] = registration.installing.scriptURL.match(/.*\/(.+?)(?=\?|#|$)/);
 	//const [cacheName] = 'https://example.com/assets/sub/sw-v1.js?hash=123#build'.match(/(?<=\/)[^/]+?(?=\?|#|$)/);
-	console.log(location.href.match(/.*\/(.+?)(?=\?|$)/)[1]);
 	const [,cacheName] = location.href.match(/.*\/(.+?)(?=\?|$)/);
-	log('Service worker filename:', cacheName);
+	log('Service worker filename: ' + cacheName);
 	addEventListener('install', event => {
 		log('Service Worker installing.');
 		skipWaiting();
