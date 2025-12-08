@@ -4,7 +4,7 @@ preventing HTTP caching on the Service Worker file itself is crucial for reliabl
 Rely on filename versioning to force the browser to bypass local HTTP cache
 and download the latest Service Worker file whenever you deploy an update.
 */
-log_history ??= [];
+self.log_history ??= [];
 const log = (message, error = 0, url = '') => {
 	// Service Worker context (no document)
 	if (!self.document) {
