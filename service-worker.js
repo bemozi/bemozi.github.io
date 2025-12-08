@@ -27,9 +27,9 @@ const init = (message = 0) => {
 if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 	// 💡 FIX: The log function uses 'self.log_history' which only exists in the window. 
 	//         The shared function handles this by checking 'self.document'.
-	// const [,cacheName] = registration.installing.scriptURL.match(/.*\/(.+?)(?=\?|#|$)/);
+	// const [,cacheName] = registration.installing.scriptURL.match(/.*\/(.+?)(?=\?|#|$)/); location.href
 	//const [cacheName] = 'https://example.com/assets/sub/sw-v1.js?hash=123#build'.match(/(?<=\/)[^/]+?(?=\?|#|$)/);
-	const [,cacheName] = location.href.match(/.*\/(.+?)(?=\?|$)/);
+	const [,cacheName] = registration.installing.scriptURL.match(/.*\/(.+?)(?=\?|$)/);
 	log('Service worker filename:', cacheName);
 	addEventListener('install', event => {
 		log('Service Worker installing.');
@@ -156,7 +156,7 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 		registration.onupdatefound = () => {
 			console.log('New worker being installed => ', registration.installing);
 			registration.installing.onstatechange = () => {
-				if (registration.installing.state === 'installed') {
+				if (registration.installing?.state === 'installed') {
 					if (navigator.serviceWorker.controller) {
 						log('New content is available; please refresh.', 0, location.href);
 					} else {
