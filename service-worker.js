@@ -164,19 +164,21 @@ addEventListener('fetch', event => event.respondWith(caches.match(event.request)
 		console.log('Cached response: ', event.request.url);
 		return cachedResponse;
 	}
-	return event.preloadResponse.then(preloadResponse => preloadResponse && caches.open(cacheName).then(cache => {
-		cache.put(event.request, preloadResponse.clone());
-		return preloadResponse;
-	}));
-	return fetch(event.request).then(fetchResponse => fetchResponse && caches.open(cacheName).then(cache => {
-		cache.put(event.request, fetchResponse.clone());
-		return fetchResponse;
+	return (event.preloadResponse || fetch(event.request)).then(response => response && caches.open(cacheName).then(cache => {
+		cache.put(event.request, response.clone());
+		return response;
 	})).catch(error => {
 		console.log('Response not found: ', error);
 		if (event.request.url.includes('/todos')) return new Response(JSON.stringify([]), {
 			headers: {'Content-Type': 'application/json'},
 		});
-		return cache.match('/index.html').then(cachedResponse => cachedResponse);
+		//return caches.match('/index.html').then(cachedResponse => cachedResponse);
+		if (event.request.mode === 'navigate' || event.request.destination === 'document') { // Fallback for navigation requests (e.g., all HTML pages)
+			return caches.match('/index.html');
+		}
+		// You can add other asset fallbacks here (e.g., a placeholder image)
+		
+		// throw error; // Must throw the error if no fallback is possible
 	});
 })));
 addEventListener('sync', event => {
