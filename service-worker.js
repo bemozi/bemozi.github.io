@@ -160,67 +160,41 @@ addEventListener('activate', event => {
 	});
 });
 addEventListener('fetch', event => {
-    // 1. EXTEND LIFETIME: If preload is active, use waitUntil() to ensure the 
-    //    Service Worker stays alive long enough for the preload promise to settle.
-    if (event.preloadResponse) {
-        event.waitUntil(event.preloadResponse);
-    }
-
-    // 2. MAIN RESPONSE LOGIC: Use a single, continuous promise chain for event.respondWith.
-    event.respondWith(
-        // First, check the cache
-        caches.match(event.request)
-        .then(cachedResponse => {
-            if (cachedResponse) {
-                console.log('Serving from cache: ', event.request.url);
-                return cachedResponse;
-            }
-
-            console.log('Initiating fetch or preload: ', event.request.url);
-            
-            // Core Logic: Use preloadResponse if available, otherwise fetch.
-            const fetchOrPreloadPromise = event.preloadResponse || fetch(event.request);
-
-            return fetchOrPreloadPromise
-                .then(response => {
-                    // Check for invalid responses (null, bad status, error type, non-GET)
-                    if (!response || response.status !== 200 || response.type === 'error' || event.request.method !== 'GET') {
-                        return response;
-                    }
-
-                    // 3. Cache the valid response by chaining the cache operations
-                    const responseToCache = response.clone();
-                    
-                    // Return the cache promise chain to ensure the SW waits for the write
-                    return caches.open(cacheName)
-                        .then(cache => {
-                            cache.put(event.request, responseToCache);
-                            // Return the original response object to the browser
-                            return response; 
-                        });
-                })
-                .catch(error => {
-                    console.error('Fetch failed for:', event.request.url, error);
-
-                    // --- FALLBACK LOGIC ---
-                    if (event.request.url.includes('/todos')) {
-                        return new Response(JSON.stringify([]), {
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                        });
-                    }
-
-                    if (event.request.mode === 'navigate' || event.request.destination === 'document') {
-                        // Serve the main offline page
-                        return caches.match('/index.html'); 
-                    }
-                    
-                    // If no fallback, re-throw the error as a final action
-                    throw error;
-                });
-        })
-    );
+	if (event.preloadResponse) event.waitUntil(event.preloadResponse);
+	event.respondWith(caches.match(event.request).then(cachedResponse => {
+		if (cachedResponse) {
+			console.log('Cached response: ', event.request.url);
+			return cachedResponse;
+		}
+		return (event.preloadResponse || fetch(event.request)).then(response => {
+			 // Check for valid response (200 status, not an opaque or error type)
+			if (!response || response.status !== 200 || response.type === 'error') {
+				return response;
+			}
+			// For non-GET requests (e.g., POST), return without caching.
+			// This is usually redundant as preload is only for navigation/GET, 
+			// but it's good defensive programming.
+			if (event.request.method !== 'GET') {
+				return response;
+			}
+			return caches.open(cacheName).then(cache => {
+				cache.put(event.request, response.clone());
+				return response; 
+			});
+		}).catch(error => {
+			console.log('Response not found: ', error);
+			if (event.request.url.includes('/todos')) return new Response(JSON.stringify([]), {
+				headers: {'Content-Type': 'application/json'},
+			});
+			//return caches.match('/index.html').then(cachedResponse => cachedResponse);
+			if (event.request.mode === 'navigate' || event.request.destination === 'document') { // Fallback for navigation requests (e.g., all HTML pages)
+				return caches.match('/index.html');
+			}
+			// You can add other asset fallbacks here (e.g., a placeholder image)
+			
+			// throw error; // Must throw the error if no fallback is possible
+		});
+	}));
 });
 addEventListener('sync', event => {
 	if (event.tag === 'sync-updates') { // You can have other conditions for different sync tags
