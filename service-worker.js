@@ -82,30 +82,38 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 					return cachedResponse;
 				}
 				// Fallback to preload or network fetch
-				return (event.preloadResponse || fetch(event.request)).then(response => {
-					// Check for valid response and only cache GET requests
-					if (!response || response.status !== 200 || response.type === 'error' || event.request.method !== 'GET') {
-						return response;
-					}
-					return caches.open(cacheName).then(cache => {
-						cache.put(event.request, response.clone()); // Cache the valid response
-						return response; // Return the original response to the browser
-					});
-				}).catch(error => {
-					console.error('Fetch failed: ', error, event.request.url);
-					// Fallback for /todos endpoint (example data)
-					if (event.request.url.includes('/todos')) return new Response(JSON.stringify([]), {
-						headers: {
-							'Content-Type': 'application/json'
-						},
-					});
-					// Fallback for navigation requests (HTML pages)
-					if (event.request.mode === 'navigate' || event.request.destination === 'document') {
-						return caches.match('/index.html'); // Serve the main offline page
-					}
-					// Must throw error if no fallback is possible
-					throw error;
-				});
+				return (event.preloadResponse || fetch(event.request));
+		}).then(response => {
+			// Check for valid response and only cache GET requests
+			if (!response || response.status !== 200 || response.type === 'error' || event.request.method !== 'GET') {
+				return response;
+			}
+			return caches.open(cacheName).then(cache => {
+				cache.put(event.request, response.clone()); // Cache the valid response
+				return response; // Return the original response to the browser
+			});
+		}).catch(error => {
+			console.error('Fetch failed: ', error, event.request.url);
+			// Fallback for /todos endpoint (example data)
+			if (event.request.url.includes('/todos')) return new Response(JSON.stringify([]), {
+				headers: {
+					'Content-Type': 'application/json'
+				},
+			});
+			// Fallback for navigation requests (HTML pages) // Serve the main offline page
+			if (event.request.mode === 'navigate' || event.request.destination === 'document') {
+				return caches.match('/index.html').then(offlinePageResponse => offlinePageResponse || new Response('Offline', {
+					status: 503
+				}));
+			}
+			// INSTEAD of throwing the error, which is the source of the "not a Response" issue.
+			return new Response('Network or Fetch Error', {
+				status: 503,
+				statusText: 'Service Unavailable',
+				headers: {
+					'Content-Type': 'text/plain'
+				}
+			});
 		}));
 	});
 	const synchronize = () => {
