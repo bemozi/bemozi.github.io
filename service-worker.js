@@ -167,6 +167,16 @@ addEventListener('fetch', event => {
 			return cachedResponse;
 		}
 		return (event.preloadResponse || fetch(event.request)).then(response => response && caches.open(cacheName).then(cache => {
+			 // Check for valid response (200 status, not an opaque or error type)
+			if (!response || response.status !== 200 || response.type === 'error') {
+				return response;
+			}
+			// For non-GET requests (e.g., POST), return without caching.
+			// This is usually redundant as preload is only for navigation/GET, 
+			// but it's good defensive programming.
+			if (event.request.method !== 'GET') {
+				return response;
+			}
 			response && cache.put(event.request, response.clone());
 			return response;
 		})).catch(error => {
