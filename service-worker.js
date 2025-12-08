@@ -160,14 +160,13 @@ addEventListener('activate', event => {
 	});
 });
 addEventListener('fetch', event => {
-	if (event.preloadResponse) event.waitUntil(event.preloadResponse);
 	event.respondWith(caches.match(event.request).then(cachedResponse => {
 		if (cachedResponse) {
 			console.log('Cached response: ', event.request.url);
 			return cachedResponse;
 		}
+		if (event.preloadResponse) event.waitUntil(event.preloadResponse);
 		return (event.preloadResponse || fetch(event.request)).then(response => {
-			 // Check for valid response (200 status, not an opaque or error type)
 			if (!response || response.status !== 200 || response.type === 'error') {
 				return response;
 			}
