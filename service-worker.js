@@ -160,12 +160,13 @@ addEventListener('activate', event => {
 	});
 });
 addEventListener('fetch', event => event.respondWith(caches.match(event.request).then(cachedResponse => {
+	event.preloadResponse && event.waitUntil(event.preloadResponse);
 	if (cachedResponse) {
 		console.log('Cached response: ', event.request.url);
 		return cachedResponse;
 	}
 	return (event.preloadResponse || fetch(event.request)).then(response => response && caches.open(cacheName).then(cache => {
-		cache.put(event.request, response.clone());
+		response && cache.put(event.request, response.clone());
 		return response;
 	})).catch(error => {
 		console.log('Response not found: ', error);
