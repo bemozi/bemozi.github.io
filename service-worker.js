@@ -159,13 +159,33 @@ addEventListener('activate', event => {
 		});
 	});
 });
+addEventListener("fetch", event => {
+    event.respondWith((async () => {
+        // 1. Try to get the response from the cache first
+        const cachedResponse = await caches.match(event.request);
+        if (cachedResponse) {
+            return cachedResponse;
+        }
+        // 2. If not in cache, use the preloaded response if available
+        const preloadedResponse = await event.preloadResponse;
+        if (preloadedResponse) {
+            // Optionally, cache the preloaded response for future use
+            const cache = await caches.open(cacheName);
+            cache.put(event.request, preloadedResponse.clone()); // Clone is necessary as response can only be consumed once
+            return preloadedResponse;
+        }
+        // 3. If neither cache nor preloadResponse, fetch from the network
+        return fetch(event.request);
+    })());
+});
+/*
 addEventListener('fetch', event => {
+	if (event.preloadResponse) event.waitUntil(event.preloadResponse);
 	event.respondWith(caches.match(event.request).then(cachedResponse => {
 		if (cachedResponse) {
 			console.log('Cached response: ', event.request.url);
 			return cachedResponse;
 		}
-		if (event.preloadResponse) event.waitUntil(event.preloadResponse);
 		return (event.preloadResponse || fetch(event.request)).then(response => {
 			if (!response || response.status !== 200 || response.type === 'error') {
 				return response;
@@ -195,6 +215,7 @@ addEventListener('fetch', event => {
 		});
 	}));
 });
+*/
 addEventListener('sync', event => {
 	if (event.tag === 'sync-updates') { // You can have other conditions for different sync tags
 		event.waitUntil(synchronize());
