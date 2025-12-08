@@ -159,29 +159,31 @@ addEventListener('activate', event => {
 		});
 	});
 });
-addEventListener('fetch', event => event.respondWith(caches.match(event.request).then(cachedResponse => {
+addEventListener('fetch', event => {
 	event.preloadResponse && event.waitUntil(event.preloadResponse);
-	if (cachedResponse) {
-		console.log('Cached response: ', event.request.url);
-		return cachedResponse;
-	}
-	return (event.preloadResponse || fetch(event.request)).then(response => response && caches.open(cacheName).then(cache => {
-		response && cache.put(event.request, response.clone());
-		return response;
-	})).catch(error => {
-		console.log('Response not found: ', error);
-		if (event.request.url.includes('/todos')) return new Response(JSON.stringify([]), {
-			headers: {'Content-Type': 'application/json'},
-		});
-		//return caches.match('/index.html').then(cachedResponse => cachedResponse);
-		if (event.request.mode === 'navigate' || event.request.destination === 'document') { // Fallback for navigation requests (e.g., all HTML pages)
-			return caches.match('/index.html');
+	event.respondWith(caches.match(event.request).then(cachedResponse => {
+		if (cachedResponse) {
+			console.log('Cached response: ', event.request.url);
+			return cachedResponse;
 		}
-		// You can add other asset fallbacks here (e.g., a placeholder image)
-		
-		// throw error; // Must throw the error if no fallback is possible
-	});
-})));
+		return (event.preloadResponse || fetch(event.request)).then(response => response && caches.open(cacheName).then(cache => {
+			response && cache.put(event.request, response.clone());
+			return response;
+		})).catch(error => {
+			console.log('Response not found: ', error);
+			if (event.request.url.includes('/todos')) return new Response(JSON.stringify([]), {
+				headers: {'Content-Type': 'application/json'},
+			});
+			//return caches.match('/index.html').then(cachedResponse => cachedResponse);
+			if (event.request.mode === 'navigate' || event.request.destination === 'document') { // Fallback for navigation requests (e.g., all HTML pages)
+				return caches.match('/index.html');
+			}
+			// You can add other asset fallbacks here (e.g., a placeholder image)
+			
+			// throw error; // Must throw the error if no fallback is possible
+		});
+	}));
+});
 addEventListener('sync', event => {
 	if (event.tag === 'sync-updates') { // You can have other conditions for different sync tags
 		event.waitUntil(synchronize());
