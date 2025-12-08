@@ -158,7 +158,53 @@ addEventListener('activate', event => {
 			event.waitUntil(clients.openWindow('/'));
 		});
 	});
-});
+});/*
+new Promise((resolve, reject) => {
+	// Simulate an asynchronous operation, e.g., fetching data, a timer
+	const success = Math.random() > 0.5; // Simulate success or failure
+
+	setTimeout(() => {
+	if (success) {
+	resolve("Operation completed successfully!"); // Resolve the promise with a value
+	} else {
+	reject(new Error("Operation failed!")); // Reject the promise with an error
+	}
+	}, 1000); // Simulate a 1-second delay
+})*/
+addEventListener('fetch', event => event.waitUntil(new Promise((resolve, reject) => {
+	event.respondWith(caches.match(event.request).then(cachedResponse => {
+		if (cachedResponse) {
+			console.log('Cached response: ', event.request.url);
+			resolve(cachedResponse);
+		}
+		return (event.preloadResponse || fetch(event.request)).then(response => response && caches.open(cacheName).then(cache => {
+			 // Check for valid response (200 status, not an opaque or error type)
+			if (!response || response.status !== 200 || response.type === 'error') {
+				resolve(response);
+			}
+			// For non-GET requests (e.g., POST), return without caching.
+			// This is usually redundant as preload is only for navigation/GET, 
+			// but it's good defensive programming.
+			if (event.request.method !== 'GET') {
+				resolve(response);
+			}
+			response && cache.put(event.request, response.clone());
+			resolve(response);
+		})).catch(error => {
+			console.log('Response not found: ', error);
+			if (event.request.url.includes('/todos')) resolve(new Response(JSON.stringify([]), {
+				headers: {'Content-Type': 'application/json'},
+			}));
+			//return caches.match('/index.html').then(cachedResponse => cachedResponse);
+			if (event.request.mode === 'navigate' || event.request.destination === 'document') { // Fallback for navigation requests (e.g., all HTML pages)
+				resolve(caches.match('/index.html'));
+			}
+			// You can add other asset fallbacks here (e.g., a placeholder image)
+			
+			// throw error; // Must throw the error if no fallback is possible
+		});
+	}));
+}));/*
 addEventListener('fetch', event => {
 	event.preloadResponse && event.waitUntil(event.preloadResponse);
 	event.respondWith(caches.match(event.request).then(cachedResponse => {
@@ -193,7 +239,7 @@ addEventListener('fetch', event => {
 			// throw error; // Must throw the error if no fallback is possible
 		});
 	}));
-});
+});*/
 addEventListener('sync', event => {
 	if (event.tag === 'sync-updates') { // You can have other conditions for different sync tags
 		event.waitUntil(synchronize());
