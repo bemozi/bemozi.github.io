@@ -96,7 +96,7 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 				}
 				// If preload failed or returned null/undefined, fall through to fetch
 				throw new Error('Preload failed or was not available');
-			}).catch(() => fetch(event.request))).then(response => {
+			}).catch(() => fetch(event.request)).then(response => {
 				// Check for valid response and only cache GET requests
 				if (response && response.status === 200 && response.type !== 'error' && event.request.method === 'GET') {
 					return caches.open(cacheName).then(cache => {
