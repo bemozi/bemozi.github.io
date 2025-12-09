@@ -46,7 +46,8 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 		const cacheWhiteList = [cacheName];
 		event.waitUntil(Promise.all([
 			clients.claim().then(() => console.log('SW has claimed all the clients')),
-			registration.navigationPreload.enable().then(() => log('Navigation preload enabled')),
+			//registration.navigationPreload.enable().then(() => log('Navigation preload enabled')),
+			registration.getNavigationPreloadManager().enable().then(() => log('Navigation preload enabled')),
 			caches.keys().then(cacheNames => Promise.all(
 				cacheNames.map(name => {
 					if (!cacheWhiteList.includes(name)) {
@@ -88,10 +89,13 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 				console.log('Serving from cache: ', event.request.url);
 				return cachedResponse;
 			}
-			(new Promise((resolve, reject) => {
-				let preloadPromise = event.preloadResponse; //event.waitUntil(Promise.resolve(event.preloadResponse).then(r => preloadPromise = r));
-				event.waitUntil(preloadPromise);
-				return preloadPromise;
+			Promise.resolve(event.preloadResponse).then(response => {
+				// Check if preload succeeded and provided a valid response
+				if (response) {
+					return response;
+				}
+				// If preload failed or returned null/undefined, fall through to fetch
+				throw new Error('Preload failed or was not available');
 			}).catch(() => fetch(event.request))).then(response => {
 				// Check for valid response and only cache GET requests
 				if (response && response.status === 200 && response.type !== 'error' && event.request.method === 'GET') {
