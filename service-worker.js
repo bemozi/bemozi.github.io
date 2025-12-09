@@ -77,12 +77,12 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 		}
 		// 1. EXTEND LIFETIME: If preload is active, ensure the worker stays alive.
 		// We create a variable for the preload promise for reuse.
-		const preloadPromise = event.preloadResponse;
+		//const preloadPromise = event.preloadResponse;
 		if (preloadPromise) {
 			// Create a wrapper promise that NEVER rejects
 			const safePreloadPromise = new Promise(resolve => {
 				// preloadPromise might reject, but we'll handle it
-				Promise.resolve(preloadPromise).then(resolve).catch(resolve); // If preload fails/cancelled, still resolve (not reject)
+				Promise.resolve(event.preloadResponse).then(resolve).catch(() => resolve(null)); // If preload fails/cancelled, still resolve (not reject)
 			});
 			// Use the safe promise that never rejects
 			event.waitUntil(safePreloadPromise);
@@ -96,10 +96,9 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 					console.log('Serving from cache: ', event.request.url);
 					return cachedResponse;
 				}
-				
 				// Fallback to preload or network fetch
 				//return (preloadPromise || fetch(event.request));
-				return preloadPromise ? preloadPromise.catch(() => fetch(event.request)) : fetch(event.request);
+				return safePreloadPromise ? safePreloadPromise.catch(() => fetch(event.request)) : fetch(event.request);
 				// Handle preload with race condition
 				/*if (preloadPromise) {
 					return Promise.race([
