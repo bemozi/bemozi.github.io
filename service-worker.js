@@ -75,59 +75,62 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 		if (event.request.url.includes(cacheName)) {
 			return; // Let the browser fetch the service worker file directly
 		}
-		// Respond with the cache-first, network-or-preload-fallback logic.
-		event.respondWith(caches.match(event.request).then(cachedResponse => {
-			if (cachedResponse) {
-				console.log('Serving from cache: ', event.request.url);
-				return cachedResponse;
-			}
-			return Promise.resolve(event.preloadResponse).then(response => {
-				// Check if preload succeeded and provided a valid response
-				if (response) {
-					return response;
+		// Use event.respondWith to handle the response
+		event.respondWith(
+			caches.match(event.request).then(cachedResponse => {
+				if (cachedResponse) {
+					console.log('Serving from cache: ', event.request.url);
+					return cachedResponse;
 				}
-				// If preload failed or returned null/undefined, fall through to fetch
-				throw new Error('Preload failed or was not available');
-			}).catch(() => fetch(event.request)).then(response => {
-				// Check for valid response and only cache GET requests
-				if (response && response.status === 200 && response.type !== 'error' && event.request.method === 'GET') {
-					return caches.open(cacheName).then(cache => {
-						cache.put(event.request, response.clone()); // Cache the valid response
-						return response; // Return the original response to the browser
-					});
-				}
-				return response;
-			}).catch(error => {
-				console.error('Fetch failed: ', error, event.request.url);
-				// Fallback for /todos endpoint (example data)
-				if (event.request.url.includes('/todos')) return new Response(JSON.stringify([]), {
-					headers: {
-						status: 200, // Return 200 for successful fallback data retrieval
-						headers: {
-							'Content-Type': 'application/json'
-						},
-					},
-				});
-				// Fallback for navigation requests (HTML pages) // Serve the main offline page
-				if (event.request.mode === 'navigate' || event.request.destination === 'document') {
-					return caches.match('index.html').then(offlinePageResponse => offlinePageResponse || new Response('Offline Page Not Found in Cache', {
-						status: 503,
-						statusText: 'Service Unavailable',
-						headers: {
-							'Content-Type': 'text/plain'
-						}
-					}));
-				}
-				// INSTEAD of throwing the error, which is the source of the "not a Response" issue.
-				return new Response('Network or Fetch Error', {
-					status: 503,
-					statusText: 'Service Unavailable',
-					headers: {
-						'Content-Type': 'text/plain'
+				// Use preloadResponse if available
+				return event.preloadResponse.then(preloadResponse => {
+					if (preloadResponse) {
+						return preloadResponse;
 					}
+					// If no cached or preload response, perform a network fetch
+					return fetch(event.request).then(response => {
+						// Check for valid response and only cache GET requests
+						if (response && response.status === 200 && response.type !== 'error' && event.request.method === 'GET') {
+							return caches.open(cacheName).then(cache => {
+								cache.put(event.request, response.clone()); // Cache the valid response
+								return response; // Return the original response to the browser
+							});
+						}
+						return response; // Return the original response if not cached
+					}).catch(error => {
+						console.error('Fetch failed: ', error, event.request.url);
+						// Fallback for /todos endpoint (example data)
+						if (event.request.url.includes('/todos')) {
+							return new Response(JSON.stringify([]), {
+								headers: {
+									'Content-Type': 'application/json'
+								},
+							});
+						}
+						// Fallback for navigation requests (HTML pages)
+						if (event.request.mode === 'navigate' || event.request.destination === 'document') {
+							return caches.match('index.html').then(offlinePageResponse => {
+								return offlinePageResponse || new Response('Offline Page Not Found in Cache', {
+									status: 503,
+									statusText: 'Service Unavailable',
+									headers: {
+										'Content-Type': 'text/plain'
+									}
+								});
+							});
+						}
+						// Return a generic error response
+						return new Response('Network or Fetch Error', {
+							status: 503,
+							statusText: 'Service Unavailable',
+							headers: {
+								'Content-Type': 'text/plain'
+							}
+						});
+					});
 				});
-			});
-		}));
+			})
+		);
 	});
 	const synchronize = () => {
 		// 💡 SUGGESTION: Replace this with actual IndexedDB read and POST logic.
