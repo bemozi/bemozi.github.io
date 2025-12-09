@@ -77,80 +77,57 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 		}
 		// 1. EXTEND LIFETIME: If preload is active, ensure the worker stays alive.
 		// We create a variable for the preload promise for reuse.
-		/*const preloadPromise = event.preloadResponse;
+		/*
+		const preloadPromise = event.preloadResponse;
 		if (preloadPromise) {
-			// Create a wrapper promise that NEVER rejects
-			const safePreloadPromise = new Promise(resolve => {
-				// preloadPromise might reject, but we'll handle it
-				Promise.resolve(preloadPromise).then(resolve).catch(() => resolve(null)); // If preload fails/cancelled, still resolve (not reject)
-			});
-			// Use the safe promise that never rejects
-			event.waitUntil(safePreloadPromise);
-		}
-		*/
-		/*if (preloadPromise) {
 			event.waitUntil(Promise.resolve(preloadPromise).catch(() => {}));
 		}*/
 		// 2. Respond with the cache-first, network-or-preload-fallback logic.
 		event.respondWith(caches.match(event.request).then(cachedResponse => {
-				if (cachedResponse) {
-					console.log('Serving from cache: ', event.request.url);
-					return cachedResponse;
-				}
-				event.waitUntil(Promise.resolve(event.preloadResponse).then(response => response).catch(() => fetch(event.request).then(response => response)).then(response => {
-					// Check for valid response and only cache GET requests
-					if (response && response.status === 200 && response.type !== 'error' && event.request.method === 'GET') {
-						return caches.open(cacheName).then(cache => {
-							cache.put(event.request, response.clone()); // Cache the valid response
-							return response; // Return the original response to the browser
-						});
-					}
-					return response;
-				}).catch(error => {
-					console.error('Fetch failed: ', error, event.request.url);
-					// Fallback for /todos endpoint (example data)
-					if (event.request.url.includes('/todos')) return new Response(JSON.stringify([]), {
-						headers: {
-							status: 200, // Return 200 for successful fallback data retrieval
-							headers: {
-								'Content-Type': 'application/json'
-							},
-						},
+			if (cachedResponse) {
+				console.log('Serving from cache: ', event.request.url);
+				return cachedResponse;
+			}
+			//return (preloadPromise || fetch(event.request));
+			event.waitUntil((preloadPromise || fetch(event.request)).then(response => {
+				// Check for valid response and only cache GET requests
+				if (response && response.status === 200 && response.type !== 'error' && event.request.method === 'GET') {
+					return caches.open(cacheName).then(cache => {
+						cache.put(event.request, response.clone()); // Cache the valid response
+						return response; // Return the original response to the browser
 					});
-					// Fallback for navigation requests (HTML pages) // Serve the main offline page
-					if (event.request.mode === 'navigate' || event.request.destination === 'document') {
-						return caches.match('index.html').then(offlinePageResponse => offlinePageResponse || new Response('Offline Page Not Found in Cache', {
-							status: 503,
-							statusText: 'Service Unavailable',
-							headers: {
-								'Content-Type': 'text/plain'
-							}
-						}));
-					}
-					// INSTEAD of throwing the error, which is the source of the "not a Response" issue.
-					return new Response('Network or Fetch Error', {
+				}
+				return response;
+			}).catch(error => {
+				console.error('Fetch failed: ', error, event.request.url);
+				// Fallback for /todos endpoint (example data)
+				if (event.request.url.includes('/todos')) return new Response(JSON.stringify([]), {
+					headers: {
+						status: 200, // Return 200 for successful fallback data retrieval
+						headers: {
+							'Content-Type': 'application/json'
+						},
+					},
+				});
+				// Fallback for navigation requests (HTML pages) // Serve the main offline page
+				if (event.request.mode === 'navigate' || event.request.destination === 'document') {
+					return caches.match('index.html').then(offlinePageResponse => offlinePageResponse || new Response('Offline Page Not Found in Cache', {
 						status: 503,
 						statusText: 'Service Unavailable',
 						headers: {
 							'Content-Type': 'text/plain'
 						}
-					});
-				}));
-				// Fallback to preload or network fetch
-				//return (preloadPromise || fetch(event.request));
-				// Handle preload with race condition
-				/*if (preloadPromise) {
-					return Promise.race([
-						preloadPromise.catch(() => null),
-						new Promise(resolve => setTimeout(() => resolve(null), 50))
-					]).then(preloadResult => {
-						if (preloadResult) {
-							return preloadResult;
-						}
-						// Preload failed or timed out, use regular fetch
-						return fetch(event.request);
-					});
-				}*/
+					}));
+				}
+				// INSTEAD of throwing the error, which is the source of the "not a Response" issue.
+				return new Response('Network or Fetch Error', {
+					status: 503,
+					statusText: 'Service Unavailable',
+					headers: {
+						'Content-Type': 'text/plain'
+					}
+				});
+			}));
 		}));
 	});
 	const synchronize = () => {
