@@ -75,20 +75,13 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 		if (event.request.url.includes(cacheName)) {
 			return; // Let the browser fetch the service worker file directly
 		}
-		// 1. EXTEND LIFETIME: If preload is active, ensure the worker stays alive.
-		// We create a variable for the preload promise for reuse.
-		/*
-		const preloadPromise = event.preloadResponse;
-		if (preloadPromise) {
-			event.waitUntil(Promise.resolve(preloadPromise).catch(() => {}));
-		}*/
-		// 2. Respond with the cache-first, network-or-preload-fallback logic.
+		// Respond with the cache-first, network-or-preload-fallback logic.
 		event.respondWith(caches.match(event.request).then(cachedResponse => {
 			if (cachedResponse) {
 				console.log('Serving from cache: ', event.request.url);
 				return cachedResponse;
 			}
-			Promise.resolve(event.preloadResponse).then(response => {
+			return Promise.resolve(event.preloadResponse).then(response => {
 				// Check if preload succeeded and provided a valid response
 				if (response) {
 					return response;
