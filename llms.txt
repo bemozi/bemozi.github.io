@@ -1,0 +1,12 @@
+# BEMOZI | Open Source Web App
+
+> BEMOZI is an open-source Progressive Web App designed for Chrome/Safari.
+
+## Core Pages (The most important context)
+
+- [Homepage](https://bemozi.github.io/): Landing page overview.
+
+## Source Code Information
+
+This is a static website hosted on GitHub Pages. The source code is maintained at:
+- [GitHub Repository](https://github.com/bemozi/bemozi.github.io)
