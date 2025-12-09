@@ -29,8 +29,7 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 	//         The shared function handles this by checking 'self.document'.
 	// const [,cacheName] = registration.installing.scriptURL.match(/.*\/(.+?)(?=\?|#|$)/);
 	//const [cacheName] = 'https://example.com/assets/sub/sw-v1.js?hash=123#build'.match(/(?<=\/)[^/]+?(?=\?|#|$)/);
-	//const [,cacheName] = location.href.match(/.*\/(.+?)(?=\?|$)/);
-	const cacheName = 'service-worker.js';
+	const [,cacheName] = location.href.match(/.*\/(.+?)(?=\?|$)/);
 	log('Service worker filename: ' + cacheName);
 	addEventListener('install', event => {
 		log('Service Worker installing.');
@@ -75,7 +74,6 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 	});
 	// 💡 FIX: This is the most robust implementation to prevent 'preloadResponse' cancellation.
 	addEventListener('fetch', event => {
-		console.log('test: ' + cacheName);
 		// 1. EXTEND LIFETIME: If preload is active, ensure the worker stays alive.
 		// We create a variable for the preload promise for reuse.
 		const preloadPromise = event.preloadResponse;
@@ -92,27 +90,32 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 				return (preloadPromise || fetch(event.request));
 		}).then(response => {
 			// Check for valid response and only cache GET requests
-			if (!response || response.status !== 200 || response.type === 'error' || event.request.method !== 'GET') {
-				return response;
+			if (response && response.status === 200 && response.type !== 'error' && event.request.method === 'GET') {
+				return caches.open(cacheName).then(cache => {
+					cache.put(event.request, response.clone()); // Cache the valid response
+					return response; // Return the original response to the browser
+				});
 			}
-			return caches.open(cacheName).then(cache => {
-				cache.put(event.request, response.clone()); // Cache the valid response
-				return response; // Return the original response to the browser
-			});
+			return response;
 		}).catch(error => {
 			console.error('Fetch failed: ', error, event.request.url);
 			// Fallback for /todos endpoint (example data)
 			if (event.request.url.includes('/todos')) return new Response(JSON.stringify([]), {
 				headers: {
 					status: 200, // Return 200 for successful fallback data retrieval
-					'Content-Type': 'application/json'
+					headers: {
+						'Content-Type': 'application/json'
+					},
 				},
 			});
 			// Fallback for navigation requests (HTML pages) // Serve the main offline page
 			if (event.request.mode === 'navigate' || event.request.destination === 'document') {
-				return caches.match('/index.html').then(offlinePageResponse => offlinePageResponse || new Response('Offline Page Not Found in Cache', {
+				return caches.match('index.html').then(offlinePageResponse => offlinePageResponse || new Response('Offline Page Not Found in Cache', {
 					status: 503,
-                    statusText: 'Service Unavailable'
+                    statusText: 'Service Unavailable',
+					headers: {
+						'Content-Type': 'text/plain'
+					}
 				}));
 			}
 			// INSTEAD of throwing the error, which is the source of the "not a Response" issue.
