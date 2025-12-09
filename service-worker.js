@@ -88,8 +88,11 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 				console.log('Serving from cache: ', event.request.url);
 				return cachedResponse;
 			}
-			//return (preloadPromise || fetch(event.request));
-			event.waitUntil((event.preloadResponse || fetch(event.request)).then(response => {
+			(new Promise((resolve, reject) => {
+				let preloadPromise = null;
+				event.waitUntil(Promise.resolve(event.preloadResponse).then(r => preloadPromise = r).catch(() => preloadPromise = fetch(event.request)));
+				return preloadPromise;
+			})).then(response => {
 				// Check for valid response and only cache GET requests
 				if (response && response.status === 200 && response.type !== 'error' && event.request.method === 'GET') {
 					return caches.open(cacheName).then(cache => {
@@ -127,7 +130,7 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 						'Content-Type': 'text/plain'
 					}
 				});
-			}));
+			});
 		}));
 	});
 	const synchronize = () => {
