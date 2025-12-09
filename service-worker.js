@@ -89,7 +89,7 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 				return cachedResponse;
 			}
 			//return (preloadPromise || fetch(event.request));
-			event.waitUntil((preloadPromise || fetch(event.request)).then(response => {
+			event.waitUntil((event.preloadResponse || fetch(event.request)).then(response => {
 				// Check for valid response and only cache GET requests
 				if (response && response.status === 200 && response.type !== 'error' && event.request.method === 'GET') {
 					return caches.open(cacheName).then(cache => {
