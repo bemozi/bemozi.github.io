@@ -40,14 +40,13 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 			'styles.css',
 			'manifest.json',
 			'link.jpg', // 💡 SUGGESTION: Ensure this is the correct path/name.
-			//'service-worker.js',
 		])).catch(error => console.error('Service Worker installation failed: ', error)));
 	});
 	addEventListener('activate', event => {
 		const cacheWhiteList = [cacheName];
 		event.waitUntil(Promise.all([
 			clients.claim().then(() => console.log('SW has claimed all the clients')),
-			registration.navigationPreload.enable(),
+			registration.navigationPreload.enable().then(() => log('Navigation preload enabled')),
 			caches.keys().then(cacheNames => Promise.all(
 				cacheNames.map(name => {
 					if (!cacheWhiteList.includes(name)) {
@@ -80,7 +79,7 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 		// We create a variable for the preload promise for reuse.
 		const preloadPromise = event.preloadResponse;
 		if (preloadPromise) {
-			event.waitUntil(preloadPromise);
+			event.waitUntil(preloadPromise.catch(() => {}));
 		}
 		// 2. Respond with the cache-first, network-or-preload-fallback logic.
 		event.respondWith(caches.match(event.request).then(cachedResponse => {
