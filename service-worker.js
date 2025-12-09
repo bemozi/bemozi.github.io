@@ -41,7 +41,9 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 			'manifest.json',
 			'link.jpg', // 💡 SUGGESTION: Ensure this is the correct path/name.
 			'service-worker.js',
-		])).catch(error => console.error('Service Worker installation failed: ', error)));
+		])).then(() => {
+			return self.skipWaiting(); // Forces the new worker to move to 'activate'
+		}).catch(error => console.error('Service Worker installation failed: ', error)));
 	});
 	addEventListener('activate', event => {
 		const cacheWhiteList = [cacheName];
