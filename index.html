@@ -51,12 +51,18 @@
 		<script type="application/ld+json">
 		{
 			"@context": "https://schema.org",
-			"@type": "Person",
+			"@type": "WebSite",
 			"name": "BEMOZI: Open Source Web App",
 			"description": "BEMOZI is an open-source Progressive Web App designed for Chrome/Safari.",
 			"url": "https://bemozi.github.io/",
+			"potentialAction": {
+				"@type": "SearchAction",
+				"target": "https://bemozi.github.io/?q={search_term_string}",
+				"query-input": "required name=search_term_string"
+			},
 			"sameAs": [
-				"https://github.com/bemozi"
+				"https://github.com/bemozi",
+				"https://twitter.com/bemozidz"
 			]
 		}
 		</script>
