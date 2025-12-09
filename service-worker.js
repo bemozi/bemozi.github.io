@@ -40,7 +40,7 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 			'styles.css',
 			'manifest.json',
 			'link.jpg', // 💡 SUGGESTION: Ensure this is the correct path/name.
-			'service-worker.js',
+			//'service-worker.js',
 		])).then(() => {
 			return self.skipWaiting(); // Forces the new worker to move to 'activate'
 		}).catch(error => console.error('Service Worker installation failed: ', error)));
