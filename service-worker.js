@@ -41,9 +41,7 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 			'manifest.json',
 			'link.jpg', // 💡 SUGGESTION: Ensure this is the correct path/name.
 			//'service-worker.js',
-		])).then(() => {
-			return self.skipWaiting(); // Forces the new worker to move to 'activate'
-		}).catch(error => console.error('Service Worker installation failed: ', error)));
+		])).catch(error => console.error('Service Worker installation failed: ', error)));
 	});
 	addEventListener('activate', event => {
 		const cacheWhiteList = [cacheName];
@@ -74,6 +72,10 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 	});
 	// 💡 FIX: This is the most robust implementation to prevent 'preloadResponse' cancellation.
 	addEventListener('fetch', event => {
+		// 💡 CRITICAL FIX: Don't intercept requests for the service worker itself
+		if (event.request.url.includes(cacheName)) {
+			return; // Let the browser fetch the service worker file directly
+		}
 		// 1. EXTEND LIFETIME: If preload is active, ensure the worker stays alive.
 		// We create a variable for the preload promise for reuse.
 		const preloadPromise = event.preloadResponse;
@@ -166,7 +168,7 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 		log('App ready to be installed (PWA prompt stored).');
 	});
 	// --- SERVICE WORKER REGISTRATION ---
-	navigator.serviceWorker?.register(document.currentScript?.src || 'service-worker.js').then(registration => {
+	navigator.serviceWorker?.register(document.currentScript?.src).then(registration => {
 		// 💡 FIX: Used a dynamic script source for the SW registration path.
 		console.log('Service Worker registered with scope:', registration.scope);
 		navigator.serviceWorker.addEventListener('controllerchange', () => {
