@@ -29,7 +29,8 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 	//         The shared function handles this by checking 'self.document'.
 	// const [,cacheName] = registration.installing.scriptURL.match(/.*\/(.+?)(?=\?|#|$)/);
 	//const [cacheName] = 'https://example.com/assets/sub/sw-v1.js?hash=123#build'.match(/(?<=\/)[^/]+?(?=\?|#|$)/);
-	const [,cacheName] = location.href.match(/.*\/(.+?)(?=\?|$)/);
+	//const [,cacheName] = location.href.match(/.*\/(.+?)(?=\?|$)/);
+	const cacheName = 'service-worker.js';
 	log('Service worker filename: ' + cacheName);
 	addEventListener('install', event => {
 		log('Service Worker installing.');
