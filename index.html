@@ -3,40 +3,49 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>BEMOZI: Open Source Web App</title>
-
 		<meta name="viewport" content="width=device-width, viewport-fit=cover, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<link rel="canonical" href="https://bemozi.github.io/"> 
-
 		<link rel="manifest" href="manifest.json">
 		<meta name="theme-color" content="#ffffff">
 		<meta name="apple-mobile-web-app-status-bar-style" content="default">
 		<meta name="apple-mobile-web-app-title" content="BEMOZI">
-
 		<meta name="mobile-web-app-capable" content="yes">
-
 		<meta name="description" content="BEMOZI is an open-source Progressive Web App designed for Chrome/Safari.">
 		<meta name="keywords" content="BEMOZI, open source, progressive web app, PWA, Chrome, Safari, web app, offline, GitHub">
 		<meta name="author" content="BEMOZI">
-		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large">
-
+		<meta name="robots" content="index, follow">
 		<meta property="og:site_name" content="BEMOZI: Open Source Web App"/>
 		<meta property="og:title" content="BEMOZI: Open Source Web App"/>
 		<meta property="og:description" content="BEMOZI is an open-source Progressive Web App designed for Chrome/Safari."/>
 		<meta property="og:url" content="https://bemozi.github.io/"/>
 		<meta property="og:type" content="website"/>
 		<meta property="og:image" content="https://bemozi.github.io/link.jpg"/>
-
 		<meta name="twitter:card" content="summary_large_image"/>
 		<meta name="twitter:site" content="@bemozidz"/>
 		<meta name="twitter:creator" content="@bemozidz"/>
 		<meta name="twitter:image" content="https://bemozi.github.io/link.jpg"/>
-
 		<link rel="icon" href="//avatars.githubusercontent.com/u/211243872">
 		<link rel="apple-touch-icon" href="//avatars.githubusercontent.com/u/211243872">
 		<link rel="stylesheet" href="styles.css">
-		<script src="service-worker.js"></script>
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "SoftwareApplication",
+			"name": "BEMOZI: Open Source Web App",
+			"operatingSystem": "Chrome, Safari (Web)",
+			"applicationCategory": "UtilityApplication",
+			"description": "BEMOZI is an open-source Progressive Web App designed for Chrome/Safari.",
+			"url": "https://bemozi.github.io/",
+			"offers": {
+				"@type": "Offer",
+				"price": "0",
+				"priceCurrency": "DZD" 
+			}
+		}
+		</script>
 	</head>
 	<body>
+		<script src="service-worker.js" defer></script>
 		<noscript>Enable JavaScript to use this app.</noscript>
 	</body>
 </html>
