@@ -46,8 +46,7 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 		const cacheWhiteList = [cacheName];
 		event.waitUntil(Promise.all([
 			clients.claim().then(() => console.log('SW has claimed all the clients')),
-			//registration.navigationPreload.enable().then(() => log('Navigation preload enabled')),
-			registration.getNavigationPreloadManager().enable().then(() => log('Navigation preload enabled')),
+			registration.navigationPreload.enable().then(() => log('Navigation preload enabled')),
 			caches.keys().then(cacheNames => Promise.all(
 				cacheNames.map(name => {
 					if (!cacheWhiteList.includes(name)) {
