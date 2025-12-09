@@ -79,7 +79,7 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 		// We create a variable for the preload promise for reuse.
 		const preloadPromise = event.preloadResponse;
 		if (preloadPromise) {
-			event.waitUntil(preloadPromise.catch(() => {}));
+			event.waitUntil(preloadPromise);
 		}
 		// 2. Respond with the cache-first, network-or-preload-fallback logic.
 		event.respondWith(caches.match(event.request).then(cachedResponse => {
@@ -88,7 +88,8 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 					return cachedResponse;
 				}
 				// Fallback to preload or network fetch
-				return (preloadPromise || fetch(event.request));
+				//return (preloadPromise || fetch(event.request));
+				return preloadPromise ? preloadPromise.catch(() => fetch(event.request)) : fetch(event.request);
 		}).then(response => {
 			// Check for valid response and only cache GET requests
 			if (response && response.status === 200 && response.type !== 'error' && event.request.method === 'GET') {
