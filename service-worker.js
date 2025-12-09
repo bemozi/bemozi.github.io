@@ -79,14 +79,24 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 		// We create a variable for the preload promise for reuse.
 		const preloadPromise = event.preloadResponse;
 		if (preloadPromise) {
-			event.waitUntil(Promise.resolve(preloadPromise).catch(() => {}));
+			// Create a wrapper promise that NEVER rejects
+			const safePreloadPromise = new Promise(resolve => {
+				// preloadPromise might reject, but we'll handle it
+				Promise.resolve(preloadPromise).then(resolve).catch(resolve); // If preload fails/cancelled, still resolve (not reject)
+			});
+			// Use the safe promise that never rejects
+			event.waitUntil(safePreloadPromise);
 		}
+		/*if (preloadPromise) {
+			event.waitUntil(Promise.resolve(preloadPromise).catch(() => {}));
+		}*/
 		// 2. Respond with the cache-first, network-or-preload-fallback logic.
 		event.respondWith(caches.match(event.request).then(cachedResponse => {
 				if (cachedResponse) {
 					console.log('Serving from cache: ', event.request.url);
 					return cachedResponse;
 				}
+				
 				// Fallback to preload or network fetch
 				//return (preloadPromise || fetch(event.request));
 				return preloadPromise ? preloadPromise.catch(() => fetch(event.request)) : fetch(event.request);
