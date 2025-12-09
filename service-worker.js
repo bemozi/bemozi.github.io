@@ -81,7 +81,7 @@ if (self.ServiceWorkerGlobalScope && self instanceof ServiceWorkerGlobalScope) {
 				console.log('Serving from cache: ', event.request.url);
 				return cachedResponse;
 			}
-			return event.preloadResponse.then(response => {
+			return Promise.resolve(event.preloadResponse).then(response => {
 				// Check if preload succeeded and provided a valid response
 				if (response) {
 					return response;
