@@ -4,7 +4,8 @@
 	"description": "Our fully auditable web app offers sustained functionality without connectivity and complete data ownership, all with a responsive, intuitive, and distraction-free interface.",
 	"display": "standalone",
 	"start_url": "/",
-	"theme_color": "#FFF",
+	"theme_color": "#FAFAFA",
+	"background_color": "#FAFAFA",
 	"icons": [
 		{
 			"src": "logo.svg",
