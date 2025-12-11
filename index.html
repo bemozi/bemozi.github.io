@@ -2,80 +2,90 @@
 <html lang="en-US">
 	<head>
 		<meta charset="UTF-8">
-		<title>BEMOZI: Open Source Web App</title>
+		<title>BEMOZI: Open Source Local-First Web App</title>
 		<meta name="viewport" content="width=device-width, viewport-fit=cover, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<link rel="canonical" href="https://bemozi.github.io/"> 
+		<link rel="canonical" href="https://bemozi.github.io/">
 		<link rel="manifest" href="manifest.json">
-		<meta name="theme-color" content="#ffffff">
-		<meta name="apple-mobile-web-app-status-bar-style" content="default">
-		<meta name="apple-mobile-web-app-title" content="BEMOZI">
-		<meta name="mobile-web-app-capable" content="yes">
-		<meta name="description" content="BEMOZI is an open-source Progressive Web App designed for Chrome/Safari.">
-		<meta name="keywords" content="BEMOZI, open source, progressive web app, PWA, Chrome, Safari, web app, offline, GitHub">
-		<meta name="author" content="BEMOZI">
-		<meta name="robots" content="index, follow">
-		<meta property="og:site_name" content="BEMOZI: Open Source Web App"/>
-		<meta property="og:title" content="BEMOZI: Open Source Web App"/>
-		<meta property="og:description" content="BEMOZI is an open-source Progressive Web App designed for Chrome/Safari."/>
+		<meta name="description" content="Our fully auditable web app offers sustained functionality without connectivity and complete data ownership, all with a responsive, intuitive, and distraction-free interface.">
+		<meta name="keywords" content="BEMOZI, Progressive Web App, Open Source, Auditable Web App, Data ownership, Zero-installation, Local-First, Offline-First">
 		<meta property="og:url" content="https://bemozi.github.io/"/>
 		<meta property="og:type" content="website"/>
 		<meta property="og:image" content="https://bemozi.github.io/link.jpg"/>
 		<meta name="twitter:card" content="summary_large_image"/>
 		<meta name="twitter:site" content="@bemozidz"/>
-		<meta name="twitter:creator" content="@bemozidz"/>
 		<meta name="twitter:image" content="https://bemozi.github.io/link.jpg"/>
-		<link rel="icon" href="//avatars.githubusercontent.com/u/211243872">
-		<link rel="apple-touch-icon" href="//avatars.githubusercontent.com/u/211243872">
-		<link rel="preload" href="styles.css" as="style">
+		<link rel="icon" href="logo.svg">
+		<link rel="apple-touch-icon" href="logo.svg">
 		<style>
 			body {
-				font-size: 1rem; /* Typically 16px */
-				background: #F8F8F8;
-				color: #333333;
-			}
-			main {
-				font-family: Arial, sans-serif;
-				padding: 20px;
+				padding-top: max(2vh, 2vw, env(safe-area-inset-top));
+				padding-bottom: max(2vh, 2vw, env(safe-area-inset-bottom));
+				padding-left: max(2vh, 2vw, env(safe-area-inset-left));
+				padding-right: max(2vh, 2vw, env(safe-area-inset-right));
+				position: fixed;
+				inset: 0;
+				display: grid;
+				place-items: center;
+				font-family: Roboto, Segoe UI, San Francisco;
+				font-size: clamp(16px, 1vw + 1rem, 1.5rem);
 				text-align: center;
+				line-height: 2;
+				background: #FDF;
+				color: #424242;
+			}
+			* {
+				box-sizing: border-box;
+				margin: 0;
+				font-size: inherit;
+				user-select: none;
 			}
 			h1 {
-				color: #333;
-				font-size: 2em;
+				color: #1B4E8C;
 			}
 			h2 {
-				color: #666;
-				font-size: 1.2em;
+				font-weight: 400;
+			}
+			noscript {
+				position: fixed;
+				inset: 0;
+				display: grid;
+				place-items: center;
+				background: #FDF;
+				color: #DB4437;
+				font-weight: 700;
 			}
 		</style>
-		<link rel="stylesheet" href="styles.css">
 		<script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@type": "WebSite",
-			"name": "BEMOZI: Open Source Web App",
-			"description": "BEMOZI is an open-source Progressive Web App designed for Chrome/Safari.",
-			"url": "https://bemozi.github.io/",
-			"potentialAction": {
-				"@type": "SearchAction",
-				"target": "https://bemozi.github.io/?q={search_term_string}",
-				"query-input": "required name=search_term_string"
-			},
-			"sameAs": [
-				"https://github.com/bemozi",
-				"https://twitter.com/bemozidz"
-			]
-		}
+			{
+				"@context": "https://schema.org",
+				"@type": "WebSite",
+				"url": "https://bemozi.github.io/",
+				"about": [ // This reduces ambiguity better than relying solely on keyword analysis of your <h2> tags
+					"Open source listing tool",
+					"Local-first spreadsheet application",
+					"Offline note taking software"
+				],
+				"sameAs": [
+					"https://github.com/bemozi",
+					"https://twitter.com/bemozidz"
+				],
+				"potentialAction": {
+					"@type": "SearchAction",
+					"target": {
+						"@type": "EntryPoint",
+						"urlTemplate": "https://bemozi.github.io/?q={search_term_string}"
+					},
+					"query-input": "required name=search_term_string"
+				}
+			}
 		</script>
 	</head>
 	<body>
 		<main>
-			<h1>Our web app core features</h1>
-			<h2>Open-source: Fully auditable and transparent</h2>
-			<h3>Offline-First: Sustain functionality without connectivity</h3>
-			<h4>Local-First: Instant, zero-installation access and full data ownership</h4>
-			<h5>Client-First: Responsive, intuitive and distraction-free design</h5>
+			<h1>An Open Source Local-First Web App for Reliable Office Collaboration</h1>
+			<h2>Our <b>fully auditable web app</b> offers sustained functionality without connectivity and <b>complete data ownership</b>, all with a responsive, intuitive, and <b>distraction-free interface</b>.</h2>
 		</main>
-		<script src="service-worker.js" defer></script>
-		<noscript>Enable JavaScript to use this app.</noscript>
+		<!--<script defer src="service-worker.js"></script>-->
+		<noscript>Enable JavaScript to get started.</noscript>
 	</body>
 </html>
