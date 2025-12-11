@@ -1,50 +1,34 @@
 {
-	"name": "BEMOZI",
+	"name": "BEMOZI: Open Source Local-First Web App",
 	"short_name": "BEMOZI",
-	"description": "BEMOZI",
-	"lang": "en-US",
+	"description": "Our fully auditable web app offers sustained functionality without connectivity and complete data ownership, all with a responsive, intuitive, and distraction-free interface.",
 	"display": "standalone",
-	"scope": "/",
-	"id": "/",
 	"start_url": "/",
-	"background_color": "white",
-	"theme_color": "white",
-	"orientation": "any",
-	"categories": ["productivity", "business", "utilities"],
+	"theme_color": "#FFF",
 	"icons": [
 		{
-			"src": "https://avatars.githubusercontent.com/u/211243872",
+			"src": "logo.svg",
 			"sizes": "any",
-			"type": "image/png",
-			"purpose": "any"
-		}
-	],
-	"splash_screens": [
+			"type": "image/svg+xml"
+		},
 		{
-			"src": "https://avatars.githubusercontent.com/u/211243872",
+			"src": "logo-maskable.svg",
 			"sizes": "any",
-			"type": "image/png"
+			"type": "image/svg+xml",
+			"purpose": "maskable"
 		}
 	],
 	"shortcuts": [
 		{
 			"name": "QURAN",
-			"short_name": "QURAN",
-			"description": "QURAN",
 			"url":"./quran.html",
 			"icons": [
 				{
-					"src": "https://avatars.githubusercontent.com/u/211243872",
+					"src": "logo.svg",
 					"sizes": "any",
-					"type": "image/png",
-					"purpose": "any"
+					"type": "image/svg+xml"
 				}
 			]
 		}
-	],
-	"author": "https://bemozi.github.io",
-	"developer": {
-		"name":"BEMOZI",
-		"url": "https://bemozi.github.io"
-	}
+	]
 }
