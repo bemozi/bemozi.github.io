@@ -12,7 +12,7 @@
 > [!NOTE]
 > This repository only uses native, well-documented, and officially supported browser APIs without relying on any third-party dependencies.
 
-Visit [Statim](https://bemozi.github.io) Homepage for more details at [https://bemozi.github.io](https://bemozi.github.io).
+Visit [Statim](https://bemozi.github.io) Homepage for more details at [https://bemozi.github.io.](https://bemozi.github.io)
 
 ## Development Status & Data Safety
 
@@ -25,13 +25,13 @@ The current version is under active development and may contain bugs or unexpect
 
 Help us make [Statim](https://bemozi.github.io) more useful for the **Local-First community**.
 
-+ In the case of **unexpected behavior or issues**, [create a bug report](https://github.com/bemozi/bemozi.github.io/issues/new/choose).
-+ If you have any **suggestions or improvements**, [submit a feature request](https://github.com/bemozi/bemozi.github.io/pulls).
-+ For **feedback or general questions**, [join GitHub discussions](https://github.com/bemozi/bemozi.github.io/discussions).
++ In the case of **unexpected behavior or issues**, [create a bug report.](https://github.com/bemozi/bemozi.github.io/issues/new/choose)
++ If you have any **suggestions or improvements**, [submit a feature request.](https://github.com/bemozi/bemozi.github.io/pulls)
++ For **feedback or general questions**, [join GitHub discussions.](https://github.com/bemozi/bemozi.github.io/discussions)
 
 > [!TIP]
 > Star the repository to track new features and improvements.
 
 ## License
 
-This repository is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](https://github.com/bemozi/bemozi.github.io/blob/main/LICENSE).
+This repository is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0).](https://github.com/bemozi/bemozi.github.io/blob/main/LICENSE)
