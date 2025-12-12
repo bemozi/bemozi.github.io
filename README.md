@@ -1,23 +1,17 @@
 <h1 align="center">
-	<br>
 	<a href="https://bemozi.github.io">
-		<picture>
-			<source media="(prefers-color-scheme: dark)" srcset="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/logo.svg">
-			<source media="(prefers-color-scheme: light)" srcset="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/logo.svg">
-			<img src="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/logo.svg" alt="Statim" width="400">
-		</picture>
+		<img src="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/logo.svg" alt="Statim" width="150">
 	</a>
-	<br>
 </h1>
-<h4 align="center">An Open Source Local-First Web App for Reliable Office Collaboration built by <a href="https://bemozi.github.io" target="_blank">BEMOZI</a>.</h4>
+An Open Source Local-First Web App for Reliable Office Collaboration built by [BEMOZI](https://bemozi.github.io).
 
 ---
 
 ## What is Statim?
 
-<p align="center">Our <b>fully auditable web app</b> offers sustained functionality without connectivity and <b>complete data ownership</b>, all with a responsive, intuitive, and <b>distraction-free interface</b>.</p>
+[Statim](https://bemozi.github.io) is a **fully auditable web app** offers sustained functionality without connectivity and **complete data ownership**, all with a responsive, intuitive, and **distraction-free interface**.
 
-Visit our Homepage at [https://bemozi.github.io](https://bemozi.github.io).
+Visit [Statim](https://bemozi.github.io) Homepage at [bemozi.github.io](https://bemozi.github.io).
 
 > [!NOTE]
 > This repository only uses native, well-documented, and officially supported browser APIs without relying on any third-party dependencies.
