@@ -5,7 +5,7 @@
 	"display": "minimal-ui",
 	"display_override": ["window-controls-overlay", "minimal-ui"],
 	"start_url": "/",
-	"theme_color": "#000",
+	"theme_color": "#FAFAFA",
 	"icons": [
 		{
 			"src": "logo.svg",
