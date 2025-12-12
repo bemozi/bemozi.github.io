@@ -2,8 +2,8 @@
 	"name": "BEMOZI: Open Source Local-First Web App",
 	"short_name": "BEMOZI",
 	"description": "Our fully auditable web app offers sustained functionality without connectivity and complete data ownership, all with a responsive, intuitive, and distraction-free interface.",
-	"display": "standalone",
-	"display_override": ["window-controls-overlay"],
+	"display": "minimal-ui",
+	"display_override": ["window-controls-overlay", "minimal-ui"],
 	"start_url": "/",
 	"theme_color": "#000",
 	"icons": [
