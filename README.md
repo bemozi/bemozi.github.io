@@ -1,7 +1,7 @@
 <p align="center">
 	<a align="center" href="https://bemozi.github.io">
 		<picture>
-			<source srcset="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/logo.svg" media="(prefers-color-scheme: dark)">
+			<source srcset="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/logo-white.svg" media="(prefers-color-scheme: dark)">
 			<img src="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/logo.svg" alt="Statim" width="150">
 		</picture>
 	</a><br><br>
