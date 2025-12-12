@@ -1,11 +1,9 @@
 <p align="center">
 	<a align="center" href="https://bemozi.github.io">
-		<img src="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/logo.svg" alt="Statim" width="150" style="
-		filter: invert(100%) hue-rotate(180deg);
-		@media (prefers-color-scheme: dark) {
-			filter: invert(100%) hue-rotate(180deg);
-		}
-		">
+		<picture>
+			<source srcset="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/logo.svg" media="(prefers-color-scheme: dark)">
+			<img src="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/logo.svg" alt="Statim" width="150">
+		</picture>
 	</a><br><br>
 	An Open Source Local-First Web App <b>for Reliable Office Collaboration</b>
 </p>
