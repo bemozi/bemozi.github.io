@@ -6,6 +6,7 @@
 	"display_override": ["window-controls-overlay", "minimal-ui"],
 	"start_url": "/",
 	"theme_color": "#FAFAFA",
+	"background_color": "#FAFAFA",
 	"icons": [
 		{
 			"src": "logo.svg",
