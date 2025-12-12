@@ -15,7 +15,7 @@
 > [!NOTE]
 > This repository only uses native, well-documented, and officially supported browser APIs without relying on any third-party dependencies.
 
-Visit [Statim](https://bemozi.github.io) Homepage for more details at [https://bemozi.github.io.](https://bemozi.github.io)
+**Learn More: [Statim Homepage](https://bemozi.github.io)**
 
 ## Development Status & Data Safety
 
@@ -33,7 +33,7 @@ Help us make [Statim](https://bemozi.github.io) more useful for the **Local-Firs
 + Regarding **feedback or general questions**, [join GitHub discussions.](https://github.com/bemozi/bemozi.github.io/discussions)
 
 > [!TIP]
-> Star the repository to track new features and improvements.
+> Star this repository to track new features and improvements.
 
 ## License
 
