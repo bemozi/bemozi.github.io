@@ -8,7 +8,7 @@
 	An Open Source Local-First Web App <b>for Reliable Office Collaboration</b>
 </p>
 
-## What is Statim?
+## Introducing Statim
 
 [Statim](https://bemozi.github.io) is a **fully auditable web app** offers sustained functionality without connectivity and **complete data ownership**, all with a responsive, intuitive, and **distraction-free interface**.
 
