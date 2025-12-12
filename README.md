@@ -14,12 +14,12 @@
 
 Visit [Statim](https://bemozi.github.io) Homepage for more details at [https://bemozi.github.io](https://bemozi.github.io).
 
-## Development Status
+## Development Status & Data Safety
 
-This version is currently under active development.
+The current version is under active development and may contain bugs or unexpected behavior; therefore, it is provided **"as-is"** without any warranty, express or implied. (see the [LICENSE](https://github.com/bemozi/bemozi.github.io/blob/main/LICENSE) file for full details).
 
-> [!WARNING]\ Disclaimer
-> The current version may contain bugs and unexpected behavior, and **data backups are mandatory** when working with sensitive information.
+> [!WARNING]
+> **Data backups are mandatory** when working with sensitive information.
 
 ## Contributing & Support
 
@@ -29,5 +29,5 @@ Help us make [Statim](https://bemozi.github.io) more useful for the **Local-Firs
 + If you have any **suggestions or improvements**, [submit a feature request](https://github.com/bemozi/bemozi.github.io/pulls).
 + For **feedback or general questions**, [join GitHub discussions](https://github.com/bemozi/bemozi.github.io/discussions).
 
-> [!TIP]\ Show Your Support
+> [!TIP]
 > Star the repository to track new features and improvements.
