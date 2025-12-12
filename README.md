@@ -19,7 +19,7 @@ Visit [Statim](https://bemozi.github.io) Homepage for more details at [https://b
 The current version is under active development and may contain bugs or unexpected behavior; therefore, it is provided **"as-is"** without any warranty, express or implied. (see the [LICENSE](https://github.com/bemozi/bemozi.github.io/blob/main/LICENSE) file for full details).
 
 > [!WARNING]
-> **Data backups are mandatory** when working with sensitive information.
+> **Data backups are mandatory** when handling sensitive information.
 
 ## Contributing & Support
 
@@ -31,3 +31,7 @@ Help us make [Statim](https://bemozi.github.io) more useful for the **Local-Firs
 
 > [!TIP]
 > Star the repository to track new features and improvements.
+
+## License
+
+This repository is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](https://github.com/bemozi/bemozi.github.io/blob/main/LICENSE).
