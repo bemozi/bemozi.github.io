@@ -5,7 +5,7 @@
 	"display": "standalone",
 	"display_override": ["window-controls-overlay"],
 	"start_url": "/",
-	"theme_color": "#000",
+	"theme_color": "#FAFAFA",
 	"icons": [
 		{
 			"src": "logo.svg",
