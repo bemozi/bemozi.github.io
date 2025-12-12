@@ -2,7 +2,7 @@
 	<a align="center" href="https://bemozi.github.io">
 		<img src="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/logo.svg" alt="Statim" width="150">
 	</a><br><br>
-	An Open Source Local-First Web App for Reliable Office Collaboration built
+	An Open Source Local-First Web App <b>for Reliable Office Collaboration</b>
 </p>
 
 ## What is Statim?
