@@ -4,7 +4,7 @@ We appreciate your interest in contributing to [Statim](https://bemozi.github.io
 
 ## Reporting Bugs
 
-To submit a [comprehensive bug report](https://github.com/bemozi/bemozi.github.io/issues/new/choose), please include:
+To [submit a comprehensive bug report](https://github.com/bemozi/bemozi.github.io/issues/new/choose), please include:
 
 *  A **clear and descriptive title**.
 *  The **steps to reproduce** the bug (e.g., "Go to X, click Y, get error Z").
