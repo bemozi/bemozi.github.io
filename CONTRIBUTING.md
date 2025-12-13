@@ -1,6 +1,6 @@
 ## Contributing to Statim
 
-We appreciate your interest in contributing to Statim. To ensure a smooth collaboration, please review these guidelines thoroughly before submitting a pull request or filing an issue.
+We appreciate your interest in contributing to Statim. Please review these guidelines thoroughly before submitting to ensure a smooth collaboration.
 
 ## Reporting Bugs
 
