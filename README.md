@@ -28,9 +28,10 @@ The current version is under active development and may contain bugs or unexpect
 
 Help us make [Statim](https://bemozi.github.io) more effective for the **Local-First community**.
 
-+ If **unexpected behavior or issues** occur, [create a bug report.](https://github.com/bemozi/bemozi.github.io/issues/new/choose)
-+ For **suggestions or improvements**, [submit a feature request.](https://github.com/bemozi/bemozi.github.io/pulls)
-+ Regarding **feedback or general questions**, [join GitHub discussions.](https://github.com/bemozi/bemozi.github.io/discussions)
+* If **unexpected behavior or issues** occur, [create a bug report.](https://github.com/bemozi/bemozi.github.io/issues/new/choose)
+* For **suggestions or improvements**, [submit a feature request.](https://github.com/bemozi/bemozi.github.io/pulls)
+* Regarding **feedback or general questions**, [join GitHub discussions.](https://github.com/bemozi/bemozi.github.io/discussions)
+* Expand the reach of [Statim](https://bemozi.github.io)'s mission by promoting its Web App.
 
 > [!TIP]
 > Star this repository to track new features and improvements.
