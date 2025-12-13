@@ -26,7 +26,7 @@ The current version is under active development and may contain bugs or unexpect
 
 ## Contributing & Support
 
-Help us make [Statim](https://bemozi.github.io) more useful for the **Local-First community**.
+Help us make [Statim](https://bemozi.github.io) more effective for the **Local-First community**.
 
 + If **unexpected behavior or issues** occur, [create a bug report.](https://github.com/bemozi/bemozi.github.io/issues/new/choose)
 + For **suggestions or improvements**, [submit a feature request.](https://github.com/bemozi/bemozi.github.io/pulls)
