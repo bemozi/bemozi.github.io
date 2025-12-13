@@ -17,4 +17,4 @@ To submit a **comprehensive bug report**, please include:
 We highly value suggestions for new features and improvements. To propose an enhancement:
 
 *  Open an issue with the label `[Feature Request]`.
-*  Clearly describe the feature, explaining **why** it would be valuable to Statim users and how it aligns with the local-first, auditable principle.
+*  Clearly describe the feature, explaining **why** it would be valuable to Statim users and how it aligns with the local-first and auditable principle.
