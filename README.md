@@ -28,7 +28,7 @@ Linux Mint XFCE is a lightweight, stable, and community-driven operating system 
 #### Step 1: Download & Create Live USB
 
 1. Navigate to the [Linux Mint website](https://linuxmint.com/download.php) and choose the **XFCE Edition**. Select a fast download mirror and download the `.iso` file.
-2. Download and install the open-source [Balena Etcher](https://etcher.balena.io/) utility to flash the ISO file onto a USB drive (8 GB minimum).
+2. Download and install the open-source [Balena Etcher](https://etcher.balena.io) utility to flash the ISO file onto a USB drive (8 GB minimum).
 3. **Flash the ISO:**
    * Open Etcher, click **"Flash from file"** and select the Linux Mint `.iso` file.
    * Click **"Select target"**, and choose your USB drive and click **"Flash!"**.
@@ -56,15 +56,13 @@ After installation and reboot, update the system for the latest security patches
 2. Run the update commands:
 
 	```bash
-	sudo apt update && sudo apt upgrade
-	sudo apt install software-properties-common apt-transport-https ca-certificates curl -y
+	sudo apt update && sudo apt upgrade -y && sudo apt install software-properties-common apt-transport-https ca-certificates curl -y
 	```
 
 3. Set up the Firewall: The **Uncomplicated Firewall (UFW)** is included but disabled. Enable it for robust security:
 
 	```bash
-	sudo ufw enable
-	sudo ufw default deny incoming
+	sudo ufw enable && sudo ufw default deny incoming
 	```
 
 ### Browser Setup: Google Chrome (Required)
