@@ -29,35 +29,31 @@ We strongly recommend using **Linux Mint XFCE** and **Google Chrome** to ensure 
 
 1. Go to the [Linux Mint download page](https://linuxmint.com/download.php), select the **XFCE Edition**, and download the `.iso` file via a fast mirror.
 2. Download and install the [Balena Etcher](https://etcher.balena.io) utility to flash the ISO file onto a USB drive (8 GB minimum).
-3. Open Etcher, click **"Flash from file"** to select the `.iso` file, then, click **"Select target"** to choose your USB drive and click **"Flash!"**.
+3. Open Etcher, click **Flash from file** to select the `.iso` file, then, click **Select drive** to choose your USB drive and click **Flash!**.
 > [!CAUTION]
 > **Verify the drive letter is correct:** selecting the wrong drive will permanently erase all data on that drive.
 
 #### Step 2: Installation
 
-1. Insert the Live USB and restart your computer. Press the relevant boot key (usually **F2, F10, F12, or Del**) to select the USB drive as the boot device.
-2. Double-click **"Install Linux Mint"** on the desktop.
-3. Choose your language and keyboard layout.
-4. When prompted for **Installation Type,** choose the option: **"Install Linux Mint alongside [Your Current OS]"**.
-5. **Allocate Space:** The installer will show a slider allowing you to define how much disk space is allocated to each operating system.
-   * **Drag the divider** to allocate space. We recommend giving Linux Mint at least **50-100 GB** for system files and your application data.
-   * Click **"Install Now."** 
-6. Set your geographical location, choose a username, and set a **strong password**.
-7. **Complete Installation:** Wait for the process to finish. When prompted, remove the USB drive and click **"Restart Now."**
-8. Upon reboot, you will be presented with the **boot menu**, where you can choose to launch either **Linux Mint** or your **current OS**.
+1. Insert the Live USB, restart your computer and repeatedly press the boot key (usually **F2, F10, F12, or Del**) to select the USB drive as the boot device.
+2. Double-click **Install Linux Mint** on the desktop, and choose your language and keyboard layout.
+3. On **Installation Type** screen, select the option: **Install Linux Mint alongside [Your Current OS]**.
+4. **Allocate Disk Space:** drag the slider to allocate space for Linux Mint, ideally **50-100 GB** or more. Then, Click **Install Now**.
+5. Set your geographical location, preferred username, and create a **strong password**.
+6. After the installation completes, **remove the Live USB** and click **Restart Now**.
+7. Upon reboot, the **boot menu** will allow you to choose to launch either **Linux Mint** or your **current OS**.
 
 #### Step 3: Initial Security Update
 
 After installation and reboot, update the system for the latest security patches:
 
-1. Open the **Terminal** (press Ctrl+Alt+T).
-2. Run the update commands:
+1. Open the **Terminal** (press Ctrl+Alt+T) to run the necessary update commands:
 
 	```bash
 	sudo apt update && sudo apt upgrade -y && sudo apt install software-properties-common apt-transport-https ca-certificates curl -y
 	```
 
-3. Set up the Firewall: The **Uncomplicated Firewall (UFW)** is included but disabled. Enable it for robust security:
+2. The **Uncomplicated Firewall (UFW)** is pre-installed but disabled. Enable it for robust security:
 
 	```bash
 	sudo ufw enable && sudo ufw default deny incoming
@@ -67,22 +63,16 @@ After installation and reboot, update the system for the latest security patches
 
 Our application has been extensively tested and optimized for **Google Chrome**. While other browsers may function, Chrome is the **required minimum environment** for guaranteed functionality.
 
-There are two primary ways to install Google Chrome on Linux Mint:
-
 #### Method A: Direct Download (Easiest)
 
-1. Open the default Firefox browser.
-2. Go to the official [Google Chrome Download Page](https://www.google.com/chrome).
-3. Click **"Download Chrome"** and select the **`.deb`** package option.
-4. Once the download is complete, open your Downloads folder and double-click the `.deb` file.
-5. This will open the **Package Installer**. Click **"Install Package"** and enter your password when prompted.
+1. Go to the official [Google Chrome Download Page](https://www.google.com/chrome), click **Download Chrome** and select the **`.deb`** package option.
+2. Once downloaded, open the `.deb` file. In the **Package Installer**, click **Install Package** and enter your password.
 
 #### Method B: Command Line (Advanced)
 
 This method ensures Chrome is kept up-to-date with your system:
 
-1. Open the **Terminal** (Ctrl+Alt+T).
-2. Download the package key and add the Google repository:
+1. Open the **Terminal** (press Ctrl+Alt+T) to download the package key and add the Google repository:
 
 	```bash
 	wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg
