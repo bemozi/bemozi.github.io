@@ -49,7 +49,7 @@ After installation and restart, update the system to get the latest security pat
 1. Open the **Terminal** (press Ctrl+Alt+T) to run the following update commands:
 
 	```bash
-	sudo apt update && sudo apt upgrade -y && sudo apt install software-properties-common apt-transport-https ca-certificates curl -y
+	sudo apt update && sudo apt upgrade -y && sudo apt install software-properties-common ca-certificates curl -y
 	```
 
 2. The **Uncomplicated Firewall (UFW)** is pre-installed but disabled. Enable it for robust security:
