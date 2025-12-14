@@ -23,15 +23,13 @@ We strongly recommend using **Linux Mint XFCE** and **Google Chrome** to ensure 
 
 ### System Setup: Linux Mint XFCE
 
-Linux Mint XFCE is a lightweight, stable, and community-driven operating system that aligns perfectly with our open-source principles.
+**Linux Mint XFCE** is a lightweight, stable, and secure operating system.
 
 #### Step 1: Download & Create Live USB
 
-1. Navigate to the [Linux Mint website](https://linuxmint.com/download.php) and choose the **XFCE Edition**. Select a fast download mirror and download the `.iso` file.
-2. Download and install the open-source [Balena Etcher](https://etcher.balena.io) utility to flash the ISO file onto a USB drive (8 GB minimum).
-3. **Flash the ISO:**
-   * Open Etcher, click **"Flash from file"** and select the Linux Mint `.iso` file.
-   * Click **"Select target"**, and choose your USB drive and click **"Flash!"**.
+1. Go to the [Linux Mint download page](https://linuxmint.com/download.php), select the **XFCE Edition**, and download the `.iso` file via a fast mirror.
+2. Download and install the [Balena Etcher](https://etcher.balena.io) utility to flash the ISO file onto a USB drive (8 GB minimum).
+3. Open Etcher, click **"Flash from file"** and select the `.iso` file. Then, click **"Select target"** and choose your USB drive and click **"Flash!"**.
 > [!CAUTION]
 > **Verify the drive letter is correct:** selecting the wrong drive will permanently erase all data on that drive.
 
