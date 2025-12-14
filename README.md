@@ -28,27 +28,25 @@ Linux Mint XFCE is a lightweight, stable, and community-driven operating system 
 #### Step 1: Download & Create Live USB
 
 1. Navigate to the [Linux Mint website](https://linuxmint.com/download.php) and choose the **XFCE Edition**. Select a fast download mirror and download the `.iso` file.
-2. Download and install the open-source [Balena Etcher](https://www.balena.io/etcher/) utility to flash the ISO file onto a USB drive (8 GB minimum).
+2. Download and install the open-source [Balena Etcher](https://etcher.balena.io/) utility to flash the ISO file onto a USB drive (8 GB minimum).
 3. **Flash the ISO:**
-   * Open Etcher.
-   * Click **"Flash from file"** and select the Linux Mint `.iso` file.
-   * Click **"Select target"** and choose your USB drive.
-   > [!CAUTION]
-   > **Verify the drive letter is correct:** selecting the wrong drive will permanently erase all data on that drive.
-   * Click **"Flash!"**
+   * Open Etcher, click **"Flash from file"** and select the Linux Mint `.iso` file.
+   * Click **"Select target"**, and choose your USB drive and click **"Flash!"**.
+> [!CAUTION]
+> **Verify the drive letter is correct:** selecting the wrong drive will permanently erase all data on that drive.
 
 #### Step 2: Installation
 
-1. **Boot from the USB:** Insert the Live USB and restart your computer. Press the relevant boot key (usually **F2, F10, F12, or Del**) to select the USB drive as the boot device.
+1. Insert the Live USB and restart your computer. Press the relevant boot key (usually **F2, F10, F12, or Del**) to select the USB drive as the boot device.
 2. Double-click **"Install Linux Mint"** on the desktop.
 3. Choose your language and keyboard layout.
-4. When prompted for **Installation Type,** choose the option: **"Install Linux Mint alongside [Your Current OS]."**.
+4. When prompted for **Installation Type,** choose the option: **"Install Linux Mint alongside [Your Current OS]"**.
 5. **Allocate Space:** The installer will show a slider allowing you to define how much disk space is allocated to each operating system.
    * **Drag the divider** to allocate space. We recommend giving Linux Mint at least **50-100 GB** for system files and your application data.
    * Click **"Install Now."** 
 6. Set your geographical location, choose a username, and set a **strong password**.
 7. **Complete Installation:** Wait for the process to finish. When prompted, remove the USB drive and click **"Restart Now."**
-8. **Boot Menu:** Upon reboot, you will be presented with the **GRUB boot menu**, where you can choose to launch either **Linux Mint** or your **current OS**.
+8. Upon reboot, you will be presented with the **boot menu**, where you can choose to launch either **Linux Mint** or your **current OS**.
 
 #### Step 3: Initial Security Update
 
@@ -78,10 +76,10 @@ There are two primary ways to install Google Chrome on Linux Mint:
 #### Method A: Direct Download (Easiest)
 
 1. Open the default Firefox browser.
-2. Go to the official [Google Chrome Download Page](https://www.google.com/chrome/).
+2. Go to the official [Google Chrome Download Page](https://www.google.com/chrome).
 3. Click **"Download Chrome"** and select the **`.deb`** package option.
 4. Once the download is complete, open your Downloads folder and double-click the `.deb` file.
-5. This will open the **Gdebi Package Installer**. Click **"Install Package"** and enter your password when prompted.
+5. This will open the **Package Installer**. Click **"Install Package"** and enter your password when prompted.
 
 #### Method B: Command Line (Advanced)
 
@@ -98,8 +96,7 @@ This method ensures Chrome is kept up-to-date with your system:
 3. Update the system's package list and install Chrome:
 
 	```bash
-	sudo apt update
-	sudo apt install google-chrome-stable
+	sudo apt update && sudo apt install google-chrome-stable
 	```
 
 ## Development Status & Data Safety
