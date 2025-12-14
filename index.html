@@ -2,19 +2,25 @@
 <html lang="en-US">
 	<head>
 		<meta charset="UTF-8">
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content; frame-ancestors 'none';">
+		<meta http-equiv="Permissions-Policy" content="*()">
+		<meta http-equiv="Origin-Agent-Cluster" content="?1">
+		<meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin">
+		<meta http-equiv="Cross-Origin-Embedder-Policy" content="credentialless">
+		<meta name="referrer" content="no-referrer">
 		<meta name="theme-color" content="#000" media="(prefers-color-scheme: dark)">
-		<title>BEMOZI: Open Source Local-First Web App</title>
+		<title>Statim: Open Source Local-First Web App</title>
 		<meta name="viewport" content="width=device-width, viewport-fit=cover, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<link rel="canonical" href="https://bemozi.github.io/">
+		<link rel="canonical" href="https://statim.github.io/">
 		<link rel="manifest" href="manifest.json">
 		<meta name="description" content="Our fully auditable web app offers sustained functionality without connectivity and complete data ownership, all with a responsive, intuitive, and distraction-free interface.">
-		<meta name="keywords" content="BEMOZI, Progressive Web App, Open Source, Auditable Web App, Data ownership, Zero-installation, Local-First, Offline-First">
-		<meta property="og:url" content="https://bemozi.github.io/"/>
+		<meta name="keywords" content="Statim, Progressive Web App, Open Source, Auditable Web App, Data ownership, Zero-installation, Local-First, Offline-First">
+		<meta property="og:url" content="https://statim.github.io/"/>
 		<meta property="og:type" content="website"/>
-		<meta property="og:image" content="https://bemozi.github.io/link.jpg"/>
+		<meta property="og:image" content="https://statim.github.io/link.jpg"/>
 		<meta name="twitter:card" content="summary_large_image"/>
 		<meta name="twitter:site" content="@bemozidz"/>
-		<meta name="twitter:image" content="https://bemozi.github.io/link.jpg"/>
+		<meta name="twitter:image" content="https://statim.github.io/link.jpg"/>
 		<link rel="icon" href="logo.svg">
 		<link rel="apple-touch-icon" href="logo.svg">
 		<style>
@@ -60,21 +66,21 @@
 			{
 				"@context": "https://schema.org",
 				"@type": "WebSite",
-				"url": "https://bemozi.github.io/",
+				"url": "https://statim.github.io/",
 				"about": [ // This reduces ambiguity better than relying solely on keyword analysis of your <h2> tags
 					"Open source listing tool",
 					"Local-first spreadsheet application",
 					"Offline note taking software"
 				],
 				"sameAs": [
-					"https://github.com/bemozi",
+					"https://github.com/statim",
 					"https://twitter.com/bemozidz"
 				],
 				"potentialAction": {
 					"@type": "SearchAction",
 					"target": {
 						"@type": "EntryPoint",
-						"urlTemplate": "https://bemozi.github.io/?q={search_term_string}"
+						"urlTemplate": "https://statim.github.io/?q={search_term_string}"
 					},
 					"query-input": "required name=search_term_string"
 				}
@@ -85,6 +91,8 @@
 		<main>
 			<h1>An Open Source Local-First Web App for Reliable Office Collaboration</h1>
 			<h2>Our <b>fully auditable web app</b> offers sustained functionality without connectivity and <b>complete data ownership</b>, all with a responsive, intuitive, and <b>distraction-free interface</b>.</h2>
+			<h3><b>Launching Soon:</b> we are finalizing the security audits and preparing for the public release.</h3>
+			<h4>Source Code is Publicly Available on <a href="https://github.com/bemozi/bemozi.github.io/tree/main">GitHub</a>.</h4>
 		</main>
 		<!--<script defer src="service-worker.js"></script>-->
 		<noscript>Enable JavaScript to get started.</noscript>
