@@ -1,8 +1,8 @@
 <p align="center">
 	<a href="https://bemozi.github.io">
 		<picture>
-			<source srcset="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/logo-white.svg" media="(prefers-color-scheme: dark)">
-			<img src="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/logo.svg" alt="Statim" width="150">
+			<source srcset="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/assets/logo-white.svg" media="(prefers-color-scheme: dark)">
+			<img src="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/assets/logo.svg" alt="Statim" width="150">
 		</picture>
 	</a><br><br>
 	An Open Source Local-First Web App <b>for Reliable Office Collaboration</b>
