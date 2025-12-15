@@ -2,73 +2,33 @@
 <html lang="en-US">
 	<head>
 		<meta charset="UTF-8">
-		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content; frame-ancestors 'none';">
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content; frame-ancestors 'none';">
 		<meta http-equiv="Permissions-Policy" content="*()">
 		<meta http-equiv="Origin-Agent-Cluster" content="?1">
 		<meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin">
 		<meta http-equiv="Cross-Origin-Embedder-Policy" content="credentialless">
 		<meta name="referrer" content="no-referrer">
-		<meta name="theme-color" content="#000" media="(prefers-color-scheme: dark)">
 		<title>Statim: Open Source Local-First Web App</title>
 		<meta name="viewport" content="width=device-width, viewport-fit=cover, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<link rel="canonical" href="https://statim.github.io/">
+		<base href="assets" target="_blank">
+		<link rel="preload" href="critical.css" as="style">
+		<link rel="stylesheet" href="critical.css">
+		<link rel="preload" href="critical.js" as="script">
+		<script defer src="critical.js"></script>
+		<link rel="canonical" href="https://statim.github.io">
+		<meta name="description" content="Statim is a fully auditable web app that offers sustained functionality without internet connectivity and complete data ownership, all with a responsive, intuitive, and distraction-free interface.">
+		<meta name="keywords" content="Local-First, Offline-First, Statim, Data ownership, Auditable Web App, Zero dependencies, Open Source, Reliable collaboration, Progressive Web App, Distraction-free interface, Zero-installation">
+		<meta name="theme-color" content="#000" media="(prefers-color-scheme: dark)">
+		<link rel="preload" href="manifest.json" as="manifest">
 		<link rel="manifest" href="manifest.json">
-		<meta name="description" content="Our fully auditable web app offers sustained functionality without connectivity and complete data ownership, all with a responsive, intuitive, and distraction-free interface.">
-		<meta name="keywords" content="Statim, Progressive Web App, Open Source, Auditable Web App, Data ownership, Zero-installation, Local-First, Offline-First">
-		<meta property="og:url" content="https://statim.github.io/"/>
-		<meta property="og:type" content="website"/>
-		<meta property="og:image" content="https://statim.github.io/link.jpg"/>
-		<meta name="twitter:card" content="summary_large_image"/>
-		<meta name="twitter:site" content="@bemozidz"/>
-		<meta name="twitter:image" content="https://statim.github.io/link.jpg"/>
 		<link rel="icon" href="logo.svg">
 		<link rel="apple-touch-icon" href="logo.svg">
-		<style>
-			body {
-				padding-top: max(2vh, 2vw, env(safe-area-inset-top));
-				padding-bottom: max(2vh, 2vw, env(safe-area-inset-bottom));
-				padding-left: max(2vh, 2vw, env(safe-area-inset-left));
-				padding-right: max(2vh, 2vw, env(safe-area-inset-right));
-				position: fixed;
-				inset: 0;
-				display: grid;
-				place-items: center;
-				font-family: Roboto, Segoe UI, San Francisco;
-				font-size: clamp(16px, 1vw + 1rem, 1.5rem);
-				text-align: center;
-				line-height: 2;
-				background: #FAFAFA;
-				color: #424242;
-			}
-			* {
-				box-sizing: border-box;
-				margin: 0;
-				font-size: inherit;
-				user-select: none;
-			}
-			a {
-				all: unset;
-			}
-			[href] {
-				cursor: pointer;
-			}
-			main > * {
-				font-weight: 400;
-			}
-			a, h1 {
-				color: #1B4E8C;
-				font-weight: 700;
-			}
-			noscript {
-				position: fixed;
-				inset: 0;
-				display: grid;
-				place-items: center;
-				background: #FAFAFA;
-				color: #DB4437;
-				font-weight: 700;
-			}
-		</style>
+		<meta property="og:url" content="https://statim.github.io">
+		<meta property="og:type" content="website">
+		<meta property="og:image" content="https://statim.github.io/assets/link.jpg">
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:site" content="@bemozidz">
+		<meta name="twitter:image" content="https://statim.github.io/assets/link.jpg">
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
@@ -101,7 +61,6 @@
 			<h3><b>Launching soon:</b> we are finalizing the security audits and preparing for the public release.</h3>
 			<h4><b>Source code</b> is publicly available on <a href="https://github.com/bemozi/bemozi.github.io/tree/main">GitHub</a>.</h4>
 		</main>
-		<!--<script defer src="service-worker.js"></script>-->
 		<noscript>Enable JavaScript to get started.</noscript>
 	</body>
 </html>
