@@ -71,7 +71,7 @@ Our application has been extensively tested and optimized for **Google Chrome**.
 
 #### Method A: Direct Download (Easiest)
 
-1. Go to the official [Google Chrome Download Page](https://www.google.com/chrome), click **Download Chrome** and select the `.deb` package option.
+1. Download the official [Google Chrome `.deb` package](https://www.google.com/chrome).
 2. Once downloaded, open the `.deb` file, click **Install Package** and enter your password.
 
 #### Method B: Command Line (Automatic Updates)
