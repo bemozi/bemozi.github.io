@@ -25,7 +25,7 @@ For **optimal performance**, **stability**, and **enhanced security**, we highly
 
 #### Step 1: Download & Create Live USB
 
-1. Go to the [Linux Mint download page](https://linuxmint.com/download.php), select the **XFCE Edition**, and download the `.iso` file from a fast mirror.
+1. Go to the [Linux Mint download page](https://linuxmint.com/download.php), select the **XFCE Edition**, and download the **.iso** file from a fast mirror.
 2. Download and install the [Balena Etcher](https://etcher.balena.io) utility to flash the ISO file onto a USB drive (8 GB minimum).
 3. Open Etcher. First, click **Flash from file** to select your **.iso** file. Next, click **Select drive** to choose your USB, and finally, click **Flash!**.
 
@@ -46,39 +46,42 @@ For **optimal performance**, **stability**, and **enhanced security**, we highly
 
 After installation and restart, update the system to get the latest security patches:
 
-1. Open the **Terminal** (press Ctrl+Alt+T) to run the following update commands:
+1. Open the **Terminal** (press **Ctrl+Alt+T**) to **run the following update command**:
 
 	```bash
 	sudo apt update && sudo apt upgrade -y && sudo apt install software-properties-common ca-certificates curl -y
 	```
 
-2. The **Uncomplicated Firewall (UFW)** is pre-installed but disabled. Enable it for robust security:
+2. The **Uncomplicated Firewall (UFW)** is pre-installed but disabled. **Run the following command** in the Terminal to enable it for robust security:
 
 	```bash
 	sudo ufw enable && sudo ufw default deny incoming
 	```
 
-### Browser Setup: Install Google Chrome (Required)
+### Browser Setup: Google Chrome (Required)
 
 Our application has been extensively tested and optimized for **Google Chrome**. While other browsers *might* work, Chrome is the **required minimum environment** for guaranteed functionality.
 
+> [!NOTE]
+> This section is specifically designed for users who have followed the previous **Linux Mint XFCE** installation steps.
+
 #### Method A: Direct Download (Easiest)
 
-1. Go to the official [Google Chrome Download Page](https://www.google.com/chrome), click **Download Chrome** and select the **`.deb`** package option.
-2. Once downloaded, open the `.deb` file. In the **Package Installer**, click **Install Package** and enter your password.
+1. Go to the official [Google Chrome Download Page](https://www.google.com/chrome), click **Download Chrome** and select the **.deb** package option.
+2. Once downloaded, open the **.deb** file. In the **Package Installer**, click **Install Package** and enter your password.
 
 #### Method B: Command Line (Automatic Updates)
 
 This method ensures Chrome is kept up-to-date **automatically** with your system updates:
 
-1. Open the **Terminal** (press Ctrl+Alt+T) to download the package key and add the Google repository:
+1. Open the **Terminal** (press **Ctrl+Alt+T**) and **run the following commands** to download the package key and add the Google repository:
 
 	```bash
 	wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg
 	echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
 	```
 
-2. Update the system's package list and install Chrome:
+2. **Run the following command** to update the system's package list and install Chrome:
 
 	```bash
 	sudo apt update && sudo apt install google-chrome-stable
