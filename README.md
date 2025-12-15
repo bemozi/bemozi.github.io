@@ -13,7 +13,7 @@
 [Statim](https://bemozi.github.io) is a **fully auditable web app** that offers sustained functionality without internet connectivity and **complete data ownership**, all with a responsive, intuitive, and **distraction-free interface**.
 
 > [!NOTE]
-> This repository is built only with native, well-documented, and officially supported browser APIs and **does not rely on any third-party dependencies**.
+> **Statim** is built only with native, well-documented, and officially supported browser APIs and **does not rely on any third-party dependencies**.
 
 ## Data Collection & Privacy
 
