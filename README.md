@@ -40,15 +40,15 @@ This installation **preserves both operating systems**. At startup, use Linux Mi
 
 1. Insert the Live USB, restart your computer, and repeatedly press the boot key (usually **F2, F10, F12, or Del**) to select the USB drive as the boot device.
 2. Double-click **Install Linux Mint** on the desktop, and choose your language and keyboard layout.
-3. On the **Installation Type** screen, select the option **Install Linux Mint alongside your current OS**.
-4. **Allocate Disk Space:** drag the slider to allocate space for Linux Mint (ideally 50-100 GB or more). Then, click **Install Now**.
-5. Set your geographical location, preferred username, and create a **strong password**.
+3. On the **Installation Type** screen, select **Install Linux Mint alongside your current OS**.
+4. **Allocate Disk Space:** drag the slider to allocate space (ideally 50-100 GB or more). Then, click **Install Now**.
+5. Set your location, preferred username, and create a **strong password**.
 6. After installation, **remove the Live USB** and click **Restart Now**.
 7. After restarting, you can choose to launch either Linux Mint or your current OS from the boot menu.
 
 #### Step 3: Initial Security Update
 
-After installation and restart, update the system to get the latest security patches:
+After installation and restart, update the system for security patches:
 
 1. Open the **Terminal** (press **Ctrl+Alt+T**) to **run the following update command**:
 
@@ -76,7 +76,7 @@ Our application has been extensively tested and optimized for **Google Chrome**.
 
 #### Method B: Command Line (Automatic Updates)
 
-This method ensures Chrome updates **automatically** with your system updates:
+This method ensures Chrome updates **automatically** with your system:
 
 1. Download the package key and add the Google repository:
 
@@ -93,14 +93,14 @@ This method ensures Chrome updates **automatically** with your system updates:
 
 ## Development Status & Warranty
 
-The current version is under active development and may contain bugs or unexpected behavior. Therefore, it is provided **"as-is"** without any warranty, express or implied. (See the [LICENSE](https://github.com/bemozi/bemozi.github.io/tree/main?tab=License-1-ov-file) file for full details).
+The current version is under active development and may contain bugs or unexpected behavior. It is provided **"as-is"** without any warranty, express or implied. (See the [LICENSE](https://github.com/bemozi/bemozi.github.io/tree/main?tab=License-1-ov-file) file for full details).
 
 ## Data Safety & Liability
 
-We **cannot recover any lost data** as the user is responsible for the security, retention, backup, and deletion of files stored locally.
+We **cannot recover any lost data**. The user is responsible for the security, retention, backup, and deletion of files stored locally.
 
 > [!WARNING]
-> **Data backups are mandatory** for sensitive data.
+> **Backups are mandatory** for sensitive data.
 
 ## Legal Information
 
@@ -110,7 +110,7 @@ By using **Statim**, you agree to be **bound by all local laws.**
 
 ## Contributing & Support
 
-Help us make **Statim** more effective for the Local-First community and all its users.
+Help us make **Statim** more effective for the Local-First community and its users.
 
 * If *unexpected behavior or issues occur, [create a bug report](https://github.com/bemozi/bemozi.github.io/issues/new/choose).
 * For suggestions or improvements, [submit a feature request](https://github.com/bemozi/bemozi.github.io/pulls).
