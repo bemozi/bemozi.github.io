@@ -106,7 +106,7 @@ We **cannot recover any lost data**. The user is responsible for the security, r
 
 **Statim** is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](https://github.com/bemozi/bemozi.github.io/tree/main?tab=License-1-ov-file).
 
-By using **Statim**, you agree to be **bound by all local laws.**
+By using **Statim**, you agree to **abide by all local laws.**
 
 ## Contributing & Support
 
