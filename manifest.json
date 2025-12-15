@@ -8,12 +8,12 @@
 	"theme_color": "#FAFAFA",
 	"icons": [
 		{
-			"src": "logo.svg",
+			"src": "assets/logo.svg",
 			"sizes": "any",
 			"type": "image/svg+xml"
 		},
 		{
-			"src": "logo-maskable.svg",
+			"src": "assets/logo-maskable.svg",
 			"sizes": "any",
 			"type": "image/svg+xml",
 			"purpose": "maskable"
@@ -22,10 +22,10 @@
 	"shortcuts": [
 		{
 			"name": "QURAN",
-			"url":"./quran.htm",
+			"url":"assets/quran.htm",
 			"icons": [
 				{
-					"src": "logo.svg",
+					"src": "assets/logo.svg",
 					"sizes": "any",
 					"type": "image/svg+xml"
 				}
