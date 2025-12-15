@@ -17,7 +17,10 @@
 
 ## Data Collection & Privacy
 
-Operational logs and session **data are generated and stored only on your local device** and **never transmitted** to us or any third party, as it's technically impossible due to our architecture. We use no cookies, web beacons or tracking scripts.
+Operational logs and session **data are generated and stored only on your local device** and **never transmitted** to us or any third party, as it's technically impossible due to our architecture.
+
+> [!NOTE]
+> We use no cookies, web beacons or tracking scripts.
 
 ## Recommended Environment for Maximum Performance (Developer's Choice)
 
