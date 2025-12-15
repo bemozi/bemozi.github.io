@@ -39,15 +39,14 @@ For optimal performance, stability, and enhanced security, we highly recommend u
 
 #### Step 2: Install Linux Mint Alongside Your Current OS (Dual Boot)
 
-This installation **preserves both operating systems**. At startup, use Linux Mint for secure office collaboration, and easily switch back to Windows when you need software that only runs on Windows.
+This installation **preserves both operating systems**. Use the boot menu at startup to select Linux Mint if you don't need software that only runs on Windows.
 
-1. Insert the Live USB, restart your computer, and repeatedly press the boot key (usually `F2`, `F10`, `F12`, or `Del`) to select the USB drive as the boot device.
-2. Double-click `Install Linux Mint` on the desktop, and choose your language and keyboard layout.
+1. Insert the USB, restart your computer, and repeatedly press the boot key (usually `F2`, `F10`, `F12`, or `Del`) to select the USB drive as the boot device.
+2. Run `Install Linux Mint` from the desktop, and choose your language and keyboard layout.
 3. On the **Installation Type** screen, select `Install Linux Mint alongside your current OS`.
-4. **Allocate Disk Space:** drag the slider to allocate space (30 GB minimum). Then, click `Install Now`.
+4. To allocate disk space, drag the slider (30 GB minimum), then, click `Install Now`.
 5. Set location, username, and create a **strong password**.
-6. After installation, **remove the Live USB** and click `Restart Now`.
-7. After restarting, you can choose to launch either Linux Mint or your current OS from the boot menu.
+6. After installation, **remove the USB** and click `Restart Now`.
 
 #### Step 3: Initial Security Update
 
