@@ -15,11 +15,11 @@
 > [!NOTE]
 > This repository is built **only with native, well-documented, and officially supported browser APIs** and **does not rely on any third-party dependencies**.
 
-## Optimal Environment Setup
+## Recommended Environment for Maximum Performance (Developer's Choice)
 
 For **optimal performance**, **stability**, and **enhanced security**, we highly recommend using **Linux Mint XFCE** (for its low resource use) and **Google Chrome**. You are, however, free to use other operating systems.
 
-### System Setup: Linux Mint XFCE
+### System Setup: Linux Mint XFCE (Optional/Recommended)
 
 **Linux Mint XFCE** is a lightweight, stable, and secure operating system.
 
