@@ -1,0 +1,44 @@
+body {
+	padding-top: max(2vh, 2vw, env(safe-area-inset-top));
+	padding-bottom: max(2vh, 2vw, env(safe-area-inset-bottom));
+	padding-left: max(2vh, 2vw, env(safe-area-inset-left));
+	padding-right: max(2vh, 2vw, env(safe-area-inset-right));
+	position: fixed;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	font-family: Roboto, Segoe UI, San Francisco;
+	font-size: clamp(16px, 1vw + 1rem, 1.5rem);
+	text-align: center;
+	line-height: 2;
+	background: #FAFAFA;
+	color: #424242;
+}
+* {
+	box-sizing: border-box;
+	margin: 0;
+	font-size: inherit;
+	user-select: none;
+}
+a {
+	all: unset;
+}
+[href] {
+	cursor: pointer;
+}
+main > * {
+	font-weight: 400;
+}
+a, h1 {
+	color: #1B4E8C;
+	font-weight: 700;
+}
+noscript {
+	position: fixed;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	background: #FAFAFA;
+	color: #DB4437;
+	font-weight: 700;
+}
