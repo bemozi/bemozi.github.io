@@ -13,15 +13,15 @@
 [Statim](https://bemozi.github.io) is a **fully auditable web app** that offers sustained functionality without internet connectivity and **complete data ownership**, all with a responsive, intuitive, and **distraction-free interface**.
 
 > [!NOTE]
-> This repository is built **only with native, well-documented, and officially supported browser APIs** and **does not rely on any third-party dependencies**.
+> This repository is built only with native, well-documented, and officially supported browser APIs and **does not rely on any third-party dependencies**.
 
 ## Data Collection & Privacy
 
-**Operational logs and temporary session data** are generated and stored **only on your local device** and **never transmitted** to us or any third party (we use **no cookies, web beacons or tracking scripts**), as it's **technically impossible due to our architecture**.
+Operational logs and temporary session **data are generated and stored only on your local device** and **never transmitted** to us or any third party, as it's technically impossible due to our architecture. We use no cookies, web beacons or tracking scripts.
 
 ## Recommended Environment for Maximum Performance (Developer's Choice)
 
-For **optimal performance**, **stability**, and **enhanced security**, we highly recommend using **Linux Mint XFCE** (for its low resource use). You are, however, free to use other operating systems.
+For optimal performance, stability, and enhanced security, we highly recommend using Linux Mint XFCE (for its low resource use). You are, however, free to use other operating systems.
 
 ### System Setup: Linux Mint XFCE (Optional/Recommended)
 
@@ -36,15 +36,15 @@ For **optimal performance**, **stability**, and **enhanced security**, we highly
 
 #### Step 2: Install Linux Mint Alongside Your Current OS (Dual Boot)
 
-This installation **preserves both operating systems**. Every time you start your computer, you can use **Linux Mint XFCE** for secure office collaboration, and easily **switch back to Windows** when you need software that only runs on Windows.
+This installation **preserves both operating systems**. Every time you start your computer, you can use Linux Mint XFCE for secure office collaboration, and easily switch back to Windows when you need software that only runs on Windows.
 
 1. Insert the Live USB, restart your computer, and repeatedly press the boot key (usually **F2, F10, F12, or Del**) to select the USB drive as the boot device.
 2. Double-click **Install Linux Mint** on the desktop, and choose your language and keyboard layout.
 3. On the **Installation Type** screen, select the option **Install Linux Mint alongside your current OS**.
-4. **Allocate Disk Space:** drag the slider to allocate space for Linux Mint (ideally **50-100 GB** or more). Then, click **Install Now**.
+4. **Allocate Disk Space:** drag the slider to allocate space for Linux Mint (ideally 50-100 GB or more). Then, click **Install Now**.
 5. Set your geographical location, preferred username, and create a **strong password**.
 6. After the installation completes, **remove the Live USB** and click **Restart Now**.
-7. After restarting, you can choose to launch either **Linux Mint** or your **current OS** from the **boot menu**.
+7. After restarting, you can choose to launch either Linux Mint or your current OS from the boot menu.
 
 #### Step 3: Initial Security Update
 
@@ -56,7 +56,7 @@ After installation and restart, update the system to get the latest security pat
 	sudo apt update && sudo apt upgrade -y
 	```
 
-2. The **Uncomplicated Firewall (UFW)** is pre-installed but disabled. Enable it for robust security:
+2. The Uncomplicated Firewall (UFW) is pre-installed but disabled. Enable it for robust security:
 
 	```bash
 	sudo ufw enable && sudo ufw default deny incoming
@@ -67,7 +67,7 @@ After installation and restart, update the system to get the latest security pat
 Our application has been extensively tested and optimized for **Google Chrome**. While other browsers *might* work, Chrome is the **required minimum environment** for guaranteed functionality.
 
 > [!NOTE]
-> This section is for users who have followed the previous **Linux Mint XFCE** installation steps.
+> This section is for users who have followed the previous Linux Mint XFCE installation steps.
 
 #### Method A: Direct Download (Easiest)
 
@@ -97,7 +97,7 @@ The current version is under active development and may contain bugs or unexpect
 
 ## Data Safety & Liability
 
-We **cannot recover any lost data** as the **user is responsible** for the **security, retention, backup, and deletion** of files stored locally.
+We **cannot recover any lost data** as the user is responsible for the security, retention, backup, and deletion of files stored locally.
 
 > [!WARNING]
 > **Data backups are mandatory** when handling sensitive information.
@@ -110,13 +110,13 @@ By using **Statim**, you agree to be **bound by all local laws.**
 
 ## Contributing & Support
 
-Help us make **Statim** more effective for the **Local-First community** and all its users.
+Help us make **Statim** more effective for the Local-First community and all its users.
 
-* If **unexpected behavior or issues** occur, [create a bug report](https://github.com/bemozi/bemozi.github.io/issues/new/choose).
-* For **suggestions or improvements**, [submit a feature request](https://github.com/bemozi/bemozi.github.io/pulls).
-* Regarding **feedback or general questions**, [join GitHub discussions](https://github.com/bemozi/bemozi.github.io/discussions).
+* If *unexpected behavior or issues occur, [create a bug report](https://github.com/bemozi/bemozi.github.io/issues/new/choose).
+* For suggestions or improvements, [submit a feature request](https://github.com/bemozi/bemozi.github.io/pulls).
+* Regarding feedback or general questions, [join GitHub discussions](https://github.com/bemozi/bemozi.github.io/discussions).
 
-**Expand **Statim**'s reach** by promoting it to others.
+Expand **Statim**'s reach by promoting it to others.
 
 > [!TIP]
 > Star this repository to track new features and improvements.
