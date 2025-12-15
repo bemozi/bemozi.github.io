@@ -25,9 +25,9 @@ For **optimal performance**, **stability**, and **enhanced security**, we highly
 
 #### Step 1: Download & Create Live USB
 
-1. Go to the [Linux Mint download page](https://linuxmint.com/download.php), select the **XFCE Edition**, and download the **.iso** file from a fast mirror.
+1. Go to the [Linux Mint download page](https://linuxmint.com/download.php), select the **XFCE Edition**, and download the `.iso` file from a fast mirror.
 2. Download and install the [Balena Etcher](https://etcher.balena.io) utility to flash the ISO file onto a USB drive (8 GB minimum).
-3. Open Etcher. First, click **Flash from file** to select your **.iso** file. Next, click **Select drive** to choose your USB, and finally, click **Flash!**.
+3. Open Etcher. First, click **Flash from file** to select your `.iso` file. Next, click **Select drive** to choose your USB, and finally, click **Flash!**.
 
 > [!CAUTION]
 > **Verify the drive letter is correct:** choosing the wrong drive leads to **permanent data loss.**
@@ -69,8 +69,8 @@ Our application has been extensively tested and optimized for **Google Chrome**.
 
 #### Method A: Direct Download (Easiest)
 
-1. Go to the official [Google Chrome Download Page](https://www.google.com/chrome), click **Download Chrome** and select the **.deb** package option.
-2. Once downloaded, open the **.deb** file. In the **Package Installer**, click **Install Package** and enter your password.
+1. Go to the official [Google Chrome Download Page](https://www.google.com/chrome), click **Download Chrome** and select the `.deb` package option.
+2. Once downloaded, open the `.deb` file. In the **Package Installer**, click **Install Package** and enter your password.
 
 #### Method B: Command Line (Automatic Updates)
 
