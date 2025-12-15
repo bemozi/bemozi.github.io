@@ -17,7 +17,7 @@
 
 ## Data Collection & Privacy
 
-Operational logs and temporary session **data are generated and stored only on your local device** and **never transmitted** to us or any third party, as it's technically impossible due to our architecture. We use no cookies, web beacons or tracking scripts.
+Operational logs and session **data are generated and stored only on your local device** and **never transmitted** to us or any third party, as it's technically impossible due to our architecture. We use no cookies, web beacons or tracking scripts.
 
 ## Recommended Environment for Maximum Performance (Developer's Choice)
 
@@ -27,7 +27,7 @@ For optimal performance, stability, and enhanced security, we highly recommend u
 
 #### Step 1: Download & Create Live USB
 
-1. Go to the [Linux Mint download page](https://linuxmint.com/download.php), select the **XFCE Edition**, and download the `.iso` file from a fast mirror.
+1. Download the **XFCE Edition** `.iso` file from the [Linux Mint download page](https://linuxmint.com/download.php).
 2. Download and install the [Balena Etcher](https://etcher.balena.io) utility to flash the ISO file onto a USB drive (8 GB minimum).
 3. Open Etcher. First, click **Flash from file** to select your `.iso` file. Next, click **Select drive** to choose your USB, and finally, click **Flash!**.
 
@@ -36,14 +36,14 @@ For optimal performance, stability, and enhanced security, we highly recommend u
 
 #### Step 2: Install Linux Mint Alongside Your Current OS (Dual Boot)
 
-This installation **preserves both operating systems**. Every time you start your computer, you can use Linux Mint XFCE for secure office collaboration, and easily switch back to Windows when you need software that only runs on Windows.
+This installation **preserves both operating systems**. At startup, use Linux Mint for secure office collaboration, and easily switch back to Windows when you need software that only runs on Windows.
 
 1. Insert the Live USB, restart your computer, and repeatedly press the boot key (usually **F2, F10, F12, or Del**) to select the USB drive as the boot device.
 2. Double-click **Install Linux Mint** on the desktop, and choose your language and keyboard layout.
 3. On the **Installation Type** screen, select the option **Install Linux Mint alongside your current OS**.
 4. **Allocate Disk Space:** drag the slider to allocate space for Linux Mint (ideally 50-100 GB or more). Then, click **Install Now**.
 5. Set your geographical location, preferred username, and create a **strong password**.
-6. After the installation completes, **remove the Live USB** and click **Restart Now**.
+6. After installation, **remove the Live USB** and click **Restart Now**.
 7. After restarting, you can choose to launch either Linux Mint or your current OS from the boot menu.
 
 #### Step 3: Initial Security Update
@@ -67,16 +67,16 @@ After installation and restart, update the system to get the latest security pat
 Our application has been extensively tested and optimized for **Google Chrome**. While other browsers *might* work, Chrome is the **required minimum environment** for guaranteed functionality.
 
 > [!NOTE]
-> This section is for users who have followed the previous Linux Mint XFCE installation steps.
+> This section is for users who have followed the previous Linux Mint installation steps.
 
 #### Method A: Direct Download (Easiest)
 
 1. Go to the official [Google Chrome Download Page](https://www.google.com/chrome), click **Download Chrome** and select the `.deb` package option.
-2. Once downloaded, open the `.deb` file. In the **Package Installer**, click **Install Package** and enter your password.
+2. Once downloaded, open the `.deb` file, click **Install Package** and enter your password.
 
 #### Method B: Command Line (Automatic Updates)
 
-This method ensures Chrome is kept up-to-date **automatically** with your system updates:
+This method ensures Chrome updates **automatically** with your system updates:
 
 1. Download the package key and add the Google repository:
 
@@ -100,11 +100,11 @@ The current version is under active development and may contain bugs or unexpect
 We **cannot recover any lost data** as the user is responsible for the security, retention, backup, and deletion of files stored locally.
 
 > [!WARNING]
-> **Data backups are mandatory** when handling sensitive information.
+> **Data backups are mandatory** for sensitive data.
 
 ## Legal Information
 
-This repository is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](https://github.com/bemozi/bemozi.github.io/tree/main?tab=License-1-ov-file).
+**Statim** is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](https://github.com/bemozi/bemozi.github.io/tree/main?tab=License-1-ov-file).
 
 By using **Statim**, you agree to be **bound by all local laws.**
 
@@ -116,7 +116,7 @@ Help us make **Statim** more effective for the Local-First community and all its
 * For suggestions or improvements, [submit a feature request](https://github.com/bemozi/bemozi.github.io/pulls).
 * Regarding feedback or general questions, [join GitHub discussions](https://github.com/bemozi/bemozi.github.io/discussions).
 
-Expand **Statim**'s reach by promoting it to others.
+Expand **Statim**'s reach by promoting it.
 
 > [!TIP]
 > Star this repository to track new features and improvements.
