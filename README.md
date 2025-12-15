@@ -1,5 +1,5 @@
 <p align="center">
-	<a align="center" href="https://bemozi.github.io">
+	<a href="https://bemozi.github.io">
 		<picture>
 			<source srcset="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/logo-white.svg" media="(prefers-color-scheme: dark)">
 			<img src="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/logo.svg" alt="Statim" width="150">
@@ -49,7 +49,7 @@ After installation and restart, update the system to get the latest security pat
 1. Open the **Terminal** (press **Ctrl+Alt+T**) to **run the following update command**:
 
 	```bash
-	sudo apt update && sudo apt upgrade -y && sudo apt install software-properties-common ca-certificates curl -y
+	sudo apt update && sudo apt upgrade -y
 	```
 
 2. The **Uncomplicated Firewall (UFW)** is pre-installed but disabled. **Run the following command** in the Terminal to enable it for robust security:
@@ -63,7 +63,7 @@ After installation and restart, update the system to get the latest security pat
 Our application has been extensively tested and optimized for **Google Chrome**. While other browsers *might* work, Chrome is the **required minimum environment** for guaranteed functionality.
 
 > [!NOTE]
-> This section is specifically designed for users who have followed the previous **Linux Mint XFCE** installation steps.
+> This section is for users who have followed the previous **Linux Mint XFCE** installation steps.
 
 #### Method A: Direct Download (Easiest)
 
