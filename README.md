@@ -32,7 +32,7 @@ For optimal performance, stability, and enhanced security, we highly recommend u
 
 1. Download the **XFCE Edition** `.iso` file from the [Linux Mint download page](https://linuxmint.com/download.php).
 2. Download and install [Balena Etcher](https://etcher.balena.io) to flash the ISO file onto a USB drive (8 GB minimum).
-3. Open Etcher. First, click **Flash from file** to select the `.iso` file. Next, click **Select drive** to choose your USB, and finally, click **Flash!**.
+3. Open Etcher. First, click `Flash from file` to select the `.iso` file. Next, click `Select drive` to choose your USB, and finally, click `Flash!`.
 
 > [!CAUTION]
 > Verify the drive letter is correct to avoid permanent data loss.
@@ -42,11 +42,11 @@ For optimal performance, stability, and enhanced security, we highly recommend u
 This installation **preserves both operating systems**. At startup, use Linux Mint for secure office collaboration, and easily switch back to Windows when you need software that only runs on Windows.
 
 1. Insert the Live USB, restart your computer, and repeatedly press the boot key (usually `F2`, `F10`, `F12`, or `Del`) to select the USB drive as the boot device.
-2. Double-click **Install Linux Mint** on the desktop, and choose your language and keyboard layout.
-3. On the **Installation Type** screen, select **Install Linux Mint alongside your current OS**.
-4. **Allocate Disk Space:** drag the slider to allocate space (30 GB minimum). Then, click **Install Now**.
+2. Double-click `Install Linux Mint` on the desktop, and choose your language and keyboard layout.
+3. On the **Installation Type** screen, select `Install Linux Mint alongside your current OS`.
+4. **Allocate Disk Space:** drag the slider to allocate space (30 GB minimum). Then, click `Install Now`.
 5. Set location, username, and create a **strong password**.
-6. After installation, **remove the Live USB** and click **Restart Now**.
+6. After installation, **remove the Live USB** and click `Restart Now`.
 7. After restarting, you can choose to launch either Linux Mint or your current OS from the boot menu.
 
 #### Step 3: Initial Security Update
@@ -75,7 +75,7 @@ Our application has been extensively tested and optimized for **Google Chrome**.
 #### Method A: Direct Download (Easiest)
 
 1. Download the official [Google Chrome `.deb` package](https://www.google.com/chrome).
-2. Open the `.deb` file, click **Install Package** and enter your password.
+2. Open the `.deb` file, click `Install Package` and enter your password.
 
 #### Method B: Command Line (Automatic Updates)
 
