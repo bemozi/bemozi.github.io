@@ -52,7 +52,7 @@ This installation **preserves both operating systems**. Use the boot menu at sta
 
 After installation and restart, update the system for security patches:
 
-1. Open the **Terminal** (press `Ctrl`+`Alt`+`T`) to **run the following update command**:
+1. To update, open the **Terminal** (press `Ctrl`+`Alt`+`T`), copy and paste the following command, then press Enter:
 
 	```bash
 	sudo apt update && sudo apt upgrade -y
@@ -66,7 +66,7 @@ After installation and restart, update the system for security patches:
 
 ### Browser Setup: Google Chrome (Required)
 
-**Statim** has been extensively tested and optimized for **Google Chrome**. While other browsers *might* work, Chrome is the **required minimum environment** for guaranteed functionality.
+**Statim** has been extensively tested and optimized for Google Chrome. While other browsers *might* work, Chrome is the **required minimum environment** for guaranteed functionality.
 
 > [!NOTE]
 > These instructions are for users who have followed the previous Linux Mint installation steps.
@@ -78,7 +78,7 @@ After installation and restart, update the system for security patches:
 
 #### Method B: Command Line (Automatic Updates)
 
-This method ensures Chrome updates **automatically** with your system:
+This method ensures Chrome updates automatically with your system:
 
 1. Download the package key and add the Google repository:
 
@@ -102,7 +102,7 @@ The current version is under active development and may contain bugs or unexpect
 The user is responsible for the security, retention, backup, and deletion of files stored locally. We **cannot recover any lost data**.
 
 > [!WARNING]
-> **Backups are mandatory** for sensitive data.
+> Backups are mandatory for sensitive data.
 
 ## Legal Information
 
