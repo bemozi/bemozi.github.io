@@ -17,7 +17,7 @@
 
 ## Recommended Environment for Maximum Performance (Developer's Choice)
 
-For **optimal performance**, **stability**, and **enhanced security**, we highly recommend using **Linux Mint XFCE** (for its low resource use) and **Google Chrome**. You are, however, free to use other operating systems.
+For **optimal performance**, **stability**, and **enhanced security**, we highly recommend using **Linux Mint XFCE** (for its low resource use). You are, however, free to use other operating systems.
 
 ### System Setup: Linux Mint XFCE (Optional/Recommended)
 
