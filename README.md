@@ -15,13 +15,15 @@
 > [!NOTE]
 > This repository is built **only with native, well-documented, and officially supported browser APIs** and **does not rely on any third-party dependencies**.
 
+## Data Collection & Privacy
+
+**Operational logs and temporary session data** are generated and stored **only on your local device** and **never transmitted** to us or any third party (we use **no cookies, web beacons or tracking scripts**), as it's **technically impossible due to our architecture**.
+
 ## Recommended Environment for Maximum Performance (Developer's Choice)
 
 For **optimal performance**, **stability**, and **enhanced security**, we highly recommend using **Linux Mint XFCE** (for its low resource use). You are, however, free to use other operating systems.
 
 ### System Setup: Linux Mint XFCE (Optional/Recommended)
-
-**Linux Mint XFCE** is a lightweight, stable, and secure operating system.
 
 #### Step 1: Download & Create Live USB
 
@@ -54,7 +56,7 @@ After installation and restart, update the system to get the latest security pat
 	sudo apt update && sudo apt upgrade -y
 	```
 
-2. The **Uncomplicated Firewall (UFW)** is pre-installed but disabled. **Run the following command** in the Terminal to enable it for robust security:
+2. The **Uncomplicated Firewall (UFW)** is pre-installed but disabled. Enable it for robust security:
 
 	```bash
 	sudo ufw enable && sudo ufw default deny incoming
@@ -76,25 +78,35 @@ Our application has been extensively tested and optimized for **Google Chrome**.
 
 This method ensures Chrome is kept up-to-date **automatically** with your system updates:
 
-1. Open the **Terminal** (press **Ctrl+Alt+T**) and **run the following commands** to download the package key and add the Google repository:
+1. Download the package key and add the Google repository:
 
 	```bash
 	wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg
 	echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
 	```
 
-2. **Run the following command** to update the system's package list and install Chrome:
+2. Update the system's package list and install Chrome:
 
 	```bash
 	sudo apt update && sudo apt install google-chrome-stable
 	```
 
-## Development Status & Data Safety
+## Development Status & Warranty
 
 The current version is under active development and may contain bugs or unexpected behavior. Therefore, it is provided **"as-is"** without any warranty, express or implied. (See the [LICENSE](https://github.com/bemozi/bemozi.github.io/tree/main?tab=License-1-ov-file) file for full details).
 
+## Data Safety & Liability
+
+We **cannot recover any lost data** as the **user is responsible** for the **security, retention, backup, and deletion** of files stored locally.
+
 > [!WARNING]
 > **Data backups are mandatory** when handling sensitive information.
+
+## Legal Information
+
+This repository is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](https://github.com/bemozi/bemozi.github.io/tree/main?tab=License-1-ov-file).
+
+By using **Statim**, you agree to be **bound by all local laws.**
 
 ## Contributing & Support
 
@@ -104,11 +116,7 @@ Help us make **Statim** more effective for the **Local-First community** and all
 * For **suggestions or improvements**, [submit a feature request](https://github.com/bemozi/bemozi.github.io/pulls).
 * Regarding **feedback or general questions**, [join GitHub discussions](https://github.com/bemozi/bemozi.github.io/discussions).
 
-**Expand Statim's reach** by promoting it to others.
+**Expand **Statim**'s reach** by promoting it to others.
 
 > [!TIP]
 > Star this repository to track new features and improvements.
-
-## License
-
-This repository is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](https://github.com/bemozi/bemozi.github.io/tree/main?tab=License-1-ov-file).
