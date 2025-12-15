@@ -112,7 +112,7 @@ By using **Statim**, you agree to **abide by all local laws.**
 
 Help us make **Statim** more effective for the Local-First community and its users.
 
-* If *unexpected behavior or issues occur, [create a bug report](https://github.com/bemozi/bemozi.github.io/issues/new/choose).
+* If unexpected behavior or issues occur, [create a bug report](https://github.com/bemozi/bemozi.github.io/issues/new/choose).
 * For suggestions or improvements, [submit a feature request](https://github.com/bemozi/bemozi.github.io/pulls).
 * Regarding feedback or general questions, [join GitHub discussions](https://github.com/bemozi/bemozi.github.io/discussions).
 
