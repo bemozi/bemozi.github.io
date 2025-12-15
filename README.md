@@ -66,10 +66,10 @@ After installation and restart, update the system for security patches:
 
 ### Browser Setup: Google Chrome (Required)
 
-Our application has been extensively tested and optimized for **Google Chrome**. While other browsers *might* work, Chrome is the **required minimum environment** for guaranteed functionality.
+**Statim** has been extensively tested and optimized for **Google Chrome**. While other browsers *might* work, Chrome is the **required minimum environment** for guaranteed functionality.
 
 > [!NOTE]
-> This section is for users who have followed the previous Linux Mint installation steps.
+> These instructions are for users who have followed the previous Linux Mint installation steps.
 
 #### Method A: Direct Download (Easiest)
 
@@ -99,7 +99,7 @@ The current version is under active development and may contain bugs or unexpect
 
 ## Data Safety & Liability
 
-We **cannot recover any lost data**. The user is responsible for the security, retention, backup, and deletion of files stored locally.
+The user is responsible for the security, retention, backup, and deletion of files stored locally. We **cannot recover any lost data**.
 
 > [!WARNING]
 > **Backups are mandatory** for sensitive data.
