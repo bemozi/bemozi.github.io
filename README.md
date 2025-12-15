@@ -34,7 +34,7 @@ For **optimal performance**, **stability**, and **enhanced security**, we highly
 
 #### Step 2: Install Linux Mint Alongside Your Current OS (Dual Boot)
 
-This installation **preserves both operating systems**. Every time you start your computer, you can use **Linux Mint XFCE** for secure office collaboration, and easily **switch back to Windows** whenever you need software that only runs on Windows.
+This installation **preserves both operating systems**. Every time you start your computer, you can use **Linux Mint XFCE** for secure office collaboration, and easily **switch back to Windows** when you need software that only runs on Windows.
 
 1. Insert the Live USB, restart your computer, and repeatedly press the boot key (usually **F2, F10, F12, or Del**) to select the USB drive as the boot device.
 2. Double-click **Install Linux Mint** on the desktop, and choose your language and keyboard layout.
