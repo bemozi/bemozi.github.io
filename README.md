@@ -106,13 +106,18 @@ The user is responsible for the security, retention, backup, and deletion of fil
 
 In no event shall the authors or copyright holders be liable for any damages (including, but not limited to, direct, indirect, incidental, special, or consequential damages) arising out of the use or inability to use **Statim**.
 
+> [!CAUTION]
+> By using **Statim**, you agree to indemnify and hold harmless the developers, authors, and copyright holders from and against any and all claims, damages, liabilities, costs, and expenses (including attorney's fees) arising out of or in connection with your use or distribution of **Statim**.
+
 ## Legal Information
 
 **Statim** is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](https://github.com/bemozi/bemozi.github.io/tree/main?tab=License-1-ov-file).
 
-By using **Statim**, you agree to **abide by all local laws.**
+The AGPL-3.0 copyleft clause requires that any Derivative work of **Statim** deployed as a network service must release its corresponding source code under the AGPL-3.0.
 
-By submitting any contribution to **Statim** (including code, documentation, or suggestions), you grant **Statim** a perpetual, irrevocable, and royalty-free license to use, reproduce, modify, and distribute it under the AGPL-3.0 terms.
+By using **Statim**, you agree to abide by all local laws.
+
+By submitting any contribution to **Statim** (including code, documentation, or suggestions), you represent and warrant that you have the legal right to grant the license and that the contribution is your original work or you have the necessary permissions to submit it, and you grant **Statim** a perpetual, irrevocable, and royalty-free license to use, reproduce, modify, and distribute the contribution under the AGPL-3.0 terms.
 
 **Statim** retains the right to modify and release future versions of the project, including its source code and features, under the AGPL-3.0 terms, at any time without prior notice.
 
