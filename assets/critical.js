@@ -1,1 +1,1 @@
-onload = () => document.getElementsByTagName('dialog')[0].showModal();
+onclick = event => document.getElementsByTagName('dialog')[0].showModal();
