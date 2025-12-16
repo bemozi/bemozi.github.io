@@ -104,7 +104,7 @@ The user is responsible for the security, retention, backup, and deletion of fil
 > [!WARNING]
 > Backups are mandatory for sensitive data.
 
-In no event shall the authors or copyright holders be liable for any damages (including, but not limited to, direct, indirect, incidental, special, or consequential damages) arising out of the use or inability to use Statim.
+In no event shall the authors or copyright holders be liable for any damages (including, but not limited to, direct, indirect, incidental, special, or consequential damages) arising out of the use or inability to use **Statim**.
 
 ## Legal Information
 
@@ -112,7 +112,7 @@ In no event shall the authors or copyright holders be liable for any damages (in
 
 By using **Statim**, you agree to **abide by all local laws.**
 
-By submitting any contribution to Statim (including code, documentation, or suggestions), you grant Statim a perpetual, irrevocable, and royalty-free license to use, reproduce, modify, and distribute it under the AGPL-3.0 terms.
+By submitting any contribution to **Statim** (including code, documentation, or suggestions), you grant **Statim** a perpetual, irrevocable, and royalty-free license to use, reproduce, modify, and distribute it under the AGPL-3.0 terms.
 
 **Statim** retains the right to modify and release future versions of the project, including its source code and features, under the AGPL-3.0 terms, at any time without prior notice.
 
