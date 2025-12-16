@@ -110,6 +110,8 @@ The user is responsible for the security, retention, backup, and deletion of fil
 
 By using **Statim**, you agree to **abide by all local laws.**
 
+**Statim** reserves the right to modify and release future versions of the project, including its source code and features, under the AGPL-3.0 terms, at any time without prior notice.
+
 ## Contributing & Support
 
 Help us make **Statim** more effective for the Local-First community and its users.
@@ -122,3 +124,32 @@ Expand **Statim**'s reach by promoting it.
 
 > [!TIP]
 > Star this repository to track new features and improvements.
+
+
+
+
+
+
+
+
+Statim is a Local-First web app that offers sustained functionality without internet connectivity, complete data ownership, and is fully auditable. All this is delivered with a responsive, intuitive, and distraction-free interface.
+
+
+
+By using **Statim**, you agree to abide by the **[Terms of Service](TERMS_OF_SERVICE.md)**.
+
+## Terms
+
+By accessing **Statim**, accessible from bemozi.github.io, you are agreeing to be bound by these Website Terms and Conditions of Use and agree that you are responsible for the agreement with any applicable local laws. If you disagree with any of these terms, you are prohibited from accessing **Statim**. The materials contained in this Website are protected by copyright and trademark law.
+
+## Revisions and Errata
+
+The materials appearing on **Statim**’s Website may include technical, typographical, or photographic errors. **Statim** will not promise that any of the materials in this Website are accurate, complete, or current. **Statim** may change the materials contained on its Website at any time without notice. **Statim** does not make any commitment to update the materials.
+
+## Links Policy
+
+**Statim** has not reviewed all of the sites linked to its Website and is not responsible for the contents of any such linked site. The presence of any link does not imply endorsement by **Statim** of the site. The use of any linked website is at the user’s own risk.
+
+## Terms of Use Modifications
+
+**Statim** may revise these Terms of Use at any time without prior notice. By using **Statim**, you are agreeing to be bound by the current version of these Terms and Conditions of Use.
