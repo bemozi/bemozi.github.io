@@ -1,3 +1,7 @@
+::backdrop {
+	background: rgb(0 0 0 / 25%);
+	backdrop-filter: blur(5px);
+}
 body {
 	padding-top: max(2vh, 2vw, env(safe-area-inset-top));
 	padding-bottom: max(2vh, 2vw, env(safe-area-inset-bottom));
@@ -17,8 +21,41 @@ body {
 * {
 	box-sizing: border-box;
 	margin: 0;
+	padding: 0;
 	font-size: inherit;
 	user-select: none;
+}
+dialog {
+	margin: auto;
+	width: 80vi;
+	border: none;
+	background: #FAFAFA;
+	border-radius: .5rem;
+	animation: horizontal-shaking .15s 3 ease-in-out;
+}
+dialog > h1 {
+	background: #1B4E8C;
+	color: #FAFAFA;
+}
+dialog > p {
+	padding: 15px 10px;
+}
+@keyframes horizontal-shaking {
+	0% {
+		transform: translateX(0);
+	}
+	25% {
+		transform: translateX(5px);
+	}
+	50% {
+		transform: translateX(-5px);
+	}
+	75% {
+		transform: translateX(5px);
+	}
+	100% {
+		transform: translateX(0);
+	}
 }
 a {
 	all: unset;
