@@ -33,12 +33,17 @@ dialog {
 	border-radius: .5rem;
 	animation: horizontal-shaking .15s 3 ease-in-out;
 }
-dialog > h1 {
+dialog[open] {
+	display: grid;
+	gap: 15px;
+}
+dialog > :first-child {
+	padding: 5px 0;
 	background: #1B4E8C;
 	color: #FAFAFA;
 }
-dialog > p {
-	padding: 15px 10px;
+dialog > :last-child {
+	padding-bottom: 15px;
 }
 @keyframes horizontal-shaking {
 	0% {
@@ -57,14 +62,14 @@ dialog > p {
 		transform: translateX(0);
 	}
 }
+main > * {
+	font-weight: 400;
+}
 a {
 	all: unset;
 }
 [href] {
 	cursor: pointer;
-}
-main > * {
-	font-weight: 400;
 }
 a, h1 {
 	color: #1B4E8C;
