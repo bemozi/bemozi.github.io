@@ -1,10 +1,16 @@
 const controller = new AbortController();
 const {signal} = controller;
 
-document.addEventListener('load', event => {
-	document.getElementsByTagName('dialog')[0].showModal();
+addEventListener('load', event => {
+	
 }, {signal});
 
-document.addEventListener('beforeunload', event => {
+const dialog = document.getElementsByTagName('dialog')[0];
+
+addEventListener('pointermove', event => {
+	dialog.open || dialog.showModal();
+}, {signal});
+
+addEventListener('beforeunload', event => {
 	
 }, {signal});
