@@ -99,7 +99,7 @@ The current version is under active development and may contain bugs, security v
 
 ## Data Safety & Liability
 
-The user is responsible for the security, retention, backup, and deletion of files stored locally. We **cannot recover any lost data**.
+We do not provide data recovery services. As files are stored locally, the processes of data retention, security, backup, and deletion remain the user's sole responsibility.
 
 > [!WARNING]
 > Backups are mandatory for sensitive data.
