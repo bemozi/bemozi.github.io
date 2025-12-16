@@ -95,7 +95,7 @@ This method ensures Chrome updates automatically with your system:
 
 ## Development Status & Warranty
 
-The current version is under active development and may contain bugs or unexpected behavior. It is provided **"as-is"** without any warranty, express or implied. (See the [LICENSE](https://github.com/bemozi/bemozi.github.io/tree/main?tab=License-1-ov-file) file for full details).
+The current version is under active development and may contain bugs, security vulnerabilities or unexpected behavior. It is provided **"as-is"** without any warranty, express or implied. (See the [LICENSE](https://github.com/bemozi/bemozi.github.io/tree/main?tab=License-1-ov-file) file for full details).
 
 ## Data Safety & Liability
 
@@ -104,13 +104,17 @@ The user is responsible for the security, retention, backup, and deletion of fil
 > [!WARNING]
 > Backups are mandatory for sensitive data.
 
+In no event shall the authors or copyright holders be liable for any damages (including, but not limited to, direct, indirect, incidental, special, or consequential damages) arising out of the use or inability to use Statim.
+
 ## Legal Information
 
 **Statim** is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](https://github.com/bemozi/bemozi.github.io/tree/main?tab=License-1-ov-file).
 
 By using **Statim**, you agree to **abide by all local laws.**
 
-**Statim** reserves the right to modify and release future versions of the project, including its source code and features, under the AGPL-3.0 terms, at any time without prior notice.
+By submitting any contribution to Statim (including code, documentation, or suggestions), you grant Statim a perpetual, irrevocable, and royalty-free license to use, reproduce, modify, and distribute it under the AGPL-3.0 terms.
+
+**Statim** retains the right to modify and release future versions of the project, including its source code and features, under the AGPL-3.0 terms, at any time without prior notice.
 
 ## Contributing & Support
 
@@ -124,32 +128,3 @@ Expand **Statim**'s reach by promoting it.
 
 > [!TIP]
 > Star this repository to track new features and improvements.
-
-
-
-
-
-
-
-
-Statim is a Local-First web app that offers sustained functionality without internet connectivity, complete data ownership, and is fully auditable. All this is delivered with a responsive, intuitive, and distraction-free interface.
-
-
-
-By using **Statim**, you agree to abide by the **[Terms of Service](TERMS_OF_SERVICE.md)**.
-
-## Terms
-
-By accessing **Statim**, accessible from bemozi.github.io, you are agreeing to be bound by these Website Terms and Conditions of Use and agree that you are responsible for the agreement with any applicable local laws. If you disagree with any of these terms, you are prohibited from accessing **Statim**. The materials contained in this Website are protected by copyright and trademark law.
-
-## Revisions and Errata
-
-The materials appearing on **Statim**’s Website may include technical, typographical, or photographic errors. **Statim** will not promise that any of the materials in this Website are accurate, complete, or current. **Statim** may change the materials contained on its Website at any time without notice. **Statim** does not make any commitment to update the materials.
-
-## Links Policy
-
-**Statim** has not reviewed all of the sites linked to its Website and is not responsible for the contents of any such linked site. The presence of any link does not imply endorsement by **Statim** of the site. The use of any linked website is at the user’s own risk.
-
-## Terms of Use Modifications
-
-**Statim** may revise these Terms of Use at any time without prior notice. By using **Statim**, you are agreeing to be bound by the current version of these Terms and Conditions of Use.
