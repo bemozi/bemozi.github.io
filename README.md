@@ -112,7 +112,7 @@ In no event shall the authors or copyright holders be liable for any damages (in
 
 **Statim** is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](https://github.com/bemozi/bemozi.github.io/tree/main?tab=License-1-ov-file).
 
-The AGPL-3.0 copyleft clause requires that any Derivative work of **Statim** deployed as a network service must release its corresponding source code under the AGPL-3.0.
+The AGPL-3.0 copyleft clause requires that any derivative work of **Statim** deployed as a network service must release its corresponding source code under the AGPL-3.0.
 
 By using **Statim**, you agree to abide by all local laws.
 
