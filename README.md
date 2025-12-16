@@ -107,8 +107,7 @@ The user is responsible for the security, retention, backup, and deletion of fil
 In no event shall the authors or copyright holders be liable for any damages (including, but not limited to, direct, indirect, incidental, special, or consequential damages) arising out of the use or inability to use **Statim**.
 
 > [!CAUTION]
-> By using **Statim**, you agree to indemnify and hold harmless the developers, authors, and copyright holders from and against any and all claims, damages, liabilities, costs, and expenses (including attorney's fees) arising out of or in connection with your use or distribution of **Statim**.
-
+> By using **Statim**, you agree to indemnify and hold harmless the developers, authors, and copyright holders from and against any and all claims, damages, liabilities, costs, and expenses, including, but not limited to, attorney's fees, arising out of or in connection with your use or distribution of **Statim**.
 ## Legal Information
 
 **Statim** is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](https://github.com/bemozi/bemozi.github.io/tree/main?tab=License-1-ov-file).
