@@ -2,7 +2,7 @@
 <html lang="en-US">
 	<head>
 		<meta charset="UTF-8">
-		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content">
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; script-src-elem 'self' blob:; worker-src 'self' blob:; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; block-all-mixed-content">
 		<meta http-equiv="Permissions-Policy" content="*()">
 		<meta http-equiv="Origin-Agent-Cluster" content="?1">
 		<meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin">
@@ -54,9 +54,6 @@
 		</script>
 	</head>
 	<body>
-		<header>
-			<a href="/" target="_self"><img src="logo.svg" alt="Statim" width="128" height="128"></a>
-		</header>
 		<main>
 			<h1>A Local-First Web App for Reliable Office Collaboration</h1>
 			<p><strong>Statim is fully auditable web app</strong> that offers <strong>sustained functionality without connectivity</strong> and data ownership, with an intuitive, distraction-free interface.</p>
