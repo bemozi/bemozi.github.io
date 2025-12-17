@@ -1,5 +1,5 @@
 {
-	"name": "Statim: Open Source Local-First Web App",
+	"name": "Statim: Local-First Web App",
 	"short_name": "Statim",
 	"description": "Statim is a fully auditable web app that offers sustained functionality without connectivity and data ownership, with an intuitive, distraction-free interface.",
 	"display": "standalone",
