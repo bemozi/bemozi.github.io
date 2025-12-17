@@ -18,6 +18,14 @@ body {
 	background: #FAFAFA;
 	color: #424242;
 }
+body::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	background: linear-gradient(0deg, #f1f7ff, #FAFAFA), url('logo.svg') no-repeat center / 50vb;
+	background-blend-mode: hard-light;
+}
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -37,6 +45,9 @@ dialog {
 dialog[open] {
 	display: grid;
 	gap: 15px;
+}
+dialog > * {
+	padding: 0 15px;
 }
 dialog > :first-child {
 	padding: 5px 0;
