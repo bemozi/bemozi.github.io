@@ -5,7 +5,7 @@
 			<img src="https://github.com/bemozi/bemozi.github.io/raw/refs/heads/main/assets/logo.svg" alt="Statim" width="128" height="128">
 		</picture>
 	</a><br><br>
-	An Open Source Local-First Web App <b>for Reliable Office Collaboration</b>
+	A Local-First Web App <b>for Reliable Office Collaboration</b>
 </p>
 
 ## Introducing Statim
