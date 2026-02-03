@@ -1,32 +1,307 @@
-const controller = new AbortController();
-const {signal} = controller;
-
-addEventListener('load', event => {
-	dialog.open || dialog.showModal();
-}, {signal});
-
-const dialog = document.getElementsByTagName('dialog')[0];
-
-addEventListener('pointerdown', event => {
-	
-}, {signal});
-
-addEventListener('pointerup', event => {
-	
-}, {signal});
-
-addEventListener('pointermove', event => {
-	
-}, {signal});
-
-addEventListener('focus', event => {
-	
-}, {signal});
-
-addEventListener('visibilitychange', event => {
-	
-}, {signal});
-
-addEventListener('beforeunload', event => {
-	
-}, {signal});
+(({use64bit = 1, schema} = {}) => {
+	use64bit = use64bit === 1 ? 0n : 0;
+	const HASH_SEED = 18321127 | 0, SALT_LOW = 19541101 | 0, SALT_HIGH = 19620705 | 0,
+	hash = (string, seed = HASH_SEED | 0) => {
+		for (let index = 0, length = string.length; index < length; ++index) seed = Math.imul(seed ^ string.charCodeAt(index), HASH_SEED);
+		return seed >>> 0;
+	}, getID = use64bit === 0 ? (key, parentID) => {
+		key = typeof key === 'number' ? key | 0 : hash(key);
+		return Math.imul(parentID ^ key, HASH_SEED) >>> 0;
+	} : (key, parentID) => {
+		key = typeof key === 'number' ? key | 0 : hash(key);
+		const low = Math.imul((Number(parentID & 0xFFFFFFFFn) | 0) ^ key, SALT_LOW),
+		high = Math.imul((Number((parentID >> 32n) & 0xFFFFFFFFn) | 0) ^ key, SALT_HIGH);
+		return (BigInt((high ^ (high >>> 13)) >>> 0) << 32n) | BigInt((low ^ (low >>> 16)) >>> 0);
+	}, resolve = result => result instanceof Result ? result : new Result(result),
+	Result = class {
+		constructor(data, error = null) {
+			this.data = data;
+			this.error = (this.success = error === null) ? 0 : error?.message || String(error);
+		}
+		valueOf() {return this.data}
+		toString() {return String(this.data)}
+		[Symbol.toPrimitive](hint) {
+			if (hint === 'number') return Number(this.data) || 0;
+			if (this.data === null || typeof this.data !== 'object') return this.data
+			return String(this.data);
+		}
+		ok(callback) {return this.success ? callback(this.data) : this}
+		or(fallback) {return this.success ? this : fallback(this.data)}
+		on(callback, fallback) {return this.success ? callback(this.data) : fallback(this.error)}
+	}, nodes = new Map(), edges = new Map(), State = class {
+		constructor(parent, id, key) {
+			this.parent = parent;
+			this.id = id;
+			this.key = key;
+		}
+	}, SecureTarget = class extends Function {
+		#state;
+		constructor(state) {
+			super();
+			this.#state = state;
+		}
+		static access(target) {return target.#state}
+	}, linkHandler = {
+		apply: (target, thisArg, args) => {
+			const state = SecureTarget.access(target),
+			key = state.key,
+			ParentID = state.parent ? state.parent.id : use64bit;
+			let method = schema.get(state.id);
+			const isShared = method === undefined;
+			if (isShared) method = schema.get(key);
+			if (typeof method === 'function') {
+				if (!isShared) return method(link(new State(null, use64bit, '')), ...args);
+				const ParentNode = nodes.get(ParentID);
+				return method(link(new State(null, use64bit, '')), {
+					value: ParentNode,
+					key,
+					id: ParentID
+				}, ...args);
+			}
+		}, get: (target, key) => {
+			const state = SecureTarget.access(target), currentID = state.id;
+			if (key === 'value') return nodes.get(currentID);
+			if (key === Symbol.toPrimitive) return hint => {
+				const value = nodes.get(currentID);
+				if (hint === 'number') return Number(value) || 0;
+				if (value === null || typeof value !== 'object') return value;
+				return String(value);
+			};
+			if (key === 'up') return (steps = 1) => {
+				let current = state;
+				while (steps-- && current.parent) current = current.parent;
+				return link(current);
+			};
+			if (key === Symbol.iterator) return function*() {
+				const branch = edges.get(currentID);
+				if (!branch) return;
+				for (const property of branch.keys()) yield property;
+			};
+			if (typeof key !== 'string') return;
+			return link(new State(state, edges.get(currentID)?.get(key) ?? getID(key, currentID), key));
+		}, set: (target, key, value) => {
+			const state = SecureTarget.access(target), currentID = state.id;
+			let currentEdges = edges.get(currentID);
+			const childID = currentEdges?.get(key) ?? getID(key, currentID),
+			content = value?.constructor === Object ? undefined : value;
+			if (content === undefined && !edges.has(childID) || value?.drop !== undefined) {
+				if (value?.drop === 1) {
+					const stack = [childID];
+					while (stack.length) {
+						const stackID = stack.pop(), stackIDEdges = edges.get(stackID);
+						if (stackIDEdges) {
+							stackIDEdges.forEach(nextID => stack.push(nextID));
+							edges.delete(stackID);
+						}
+						nodes.delete(stackID);
+					}
+				} else nodes.delete(childID);
+				let bubble = state;
+				while (bubble.parent) {
+					const bubbleID = bubble.parent.id, bubbleEdges = edges.get(bubbleID);
+					bubbleEdges?.delete(bubble.key);
+					if (bubbleEdges.size) break;
+					edges.delete(bubbleID);
+					bubble = bubble.parent;
+				}
+				return true;
+			}
+			if (content === undefined) nodes.delete(childID); else nodes.set(childID, content);
+			if (currentEdges === undefined) edges.set(currentID, currentEdges = new Map());
+			currentEdges.set(key, childID);
+			return true;
+		}, getPrototypeOf: target => {
+			const hostNode = nodes.get(SecureTarget.access(target).id);
+			return hostNode ? Object.getPrototypeOf(hostNode) : null;
+		}, has: (target, key) => {
+			if (key === 'up' || key === 'value') return true;
+			const hostEdges = edges.get(SecureTarget.access(target).id);
+			return hostEdges ? hostEdges.has(key) : false;
+		}
+	}, link = state => new Proxy(new SecureTarget(state), linkHandler);
+	{
+		const schemaMap = new Map(), stack = [use64bit, schema];
+		while (stack.length) {
+			const branch = stack.pop(), parentID = stack.pop(), isShared = branch === schema.shared;
+			for (const key in branch) {
+				const method = branch[key];
+				if (typeof method === 'function') {
+					if (key.endsWith('_run')) schemaMap.set(isShared ? key.slice(0, -4) : getID(key.slice(0, -4), parentID), (...args) => {
+						try {
+							const result = method(...args);
+							return result instanceof Promise ? result.then(resolve).catch(error => new Result(args.length > 1 ? args : args[0], error)) : result instanceof Result ? result : new Result(result);
+						} catch (error) {return new Result(args.length > 1 ? args : args[0], error)}
+					}); else schemaMap.set(isShared ? key : getID(key, parentID), method);
+				} else stack.push(getID(key, parentID), method);
+			}
+		}
+		schema = schemaMap;
+	}
+	link(new State(null, use64bit, '')).main();
+	schema.delete(getID('main', use64bit));
+})({use64bit: 0, schema: {
+	main: async z => {
+		z.module.worker();
+		const id = 0 || 'invalid-id',
+		reponse = await z.base.request(`https://jsonplaceholder.typicode.com/posts/${id}`);
+		// Method 1
+		if (reponse.success) {
+			const data = await reponse.data.json();
+			console.log('Title:', data.title);
+		} else {
+			console.log('Error:', reponse.error.message);
+		}
+		// method 2
+		const title = (await z.base.request(`https://jsonplaceholder.typicode.com/posts/${id}`, {}, 'json')).on(
+			reponse => reponse.title,
+			error => {
+				console.log('Error:', error);
+				return 'Default Title';
+			}
+		);
+		console.log('Result:', title);
+		// Method 3
+		const ids = [1, 2, 'invalid-id', 4],
+		fetchPromises = ids.map(id => z.base.request(`https://jsonplaceholder.typicode.com/posts/${id}`, {}, 'json'));
+		for (const [index, task] of fetchPromises.entries()) {
+			const result = await task;
+			const title = result.on(
+				reponse => reponse.title,
+				error => {
+					console.log('Error:', error);
+					return 'Default Title';
+				}
+			);
+			console.log(`Result (${ids[index]}):`, title);
+		}
+		// Method 4 (Sequential Processing)
+		Promise.all(
+			ids.map(id => z.base.request(`https://jsonplaceholder.typicode.com/posts/${id}`, {}, 'json'))
+		).then(results => {
+			const validData = results.filter(res => res.success).map(res => res.data),
+			processed = results.map(res => res.or({
+				title: 'Default Title'
+			}));
+			console.log('Successes:', validData);
+			console.log('Processed Data:', processed);
+			console.log('Total Errors:', results.reduce((acc, res) => acc + (res.success ? 0 : 1), 0));
+		});
+		// Method 5
+		z.base.queue(ids.map(id => z.base.request(`https://jsonplaceholder.typicode.com/posts/${id}`, {}, 'json')), {
+			onEach: (result, index) => {
+				console.log(`ID ${ids[index]} processed:`, result.data?.title || 'Error');
+			}, onDone: () => console.log('All done!')
+		});
+	}, shared: {
+		make: (z, state, template, target) => {
+			const fragment = document.createRange().createContextualFragment(template),
+			elements = fragment.querySelectorAll('[id]');
+			for (const node of elements)(z[node.id] = node).removeAttribute('id');
+			(target || (state.value instanceof HTMLElement ? state.value : document.body)).append(fragment);
+		}, on: (z, state, type, handler, {stopPropagation = false, preventDefault = false, depth = 0} = {}) => {
+			const node = state.value;
+			if (!(node instanceof HTMLElement)) return;
+			let types = z.eventTypes.value,
+			registry = z.eventRegistry.value,
+			signal = z.eventSignal.value;
+			if (!types) {
+				types = z.eventTypes = new Set();
+				z.eventRegistry = registry = new WeakMap();
+				const controller = new AbortController();
+				z.eventController = controller;
+				signal = z.eventSignal = controller.signal;
+			}
+			if (!types.has(type)) {
+				types.add(type);
+				addEventListener(type, event => {
+					let currentNode = event.target, limit = depth;
+					while (currentNode && --limit) {
+						const meta = registry.get(currentNode)?.[event.type];
+						if (meta) {
+							if (meta.preventDefault) event.preventDefault();
+							if (meta.stopPropagation) event.stopPropagation();
+							meta.handler(event);
+							return;
+						}
+						if (currentNode === document.body) break;
+						currentNode = currentNode.parentElement;
+					}
+				}, {signal});
+			}
+			let entry = registry.get(node);
+			if (!entry) registry.set(node, entry = {});
+			entry[type] = {handler, stopPropagation, preventDefault, depth};
+		},
+	}, base: {
+		snapshot: (z, source) => new Proxy({}, {
+			get: (target, key) => target[key] || (target[key] = source[key])
+		}), request_run: async (z, url, options = {}, type = null) => {
+			const response = await fetch(url, options);
+			if (!response.ok) throw new Error(`Server responded with ${response.status}`);
+			return type ? response[type]() : response;
+		}, stream_run: async (z, url, callback, lastSize = 0, chunkSize = 1048576) => {
+			const contentRange = (await fetch(url, {
+				headers: {'Range': 'bytes=0-0'}
+			})).headers.get('content-range');
+			if (!contentRange) return;
+			const totalSize = +contentRange.split('/')[1];
+			if (!totalSize || totalSize <= lastSize) return;
+			const start = lastSize === 0 ? Math.max(0, totalSize - chunkSize) : lastSize,
+			response = await fetch(url, {
+				headers: {'Range': `bytes=${start}-${totalSize - 1}`}
+			});
+			if (!response.ok) return;
+			const reader = response.body.getReader(), decoder = new TextDecoder(), EMPTY_UINT8 = new Uint8Array(0);
+			let fragment = new Uint8Array(0), isFirstChunk = true;
+			while (8) {
+				const {done, value} = await reader.read();
+				let chunk;
+				if (fragment.length) {
+					chunk = new Uint8Array(fragment.length + (value ? value.length : 0));
+					chunk.set(fragment);
+					if (value) chunk.set(value, fragment.length);
+				} else chunk = value ? value : EMPTY_UINT8;
+				let startIndex = 0, position;
+				while ((position = chunk.indexOf(0, startIndex)) !== -1) {
+					const segment = chunk.subarray(startIndex, position);
+					startIndex = 1 + position;
+					if (isFirstChunk) {
+						isFirstChunk = false;
+						if (start) continue;
+					}
+					const result = callback(decoder.decode(segment));
+					if (result instanceof Promise) await result;
+				}
+				fragment = chunk.subarray(startIndex);
+				if (done) break;
+			}
+		}, queue_run: async (z, tasks, {onEach, onDone, waitAll = false} = {}) => {
+			let final;
+			if (!onEach) final = (await Promise.allSettled(tasks)).map(response => response.status === 'fulfilled' ? response.value : response.reason); else if (waitAll) {
+				const results = await Promise.allSettled(tasks);
+				final = new Array(results.length);
+				for (let index = 0, length = results.length; index < length; ++index) {
+					const response = results[index];
+					onEach(final[index] = response.status === 'fulfilled' ? response.value : response.reason, index);
+				}
+			} else {
+				final = new Array(tasks.length);
+				for (let index = 0, length = tasks.length; index < length; ++index) onEach(final[index] = await tasks[index], index);
+			}
+			return onDone ? onDone(final) : final;
+		},
+	}, module: {
+		worker: async (z, value) => {
+			z.body.main.make(`
+				<main class="box">
+					<div id="title" contenteditable>Result</div>
+					<input id="a" type="number" value="12">
+					<input id="b" type="number" value="3">
+					<button id="btn">FAST PULSE</button>
+					<div id="res" class="res">...</div>
+					<button id="delete">REMOVE</button>
+				</main>
+			`);
+		},
+	},
+}});
