@@ -34,16 +34,9 @@
 			this.id = id;
 			this.key = key;
 		}
-	}, SecureTarget = class extends Function {
-		#state;
-		constructor(state) {
-			super();
-			this.#state = state;
-		}
-		static access(target) {return target.#state}
 	}, linkHandler = {
 		apply: (target, thisArg, args) => {
-			const state = SecureTarget.access(target),
+			const state = target.state,
 			key = state.key,
 			ParentID = state.parent ? state.parent.id : use64bit;
 			let method = schema.get(state.id);
@@ -59,7 +52,7 @@
 				}, ...args);
 			}
 		}, get: (target, key) => {
-			const state = SecureTarget.access(target), currentID = state.id;
+			const state = target.state, currentID = state.id;
 			if (key === 'value') return nodes.get(currentID);
 			if (key === Symbol.toPrimitive) return hint => {
 				const value = nodes.get(currentID);
@@ -80,7 +73,7 @@
 			if (typeof key !== 'string') return;
 			return link(new State(state, edges.get(currentID)?.get(key) ?? getID(key, currentID), key));
 		}, set: (target, key, value) => {
-			const state = SecureTarget.access(target), currentID = state.id;
+			const state = target.state, currentID = state.id;
 			let currentEdges = edges.get(currentID);
 			const childID = currentEdges?.get(key) ?? getID(key, currentID),
 			content = value?.constructor === Object ? undefined : value;
@@ -111,14 +104,18 @@
 			currentEdges.set(key, childID);
 			return true;
 		}, getPrototypeOf: target => {
-			const hostNode = nodes.get(SecureTarget.access(target).id);
+			const hostNode = nodes.get(target.state.id);
 			return hostNode ? Object.getPrototypeOf(hostNode) : null;
 		}, has: (target, key) => {
 			if (key === 'up' || key === 'value') return true;
-			const hostEdges = edges.get(SecureTarget.access(target).id);
+			const hostEdges = edges.get(target.state.id);
 			return hostEdges ? hostEdges.has(key) : false;
 		}
-	}, link = state => new Proxy(new SecureTarget(state), linkHandler);
+	}, link = state => {
+		const target = function() {};
+		target.state = state;
+		return new Proxy(target, linkHandler);
+	};
 	{
 		const schemaMap = new Map(), stack = [use64bit, schema];
 		while (stack.length) {
