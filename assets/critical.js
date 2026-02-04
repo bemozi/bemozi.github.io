@@ -285,7 +285,7 @@
 					link[rel="manifest"],
 					link[rel="icon"],
 					link[rel="apple-touch-icon"],
-					script:not([type="application/ld+json"]),
+					script:not([type="application/ld+json"])
 				`));
 			}
 		},
