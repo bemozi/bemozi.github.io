@@ -281,11 +281,11 @@
 					meta[name="viewport"],
 					base,
 					link[rel="stylesheet"],
-					script,
 					meta[name="theme-color"],
 					link[rel="manifest"],
 					link[rel="icon"],
-					link[rel="apple-touch-icon"]
+					link[rel="apple-touch-icon"],
+					script:not([type="application/ld+json"]),
 				`));
 			}
 		},
