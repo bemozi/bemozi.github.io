@@ -134,12 +134,14 @@
 		}
 		schema = schemaMap;
 	}
-	link(new State(null, use64bit, '')).main();
-	schema.delete(getID('main', use64bit));
+	addEventListener('load', () => {
+		link(new State(null, use64bit, '')).main();
+		schema.delete(getID('main', use64bit));
+	}, {once: true});
 })({use64bit: 0, schema: {
 	main: async z => {
 		dialog.open || dialog.showModal();
-		z.view.view();
+		z.view.frame();
 	}, shared: {
 		make: (z, state, template, target, clear = false) => {
 			const fragment = document.createRange().createContextualFragment(template),
@@ -240,7 +242,7 @@
 			return onDone ? onDone(final) : final;
 		},
 	}, view: {
-		view: async (z, value) => {
+		frame: async (z, value) => {
 			z.body.make(`
 				<header id="header">
 					<button id="open" title="Open Directory">
