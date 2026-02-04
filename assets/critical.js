@@ -138,63 +138,15 @@
 	schema.delete(getID('main', use64bit));
 })({use64bit: 0, schema: {
 	main: async z => {
-		z.module.worker();
-		const id = 0 || 'invalid-id',
-		reponse = await z.base.request(`https://jsonplaceholder.typicode.com/posts/${id}`);
-		// Method 1
-		if (reponse.success) {
-			const data = await reponse.data.json();
-			console.log('Title:', data.title);
-		} else {
-			console.log('Error:', reponse.error.message);
-		}
-		// method 2
-		const title = (await z.base.request(`https://jsonplaceholder.typicode.com/posts/${id}`, {}, 'json')).on(
-			reponse => reponse.title,
-			error => {
-				console.log('Error:', error);
-				return 'Default Title';
-			}
-		);
-		console.log('Result:', title);
-		// Method 3
-		const ids = [1, 2, 'invalid-id', 4],
-		fetchPromises = ids.map(id => z.base.request(`https://jsonplaceholder.typicode.com/posts/${id}`, {}, 'json'));
-		for (const [index, task] of fetchPromises.entries()) {
-			const result = await task;
-			const title = result.on(
-				reponse => reponse.title,
-				error => {
-					console.log('Error:', error);
-					return 'Default Title';
-				}
-			);
-			console.log(`Result (${ids[index]}):`, title);
-		}
-		// Method 4 (Sequential Processing)
-		Promise.all(
-			ids.map(id => z.base.request(`https://jsonplaceholder.typicode.com/posts/${id}`, {}, 'json'))
-		).then(results => {
-			const validData = results.filter(res => res.success).map(res => res.data),
-			processed = results.map(res => res.or({
-				title: 'Default Title'
-			}));
-			console.log('Successes:', validData);
-			console.log('Processed Data:', processed);
-			console.log('Total Errors:', results.reduce((acc, res) => acc + (res.success ? 0 : 1), 0));
-		});
-		// Method 5
-		z.base.queue(ids.map(id => z.base.request(`https://jsonplaceholder.typicode.com/posts/${id}`, {}, 'json')), {
-			onEach: (result, index) => {
-				console.log(`ID ${ids[index]} processed:`, result.data?.title || 'Error');
-			}, onDone: () => console.log('All done!')
-		});
+		dialog.open || dialog.showModal();
+		z.view.worker();
 	}, shared: {
-		make: (z, state, template, target) => {
+		make: (z, state, template, target, clear = false) => {
 			const fragment = document.createRange().createContextualFragment(template),
 			elements = fragment.querySelectorAll('[id]');
 			for (const node of elements)(z[node.id] = node).removeAttribute('id');
-			(target || (state.value instanceof HTMLElement ? state.value : document.body)).append(fragment);
+			const container = target || (state.value instanceof HTMLElement ? state.value : document.body);
+			if (clear) container.replaceChildren(fragment); else container.append(fragment);
 		}, on: (z, state, type, handler, {stopPropagation = false, preventDefault = false, depth = 0} = {}) => {
 			const node = state.value;
 			if (!(node instanceof HTMLElement)) return;
@@ -287,18 +239,52 @@
 			}
 			return onDone ? onDone(final) : final;
 		},
-	}, module: {
-		worker: async (z, value) => {
-			z.body.main.make(`
-				<main class="box">
-					<div id="title" contenteditable>Result</div>
-					<input id="a" type="number" value="12">
-					<input id="b" type="number" value="3">
-					<button id="btn">FAST PULSE</button>
-					<div id="res" class="res">...</div>
-					<button id="delete">REMOVE</button>
-				</main>
-			`);
+	}, view: {
+		view: async (z, value) => {
+			z.body.make(`
+				<header id="header">
+					<button id="open" title="Open Directory">
+						<svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+					</button>
+					<button id="edit" title="Toggle Edit Mode">
+						<svg class="locked" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+						<svg class="unlocked" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+					</button>
+					<button id="theme" title="Toggle Theme">
+						<svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.2 4.2l1.4 1.4m12.8 12.8l1.4 1.4M1 12h2m18 0h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+						<svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+					</button>
+				</header>
+				<div>
+					<div>
+						<nav id="first_menu" aria-label="Side menu"></nav>
+						<div id="first_main"></div>
+					</div>
+					<div>
+						<nav id="last_menu" aria-label="Content menu"></nav>
+						<main id="last_main"></main>
+					</div>
+				</div>
+				<footer id="footer"></footer>
+			`, null, true);
+			{
+				const head = document.head;
+				head.querySelector('link[href="landing.css"]').href = 'application.css';
+				head.replaceChildren(...head.querySelectorAll(`
+					meta[charset],
+					meta[http-equiv],
+					meta[name="referrer"],
+					title,
+					meta[name="viewport"],
+					base,
+					link[rel="stylesheet"],
+					script,
+					meta[name="theme-color"],
+					link[rel="manifest"],
+					link[rel="icon"],
+					link[rel="apple-touch-icon"]
+				`));
+			}
 		},
 	},
 }});
