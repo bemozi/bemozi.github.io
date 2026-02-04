@@ -140,6 +140,7 @@
 	}, {once: true});
 })({use64bit: 0, schema: {
 	main: async z => {
+		const dialog = document.getElementsByTagName('dialog')[0];
 		dialog.open || dialog.showModal();
 		z.view.frame();
 	}, shared: {
