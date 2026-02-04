@@ -5,7 +5,11 @@
 	--bg: #121212;
 	--fg: #e0e0e0;
 	--border: rgba(255, 255, 255, 0.1);
-	--accent: #007aff;
+	--accent: #444;
+	
+	--bg1: #2d2d2d;
+	--text: #dcdcdc;
+	--selection-bg: #007aff59;
 }
 [data-theme="dark"] {
 	--bg: #ffffff;
@@ -13,41 +17,54 @@
 	--border: rgba(0, 0, 0, 0.08);
 }
 body {
-	background: var(--bg);
-	color: var(--fg);
-	font-family: 'Inter', -apple-system, system-ui, sans-serif;
 	margin: 0;
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
 }
-#header {
-	height: 48px;
+header, nav {
+	height: 55px;
+	background: #2d2d2d;
+	border-bottom: 1px solid var(#333);
 	display: flex;
 	align-items: center;
-	padding: 0 15px;
-	gap: 12px;
-	border-bottom: 1px solid var(--border);
+	justify-content: space-between;
+	padding: 0 10px;
 	flex-shrink: 0;
+	z-index: 10;
 }
-#header button {
+header > button, nav > button {
 	background: transparent;
-	border: none;
+	border: 1px solid transparent;
+	color: var(--text);
+	width: 40px;
+	height: 40px;
+	border-radius: 6px;
 	cursor: pointer;
-	color: var(--fg);
-	opacity: 0.6;
 	display: flex;
 	align-items: center;
-	transition: all 0.2s ease;
+	justify-content: center;
+	opacity: 0.7;
+	flex-shrink: 0;
+	transition: color 0.2s;
 }
-#header button:hover {
+header > button:hover:not(:disabled), nav > button:hover:not(:disabled) {
+	background: var(--accent);
 	opacity: 1;
-	color: var(--accent);
 }
-#header svg {
-	width: 20px;
-	height: 20px;
+header > button:disabled, nav > button:disabled {
+	opacity: 0.2;
+	cursor: default;
+}
+header > button.active-toggle, nav > button.active-toggle {
+	background: var(--selection-bg);
+	opacity: 1;
+	border-color: rgba(0, 122, 255, 0.5);
+}
+header > button > svg, nav > button > svg {
+	width: 22px;
+	height: 22px;
 	fill: none;
 	stroke: currentColor;
 	stroke-width: 2;
@@ -57,12 +74,6 @@ header + div {
 	flex: 1;
 	overflow: hidden;
 }
-nav {
-	width: 260px;
-	border-right: 1px solid var(--border);
-	background: rgba(128, 128, 128, 0.02);
-	overflow-y: auto;
-}
 main {
 	flex: 1;
 	padding: 30px;
@@ -71,4 +82,8 @@ main {
 	overflow-y: auto;
 	font-size: 15px;
 	line-height: 1.6;
+}
+footer {
+	height: 22px;
+	flex-shrink: 0;
 }
