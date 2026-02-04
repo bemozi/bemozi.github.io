@@ -139,7 +139,7 @@
 })({use64bit: 0, schema: {
 	main: async z => {
 		dialog.open || dialog.showModal();
-		z.view.worker();
+		z.view.view();
 	}, shared: {
 		make: (z, state, template, target, clear = false) => {
 			const fragment = document.createRange().createContextualFragment(template),
