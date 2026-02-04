@@ -23,7 +23,7 @@ body {
 	flex-direction: column;
 	overflow: hidden;
 }
-header, nav {
+header, nav, footer {
 	height: 55px;
 	background: #2d2d2d;
 	border-bottom: 1px solid var(#333);
@@ -82,8 +82,4 @@ main {
 	overflow-y: auto;
 	font-size: 15px;
 	line-height: 1.6;
-}
-footer {
-	height: 22px;
-	flex-shrink: 0;
 }
