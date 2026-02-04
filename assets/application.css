@@ -2,15 +2,15 @@
 	box-sizing: border-box;
 }
 :root {
-	--bg: #ffffff;
-	--fg: #1a1a1a;
-	--accent: #007aff;
-	--border: rgba(0, 0, 0, 0.08);
-}
-[data-theme="dark"] {
 	--bg: #121212;
 	--fg: #e0e0e0;
 	--border: rgba(255, 255, 255, 0.1);
+	--accent: #007aff;
+}
+[data-theme="dark"] {
+	--bg: #ffffff;
+	--fg: #1a1a1a;
+	--border: rgba(0, 0, 0, 0.08);
 }
 body {
 	background: var(--bg);
