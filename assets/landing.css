@@ -87,6 +87,17 @@ a, h1 {
 	color: #1B4E8C;
 	font-weight: 700;
 }
+button {
+	padding: 10px 20px;
+	background: #1B4E8C;
+	color: #FAFAFA;
+	border: none;
+	border-radius: .5rem;
+	cursor: pointer;
+}
+button:active {
+	transform: scale(0.98);
+}
 noscript {
 	position: fixed;
 	inset: 0;
