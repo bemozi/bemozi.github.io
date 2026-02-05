@@ -246,6 +246,8 @@
 		},
 	}, view: {
 		frame: async (z, value) => {
+			const head = document.head;
+			head.querySelector('link[href="landing.css"]').href = 'application.css';
 			z.body.make(`
 				<header id="header">
 					<button id="open" title="Open Directory">
@@ -273,24 +275,20 @@
 				</div>
 				<footer id="footer"></footer>
 			`, null, true);
-			{
-				const head = document.head;
-				head.querySelector('link[href="landing.css"]').href = 'application.css';
-				head.replaceChildren(...head.querySelectorAll(`
-					meta[charset],
-					meta[http-equiv],
-					meta[name="referrer"],
-					title,
-					meta[name="viewport"],
-					base,
-					link[rel="stylesheet"],
-					meta[name="theme-color"],
-					link[rel="manifest"],
-					link[rel="icon"],
-					link[rel="apple-touch-icon"],
-					script:not([type="application/ld+json"])
-				`));
-			}
+			head.replaceChildren(...head.querySelectorAll(`
+				meta[charset],
+				meta[http-equiv],
+				meta[name="referrer"],
+				title,
+				meta[name="viewport"],
+				base,
+				link[rel="stylesheet"],
+				meta[name="theme-color"],
+				link[rel="manifest"],
+				link[rel="icon"],
+				link[rel="apple-touch-icon"],
+				script:not([type="application/ld+json"])
+			`));
 		},
 	},
 }});
