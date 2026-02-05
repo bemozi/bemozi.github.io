@@ -246,8 +246,13 @@
 		},
 	}, view: {
 		frame: async (z, value) => {
+			document.body.style.visibility = 'hidden';
 			const head = document.head;
-			head.querySelector('link[href="landing.css"]').href = 'application.css';
+			const stylesheet = head.querySelector('link[href="landing.css"]');
+			stylesheet.addEventListener('load', () => requestAnimationFrame(() => {
+				document.body.style.removeProperty('visibility');
+			}), {once: true});
+			stylesheet.href = 'application.css';
 			z.body.make(`
 				<header id="header">
 					<button id="open" title="Open Directory">
