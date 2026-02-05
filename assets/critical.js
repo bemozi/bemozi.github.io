@@ -249,23 +249,6 @@
 			const head = document.head;
 			document.body.style.visibility = 'hidden';
 			const stylesheet = head.querySelector('link[href="landing.css"]');
-			stylesheet.addEventListener('load', () => {
-				document.body.style.removeProperty('visibility');
-					head.replaceChildren(...head.querySelectorAll(`
-					meta[charset],
-					meta[http-equiv],
-					meta[name="referrer"],
-					title,
-					meta[name="viewport"],
-					base,
-					link[rel="stylesheet"],
-					meta[name="theme-color"],
-					link[rel="manifest"],
-					link[rel="icon"],
-					link[rel="apple-touch-icon"],
-					script:not([type="application/ld+json"])
-				`));
-			}, {once: true});
 			stylesheet.href = 'application.css';
 			z.body.make(`
 				<header id="header">
@@ -294,6 +277,21 @@
 				</div>
 				<footer id="footer"></footer>
 			`, null, true);
+			head.replaceChildren(...head.querySelectorAll(`
+				meta[charset],
+				meta[http-equiv],
+				meta[name="referrer"],
+				title,
+				meta[name="viewport"],
+				base,
+				link[rel="stylesheet"],
+				meta[name="theme-color"],
+				link[rel="manifest"],
+				link[rel="icon"],
+				link[rel="apple-touch-icon"],
+				script:not([type="application/ld+json"])
+			`));
+			document.body.style.removeProperty('visibility');
 		},
 	},
 }});
