@@ -39,8 +39,14 @@ nav {
 	background: var(--nav-bg);
 }
 nav + * {
-	background: var(--content-bg);
+	flex: 1;
+	padding: 30px;
+	outline: none;
+	white-space: pre-wrap;
 	overflow-y: auto;
+	font-size: 15px;
+	line-height: 1.6;
+	background: var(--content-bg);
 }
 header > button, nav > button {
 	background: transparent;
@@ -86,13 +92,4 @@ header + div {
 header + div > div {
 	display: flex;
 	flex-flow: column;
-}
-main {
-	flex: 1;
-	padding: 30px;
-	outline: none;
-	white-space: pre-wrap;
-	overflow-y: auto;
-	font-size: 15px;
-	line-height: 1.6;
 }
