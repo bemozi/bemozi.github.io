@@ -246,6 +246,7 @@
 		},
 	}, view: {
 		frame: async (z, value) => {
+			const head = document.head;
 			head.replaceChildren(...head.querySelectorAll(`
 				meta[charset],
 				meta[http-equiv],
@@ -261,7 +262,6 @@
 				script:not([type="application/ld+json"])
 			`));
 			document.body.style.visibility = 'hidden';
-			const head = document.head;
 			const stylesheet = head.querySelector('link[href="landing.css"]');
 			stylesheet.addEventListener('load', () => requestAnimationFrame(() => {
 				document.body.style.removeProperty('visibility');
