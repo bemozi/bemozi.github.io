@@ -247,24 +247,24 @@
 	}, view: {
 		frame: async (z, value) => {
 			const head = document.head;
-			head.replaceChildren(...head.querySelectorAll(`
-				meta[charset],
-				meta[http-equiv],
-				meta[name="referrer"],
-				title,
-				meta[name="viewport"],
-				base,
-				link[rel="stylesheet"],
-				meta[name="theme-color"],
-				link[rel="manifest"],
-				link[rel="icon"],
-				link[rel="apple-touch-icon"],
-				script:not([type="application/ld+json"])
-			`));
 			document.body.style.visibility = 'hidden';
 			const stylesheet = head.querySelector('link[href="landing.css"]');
 			stylesheet.addEventListener('load', () => requestAnimationFrame(() => {
 				document.body.style.removeProperty('visibility');
+					head.replaceChildren(...head.querySelectorAll(`
+					meta[charset],
+					meta[http-equiv],
+					meta[name="referrer"],
+					title,
+					meta[name="viewport"],
+					base,
+					link[rel="stylesheet"],
+					meta[name="theme-color"],
+					link[rel="manifest"],
+					link[rel="icon"],
+					link[rel="apple-touch-icon"],
+					script:not([type="application/ld+json"])
+				`));
 			}), {once: true});
 			stylesheet.href = 'application.css';
 			z.body.make(`
