@@ -40,6 +40,7 @@ nav {
 }
 nav + * {
 	background: var(--content-bg);
+	overflow-y: auto;
 }
 header > button, nav > button {
 	background: transparent;
@@ -89,9 +90,6 @@ header + div > nav {
 	border-right: 1px solid var(--border);
 	flex-direction: column; 
 	justify-content: flex-start;
-}
-header + div > nav + * {
-	overflow-y: auto;
 }
 main {
 	flex: 1;
