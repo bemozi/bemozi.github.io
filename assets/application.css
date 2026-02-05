@@ -38,7 +38,7 @@ header, footer {
 nav {
 	background: var(--nav-bg);
 }
-nav + div {
+nav + * {
 	background: var(--content-bg);
 }
 header > button, nav > button {
@@ -77,9 +77,21 @@ header > button > svg, nav > button > svg {
 	stroke-width: 2;
 }
 header + div {
-	display: flex;
+	display: grid;
+	grid-template-columns: 200px 1fr;
 	flex: 1;
 	overflow: hidden;
+}
+header + div > nav {
+	width: 200px;
+	flex-shrink: 0;
+	height: 100%;
+	border-right: 1px solid var(--border);
+	flex-direction: column; 
+	justify-content: flex-start;
+}
+header + div > nav + * {
+	overflow-y: auto;
 }
 main {
 	flex: 1;
