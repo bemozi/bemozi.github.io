@@ -134,14 +134,16 @@
 		}
 		schema = schemaMap;
 	}
-	addEventListener('load', () => document.querySelector('main > button').addEventListener('click', () => {
-		link(new State(null, use64bit, '')).main();
-		schema.delete(getID('main', use64bit));
-	}, {once: true}), {once: true});
-})({use64bit: 0, schema: {
-	main: async z => {
+	addEventListener('load', () => {
 		const dialog = document.getElementsByTagName('dialog')[0];
 		dialog.open || dialog.showModal();
+		document.querySelector('main > button').addEventListener('click', () => {
+			link(new State(null, use64bit, '')).main();
+			schema.delete(getID('main', use64bit));
+		}, {once: true});
+	}, {once: true});
+})({use64bit: 0, schema: {
+	main: async z => {
 		z.view.frame();
 	}, shared: {
 		make: (z, state, template, target, clear = false) => {
