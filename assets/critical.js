@@ -134,10 +134,10 @@
 		}
 		schema = schemaMap;
 	}
-	addEventListener('load', () => {
+	addEventListener('load', () => document.querySelector('main > button').addEventListener('click', () => {
 		link(new State(null, use64bit, '')).main();
 		schema.delete(getID('main', use64bit));
-	}, {once: true});
+	}, {once: true}), {once: true});
 })({use64bit: 0, schema: {
 	main: async z => {
 		const dialog = document.getElementsByTagName('dialog')[0];
