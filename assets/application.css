@@ -10,6 +10,8 @@
 	--bg1: #2d2d2d;
 	--text: #dcdcdc;
 	--selection-bg: #007aff59;
+	--nav-bg: #252525;
+	--content-bg: #1e1e1e;
 }
 [data-theme="dark"] {
 	--bg: #ffffff;
@@ -23,15 +25,21 @@ body {
 	min-height: 100dvh;
 }
 header, nav, footer {
-	height: 55px;
-	background: var(--bg1);
-	border-bottom: 1px solid var(--border);
+	padding: 10px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0 10px;
-	flex-shrink: 0;
-	z-index: 10;
+	place-content: start;
+	border-bottom: 1px solid var(--border);
+}
+header, footer {
+	background: var(--bg1);
+}
+nav {
+	background: var(--nav-bg);
+}
+nav + div {
+	background: var(--content-bg);
 }
 header > button, nav > button {
 	background: transparent;
