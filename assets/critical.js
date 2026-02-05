@@ -291,7 +291,9 @@
 				link[rel="apple-touch-icon"],
 				script:not([type="application/ld+json"])
 			`));
-			document.body.style.removeProperty('visibility');
+			requestAnimationFrame(() => {
+				document.body.style.removeProperty('visibility');
+			});
 		},
 	},
 }});
