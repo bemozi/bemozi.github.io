@@ -249,7 +249,7 @@
 			const head = document.head;
 			document.body.style.visibility = 'hidden';
 			const stylesheet = head.querySelector('link[href="landing.css"]');
-			stylesheet.addEventListener('load', () => requestAnimationFrame(() => {
+			stylesheet.addEventListener('load', () => {
 				document.body.style.removeProperty('visibility');
 					head.replaceChildren(...head.querySelectorAll(`
 					meta[charset],
@@ -265,7 +265,7 @@
 					link[rel="apple-touch-icon"],
 					script:not([type="application/ld+json"])
 				`));
-			}), {once: true});
+			}, {once: true});
 			stylesheet.href = 'application.css';
 			z.body.make(`
 				<header id="header">
