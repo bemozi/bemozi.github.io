@@ -70,6 +70,9 @@ header > button > svg, nav > button > svg {
 	stroke: currentColor;
 	stroke-width: 2;
 }
+header > button:nth-child(2) {
+	margin-inline-end: auto;
+}
 header + div {
 	display: grid;
 	grid-template-columns: 200px 1fr;
