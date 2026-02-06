@@ -96,11 +96,11 @@ button {
 	cursor: pointer;
 	transition: filter 0.2s ease, transform 0.1s ease;
 }
-button:hover {
-	filter: brightness(1.1);
-}
 button:active {
 	transform: scale(0.98);
+}
+button:hover, button:active {
+	filter: brightness(1.1);
 }
 button:focus-visible {
 	outline: 3px solid #FF5722;
