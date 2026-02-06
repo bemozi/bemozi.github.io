@@ -74,6 +74,9 @@ dialog > :last-child {
 		transform: translateX(0);
 	}
 }
+main > * {
+	font-weight: 400;
+}
 a {
 	all: unset;
 }
@@ -83,9 +86,6 @@ a {
 a, h1 {
 	color: #1B4E8C;
 	font-weight: 700;
-}
-main > * {
-	font-weight: 400;
 }
 main > button {
 	margin: 1em;
