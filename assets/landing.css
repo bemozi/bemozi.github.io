@@ -82,6 +82,7 @@ dialog {
 	margin: auto;
 	width: 80vi;
 	border: none;
+	background: var(--bg3);
 	color: var(--text2);
 	border-radius: .5rem;
 	box-shadow: rgba(50 50 93 / .25) 0 4px 8px 0, rgba(0 0 0 / .3) 0 8px 20px 0;
