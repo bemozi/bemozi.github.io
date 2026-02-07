@@ -9,12 +9,14 @@
 		<meta http-equiv="Cross-Origin-Embedder-Policy" content="credentialless">
 		<meta name="referrer" content="no-referrer">
 		<title>Statim: Local-First Web App</title>
-		<meta name="viewport" content="width=device-width, viewport-fit=cover, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="viewport" content="width=device-width, viewport-fit=cover, initial-scale=1, maximum-scale=1">
 		<base href="/assets/">
 		<link rel="stylesheet" href="landing.css">
 		<link rel="preload" href="application.css" as="style">
-		<link rel="preload" href="critical.js" as="script">
-		<script defer src="critical.js"></script>
+		<link rel="modulepreload" href="critical.js">
+		<!--<script src="register.js"></script>-->
+		<script type="module" src="critical.js"></script>
+		<script src="critical.js"></script>
 		<link rel="canonical" href="https://bemozi.github.io">
 		<meta name="description" content="Statim is a fully auditable web app that offers sustained functionality without connectivity and data ownership, with an intuitive, distraction-free interface.">
 		<meta name="keywords" content="Local-First, Offline-First, Statim, Data ownership, Auditable Web App, Zero dependencies, Open Source, Reliable collaboration, Progressive Web App, Distraction-free interface, Zero-installation">
@@ -54,6 +56,13 @@
 		</script>
 	</head>
 	<body>
+		<header id="header">
+			<button title="Open Workspace" autofocus>Open Workspace</button>
+			<span></span>
+			<button title="Change Language">
+				<svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+			</button>
+		</header>
 		<main>
 			<h1>A Local-First Web App for Reliable Office Collaboration</h1>
 			<p>Statim is <strong>fully auditable</strong> web app that offers <strong>sustained functionality without connectivity</strong>, with a distraction-free interface. (Read <a href="https://github.com/bemozi/bemozi.github.io/blob/main/README.md" rel="noopener noreferrer">details on GitHub</a>.)</p>
@@ -67,16 +76,3 @@
 		<noscript>Enable JavaScript to get started.</noscript>
 	</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
