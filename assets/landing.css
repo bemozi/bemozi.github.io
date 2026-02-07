@@ -3,11 +3,6 @@ main {
 	padding-bottom: max(2vh, 2vw, env(safe-area-inset-bottom));
 	padding-left: max(2vh, 2vw, env(safe-area-inset-left));
 	padding-right: max(2vh, 2vw, env(safe-area-inset-right));
-	font-family: Roboto, Segoe UI, San Francisco;
-	font-size: clamp(16px, 1vw + 1rem, 1.5rem);
-	text-align: center;
-	line-height: 2;
-	color: var(--text2);
 }
 main::before {
 	content: '';
@@ -16,6 +11,15 @@ main::before {
 	z-index: -1;
 	background: linear-gradient(0deg, #f1f7ff, #FAFAFA), url('logo.svg') no-repeat center / 50vb;
 	background-blend-mode: hard-light;
+}
+main, dialog {
+	font-family: Roboto, Segoe UI, San Francisco;
+	font-size: clamp(16px, 1vw + 1rem, 1.5rem);
+	line-height: 2;
+	color: var(--text2);
+}
+main, dialog > :first-child {
+	text-align: center;
 }
 main > * {
 	font-weight: 400;
