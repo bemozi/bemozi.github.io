@@ -24,7 +24,7 @@ dialog {
 	margin: auto;
 	width: 80vi;
 	border: none;
-	background: #FAFAFA;
+	background: var(--content-bg);
 	border-radius: .5rem;
 	box-shadow: rgba(50 50 93 / .25) 0 4px 8px 0, rgba(0 0 0 / .3) 0 8px 20px 0;
 	animation: horizontal-shaking .15s 3 ease-in-out;
@@ -38,7 +38,7 @@ dialog > * {
 }
 dialog > :first-child {
 	padding: 5px 0;
-	background: #1B4E8C;
+	background: var(--bg1);
 	color: #FAFAFA;
 }
 dialog > :last-child {
@@ -88,25 +88,25 @@ main > a, main > h1 {
 	color: #1B4E8C;
 	font-weight: 700;
 }
-main > button {
+main > button, dialog > button {
 	margin: 1em;
 }
 main > button {
 	padding: 10px 20px;
-	background: #1B4E8C;
+	background: var(--bg1);
 	color: #FAFAFA;
 	border: none;
 	border-radius: .5rem;
 	cursor: pointer;
 	transition: filter 0.2s ease, transform 0.1s ease;
 }
-main > button:active {
+main > button:active, dialog > button:active {
 	transform: scale(0.98);
 }
-main > button:hover, button:active {
+main > button:hover, main > button:active, dialog > button:hover, dialog > button:active {
 	filter: brightness(1.1);
 }
-main > button:focus-visible {
+main > button:focus-visible, main > dialog:focus-visible {
 	outline: 3px solid #FF5722;
 	outline-offset: 2px;
 }
