@@ -43,7 +43,7 @@ main > a, main > h1 {
 	color: #1B4E8C;
 	font-weight: 700;
 }
-dialog > button {
+dialog button {
 	margin: 1em;
 	padding: 10px 20px;
 	color: #FAFAFA;
@@ -52,13 +52,13 @@ dialog > button {
 	cursor: pointer;
 	transition: filter 0.2s ease, transform 0.1s ease;
 }
-dialog > button:active {
+dialog button:active {
 	transform: scale(0.98);
 }
-dialog > button:hover, dialog > button:active {
+dialog button:hover, dialog button:active {
 	filter: brightness(1.1);
 }
-dialog > button:focus-visible {
+dialog button:focus-visible {
 	outline: 3px solid #FF5722;
 	outline-offset: 2px;
 }
@@ -85,7 +85,7 @@ dialog {
 	box-shadow: rgba(50 50 93 / .25) 0 4px 8px 0, rgba(0 0 0 / .3) 0 8px 20px 0;
 	animation: horizontal-shaking .15s 3 ease-in-out;
 }
-dialog > button, dialog > :first-child {
+dialog button, dialog > :first-child {
 	background: var(--bg1);
 }
 dialog[open] {
