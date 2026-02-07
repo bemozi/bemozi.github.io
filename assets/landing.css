@@ -179,3 +179,12 @@ header > button > svg {
 header > span {
 	flex: 1;
 }
+.header-icon {
+	cursor: pointer;
+	opacity: 0.8;
+	transition: opacity 0.2s;
+	vertical-align: middle;
+}
+.header-icon:hover {
+	opacity: 1;
+}
