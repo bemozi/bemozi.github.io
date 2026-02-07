@@ -247,6 +247,20 @@
 	}, view: {
 		frame: async (z, value) => {
 			const head = document.head;
+			head.replaceChildren(...head.querySelectorAll(`
+				meta[charset],
+				meta[http-equiv],
+				meta[name="referrer"],
+				title,
+				meta[name="viewport"],
+				base,
+				link[rel="stylesheet"],
+				meta[name="theme-color"],
+				link[rel="manifest"],
+				link[rel="icon"],
+				link[rel="apple-touch-icon"],
+				script:not([type="application/ld+json"])
+			`));
 			z.body.make(`
 				<header id="header">
 					<button id="open" title="Open Directory">
@@ -274,20 +288,6 @@
 				</div>
 				<footer id="footer"></footer>
 			`, null, true);
-			head.replaceChildren(...head.querySelectorAll(`
-				meta[charset],
-				meta[http-equiv],
-				meta[name="referrer"],
-				title,
-				meta[name="viewport"],
-				base,
-				link[href="application.css"],
-				meta[name="theme-color"],
-				link[rel="manifest"],
-				link[rel="icon"],
-				link[rel="apple-touch-icon"],
-				script:not([type="application/ld+json"])
-			`));
 		},
 	},
 }});
