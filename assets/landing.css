@@ -67,6 +67,7 @@ noscript {
 }
 dialog {
 	margin: auto;
+	padding: 0;
 	width: 80vi;
 	border: none;
 	background: var(--bg3);
