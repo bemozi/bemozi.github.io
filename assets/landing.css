@@ -67,7 +67,6 @@ noscript {
 }
 dialog {
 	margin: auto;
-	padding: 0;
 	width: 80vi;
 	border: none;
 	background: var(--bg3);
@@ -75,6 +74,9 @@ dialog {
 	border-radius: .5rem;
 	box-shadow: rgba(50 50 93 / .25) 0 4px 8px 0, rgba(0 0 0 / .3) 0 8px 20px 0;
 	animation: horizontal-shaking .15s 3 ease-in-out;
+}
+dialog, p {
+	padding: 0;
 }
 dialog button, dialog > :first-child {
 	background: var(--bg1);
