@@ -44,7 +44,6 @@ main > a, main > h1 {
 	font-weight: 700;
 }
 dialog button {
-	margin: 1em;
 	padding: 10px 20px;
 	color: #FAFAFA;
 	border: none;
@@ -59,7 +58,7 @@ dialog button:hover, dialog button:active {
 	filter: brightness(1.1);
 }
 dialog button:focus-visible {
-	outline: 3px solid #FF5722;
+	outline: 3px solid var(--text1);
 	outline-offset: 2px;
 }
 noscript {
