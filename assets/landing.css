@@ -4,14 +4,6 @@ main {
 	padding-left: max(2vh, 2vw, env(safe-area-inset-left));
 	padding-right: max(2vh, 2vw, env(safe-area-inset-right));
 }
-main::before {
-	content: '';
-	position: fixed;
-	inset: 0;
-	z-index: -1;
-	background: linear-gradient(0deg, #f1f7ff, #FAFAFA), url('logo.svg') no-repeat center / 50vb;
-	background-blend-mode: hard-light;
-}
 main, dialog {
 	font-family: Roboto, Segoe UI, San Francisco;
 	font-size: clamp(16px, 1vw + 1rem, 1.5rem);
@@ -24,18 +16,13 @@ main, dialog > :first-child {
 main > * {
 	font-weight: 400;
 }
-main > a {
-	all: unset;
-}
-[href] {
-	cursor: pointer;
-}
 main > a, main > h1 {
 	color: var(--text1);
 	font-weight: 700;
 }
 dialog button {
 	padding: 10px 20px;
+	background: var(--bg1);
 	color: var(--text1);
 	border: none;
 	border-radius: .5rem;
@@ -67,6 +54,7 @@ noscript {
 }
 dialog {
 	margin: auto;
+	padding: 0;
 	width: 80vi;
 	border: none;
 	background: var(--bg3);
@@ -75,10 +63,7 @@ dialog {
 	box-shadow: rgba(50 50 93 / .25) 0 4px 8px 0, rgba(0 0 0 / .3) 0 8px 20px 0;
 	animation: horizontal-shaking .15s 3 ease-in-out;
 }
-dialog, p {
-	padding: 0;
-}
-dialog button, dialog > :first-child {
+dialog > :first-child {
 	background: var(--bg1);
 }
 dialog[open] {
@@ -86,6 +71,7 @@ dialog[open] {
 	gap: 15px;
 }
 dialog > * {
+	margin: 0;
 	padding: 0 15px;
 }
 dialog > :first-child {
