@@ -261,30 +261,47 @@
 				link[rel="apple-touch-icon"],
 				script:not([type="application/ld+json"])
 			`));
+			screen.orientation.addEventListener('change', event => {
+				if (event.target.type === 'portrait-primary') {
+					
+				}
+			});
+			if (screen.orientation.type === 'portrait-primary') {
+				
+			}
 			z.body.make(`
 				<header id="header">
 					<button id="open" title="Open Directory">
-						<svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+							<line x1="9" y1="3" x2="9" y2="21"></line>
+						</svg>
 					</button>
-					<button id="edit" title="Toggle Edit Mode">
-						<svg class="locked" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-						<svg class="unlocked" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+					<button id="open" title="Open Directory">
+						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+							<path d="M4 6h16M20 6l-4-4M4 12h16M20 18H4M4 18l4 4"/>
+						</svg>
+					</button>
+					<button id="open" title="Open Directory">
+						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+							<path d="M4 6h16M4 12h16M4 18h16"/>
+						</svg>
 					</button>
 					<span></span>
-					<button id="theme" title="Toggle Theme">
-						<svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.2 4.2l1.4 1.4m12.8 12.8l1.4 1.4M1 12h2m18 0h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
-						<svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+					<button id="prefBtn" class="btn">
+						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+							<path d="M4 6h16"/>
+							<rect x="7" y="5" width="2" height="2" fill="currentColor"/>
+							<path d="M4 12h16"/>
+							<rect x="15" y="11" width="2" height="2" fill="currentColor"/>
+							<path d="M4 18h16"/>
+							<rect x="10" y="17" width="2" height="2" fill="currentColor"/>
+						</svg>
 					</button>
 				</header>
 				<div>
-					<div>
-						<nav id="first_menu" aria-label="Side menu"></nav>
-						<div id="first_main"></div>
-					</div>
-					<div>
-						<nav id="last_menu" aria-label="Content menu"></nav>
-						<main id="last_main"></main>
-					</div>
+					<div id="first_main"></div>
+					<div id="last_main"></div>
 				</div>
 				<footer id="footer"></footer>
 			`, null, true);
