@@ -135,7 +135,7 @@
 		schema = schemaMap;
 	}
 	addEventListener('load', () => {
-		const dialog = document.getElementsByTagName('dialog')[0];
+		const dialog = document.querySelector('dialog');
 		dialog.open || dialog.showModal();
 		link(new State(null, use64bit, '')).main();
 		schema.delete(getID('main', use64bit));
