@@ -137,10 +137,8 @@
 	addEventListener('load', () => {
 		const dialog = document.getElementsByTagName('dialog')[0];
 		dialog.open || dialog.showModal();
-		document.querySelector('main > button').addEventListener('click', () => {
-			link(new State(null, use64bit, '')).main();
-			schema.delete(getID('main', use64bit));
-		}, {once: true});
+		link(new State(null, use64bit, '')).main();
+		schema.delete(getID('main', use64bit));
 	}, {once: true});
 })({use64bit: 0, schema: {
 	main: async z => {
