@@ -294,7 +294,7 @@
 					<div id="last_main"></div>
 				</div>
 				<footer id="footer"></footer>
-			`, null, true);
+			`);
 			
 			z.body.last_main.value.append(document.querySelector('main')); 
 			screen.orientation.addEventListener('change', event => {
