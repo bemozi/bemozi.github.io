@@ -295,7 +295,8 @@
 				</div>
 				<footer id="footer"></footer>
 			`);
-			
+			self.a = z;
+			console.log(z.body.last_main.value);
 			z.body.last_main.value.append(document.querySelector('main')); 
 			screen.orientation.addEventListener('change', event => {
 				if (event.target.type === 'portrait-primary') {
