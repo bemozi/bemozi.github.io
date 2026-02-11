@@ -298,17 +298,9 @@
 			self.a = z;
 			z.body.last_main.value.append(document.querySelector('main')); 
 			screen.orientation.addEventListener('change', event => {
-				if (event.target.type === 'portrait-primary') {
-					
-				} else {
-					
-				}
+				z.body.explorer.value.classList.toggle('hide', event.target.type === 'portrait-primary');
 			});
-			if (screen.orientation.type === 'portrait-primary') {
-				z.body.explorer.value.style.display = 'none';
-			} else {
-				
-			}
+			z.body.explorer.value.classList.toggle('hide', screen.orientation.type === 'portrait-primary');
 		},
 	},
 }});
