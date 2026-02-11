@@ -45,7 +45,7 @@
 			if (typeof method === 'function') {
 				if (!isShared) return method(link(new State(null, use64bit, '')), ...args);
 				const ParentNode = nodes.get(ParentID);
-				return method(link(state), {
+				return method(link(state.parent), {
 					value: ParentNode,
 					key,
 					id: ParentID
