@@ -112,3 +112,105 @@ nav + * {
 header + div > :first-child {
 	border-inline-end: 1px solid var(--border);
 }
+main {
+	padding-top: max(2vh, 2vw, env(safe-area-inset-top));
+	padding-bottom: max(2vh, 2vw, env(safe-area-inset-bottom));
+	padding-left: max(2vh, 2vw, env(safe-area-inset-left));
+	padding-right: max(2vh, 2vw, env(safe-area-inset-right));
+}
+main, dialog {
+	font-family: Roboto, Segoe UI, San Francisco;
+	font-size: clamp(16px, 1vw + 1rem, 1.5rem);
+	line-height: 2;
+	color: var(--text2);
+}
+main, dialog > :first-child {
+	text-align: center;
+}
+main > * {
+	font-weight: 400;
+}
+main > a, main > h1 {
+	color: var(--text1);
+	font-weight: 700;
+}
+dialog button {
+	padding: 10px 20px;
+	background: var(--bg1);
+	color: var(--text1);
+	border: none;
+	border-radius: .5rem;
+	cursor: pointer;
+	transition: filter 0.2s ease, transform 0.1s ease;
+}
+dialog button:active {
+	transform: scale(0.98);
+}
+dialog button:hover, dialog button:active {
+	filter: brightness(1.1);
+}
+dialog button:focus-visible {
+	outline: 3px solid var(--text1);
+	outline-offset: 2px;
+}
+noscript {
+	position: fixed;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	background: var(--bg3);
+	color: var(--text1);
+	font-weight: 700;
+}
+::backdrop {
+	background: rgb(0 0 0 / 25%);
+	backdrop-filter: blur(5px);
+}
+dialog {
+	margin: auto;
+	padding: 0;
+	width: 80vi;
+	border: none;
+	background: var(--bg3);
+	color: var(--text2);
+	border-radius: .5rem;
+	box-shadow: rgba(50 50 93 / .25) 0 4px 8px 0, rgba(0 0 0 / .3) 0 8px 20px 0;
+	animation: horizontal-shaking .15s 3 ease-in-out;
+}
+dialog > :first-child {
+	background: var(--bg1);
+}
+dialog[open] {
+	display: grid;
+	gap: 15px;
+}
+dialog > * {
+	margin: 0;
+	padding: 0 15px;
+}
+dialog > :first-child {
+	padding: 5px 0;
+}
+dialog > :last-child {
+	padding-bottom: 15px;
+}
+@keyframes horizontal-shaking {
+	0% {
+		transform: translateX(0);
+	}
+	25% {
+		transform: translateX(5px);
+	}
+	50% {
+		transform: translateX(-5px);
+	}
+	75% {
+		transform: translateX(5px);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+.hide {
+	display: none;
+}
