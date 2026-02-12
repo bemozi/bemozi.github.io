@@ -316,9 +316,9 @@
 			self.a = z;
 			z.body.last_main.value.append(document.querySelector('main')); 
 			screen.orientation.addEventListener('change', event => {
-				z.body.swap_menu.value.classList.toggle('hide', event.target.type === 'portrait-primary');
+				z.body.explore.value.classList.toggle('hide', event.target.type === 'portrait-primary');
 			});
-			z.body.swap_menu.value.classList.toggle('hide', screen.orientation.type === 'portrait-primary');
+			z.body.explore.value.classList.toggle('hide', screen.orientation.type === 'portrait-primary');
 		},
 	},
 }});
