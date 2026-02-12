@@ -58,7 +58,7 @@ header > div > :not(:nth-child(-n+2), span, span + *, span + * + *) {
 header > div > button:nth-child(n+3):not(span ~ *) {
 	display: none;
 }
-header > div > span ~ :not(span, :nth-child(-n+2 of span ~ *)) {
+header > div > :nth-child(n+3 of span ~ *) {
 	display: none;
 }
 header, footer {
