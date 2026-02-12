@@ -52,6 +52,9 @@ header, header > div, footer {
 header > div {
 	flex: 1;
 }
+header > div > :nth-child(n+4) {
+	display: none;
+}
 header, footer {
 	padding: 10px;
 	background: var(--bg1);
