@@ -1,4 +1,3 @@
-$limit: 3;
 :root {
 	--bg: #121212;
 	--fg: #e0e0e0;
@@ -56,8 +55,8 @@ header > div {
 header > div > :not(:nth-child(-n+2), span, span + *, span + * + *) {
 	display: none;
 }*/
-header > div > button:nth-child(n + #{$limit}):not(span ~ *),
-header > div > :nth-child(n + #{$limit} of span ~ *) {
+header > div > button:nth-child(n+3):not(span ~ *),
+header > div > :nth-child(n+3 of span ~ *) {
 	display: none;
 }
 header, footer {
