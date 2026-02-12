@@ -42,7 +42,7 @@ body {
 	flex-direction: column;
 	min-height: 100dvh;
 }
-header, footer {
+header, header > div, footer {
 	padding: 10px;
 	display: flex;
 	align-items: center;
