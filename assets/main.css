@@ -51,8 +51,15 @@ header, header > div, footer {
 }
 header > div {
 	flex: 1;
-}
-header > div > :not(:nth-child(-n+2), span, span ~ :nth-child(-n+2)) {
+}/*
+header > div > :not(:nth-child(-n+2), span, span + *, span + * + *) {
+	display: none;
+}*/
+header > div > :not(
+	:nth-child(-n+2),
+	span,
+	span ~ :nth-child(-n+2 of span ~ *)
+) {
 	display: none;
 }
 header, footer {
