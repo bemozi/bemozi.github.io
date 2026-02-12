@@ -261,23 +261,41 @@
 			`));
 			z.body.make(`
 				<header id="header">
-					<button id="explorer" title="Open Directory">
+					<button id="explorer" title="Explorer">
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 							<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
 							<line x1="9" y1="3" x2="9" y2="21"></line>
 						</svg>
 					</button>
-					<button id="swap_menu" title="Open Directory">
+					<button id="swap_menu" title="Menu">
 						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
 							<path d="M4 6h16M20 6l-4-4M4 12h16M20 18H4M4 18l4 4"/>
 						</svg>
 					</button>
-					<button id="expand_menu" title="Open Directory">
+					<button id="expand_menu" title="Expand">
 						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
 							<path d="M4 6h16M4 12h16M4 18h16"/>
 						</svg>
 					</button>
-					<span></span>
+					<div id="explorer" class="hide">
+						
+						<span></span>
+						
+					</div>
+					<div id="main">
+						<button class="icon-btn toolbar-btn" id="undoBtn" disabled title="Undo">
+							<svg viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+						</button>
+						<span></span>
+						<button class="icon-btn toolbar-btn" id="redoBtn" disabled title="Redo">
+							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+						</button>
+					</div>
+					<div id="preference" class="hide">
+						
+						<span></span>
+						
+					</div>
 					<button id="prefBtn" class="btn">
 						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
 							<path d="M4 6h16"/>
