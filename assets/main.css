@@ -52,7 +52,7 @@ header, header > div, footer {
 header > div {
 	flex: 1;
 }
-header > div > :not(:nth-child(-n+2), span, span + *) {
+header > div > :not(:first-child, :nth-child(2), span, span + *) {
 	display: none;
 }
 header, footer {
