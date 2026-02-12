@@ -55,11 +55,10 @@ header > div {
 header > div > :not(:nth-child(-n+2), span, span + *, span + * + *) {
 	display: none;
 }*/
-header > div > :not(
-	:nth-child(-n+2),
-	span,
-	span ~ :nth-child(-n+2 of span ~ *)
-) {
+header > div > button:nth-child(n+3):not(span ~ *) {
+	display: none;
+}
+header > div > span ~ button:nth-of-type(n+3) {
 	display: none;
 }
 header, footer {
