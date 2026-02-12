@@ -43,7 +43,6 @@ body {
 	min-height: 100dvh;
 }
 header, header > div, footer {
-	padding: 10px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -54,6 +53,7 @@ header > div {
 	flex: 1;
 }
 header, footer {
+	padding: 10px;
 	background: var(--bg1);
 }
 header button {
