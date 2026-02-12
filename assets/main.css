@@ -52,7 +52,11 @@ header, header > div, footer {
 header > div {
 	flex: 1;
 }
-header > div > :nth-child(n+4) {
+header > div > :not(
+	:nth-child(-n+3),
+	span,
+	span ~ button:nth-of-type(-n+2)
+) {
 	display: none;
 }
 header, footer {
