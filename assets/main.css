@@ -50,6 +50,9 @@ header, header > div, footer {
 	place-content: start;
 	border-bottom: 1px solid var(--border);
 }
+header > div {
+	flex: 1;
+}
 header, footer {
 	background: var(--bg1);
 }
