@@ -52,8 +52,14 @@ header, header > div, footer {
 header > div {
 	flex: 1;
 }
-header > div > :not(:nth-child(-n+2), span, span ~ :nth-child(-n+2 of :not(span))) {
-	display: none !important;
+header > div > :nth-child(n+3) {
+	display: none;
+}
+header > div > span {
+	display: revert;
+}
+header > div > span + *, header > div > span + * + * {
+	display: revert;
 }
 header, footer {
 	padding: 10px;
