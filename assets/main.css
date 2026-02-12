@@ -42,7 +42,7 @@ body {
 	flex-direction: column;
 	min-height: 100dvh;
 }
-header, nav, footer {
+header, footer {
 	padding: 10px;
 	display: flex;
 	align-items: center;
@@ -53,7 +53,7 @@ header, nav, footer {
 header, footer {
 	background: var(--bg1);
 }
-header > button, nav > button {
+header button {
 	background: transparent;
 	border: 1px solid transparent;
 	color: var(--text);
@@ -68,22 +68,22 @@ header > button, nav > button {
 	flex-shrink: 0;
 	transition: color 0.2s;
 }
-header > button:hover:not(:disabled), nav > button:hover:not(:disabled) {
+header button:hover:not(:disabled) {
 	background: var(--accent);
 	opacity: 1;
 }
-header > button:disabled, nav > button:disabled {
+header button:disabled {
 	opacity: 0.2;
 	cursor: default;
 }
-header > button > svg, nav > button > svg {
+header button > svg {
 	width: 22px;
 	height: 22px;
 	fill: none;
 	stroke: currentColor;
 	stroke-width: 2;
 }
-header > span {
+header span {
 	flex: 1;
 }
 header + div {
@@ -95,19 +95,6 @@ header + div {
 header + div > div {
 	display: flex;
 	flex-flow: column;
-}
-nav {
-	background: var(--nav-bg);
-}
-nav + * {
-	flex: 1;
-	padding: 30px;
-	outline: none;
-	white-space: pre-wrap;
-	overflow-y: auto;
-	font-size: 15px;
-	line-height: 1.6;
-	background: var(--content-bg);
 }
 header + div > :first-child {
 	border-inline-end: 1px solid var(--border);
