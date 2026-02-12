@@ -58,9 +58,6 @@ header > div > :not(:nth-child(-n+2), span, span + *, span + * + *) {
 header > div > button:nth-child(n+3):not(span ~ *) {
 	display: none;
 }
-header > div > span ~ button:nth-of-type(n+3) {
-	display: none;
-}
 header, footer {
 	padding: 10px;
 	background: var(--bg1);
