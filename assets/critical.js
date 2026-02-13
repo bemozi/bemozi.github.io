@@ -376,18 +376,23 @@
 				z.body.explore.value.classList.toggle('hide', event.target.type === 'portrait-primary');
 			});
 			z.body.explore.value.classList.toggle('hide', screen.orientation.type === 'portrait-primary');
-			
 			const body = document.body, explorer = z.body.first_main.value;
-			explorer.addEventListener('mousedown', event => {
-				if (event.offsetX >= explorer.offsetWidth - 5) body.classList.add('isResizing');
+			explorer.addEventListener('pointerdown', event => {
+				if (event.offsetX >= explorer.offsetWidth - 5) {
+					body.classList.add('isResizing');
+					explorer.setPointerCapture(event.pointerId);
+				}
 			});
-			addEventListener('mousemove', event => {
-				if (!body.classList.contains("isResizing")) return;
-				let dvw = event.clientX / innerWidth * 100;
+			addEventListener('pointermove', event => {
+				if (!body.classList.contains('isResizing')) return;
+				let dvw = ~~(event.clientX / innerWidth * 100);
 				document.documentElement.style.setProperty('--sidebar-width', `${dvw < 20 ? 20 : dvw > 50 ? 50 : dvw}dvw`);
 			});
-			addEventListener('mouseup', () => {
-				body.classList.remove('isResizing');
+			addEventListener('pointerup', event => {
+				if (body.classList.contains('isResizing')) {
+					body.classList.remove('isResizing');
+					explorer.releasePointerCapture(event.pointerId);
+				}
 			});
 		},
 	},
