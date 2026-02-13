@@ -92,7 +92,12 @@ header button > svg {
 	stroke-width: 2;
 }
 header span {
-	flex: 1;
+	width: 1px;
+	height: 18px;
+	background-color: currentColor;
+	opacity: 0.15;
+	margin: 0 8px;
+	align-self: center;
 }
 header + div {
 	display: grid;
