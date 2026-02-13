@@ -367,9 +367,15 @@
 			self.a = z;
 			z.body.last_main.value.append(document.querySelector('main')); 
 			screen.orientation.addEventListener('change', event => {
-				z.body.explore.value.classList.toggle('hide', event.target.type === 'portrait-primary');
+				const orientation = event.target.type === 'portrait-primary';
+				z.body.explore.value.classList.toggle('hide', orientation);
+				z.body.explore_toggle.value.classList.toggle('hide', !orientation);
 			});
-			z.body.explore.value.classList.toggle('hide', screen.orientation.type === 'portrait-primary');
+			{
+				const orientation = screen.orientation.type === 'portrait-primary';
+				z.body.explore.value.classList.toggle('hide', orientation);
+				z.body.explore_toggle.value.classList.toggle('hide', !orientation);
+			}
 		},
 	},
 }});
