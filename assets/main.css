@@ -46,7 +46,6 @@ header, footer {
 	padding: 10px;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
 	place-content: start;
 	background: var(--bg1);
 	border-bottom: 1px solid var(--border);
@@ -62,17 +61,16 @@ header > div {
 	overflow: hidden;
 }
 header button {
-	background: transparent;
-	border: 1px solid transparent;
 	color: var(--text);
 	width: 40px;
 	height: 40px;
-	border-radius: 6px;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex-shrink: 0;
+	background: transparent;
+	border: 1px solid transparent;
+	border-radius: 6px;
 	transition: color 0.2s;
 }
 header button:hover:not(:disabled) {
@@ -96,9 +94,9 @@ header span {
 	opacity: .2;
 }
 header + div {
-	display: grid;
-	grid-template-columns: 200px 1fr;
 	flex: 1;
+	display: grid;
+	grid-template-columns: 20dvw 1fr;
 	overflow: hidden;
 }
 header + div > div {
