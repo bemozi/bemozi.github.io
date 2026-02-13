@@ -215,4 +215,12 @@ header > div {
 }
 header button {
     height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+header button svg {
+	width: 20px;
 }
