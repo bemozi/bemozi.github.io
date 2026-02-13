@@ -42,21 +42,24 @@ body {
 	flex-direction: column;
 	min-height: 100dvh;
 }
-header, header > div, footer {
+header, footer {
+	padding: 10px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	border-bottom: 1px solid var(--border);
-}
-header, footer {
 	place-content: start;
-	padding: 10px;
 	background: var(--bg1);
+	border-bottom: 1px solid var(--border);
 }
 header > div {
 	flex: 1;
-	place-content: center;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(2.5rem, auto));
+	grid-template-rows: 2.5rem;
+	grid-auto-rows: 0px;
+	column-gap: 8px;
+	overflow: hidden;
+	align-content: start;
 }
 header button {
 	background: transparent;
@@ -205,22 +208,4 @@ dialog > :last-child {
 }
 .hide {
 	display: none;
-}
-header > div {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(2.5rem, auto));
-    grid-auto-rows: 0;
-    overflow: hidden;
-    align-content: start;
-}
-header button {
-    height: 2.5rem;
-    width: 2.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-}
-header button svg {
-	width: 20px;
 }
