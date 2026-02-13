@@ -267,13 +267,6 @@
 							<line x1="9" y1="3" x2="9" y2="21"></line>
 						</svg>
 					</button>
-					<button id="explore_toggle" title="Explore">
-						<svg viewBox="0 0 24 24">
-							<path d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2v2"></path>
-							<circle cx="16" cy="16" r="3"></circle>
-							<path d="m21 21-1.9-1.9"></path>
-						</svg>
-					</button>
 					<button id="expand_menu" title="Expand">
 						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
 							<path d="M4 6h16M4 12h16M4 18h16"/>
@@ -347,6 +340,13 @@
 					<div id="preference" class="hide">
 						
 					</div>
+					<button id="explore_toggle" title="Explore">
+						<svg viewBox="0 0 24 24">
+							<path d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2v2"></path>
+							<circle cx="16" cy="16" r="3"></circle>
+							<path d="m21 21-1.9-1.9"></path>
+						</svg>
+					</button>
 					<button id="prefBtn" class="btn">
 						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
 							<path d="M4 6h16"/>
