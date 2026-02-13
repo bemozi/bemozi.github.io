@@ -369,12 +369,12 @@
 			screen.orientation.addEventListener('change', event => {
 				const orientation = event.target.type === 'portrait-primary';
 				z.body.explore.value.classList.toggle('hide', orientation);
-				z.body.explore_toggle.value.classList.toggle('hide', !orientation);
+				z.body.explore_toggle.value.classList.toggle('hide', orientation);
 			});
 			{
 				const orientation = screen.orientation.type === 'portrait-primary';
 				z.body.explore.value.classList.toggle('hide', orientation);
-				z.body.explore_toggle.value.classList.toggle('hide', !orientation);
+				z.body.explore_toggle.value.classList.toggle('hide', orientation);
 			}
 		},
 	},
