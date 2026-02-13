@@ -106,12 +106,12 @@ header + div > * {
 	flex-flow: column;
 }
 header + div > aside {
-	border-inline-end: 1px solid var(--border);
+	border-inline-end: 5px solid var(--border);
 }
 html:has(.isResizing) * {
 	cursor: ew-resize !important;
 }
-.isResizing | div > aside {
+.isResizing > div > aside {
 	border-inline-end-color: #007acc;
 }
 main {
