@@ -46,22 +46,20 @@ header, header > div, footer {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	place-content: start;
 	border-bottom: 1px solid var(--border);
+}
+header, footer {
+	place-content: start;
+	padding: 10px;
+	background: var(--bg1);
 }
 header > div {
 	flex: 1;
-}/*
-header > div > :not(:nth-child(-n+2), span, span + *, span + * + *) {
-	display: none;
-}*/
+	place-content: center;
+}
 header > div > button:nth-child(n+3):not(span ~ *),
 header > div > :nth-child(n+3 of span ~ *) {
 	display: none;
-}
-header, footer {
-	padding: 10px;
-	background: var(--bg1);
 }
 header button {
 	background: transparent;
