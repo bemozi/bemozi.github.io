@@ -14,6 +14,8 @@
 	--bg3: #1e1e1e;
 	--text1: #FAFAFA;
 	--text2: #dcdcdc;
+	
+	--sidebar-width: 20dvw;
 }
 * {
 	box-sizing: border-box;
@@ -96,15 +98,21 @@ header span {
 header + div {
 	flex: 1;
 	display: grid;
-	grid-template-columns: 20dvw 1fr;
+	grid-template-columns: var(--sidebar-width) 1fr;
 	overflow: hidden;
 }
-header + div > div {
+header + div > * {
 	display: flex;
 	flex-flow: column;
 }
-header + div > :first-child {
+header + div > aside {
 	border-inline-end: 1px solid var(--border);
+}
+html:has(.isResizing) * {
+	cursor: ew-resize !important;
+}
+.isResizing | div > aside {
+	border-inline-end-color: #007acc;
 }
 main {
 	padding-top: max(2vh, 2vw, env(safe-area-inset-top));
