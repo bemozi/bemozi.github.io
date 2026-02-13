@@ -72,21 +72,18 @@ header button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	opacity: 0.7;
 	flex-shrink: 0;
 	transition: color 0.2s;
 }
 header button:hover:not(:disabled) {
 	background: var(--accent);
-	opacity: 1;
 }
 header button:disabled {
 	opacity: 0.2;
 	cursor: default;
 }
 header button > svg {
-	width: 22px;
-	height: 22px;
+	width: 1.5rem;
 	fill: none;
 	stroke: currentColor;
 	stroke-width: 2;
@@ -94,10 +91,8 @@ header button > svg {
 header span {
 	width: 1px;
 	height: 18px;
-	background-color: currentColor;
-	opacity: 0.15;
+	background-color: var(--text2);
 	margin: 0 8px;
-	align-self: center;
 }
 header + div {
 	display: grid;
