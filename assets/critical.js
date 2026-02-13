@@ -340,13 +340,6 @@
 					<div id="preference" class="hide">
 						
 					</div>
-					<button id="explore_toggle" title="Explore">
-						<svg viewBox="0 0 24 24">
-							<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-							<line x1="8" y1="12" x2="16" y2="12"></line>
-							<line x1="8" y1="16" x2="13" y2="16"></line>
-						</svg>
-					</button>
 					<button id="prefBtn" class="btn">
 						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
 							<path d="M4 6h16"/>
@@ -355,6 +348,13 @@
 							<rect x="15" y="11" width="2" height="2" fill="currentColor"/>
 							<path d="M4 18h16"/>
 							<rect x="10" y="17" width="2" height="2" fill="currentColor"/>
+						</svg>
+					</button>
+					<button id="explore_toggle" title="Explore">
+						<svg viewBox="0 0 24 24">
+							<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+							<line x1="8" y1="12" x2="16" y2="12"></line>
+							<line x1="8" y1="16" x2="13" y2="16"></line>
 						</svg>
 					</button>
 				</header>
@@ -367,15 +367,9 @@
 			self.a = z;
 			z.body.last_main.value.append(document.querySelector('main')); 
 			screen.orientation.addEventListener('change', event => {
-				const orientation = event.target.type === 'portrait-primary';
-				z.body.explore.value.classList.toggle('hide', orientation);
-				z.body.explore_toggle.value.classList.toggle('hide', orientation);
+				z.body.explore.value.classList.toggle('hide', event.target.type === 'portrait-primary');
 			});
-			{
-				const orientation = screen.orientation.type === 'portrait-primary';
-				z.body.explore.value.classList.toggle('hide', orientation);
-				z.body.explore_toggle.value.classList.toggle('hide', orientation);
-			}
+			z.body.explore.value.classList.toggle('hide', screen.orientation.type === 'portrait-primary');
 		},
 	},
 }});
