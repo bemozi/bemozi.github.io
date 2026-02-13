@@ -343,6 +343,14 @@
 					<button id="explore_toggle" title="Explore">
 						<svg viewBox="0 0 24 24">
 							<path d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2v2"></path>
+							<line x1="15" y1="14" x2="21" y2="14"></line>
+							<line x1="15" y1="18" x2="21" y2="18"></line>
+							<line x1="15" y1="22" x2="19" y2="22"></line>
+						</svg>
+					</button>
+					<button id="explore_toggle" title="Explore">
+						<svg viewBox="0 0 24 24">
+							<path d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2v2"></path>
 							<circle cx="16" cy="16" r="3"></circle>
 							<path d="m21 21-1.9-1.9"></path>
 						</svg>
