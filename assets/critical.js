@@ -272,6 +272,7 @@
 							<path d="M4 6h16M4 12h16M4 18h16"/>
 						</svg>
 					</button>
+					<span></span>
 					<div id="explorer" class="hide">
 						
 					</div>
@@ -340,6 +341,7 @@
 					<div id="preference" class="hide">
 						
 					</div>
+					<span></span>
 					<button id="prefBtn" class="btn">
 						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
 							<path d="M4 6h16"/>
