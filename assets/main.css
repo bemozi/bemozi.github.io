@@ -207,16 +207,23 @@ dialog > :last-child {
 	display: none;
 }
 header > div {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(max-content, 1fr));
-	grid-auto-rows: 0;
-	overflow: hidden;
-	gap: 8px;
-	align-content: start;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(2.5rem, 1fr));
+    grid-auto-rows: 0;
+    overflow: hidden;
+    align-content: start;
+    gap: 8px;
+    width: 100%;
 }
 header button {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+}
+header button svg {
+	flex-shrink: 0;
+	width: 24px;
+	height: 24px;
 }
