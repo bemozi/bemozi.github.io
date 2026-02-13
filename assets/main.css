@@ -107,7 +107,18 @@ header + div > * {
 	background: var(--bg3);
 }
 header + div > aside {
+	position: relative;
 	border-inline-end: 5px solid var(--border);
+}
+header + div > aside::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: -5px;
+	bottom: 0;
+	width: 10px;
+	cursor: col-resize;
+	z-index: 10;
 }
 html:has(.isResizing) * {
 	cursor: ew-resize !important;
