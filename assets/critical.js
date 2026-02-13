@@ -350,16 +350,16 @@
 					</button>
 					<button id="explore_toggle" title="Explore">
 						<svg viewBox="0 0 24 24">
-							<path d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2v2"></path>
-							<circle cx="16" cy="16" r="3"></circle>
-							<path d="m21 21-1.9-1.9"></path>
-						</svg>
-					</button>
-					<button id="explore_toggle" title="Explore">
-						<svg viewBox="0 0 24 24">
 							<path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
 							<line x1="8" y1="12" x2="16" y2="12"></line>
 							<line x1="8" y1="16" x2="13" y2="16"></line>
+						</svg>
+					</button>
+					<button id="explore_toggle" title="Explore">
+						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+							<path d="M2 20V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2v12"></path>
+							<line x1="7" y1="12" x2="17" y2="12"></line>
+							<line x1="7" y1="18" x2="14" y2="18"></line>
 						</svg>
 					</button>
 					<button id="prefBtn" class="btn">
