@@ -57,11 +57,11 @@ header > div {
 	flex: 1;
 	place-content: center;
 	flex-wrap: wrap;
-}
+}/*
 header > div > button:nth-child(n+3):not(span ~ *),
 header > div > :nth-child(n+3 of span ~ *) {
 	display: none;
-}
+}*/
 header button {
 	background: transparent;
 	border: 1px solid transparent;
