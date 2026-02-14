@@ -277,12 +277,12 @@
 						
 					</div>
 					<div id="main">
-						<button class="icon-btn toolbar-btn" id="undoBtn" disabled title="Undo">
+						<button id="undoBtn" disabled title="Undo">
 							<svg viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/>
 								<path d="M20 20v-7a4 4 0 0 0-4-4H4"/>
 							</svg>
 						</button>
-						<button class="icon-btn toolbar-btn" id="redoBtn" disabled title="Redo">
+						<button id="redoBtn" disabled title="Redo">
 							<svg viewBox="0 0 24 24">
 								<path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/>
 							</svg>
@@ -346,7 +346,14 @@
 						
 					</div>
 					<span></span>
-					<button id="prefBtn" class="btn">
+					<button id="Calendar">
+						<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M19 4H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z" />
+							<path d="M16 2v4M8 2v4M3 10h18" stroke-width="2"/>
+							<path d="M9 16l2 2 4-4" stroke-width="2.5" /> 
+						</svg>
+					</button>
+					<button id="prefBtn">
 						<svg viewBox="0 0 24 24" stroke-linecap="square">
 							<path d="M4 6h16"/>
 							<rect x="7" y="5" width="2" height="2" fill="currentColor"/>
