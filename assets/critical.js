@@ -405,7 +405,6 @@
 					explorer.releasePointerCapture(event.pointerId);
 				}
 			});
-			20 35 50
 		},
 	},
 }});
