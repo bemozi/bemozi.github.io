@@ -273,7 +273,7 @@
 						</svg>
 					</button>
 					<span></span>
-					<div id="menu">
+					<div id="menu" class="full">
 						<div id="explorer" class="hide">
 							
 						</div>
