@@ -89,11 +89,8 @@ header > .full > :not(.hide) {
 	overflow-y: auto;
 	z-index: 1;
 	overscroll-behavior: contain;
-	
-	position: absolute;
+	position: fixed;
 	inset: 2rem 0 0 0;
-	height: calc(100dvh - 2rem);
-	width: 100dvw;
 	gap: 8px;
 }
 header button {
