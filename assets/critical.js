@@ -273,81 +273,83 @@
 						</svg>
 					</button>
 					<span></span>
-					<div id="explorer" class="hide">
-						
-					</div>
-					<div id="main">
-						<button id="undoBtn" disabled title="Undo">
-							<svg viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/>
-								<path d="M20 20v-7a4 4 0 0 0-4-4H4"/>
-							</svg>
-						</button>
-						<button id="redoBtn" disabled title="Redo">
-							<svg viewBox="0 0 24 24">
-								<path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/>
-							</svg>
-						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
-					</div>
-					<div id="preference" class="hide">
-						<button id="ResizeSidebar" title="Resize Sidebar">
-							<svg viewBox="0 0 24 24">
-								<rect x="3" y="4" width="18" height="16" rx="2"></rect>
-								<path d="M8 4v16" stroke-linecap="round"></path>
-								<path d="M8 10l3 2-3 2z" fill="currentColor" stroke="none"></path>
-								<path d="M12 4v16" stroke-dasharray="2 2"></path>
-							</svg>
-						</button>
+					<div>
+						<div id="explorer" class="hide">
+							
+						</div>
+						<div id="main">
+							<button id="undoBtn" disabled title="Undo">
+								<svg viewBox="0 0 24 24"><path d="M9 14L4 9l5-5"/>
+									<path d="M20 20v-7a4 4 0 0 0-4-4H4"/>
+								</svg>
+							</button>
+							<button id="redoBtn" disabled title="Redo">
+								<svg viewBox="0 0 24 24">
+									<path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/>
+								</svg>
+							</button>
+							<button>
+								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+							</button>
+							<button>
+								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+							</button>
+							<button>
+								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+							</button>
+							<button>
+								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+							</button>
+							<button>
+								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+							</button>
+							<button>
+								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+							</button>
+							<button>
+								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+							</button>
+							<button>
+								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+							</button>
+							<button>
+								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+							</button>
+							<button>
+								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+							</button>
+							<button>
+								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+							</button>
+							<button>
+								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+							</button>
+							<button>
+								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+							</button>
+							<button>
+								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+							</button>
+							<button>
+								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+							</button>
+							<button>
+								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+							</button>
+							<button>
+								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
+							</button>
+						</div>
+						<div id="preference" class="hide">
+							<button id="ResizeSidebar" title="Resize Sidebar">
+								<svg viewBox="0 0 24 24">
+									<rect x="3" y="4" width="18" height="16" rx="2"></rect>
+									<path d="M8 4v16" stroke-linecap="round"></path>
+									<path d="M8 10l3 2-3 2z" fill="currentColor" stroke="none"></path>
+									<path d="M12 4v16" stroke-dasharray="2 2"></path>
+								</svg>
+							</button>
+						</div>
 					</div>
 					<span></span>
 					<button id="Calendar">
