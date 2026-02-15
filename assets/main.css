@@ -62,6 +62,7 @@ header {
 	position: relative;
 	padding: 0 8px;
 	box-sizing: border-box;
+	background: var(--bg1);
 }
 header > div {
 	grid-column: 2;
