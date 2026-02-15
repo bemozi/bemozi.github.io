@@ -69,7 +69,7 @@ header, footer {
 	align-items: center;
 	place-content: start;
 	background: var(--bg1);
-}/*
+}
 header > div {
 	flex: 1;
 }
@@ -82,60 +82,20 @@ header > div > div {
 	column-gap: 8px;
 	overflow: hidden;
 }
-header > .full > :not(.hide) {
-	grid-auto-rows: unset;
+header > .full {
 	position: absolute;
 	top: 100%;
 	left: 0;
 	width: 100vw;
 	height: calc(100vh - 100%);
-	padding: 20px;
-	display: flex;
-	flex-wrap: wrap;
-	align-content: flex-start;
-	gap: 15px;
+	backdrop-filter: blur(9px);
+	padding: 10px;
 	overflow-y: auto;
-	box-sizing: border-box;
-}*/
-
-header > div {
-	flex-grow: 1;
-	display: flex;
-	position: relative;
-}
-header > div > button {
-	display: none;
-}
-header > div.full {
-	flex-grow: 1; 
-}
-header > div.full > button:not(.hide) {
-	display: flex;
-}
-header > div.full {
-	position: absolute;
-	top: 100%;
-	left: 0;
-	width: 100vw;
-	height: calc(100vh - 100%);
-	backdrop-filter: blur(10px);
-	padding: 20px;
-	flex-wrap: wrap;
-	align-content: flex-start;
-	gap: 15px;
-	overflow-y: auto;
-	box-sizing: border-box;
 	z-index: 50;
 }
-header > button {
-	position: relative;
-	z-index: 100;
-	pointer-events: auto;
+header > .full > :not(.hide) {
+	grid-auto-rows: unset;
 }
-header > button:hover {
-	background-color: #f0f0f0;
-}
-
 header button {
 	color: var(--text);
 	width: 40px;
