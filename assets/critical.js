@@ -338,16 +338,20 @@
 						<button>
 							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
 						</button>
-						<button>
-							<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
-						</button>
 					</div>
 					<div id="preference" class="hide">
-						
+						<button id="ResizeSidebar" title="Resize Sidebar">
+							<svg viewBox="0 0 24 24">
+								<rect x="3" y="4" width="18" height="16" rx="2"></rect>
+								<path d="M8 4v16" stroke-linecap="round"></path>
+								<path d="M8 10l3 2-3 2z" fill="currentColor" stroke="none"></path>
+								<path d="M12 4v16" stroke-dasharray="2 2"></path>
+							</svg>
+						</button>
 					</div>
 					<span></span>
 					<button id="Calendar">
-						<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+						<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
 							<path d="M19 4H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z" />
 							<path d="M16 2v4M8 2v4M3 10h18" stroke-width="2"/>
 							<path d="M9 16l2 2 4-4" stroke-width="2.5" /> 
@@ -401,6 +405,7 @@
 					explorer.releasePointerCapture(event.pointerId);
 				}
 			});
+			20 35 50
 		},
 	},
 }});
