@@ -16,6 +16,24 @@
 	--text2: #dcdcdc;
 	
 	--sidebar-width: 20dvw;
+	
+	--sidebar-bg: #252525;
+	--scrollbar-thumb: #444;
+	--scrollbar-track: transparent;
+}
+::-webkit-scrollbar {
+	width: 8px;
+}
+::-webkit-scrollbar-track {
+	background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+	background: var(--scrollbar-thumb);
+	border-radius: 10px;
+	border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-thumb {
+	border-color: var(--sidebar-bg);
 }
 * {
 	box-sizing: border-box;
@@ -100,7 +118,6 @@ header > div.full {
 	left: 0;
 	width: 100vw;
 	height: calc(100vh - 100%);
-	background: rgba(255, 255, 255, 0.9);
 	backdrop-filter: blur(10px);
 	padding: 20px;
 	flex-wrap: wrap;
