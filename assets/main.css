@@ -54,6 +54,8 @@ header, footer {
 }
 header > div {
 	flex: 1;
+}
+header > div > div {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(2.5rem, max-content));
 	grid-template-rows: 2.5rem;
