@@ -64,6 +64,21 @@ header > div > div {
 	column-gap: 8px;
 	overflow: hidden;
 }
+header > .full > div {
+	grid-auto-rows: unset;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100vw;
+	height: calc(100vh - 100%);
+	padding: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	gap: 15px;
+	overflow-y: auto;
+	box-sizing: border-box;
+}
 header button {
 	color: var(--text);
 	width: 40px;
