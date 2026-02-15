@@ -84,14 +84,15 @@ header > div > div {
 }
 header > .full > :not(.hide) {
 	grid-auto-rows: max-content;
+	padding: 10px;
+	backdrop-filter: blur(9px);
+	overflow-y: auto;
+	
 	position: absolute;
 	top: 100%;
 	left: 0;
-	width: 100vw;
-	height: calc(100vh - 100%);
-	backdrop-filter: blur(9px);
-	padding: 10px;
-	overflow-y: auto;
+	width: 100dvw;
+	height: calc(100dvh - 100%);
 	z-index: 50;
 }
 header button {
