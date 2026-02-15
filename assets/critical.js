@@ -273,7 +273,7 @@
 						</svg>
 					</button>
 					<span></span>
-					<div>
+					<div id="menu">
 						<div id="explorer" class="hide">
 							
 						</div>
@@ -384,6 +384,11 @@
 				<footer id="footer"></footer>
 			`);
 			self.a = z;
+			
+			z.body.expand_menu.value.addEventListener('click', event => {
+				z.body.menu.value.classList.toggle('full');
+			});
+			
 			z.body.last_main.value.append(document.querySelector('main')); 
 			screen.orientation.addEventListener('change', event => {
 				z.body.explore.value.classList.toggle('hide', event.target.type === 'portrait-primary');
