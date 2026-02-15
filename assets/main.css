@@ -91,15 +91,9 @@ header > .full > :not(.hide) {
 	overscroll-behavior: contain;
 	
 	position: absolute;
-	top: 100%;
-	left: 0;
+	inset: 2rem 0 0 0;
+	height: calc(100dvh - 2rem);
 	width: 100dvw;
-	height: calc(100dvh - 100%);
-	
-	position: fixed;
-	inset: 58px 0 0 0;
-	width: 100dvw;
-	grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
 	gap: 8px;
 }
 header button {
