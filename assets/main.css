@@ -82,7 +82,8 @@ header > div > div {
 	column-gap: 8px;
 	overflow: hidden;
 }
-header > .full {
+header > .full > :not(.hide) {
+	grid-auto-rows: unset;
 	position: absolute;
 	top: 100%;
 	left: 0;
@@ -92,9 +93,6 @@ header > .full {
 	padding: 10px;
 	overflow-y: auto;
 	z-index: 50;
-}
-header > .full > :not(.hide) {
-	grid-auto-rows: unset;
 }
 header button {
 	color: var(--text);
