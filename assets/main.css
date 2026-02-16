@@ -96,8 +96,8 @@ header > .full > :not(.hide) {
 header > :not(.full) > :not(.hide) > :not(button) {
 	display: none;
 }
-header > .full > :not(.hide) > button {
-	
+header > .full > :not(.hide) > :not(button) {
+	background: red;
 }
 header button {
 	color: var(--text);
