@@ -93,12 +93,6 @@ header > .full > :not(.hide) {
 	inset: calc(2.5rem + 20px) 0 0 0;
 	gap: 8px;
 }
-header > :not(.full) > :not(.hide) > :not(button) {
-	display: none;
-}
-header > .full > :not(.hide) > :not(button) {
-	background: red;
-}
 header button {
 	color: var(--text);
 	width: 40px;
