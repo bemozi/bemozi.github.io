@@ -119,7 +119,7 @@ header button > svg {
 	stroke: currentColor;
 	stroke-width: 2;
 }
-header > :not(.full) > :not(.hide) > :not(button) {
+header > div:not(.full) > div:not(.hide) > :not(button) {
 	display: none;
 }
 header span {
