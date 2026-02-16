@@ -119,6 +119,9 @@ header button > svg {
 	stroke: currentColor;
 	stroke-width: 2;
 }
+header > :not(.full) > :not(.hide) > :not(button) {
+	display: none;
+}
 header span {
 	width: 2px;
 	height: 18px;
