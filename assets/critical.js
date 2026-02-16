@@ -339,6 +339,7 @@
 							<button>
 								<svg viewBox="0 0 24 24"><path d="M15 14l5-5-5-5"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>
 							</button>
+							<input type="text" id="filter" placeholder="Filter / Regex Pattern" spellcheck="false">
 						</div>
 						<div id="preference" class="hide">
 							<button id="ResizeSidebar" title="Resize Sidebar">
