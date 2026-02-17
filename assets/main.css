@@ -20,6 +20,11 @@
 	--sidebar-bg: #252525;
 	--scrollbar-thumb: #444;
 	--scrollbar-track: transparent;
+	
+	--input-bg: #3c3c3c;
+	--border: #333;
+	--text: #dcdcdc;
+	--base-fs: 16px;
 }
 ::-webkit-scrollbar {
 	width: 8px;
@@ -121,6 +126,18 @@ header button > svg {
 }
 header > div:not(.full) > div:not(.hide) > :not(button) {
 	display: none;
+}
+input  {
+	width: 100%;
+	background: var(--input-bg);
+	border: 1px solid var(--border);
+	color: var(--text);
+	padding: 8px;
+	border-radius: 4px;
+	font-size: var(--base-fs);
+	outline: none;
+	user-select: text;
+	-webkit-user-select: text;
 }
 header span {
 	width: 2px;
