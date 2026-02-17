@@ -127,7 +127,11 @@ header button > svg {
 header > div:not(.full) > div:not(.hide) > :not(button) {
 	display: none;
 }
-input  {
+header > .full > div:not(.hide) > :not(button) {
+	grid-column: 1 / -1;
+	width: 100%;
+}
+input {
 	width: 100%;
 	background: var(--input-bg);
 	border: 1px solid var(--border);
