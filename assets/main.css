@@ -129,7 +129,6 @@ header > div:not(.full) > div:not(.hide) > :not(button) {
 }
 header > .full > div:not(.hide) > :not(button) {
 	grid-column: 1 / -1;
-	width: 100%;
 }
 input {
 	width: 100%;
