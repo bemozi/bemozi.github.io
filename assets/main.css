@@ -77,7 +77,6 @@ header, footer {
 }
 header > div {
 	flex: 1;
-	background: var(--bg3);
 }
 header > div > div {
 	display: grid;
@@ -97,6 +96,7 @@ header > .full > :not(.hide) {
 	position: fixed;
 	inset: calc(2.5rem + 20px) 0 0 0;
 	gap: 8px;
+	background: var(--bg3);
 }
 header button {
 	color: var(--text);
