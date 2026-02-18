@@ -77,6 +77,7 @@ header, footer {
 }
 header > div {
 	flex: 1;
+	background: var(--bg3);
 }
 header > div > div {
 	display: grid;
@@ -90,7 +91,6 @@ header > div > div {
 header > .full > :not(.hide) {
 	grid-auto-rows: min-content;
 	padding: 10px;
-	backdrop-filter: blur(9px);
 	overflow-y: auto;
 	z-index: 1;
 	overscroll-behavior: contain;
