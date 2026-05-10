@@ -3,185 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi-User Audio Room</title>
-    <!-- Use a very stable MQTT build -->
+    <title>Audio Node</title>
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <style>
-        body { font-family: sans-serif; background: #121212; color: #e0e0e0; display: flex; justify-content: center; padding: 20px; margin: 0; }
-        .card { background: #1e1e1e; padding: 25px; border-radius: 12px; width: 100%; max-width: 400px; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
-        input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 6px; border: 1px solid #333; background: #252525; color: #fff; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
-        .btn-join { background: #00e676; color: #121212; }
-        .user-list { background: #252525; padding: 10px; border-radius: 6px; margin-top: 15px; min-height: 50px; }
-        .user-item { padding: 5px; border-bottom: 1px solid #333; font-size: 0.9rem; }
+        body { font-family: sans-serif; background: #121212; color: #eee; display: flex; justify-content: center; padding: 20px; }
+        .card { background: #1e1e1e; padding: 20px; border-radius: 10px; width: 100%; max-width: 350px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        input { width: 100%; padding: 10px; margin: 5px 0; border-radius: 5px; border: 1px solid #333; background: #222; color: #fff; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; margin: 10px 0; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; background: #00e676; }
+        .user-list { background: #252525; padding: 10px; border-radius: 5px; margin-top: 10px; font-size: 0.9rem; }
+        .user-item { padding: 5px 0; border-bottom: 1px solid #333; }
         .hidden { display: none; }
-        #log { font-size: 10px; color: #777; margin-top: 10px; height: 60px; overflow-y: auto; background: #000; padding: 5px; border-radius: 4px; }
+        #log { font-size: 9px; color: #666; margin-top: 10px; height: 40px; overflow-y: auto; background: #000; padding: 5px; }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h2 style="color:#00e676; text-align:center;">Audio Room</h2>
-    
+    <div id="status" style="text-align:center; font-size:0.7rem; color:#888;">OFFLINE</div>
     <div id="login-form">
-        <input type="text" id="room-id" placeholder="Room ID (e.g. test123)">
-        <input type="password" id="room-pass" placeholder="Room Password">
-        <input type="text" id="user-name" placeholder="Your Name">
-        <button class="btn-join" onclick="joinRoom()">Join Room</button>
+        <input type="text" id="room-id" placeholder="Room ID">
+        <input type="password" id="room-pass" placeholder="Password">
+        <input type="text" id="user-name" placeholder="Name">
+        <button onclick="join()">Join</button>
     </div>
-
     <div id="room-ui" class="hidden">
-        <div class="user-list">
-            <strong>Participants:</strong>
-            <div id="users-box"></div>
-        </div>
-        <button id="mute-btn" style="background:#cf6679; color:white" onclick="toggleMute()">Mute Microphone</button>
-        <button style="background:#444; color:white" onclick="location.reload()">Exit</button>
+        <div class="user-list" id="user-box"></div>
+        <button id="mute-btn" style="background:#ff5252; color:#fff;" onclick="toggleMute()">Mute</button>
+        <button style="background:#444; color:#fff;" onclick="location.reload()">Exit</button>
     </div>
-
-    <div id="log">System: Ready. Use HTTPS.</div>
+    <div id="log"></div>
 </div>
 
-<div id="audios"></div>
-
 <script>
-    let client;
-    let localStream;
-    let myId = "id_" + Math.random().toString(36).substr(2, 5);
-    let peers = {};
-    let iceConfig = { iceServers: [{ urls: "stun:stun.l.google.com:19302" }] };
-    let myName = "";
+    let client, localStream, myId = "p" + Math.floor(Math.random()*9999), peers = {}, channel = "", myName = "";
+    const ice = { iceServers: [{ urls: "stun:stun.l.google.com:19302" }, { urls: "stun:stun1.l.google.com:19302" }] };
 
-    function log(msg) {
-        const l = document.getElementById('log');
-        l.innerText += "\n> " + msg;
-        l.scrollTop = l.scrollHeight;
-    }
+    function log(m) { const l = document.getElementById('log'); l.innerText += "\n> " + m; l.scrollTop = l.scrollHeight; }
 
-    async function joinRoom() {
-        const room = document.getElementById('room-id').value;
-        const pass = document.getElementById('room-pass').value;
+    async function join() {
+        const r = document.getElementById('room-id').value;
+        const p = document.getElementById('room-pass').value;
         myName = document.getElementById('user-name').value || myId;
-
-        if (!room || !pass) return alert("Fill all fields");
+        if(!r || !p) return;
 
         try {
-            log("Requesting microphone...");
             localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            log("Mic OK.");
-        } catch (e) {
-            log("Error: " + e.message);
-            return alert("Mic Error. Ensure HTTPS is used.");
-        }
+            log("Mic OK");
+        } catch(e) { return alert("Mic Error: Use HTTPS"); }
 
         document.getElementById('login-form').classList.add('hidden');
         document.getElementById('room-ui').classList.remove('hidden');
-
-        // Create a unique channel based on Room + Pass
-        const channel = "rtcaudio/" + btoa(room + pass).substr(0, 12);
         
-        log("Connecting to signal server...");
-        // Using a different public broker port/address for better compatibility
+        channel = "rtc/" + btoa(r + p).slice(0,12);
         client = mqtt.connect('wss://broker.emqx.io:8084/mqtt');
 
         client.on('connect', () => {
-            log("Signal Online.");
             client.subscribe(channel);
-            // Tell everyone I'm here
-            broadcast({ type: 'hello', from: myId, name: myName }, channel);
-            addUserToList(myName, true);
+            document.getElementById('status').innerText = "ONLINE: " + r;
+            pub({ type: 'hi', from: myId, name: myName });
+            addUser(myName, true, myId);
         });
 
-        client.on('message', (topic, payload) => {
-            const msg = JSON.parse(payload.toString());
-            if (msg.from === myId) return;
-            handleSignal(msg, channel);
+        client.on('message', (t, m) => {
+            const d = JSON.parse(m.toString());
+            if(d.from === myId) return;
+            handle(d);
         });
     }
 
-    async function handleSignal(msg, channel) {
-        const peerId = msg.from;
-
-        if (msg.type === 'hello') {
-            log("New user: " + msg.name);
-            addUserToList(msg.name);
-            // If someone says hello, initiate connection
-            initiatePeer(peerId, channel, true);
-        } 
-        else if (msg.type === 'offer' && msg.to === myId) {
-            log("Received offer from " + peerId);
-            const pc = initiatePeer(peerId, channel, false);
-            await pc.setRemoteDescription(new RTCSessionDescription(msg.sdp));
-            const answer = await pc.createAnswer();
-            await pc.setLocalDescription(answer);
-            broadcast({ type: 'answer', to: peerId, from: myId, sdp: answer }, channel);
-        } 
-        else if (msg.type === 'answer' && msg.to === myId) {
-            log("Received answer.");
-            await peers[peerId].setRemoteDescription(new RTCSessionDescription(msg.sdp));
-        } 
-        else if (msg.type === 'ice' && msg.to === myId) {
-            if (peers[peerId]) {
-                await peers[peerId].addIceCandidate(new RTCIceCandidate(msg.candidate));
-            }
+    async function handle(d) {
+        const pid = d.from;
+        if(d.type === 'hi') {
+            addUser(d.name, false, pid);
+            pub({ type: 'back', to: pid, from: myId, name: myName });
+            init(pid, true);
+        } else if(d.type === 'back' && d.to === myId) {
+            addUser(d.name, false, pid);
+        } else if(d.type === 'offer' && d.to === myId) {
+            const pc = init(pid, false);
+            await pc.setRemoteDescription(new RTCSessionDescription(d.sdp));
+            const a = await pc.createAnswer();
+            await pc.setLocalDescription(a);
+            pub({ type: 'answer', to: pid, from: myId, sdp: a });
+        } else if(d.type === 'answer' && d.to === myId) {
+            await peers[pid].setRemoteDescription(new RTCSessionDescription(d.sdp));
+        } else if(d.type === 'ice' && d.to === myId && peers[pid]) {
+            peers[pid].addIceCandidate(new RTCIceCandidate(d.ice));
         }
     }
 
-    function initiatePeer(peerId, channel, isCaller) {
-        if (peers[peerId]) return peers[peerId];
-
-        log("Setting up peer: " + peerId);
-        const pc = new RTCPeerConnection(iceConfig);
-        peers[peerId] = pc;
-
+    function init(pid, call) {
+        if(peers[pid]) return peers[pid];
+        const pc = new RTCPeerConnection(ice);
+        peers[pid] = pc;
         localStream.getTracks().forEach(t => pc.addTrack(t, localStream));
-
-        pc.onicecandidate = (e) => {
-            if (e.candidate) {
-                broadcast({ type: 'ice', to: peerId, from: myId, candidate: e.candidate }, channel);
-            }
+        pc.onicecandidate = e => e.candidate && pub({ type: 'ice', to: pid, from: myId, ice: e.candidate });
+        pc.ontrack = e => {
+            let a = document.getElementById('a-'+pid);
+            if(!a) { a = document.createElement('audio'); a.id = 'a-'+pid; a.autoplay = true; document.body.appendChild(a); }
+            a.srcObject = e.streams[0];
+            log("Audio connected");
         };
-
-        pc.ontrack = (e) => {
-            log("Audio stream received!");
-            let el = document.getElementById('audio-' + peerId);
-            if (!el) {
-                el = document.createElement('audio');
-                el.id = 'audio-' + peerId;
-                el.autoplay = true;
-                document.body.appendChild(el);
-            }
-            el.srcObject = e.streams[0];
-        };
-
-        if (isCaller) {
+        if(call) {
             pc.onnegotiationneeded = async () => {
-                const offer = await pc.createOffer();
-                await pc.setLocalDescription(offer);
-                broadcast({ type: 'offer', to: peerId, from: myId, sdp: offer }, channel);
+                const o = await pc.createOffer();
+                await pc.setLocalDescription(o);
+                pub({ type: 'offer', to: pid, from: myId, sdp: o });
             };
         }
-
         return pc;
     }
 
-    function broadcast(data, channel) {
-        client.publish(channel, JSON.stringify(data));
-    }
+    function pub(d) { client.publish(channel, JSON.stringify(d)); }
 
-    function addUserToList(name, isMe = false) {
-        const box = document.getElementById('users-box');
-        const div = document.createElement('div');
-        div.className = 'user-item';
-        div.innerText = name + (isMe ? " (You)" : "");
-        box.appendChild(div);
+    function addUser(n, me, id) {
+        if(document.getElementById('u-'+id)) return;
+        const b = document.getElementById('user-box');
+        const d = document.createElement('div');
+        d.id = 'u-'+id; d.className = 'user-item'; d.innerText = n + (me ? " (Me)" : "");
+        b.appendChild(d);
     }
 
     function toggleMute() {
-        const track = localStream.getAudioTracks()[0];
-        track.enabled = !track.enabled;
-        document.getElementById('mute-btn').innerText = track.enabled ? "Mute Microphone" : "Unmute Microphone";
-        document.getElementById('mute-btn').style.background = track.enabled ? "#cf6679" : "#444";
+        const t = localStream.getAudioTracks()[0];
+        t.enabled = !t.enabled;
+        document.getElementById('mute-btn').innerText = t.enabled ? "Mute" : "Unmute";
     }
 </script>
 </body>
