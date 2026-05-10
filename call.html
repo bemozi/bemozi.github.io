@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-User Audio Room</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.3.7/mqtt.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #e0e0e0; display: flex; justify-content: center; padding: 20px; }
+        .card { background: #1e1e1e; padding: 25px; border-radius: 12px; width: 100%; max-width: 450px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+        h2 { color: #00e676; text-align: center; margin-top: 0; }
+        input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 6px; border: 1px solid #333; background: #252525; color: #fff; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        .btn-join { background: #00e676; color: #121212; }
+        .btn-mute { background: #cf6679; color: white; }
+        .user-list { background: #252525; padding: 10px; border-radius: 6px; margin-top: 15px; font-size: 0.9rem; }
+        .user-item { padding: 5px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; }
+        .hidden { display: none; }
+        #status { text-align: center; font-size: 0.8rem; color: #888; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Audio Rooms</h2>
+    <div id="status">Disconnected</div>
+
+    <div id="login-form">
+        <input type="text" id="room-id" placeholder="Room ID (e.g. office123)">
+        <input type="password" id="room-pass" placeholder="Password (Short is OK)">
+        <input type="text" id="user-name" placeholder="Your Name">
+        <button class="btn-join" onclick="joinRoom()">Enter Room</button>
+    </div>
+
+    <div id="room-ui" class="hidden">
+        <div class="user-list" id="user-list-container">
+            <strong>Connected Users:</strong>
+            <div id="users"></div>
+        </div>
+        <button id="mute-btn" class="btn-mute" onclick="toggleMute()">Mute Microphone</button>
+        <button style="background:#444; color:white" onclick="location.reload()">Leave Room</button>
+    </div>
+</div>
+
+<div id="audio-containers"></div>
+
+<script>
+    let mqttClient;
+    let localStream;
+    let myId = Math.random().toString(36).substr(2, 9);
+    let peers = {}; 
+    let config = { iceServers: [{ urls: "stun:stun.l.google.com:19302" }] };
+    let isMuted = false;
+
+    async function joinRoom() {
+        const room = document.getElementById('room-id').value;
+        const pass = document.getElementById('room-pass').value;
+        const name = document.getElementById('user-name').value || "User_" + myId.substr(0,3);
+
+        if (!room || !pass) return alert("Room and Password required!");
+
+        // 1. Get Microphone
+        try {
+            localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        } catch (e) {
+            return alert("Mic access denied. Use HTTPS.");
+        }
+
+        document.getElementById('login-form').classList.add('hidden');
+        document.getElementById('room-ui').classList.remove('hidden');
+        document.getElementById('status').innerText = `Connecting to: ${room}...`;
+
+        // 2. Connect to MQTT (Signaling)
+        // We use the room + pass hash to create a unique topic
+        const topic = "v1/audio-call/" + btoa(room + pass).substr(0, 16);
+        mqttClient = mqtt.connect('wss://broker.hivemq.com:8000/mqtt');
+
+        mqttClient.on('connect', () => {
+            mqttClient.subscribe(topic);
+            document.getElementById('status').innerText = "In Room: " + room;
+            updateUserList(name, true);
+            
+            // Broadcast existence to others
+            sendSignal(topic, { type: 'join', from: myId, name: name });
+        });
+
+        mqttClient.on('message', (t, msg) => {
+            const data = JSON.parse(msg.toString());
+            if (data.from === myId) return; // Ignore self
+
+            handleSignal(topic, data);
+        });
+    }
+
+    async function handleSignal(topic, data) {
+        const userId = data.from;
+
+        if (data.type === 'join') {
+            updateUserList(data.name);
+            createPeer(topic, userId, true); // We are host for this new person
+        } else if (data.type === 'offer') {
+            const pc = createPeer(topic, userId, false);
+            await pc.setRemoteDescription(new RTCSessionDescription(data.sdp));
+            const answer = await pc.createAnswer();
+            await pc.setLocalDescription(answer);
+            sendSignal(topic, { type: 'answer', to: userId, from: myId, sdp: answer });
+        } else if (data.type === 'answer') {
+            await peers[userId].setRemoteDescription(new RTCSessionDescription(data.sdp));
+        } else if (data.type === 'candidate') {
+            await peers[userId].addIceCandidate(new RTCIceCandidate(data.candidate));
+        }
+    }
+
+    function createPeer(topic, userId, isInitiator) {
+        if (peers[userId]) return peers[userId];
+
+        const pc = new RTCPeerConnection(config);
+        peers[userId] = pc;
+
+        localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
+
+        pc.onicecandidate = (e) => {
+            if (e.candidate) sendSignal(topic, { type: 'candidate', to: userId, from: myId, candidate: e.candidate });
+        };
+
+        pc.ontrack = (e) => {
+            let audio = document.getElementById('audio-' + userId);
+            if (!audio) {
+                audio = document.createElement('audio');
+                audio.id = 'audio-' + userId;
+                audio.autoplay = true;
+                document.getElementById('audio-containers').appendChild(audio);
+            }
+            audio.srcObject = e.streams[0];
+        };
+
+        if (isInitiator) {
+            pc.onnegotiationneeded = async () => {
+                const offer = await pc.createOffer();
+                await pc.setLocalDescription(offer);
+                sendSignal(topic, { type: 'offer', to: userId, from: myId, sdp: offer });
+            };
+        }
+
+        return pc;
+    }
+
+    function sendSignal(topic, data) {
+        mqttClient.publish(topic, JSON.stringify(data));
+    }
+
+    function updateUserList(name, isMe = false) {
+        const div = document.getElementById('users');
+        const item = document.createElement('div');
+        item.className = 'user-item';
+        item.innerHTML = `<span>${name} ${isMe ? '(You)' : ''}</span> <span style="color:#00e676">●</span>`;
+        div.appendChild(item);
+    }
+
+    function toggleMute() {
+        isMuted = !isMuted;
+        localStream.getAudioTracks()[0].enabled = !isMuted;
+        const btn = document.getElementById('mute-btn');
+        btn.innerText = isMuted ? "Unmute Microphone" : "Mute Microphone";
+        btn.style.background = isMuted ? "#444" : "#cf6679";
+    }
+</script>
+</body>
+</html>
