@@ -9,17 +9,17 @@
         body { font-family: sans-serif; background: #121212; color: #eee; display: flex; justify-content: center; padding: 20px; }
         .card { background: #1e1e1e; padding: 20px; border-radius: 10px; width: 100%; max-width: 350px; border: 1px solid #333; }
         input { width: 100%; padding: 10px; margin: 5px 0; border-radius: 5px; border: 1px solid #333; background: #222; color: #fff; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; margin: 10px 0; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; background: #00e676; }
+        button { width: 100%; padding: 10px; margin: 10px 0; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; background: #00e676; color: #000; }
         .user-list { background: #252525; padding: 10px; border-radius: 5px; margin-top: 10px; min-height: 40px; }
         .user-item { padding: 5px 0; border-bottom: 1px solid #333; font-size: 0.9rem; }
         .hidden { display: none; }
-        #log { font-size: 9px; color: #666; margin-top: 10px; height: 60px; overflow-y: auto; background: #000; padding: 5px; white-space: pre-wrap; }
+        #log { font-size: 9px; color: #888; margin-top: 10px; height: 80px; overflow-y: auto; background: #000; padding: 5px; white-space: pre-wrap; border: 1px solid #222; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <div id="status" style="text-align:center; font-size:0.7rem; color:#888; margin-bottom:10px;">OFFLINE</div>
+<div class="card" onclick="resumeAudio()">
+    <div id="status" style="text-align:center; font-size:0.7rem; color:#888; margin-bottom:10px;">OFFLINE (Tap to enable sound)</div>
     <div id="login-form">
         <input type="text" id="room-id" placeholder="Room ID">
         <input type="password" id="room-pass" placeholder="Password">
@@ -31,7 +31,7 @@
         <button id="mute-btn" style="background:#ff5252; color:#fff;" onclick="toggleMute()">Mute</button>
         <button style="background:#444; color:#fff;" onclick="location.reload()">Exit</button>
     </div>
-    <div id="log"></div>
+    <div id="log">System: Ready.</div>
 </div>
 
 <script>
@@ -40,9 +40,15 @@
 
     function log(m) { 
         const l = document.getElementById('log'); 
-        l.innerText += "\n" + m; 
+        l.innerText += "\n> " + m; 
         l.scrollTop = l.scrollHeight; 
-        console.log(m);
+    }
+
+    // Critical for Mobile Safari/Chrome
+    function resumeAudio() {
+        document.querySelectorAll('audio').forEach(a => {
+            a.play().catch(() => {});
+        });
     }
 
     async function join() {
@@ -53,23 +59,22 @@
 
         try {
             localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            log("Mic Access Granted");
+            log("Microphone Ready");
         } catch(e) { 
-            log("Mic Error: Use HTTPS/Localhost");
+            log("Mic Error: Use HTTPS");
             return alert("Mic Access Denied"); 
         }
 
         document.getElementById('login-form').classList.add('hidden');
         document.getElementById('room-ui').classList.remove('hidden');
         
-        channel = "rtcaudio/" + btoa(r + p).slice(0,12);
+        channel = "rtcaudio/v3/" + btoa(r + p).slice(0,12);
         client = mqtt.connect('wss://broker.emqx.io:8084/mqtt');
 
         client.on('connect', () => {
-            log("Signal Server Connected");
+            log("Signaling Online");
             client.subscribe(channel);
-            document.getElementById('status').innerText = "ONLINE: " + r;
-            // Immediate announcement
+            document.getElementById('status').innerText = "ROOM: " + r;
             pub({ type: 'join', from: myId, name: myName });
             addUser(myName, true, myId);
         });
@@ -84,25 +89,23 @@
     async function handle(d) {
         const pid = d.from;
         if(d.type === 'join') {
-            log(d.name + " entered");
+            log(d.name + " joined");
             addUser(d.name, false, pid);
             pub({ type: 'presence', to: pid, from: myId, name: myName });
             initPeer(pid, true);
         } else if(d.type === 'presence' && d.to === myId) {
-            log("Found " + d.name);
             addUser(d.name, false, pid);
+            log("Synced with " + d.name);
         } else if(d.type === 'offer' && d.to === myId) {
-            log("Incoming call...");
             const pc = initPeer(pid, false);
             await pc.setRemoteDescription(new RTCSessionDescription(d.sdp));
             const a = await pc.createAnswer();
             await pc.setLocalDescription(a);
             pub({ type: 'answer', to: pid, from: myId, sdp: a });
         } else if(d.type === 'answer' && d.to === myId) {
-            log("Call answered");
             await peers[pid].setRemoteDescription(new RTCSessionDescription(d.sdp));
         } else if(d.type === 'ice' && d.to === myId && peers[pid]) {
-            peers[pid].addIceCandidate(new RTCIceCandidate(d.ice)).catch(() => {});
+            peers[pid].addIceCandidate(new RTCIceCandidate(d.ice)).catch(e => {});
         }
     }
 
@@ -118,16 +121,25 @@
             if(e.candidate) pub({ type: 'ice', to: pid, from: myId, ice: e.candidate });
         };
 
+        pc.onconnectionstatechange = () => {
+            log("PC State: " + pc.connectionState);
+            if(pc.connectionState === "connected") log("AUDIO STREAMING!");
+        };
+
         pc.ontrack = e => {
-            log("Audio playing for " + pid);
             let audio = document.getElementById('aud-'+pid);
             if(!audio) {
                 audio = document.createElement('audio');
                 audio.id = 'aud-'+pid;
                 audio.autoplay = true;
+                audio.setAttribute('playsinline', 'true');
+                // Some browsers need this for auto-play policy
+                audio.setAttribute('controls', 'false'); 
                 document.body.appendChild(audio);
             }
             audio.srcObject = e.streams[0];
+            // Force play
+            audio.play().catch(err => log("Play blocked: Tap screen"));
         };
 
         if(isCaller) {
@@ -142,15 +154,14 @@
     }
 
     function pub(d) { 
-        if(client) client.publish(channel, JSON.stringify(d)); 
+        if(client && client.connected) client.publish(channel, JSON.stringify(d)); 
     }
 
     function addUser(n, isMe, id) {
         if(document.getElementById('u-'+id)) return;
         const box = document.getElementById('user-box');
         const div = document.createElement('div');
-        div.id = 'u-'+id; 
-        div.className = 'user-item'; 
+        div.id = 'u-'+id; div.className = 'user-item'; 
         div.innerText = "● " + n + (isMe ? " (Me)" : "");
         box.appendChild(div);
     }
