@@ -2,132 +2,168 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barcode Scanner with Alignment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Scanner Reel</title>
     <style>
-        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background: #1a1a1a; color: white; margin: 0; padding: 20px; }
-        
-        .video-container { position: relative; width: 100%; max-width: 500px; aspect-ratio: 4/3; overflow: hidden; border-radius: 12px; border: 2px solid #333; }
-        video { width: 100%; height: 100%; object-fit: cover; }
-
-        /* The Red Alignment Line */
-        .guide-line {
-            position: absolute;
-            top: 50%;
-            left: 10%;
-            width: 80%;
-            height: 2px;
-            background-color: rgba(255, 0, 0, 0.7);
-            box-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
-            z-index: 10;
-            pointer-events: none;
+        /* Reset and Full Screen Setup */
+        * { box-sizing: border-box; }
+        body, html { 
+            margin: 0; padding: 0; width: 100%; height: 100%; 
+            overflow: hidden; background: #000; font-family: -apple-system, sans-serif;
         }
 
-        .controls { margin-top: 20px; width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 10px; }
-        select, button { padding: 12px; border-radius: 8px; border: none; font-size: 16px; }
-        button { background: #e63946; color: white; font-weight: bold; cursor: pointer; }
-        select { background: #333; color: white; }
+        /* Video fills the whole screen like a Reel */
+        #video {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover; /* This makes it fill the screen */
+            z-index: 1;
+        }
 
-        #result { margin-top: 15px; padding: 10px; background: #2a2a2a; border-radius: 5px; width: 90%; text-align: center; min-height: 24px; color: #a8dadc; }
+        /* Red Scan Line Overlay */
+        .scan-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 2; pointer-events: none;
+        }
+        .red-line {
+            width: 80%; height: 2px;
+            background: rgba(255, 0, 0, 0.8);
+            box-shadow: 0 0 15px 2px rgba(255, 0, 0, 0.5);
+        }
+
+        /* UI Elements */
+        .ui-layer {
+            position: absolute;
+            bottom: 40px; left: 0; width: 100%;
+            z-index: 3; display: flex; flex-direction: column; align-items: center;
+            gap: 20px;
+        }
+
+        #result {
+            background: rgba(0, 0, 0, 0.6);
+            color: white; padding: 10px 20px; border-radius: 20px;
+            font-size: 14px; backdrop-filter: blur(5px);
+        }
+
+        .settings-btn {
+            width: 60px; height: 60px; border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px); border: 2px solid white;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+        }
+
+        /* Full Screen Camera List Overlay */
+        #cameraMenu {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10; display: none; /* Hidden by default */
+            flex-direction: column; align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        #cameraMenu h2 { color: white; margin-bottom: 30px; }
+        .camera-option {
+            width: 100%; max-width: 300px; padding: 15px; margin: 5px;
+            background: #333; color: white; border: none; border-radius: 10px;
+            font-size: 16px; text-align: center;
+        }
+        .close-menu { margin-top: 30px; color: #aaa; text-decoration: underline; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <h3>Product Scanner</h3>
-    
-    <div class="video-container">
-        <video id="video" autoplay playsinline></video>
-        <div class="guide-line"></div>
+    <video id="video" autoplay playsinline></video>
+
+    <div class="scan-overlay">
+        <div class="red-line"></div>
     </div>
 
-    <div class="controls">
-        <label for="cameraSelect">Select Camera:</label>
-        <select id="cameraSelect">
-            <option value="">Loading cameras...</option>
-        </select>
-        <div id="result">Waiting for scan...</div>
+    <div class="ui-layer">
+        <div id="result">Scanning for barcode...</div>
+        <div class="settings-btn" id="openMenu">
+            <!-- Settings Icon (SVG) -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+        </div>
+    </div>
+
+    <!-- Full Screen Settings Menu -->
+    <div id="cameraMenu">
+        <h2>Select Camera</h2>
+        <div id="cameraList" style="width: 100%; display: flex; flex-direction: column; align-items: center;"></div>
+        <div class="close-menu" id="closeMenu">Cancel</div>
     </div>
 
     <script>
         const video = document.getElementById('video');
-        const cameraSelect = document.getElementById('cameraSelect');
         const resultDiv = document.getElementById('result');
-
+        const cameraMenu = document.getElementById('cameraMenu');
+        const cameraList = document.getElementById('cameraList');
+        
         let currentStream = null;
+        const barcodeDetector = ('BarcodeDetector' in window) ? new BarcodeDetector() : null;
 
-        // 1. Check Browser Support
-        const isSupported = 'BarcodeDetector' in window;
-        const barcodeDetector = isSupported ? new BarcodeDetector() : null;
-
-        if (!isSupported) {
-            resultDiv.innerText = "Error: Barcode API not supported (Use Chrome/Android)";
-            resultDiv.style.color = "#ff4d4d";
-        }
-
-        // 2. Start Camera (Prioritize Front)
-        async function initCamera() {
+        // 1. Start with Front Camera prioritized
+        async function startApp() {
             try {
-                // First request allows us to see device labels
-                const initialStream = await navigator.mediaDevices.getUserMedia({ video: true });
-                initialStream.getTracks().forEach(track => track.stop());
+                // Initial request to get permissions & labels
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                stream.getTracks().forEach(t => t.stop());
 
-                await listCameras();
-                
-                // Try to find front camera initially
-                const frontCam = cameras.find(c => c.label.toLowerCase().includes('front') || c.label.toLowerCase().includes('user'));
-                await startStream(frontCam ? frontCam.deviceId : undefined);
+                // Start specifically with user-facing (front) camera
+                await streamCamera({ facingMode: "user" });
+                requestAnimationFrame(scanLoop);
             } catch (err) {
-                resultDiv.innerText = "Camera Access Denied";
+                resultDiv.innerText = "Camera access required.";
             }
         }
 
-        let cameras = [];
-        async function listCameras() {
-            const devices = await navigator.mediaDevices.enumerateDevices();
-            cameras = devices.filter(d => d.kind === 'videoinput');
-            
-            cameraSelect.innerHTML = '';
-            cameras.forEach((camera, index) => {
-                const option = document.createElement('option');
-                option.value = camera.deviceId;
-                option.text = camera.label || `Camera ${index + 1}`;
-                cameraSelect.appendChild(option);
-            });
-        }
-
-        async function startStream(deviceId) {
-            if (currentStream) {
-                currentStream.getTracks().forEach(track => track.stop());
-            }
-
-            const constraints = {
-                video: deviceId ? { deviceId: { exact: deviceId } } : { facingMode: "user" }
-            };
-
-            currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+        async function streamCamera(constraints) {
+            if (currentStream) currentStream.getTracks().forEach(t => t.stop());
+            currentStream = await navigator.mediaDevices.getUserMedia({ video: constraints });
             video.srcObject = currentStream;
         }
 
-        // 3. Detect Change
-        cameraSelect.onchange = () => {
-            startStream(cameraSelect.value);
-        };
+        // 2. Build the Full-Screen Camera List
+        async function openSettings() {
+            const devices = await navigator.mediaDevices.enumerateDevices();
+            const videoDevices = devices.filter(d => d.kind === 'videoinput');
+            
+            cameraList.innerHTML = '';
+            videoDevices.forEach((device, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'camera-option';
+                btn.innerText = device.label || `Camera ${index + 1}`;
+                btn.onclick = () => {
+                    streamCamera({ deviceId: { exact: device.deviceId } });
+                    cameraMenu.style.display = 'none';
+                };
+                cameraList.appendChild(btn);
+            });
+            cameraMenu.style.display = 'flex';
+        }
 
-        // 4. Scanning Loop
-        async function scan() {
-            if (isSupported && video.readyState === video.HAVE_ENOUGH_DATA) {
+        // 3. Scan Logic
+        async function scanLoop() {
+            if (barcodeDetector && video.readyState === video.HAVE_ENOUGH_DATA) {
                 try {
-                    const barcodes = await barcodeDetector.detect(video);
-                    if (barcodes.length > 0) {
-                        resultDiv.innerText = "Code: " + barcodes[0].rawValue;
-                        if (navigator.vibrate) navigator.vibrate(100);
+                    const codes = await barcodeDetector.detect(video);
+                    if (codes.length > 0) {
+                        resultDiv.innerText = "Result: " + codes[0].rawValue;
+                        if (navigator.vibrate) navigator.vibrate(150);
                     }
                 } catch (e) {}
             }
-            requestAnimationFrame(scan);
+            requestAnimationFrame(scanLoop);
         }
 
-        initCamera().then(() => scan());
+        // Event Listeners
+        document.getElementById('openMenu').onclick = openSettings;
+        document.getElementById('closeMenu').onclick = () => cameraMenu.style.display = 'none';
+
+        startApp();
     </script>
 </body>
 </html>
