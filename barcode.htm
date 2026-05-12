@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Native Barcode Scanner</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; background: #f4f4f9; }
+        video { width: 100%; max-width: 500px; border-radius: 8px; background: #000; }
+        .controls { margin: 20px 0; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+        button { padding: 10px 20px; cursor: pointer; border: none; border-radius: 5px; background: #007bff; color: white; }
+        #result { font-weight: bold; font-size: 1.2rem; color: #28a745; margin-top: 10px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <h2>Barcode Scanner</h2>
+    
+    <video id="video" autoplay playsinline></video>
+    
+    <div class="controls">
+        <button id="switchBtn">Switch Camera</button>
+    </div>
+
+    <div id="result">Scan a barcode...</div>
+
+    <script>
+        const video = document.getElementById('video');
+        const switchBtn = document.getElementById('switchBtn');
+        const resultDiv = document.getElementById('result');
+
+        let currentStream = null;
+        let devices = [];
+        let deviceIndex = 0;
+
+        // 1. Check if the browser supports the Barcode Detector API
+        if (!('BarcodeDetector' in window)) {
+            resultDiv.innerText = "Barcode Detector API not supported in this browser.";
+            resultDiv.style.color = "red";
+        }
+
+        const barcodeDetector = new BarcodeDetector();
+
+        // 2. Function to start the camera
+        async function startCamera(deviceId) {
+            if (currentStream) {
+                currentStream.getTracks().forEach(track => track.stop());
+            }
+
+            const constraints = {
+                video: {
+                    deviceId: deviceId ? { exact: deviceId } : undefined,
+                    facingMode: deviceId ? undefined : "environment"
+                }
+            };
+
+            try {
+                currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+                video.srcObject = currentStream;
+            } catch (err) {
+                console.error("Error accessing camera:", err);
+            }
+        }
+
+        // 3. Get list of available video cameras
+        async function getCameras() {
+            const allDevices = await navigator.mediaDevices.enumerateDevices();
+            devices = allDevices.filter(device => device.kind === 'videoinput');
+        }
+
+        // 4. Switch camera logic
+        switchBtn.addEventListener('click', async () => {
+            if (devices.length > 1) {
+                deviceIndex = (deviceIndex + 1) % devices.length;
+                await startCamera(devices[deviceIndex].deviceId);
+            } else {
+                alert("Only one camera detected.");
+            }
+        });
+
+        // 5. The Scanning Loop
+        async function scan() {
+            if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                try {
+                    const barcodes = await barcodeDetector.detect(video);
+                    if (barcodes.length > 0) {
+                        const code = barcodes[0].rawValue;
+                        resultDiv.innerText = "Detected: " + code;
+                        
+                        // Haptic feedback (vibrate) if supported
+                        if (navigator.vibrate) navigator.vibrate(200);
+                    }
+                } catch (err) {
+                    // Fail silently for frames that can't be read
+                }
+            }
+            requestAnimationFrame(scan);
+        }
+
+        // Initial setup
+        (async () => {
+            await getCameras();
+            await startCamera(); // Starts with default (back camera)
+            scan();
+        })();
+    </script>
+</body>
+</html>
